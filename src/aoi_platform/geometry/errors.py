@@ -10,6 +10,13 @@ class ErrorCode(StrEnum):
     TRANSFORM_SINGULAR = "TRANSFORM_SINGULAR"
     TRANSFORM_ILL_CONDITIONED = "TRANSFORM_ILL_CONDITIONED"
     MAPPING_UNVALIDATED = "MAPPING_UNVALIDATED"
+    TRANSFORM_MISSING = "TRANSFORM_MISSING"
+    TRANSFORM_AMBIGUOUS = "TRANSFORM_AMBIGUOUS"
+    TRANSFORM_CYCLE_UNSUPPORTED = "TRANSFORM_CYCLE_UNSUPPORTED"
+    TRANSFORM_RESOURCE_EXHAUSTED = "TRANSFORM_RESOURCE_EXHAUSTED"
+    POLICY_INVALID = "POLICY_INVALID"
+    DOMAIN_INVALID = "DOMAIN_INVALID"
+    OPTIONAL_DATA_ABSENT = "OPTIONAL_DATA_ABSENT"
 
 
 class GeometryError(ValueError):
@@ -17,6 +24,7 @@ class GeometryError(ValueError):
 
     def __init__(self, code: ErrorCode, message: str, *, field_path: str) -> None:
         self.code = code
+        self.message = message
         self.field_path = field_path
         super().__init__(f"{code}: {field_path}: {message}")
 

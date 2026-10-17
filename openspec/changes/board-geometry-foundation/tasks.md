@@ -4,6 +4,8 @@ Geometry Core was explicitly authorized and implemented on 2026-10-17. Only task
 
 Execution order, entry/exit gates and original-task assignments are in `sprint-plan.md`; acceptance levels are in design.md section 9. IDs 1.1–6.6 below are preserved. A sprint may deliver part of a task, but that task and its incomplete normative requirements remain open until all acceptance checks have evidence. Foundation Prototype does not close the change; Foundation Complete requires full in-scope conformance. Both levels are currently unachieved.
 
+Latest authorized slice: 3.6 PARTIAL (structured geometry reports with deterministic serialization and source/context tests); 4.5 PARTIAL (directed DAG resolver, explicit finite-domain four-corner consistency, full-path context checks, deterministic selection and resource rejection are evidenced; broader normative path lifecycle remains open). See [implementation-status.md](implementation-status.md) for evidence and exact gaps. Neither checkbox is promoted by the passing tests.
+
 ## 1. Decisions and evidence
 - [ ] 1.1 Review preserved frame conventions and stage oracles; accept all four forward and four inverse expected checkpoints.
 - [ ] 1.2 Review separate capacity, fixture and travel contracts; confirm unknown physical dimensions remain TBD without targeting readiness.

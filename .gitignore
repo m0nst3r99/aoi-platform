@@ -1,0 +1,20 @@
+﻿.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.env
+.env.*
+!.env.example
+
+# Local AOI operational data
+data/
+datasets/
+captures/
+images/
+outputs/
+*.sqlite3
+
+# Temporary review exports
+aoi-spec-review*.md

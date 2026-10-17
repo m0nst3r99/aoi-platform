@@ -6,6 +6,11 @@ from .models import AxisDirection, Frame, FrameKind, Parity, Point2, Unit
 from .transforms import Matrix3, Transform2, TransformKind
 from .reports import ContractError, ReportStatus, Severity, SourceLocation, ValidationReport
 from .resolver import PathConsistencyPolicy, RectangleDomain, ResolvedPath, TransformGraph
+from .outlines import LineSegment, CircularArc, Outline
+from .envelopes import (
+    BoardCapacity, FixtureEnvelope, CameraTravelEnvelope, EnvelopeEvidence, EvidenceKind,
+    FitStatus, FitCheck, FitReport, CapacityResult, check_capacity, validate_fit,
+)
 
 __all__ = [
     "AxisDirection", "ErrorCode", "Frame", "FrameKind", "GeometryError",
@@ -13,4 +18,7 @@ __all__ = [
     "Matrix3", "Transform2", "TransformKind",
     "ContractError", "ReportStatus", "Severity", "SourceLocation", "ValidationReport",
     "PathConsistencyPolicy", "RectangleDomain", "ResolvedPath", "TransformGraph",
+    "LineSegment", "CircularArc", "Outline", "BoardCapacity", "FixtureEnvelope",
+    "CameraTravelEnvelope", "EnvelopeEvidence", "EvidenceKind", "FitStatus", "FitCheck",
+    "FitReport", "CapacityResult", "check_capacity", "validate_fit",
 ]

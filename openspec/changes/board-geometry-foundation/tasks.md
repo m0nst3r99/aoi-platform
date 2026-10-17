@@ -1,10 +1,14 @@
 # Future tasks — board-geometry-foundation
 
-Geometry Core was explicitly authorized and implemented on 2026-10-17. Only tasks 4.1–4.4 are completed; all other tasks remain open. See implementation-status.md for executed tests, partial model/error work and remaining scope. No importer, fixture evaluation, camera calibration or hardware accuracy is claimed verified.
+Geometry Core was explicitly authorized and implemented on 2026-10-17. Only tasks 4.1–4.4 are completed; all other tasks remain open. See implementation-status.md for executed tests, partial model/error work and remaining scope. Synthetic fixture evaluation is evidenced only for the selected rectangle/line/arc subset. No importer, camera calibration or hardware accuracy is claimed verified.
 
 Execution order, entry/exit gates and original-task assignments are in `sprint-plan.md`; acceptance levels are in design.md section 9. IDs 1.1–6.6 below are preserved. A sprint may deliver part of a task, but that task and its incomplete normative requirements remain open until all acceptance checks have evidence. Foundation Prototype does not close the change; Foundation Complete requires full in-scope conformance. Both levels are currently unachieved.
 
 Latest authorized slice: 3.6 PARTIAL (structured geometry reports with deterministic serialization and source/context tests); 4.5 PARTIAL (directed DAG resolver, explicit finite-domain four-corner consistency, full-path context checks, deterministic selection and resource rejection are evidenced; broader normative path lifecycle remains open). See [implementation-status.md](implementation-status.md) for evidence and exact gaps. Neither checkbox is promoted by the passing tests.
+
+Current capacity/envelope slice from `1132718`: 3.2/4.15/4.16/4.17 PARTIAL for typed records, bounded line/arc capacity, selected rectangle fixture evaluation and standalone unresolved reporting. User-selected contact/margin and support decisions are recorded in [design.md](design.md). Broader outline/envelope geometry and import integration remain open; see [implementation-status.md](implementation-status.md). The original task descriptions and checkboxes below are preserved.
+
+Resumption added 21 independent kernel tests, followed by 30 public-API fixture tests after the user selected the policy (268 total tests passing). Loaded arc extrema, filled-region exclusion overlap, Euclidean margins including 0.001 mm shortfalls, exact boundary contact, context/validation guards and unresolved/no-targeting states have executed evidence. These subset checks do not close broader normative geometry or import scenarios; no task checkbox was promoted.
 
 ## 1. Decisions and evidence
 - [ ] 1.1 Review preserved frame conventions and stage oracles; accept all four forward and four inverse expected checkpoints.

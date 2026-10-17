@@ -1,5 +1,17 @@
 # AOI Platform V0.1 — Geometry Core
 
+## Capacity and envelope records (current partial Sprint 1 slice)
+
+`Outline`, `LineSegment` and `CircularArc` provide a single simple closed mm contour with analytic arc extrema. `Outline.polygon` closes the supplied vertex sequence explicitly; do not repeat the first vertex. Circular arcs have explicit start/end/center points and clockwise direction; full circles need at least two arcs. Holes, splines/ellipses, multiple contours, more than 512 edges, coordinates or radii above 1e6 mm, and unresolved/degenerate topology reject explicitly. No curve is replaced by endpoint chords.
+
+`check_capacity(outline, BoardCapacity(id, version), rotation_deg=...)` requires a canonical PCB frame and an explicit rotation. Capacity is fixed at 280 x 550 mm. Exact quarter-turns use signed coordinate permutations. Other rotations use analytic projected extrema, including arc interiors. The recorded `capacity-binary64-v1` arithmetic guard is `min(1e-8, 16*ulp(max(550, abs(projected bounds))))` mm, not a physical fit tolerance. The mandatory 0.001 mm overrun remains a failure. Machine placement is not an input to this calculation. Topology predicates use a separate 1e-8 mm numerical guard, with numerically degenerate/unsupported geometry rejected.
+
+`FixtureEnvelope` and `CameraTravelEnvelope` carry separate identities/versions, full machine frames, fixture/camera/configuration IDs, geometry/exclusions and explicit evidence. No physical rectangle or margin is defaulted. Synthetic evidence never promotes itself to qualified; a qualified declaration requires separate qualification references supplied by the caller (reference authenticity is not verified by this data model).
+
+`validate_fit` separately evaluates capacity and the complete loaded board against axis-aligned rectangular usable regions/exclusions in M. Supply an explicit validated proper-rigid `load_transform`; capacity-test rotation is not placement. Outer boundary contact is allowed at zero margin; exclusion contact, overlap and either direction of containment fail. Positive margin uses minimum Euclidean clearance to both kinds of boundary. Analytic arc extrema, curve intersections/distances and filled-contour containment prevent endpoint-only or bounding-box exclusion checks. Violations use structured `BOARD_OUT_OF_ENVELOPE` diagnostics, ordered by usable region first and then exclusion ID.
+
+Numerical policy `fixture-binary64-v1` uses a 1e-8 mm arithmetic guard on outer/margin comparisons and conservatively treats exclusion separation <=1e-8 mm as contact. This cannot hide the required 0.001 mm overrun/shortfall; it is not manufacturing tolerance. Nonrectangular envelope regions reject with `GEOMETRY_UNSUPPORTED`, including when other inputs are missing. Missing fixture geometry, margin or load remains unresolved with explicit reasons. Camera reachability always stays unresolved, including supplied travel rectangles. Reports retain policy, context and evidence IDs and cannot authorize motion or targeting; a synthetic fixture-fit pass does not qualify the envelope. Broader geometry, physical qualification and import integration remain open.
+
 First implementation slice of OpenSpec `board-geometry-foundation`, using Python 3.11+ and the standard library at runtime. This is a package-oriented numerical core, not an inspection application. Foundation Prototype and Foundation Complete are not achieved.
 
 ## Run the tests

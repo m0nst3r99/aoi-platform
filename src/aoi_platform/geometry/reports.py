@@ -11,7 +11,7 @@ from enum import StrEnum
 import json
 from typing import TypeAlias
 
-from .errors import ErrorCode, GeometryError, require_text
+from .errors import ErrorCode, GeometryError, require_text, merge_evidence
 
 Evidence: TypeAlias = tuple[tuple[str, str], ...]
 
@@ -100,9 +100,15 @@ class ContractError:
                             context: Evidence = (), artifact_id: str | None = None,
                             entity_id: str | None = None,
                             source_location: SourceLocation | None = None) -> "ContractError":
+        supplied = _evidence(context, "issue.context")
+        try:
+            combined = merge_evidence(error.context, supplied)
+        except ValueError:
+            _invalid("Caller evidence conflicts with retained error evidence.", "issue.context")
         return cls(error.code, error.message, error.field_path, remediation,
                    artifact_id=artifact_id, entity_id=entity_id,
-                   source_location=source_location, context=context)
+                   source_location=source_location, context=combined,
+                   expected=error.expected, actual=error.actual)
 
     def to_dict(self) -> dict:
         location = self.source_location

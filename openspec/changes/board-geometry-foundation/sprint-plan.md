@@ -1,6 +1,6 @@
 # Foundation execution plan — existing board-geometry-foundation change
 
-Sprint 1 Geometry Core subset implemented under explicit user authorization on 2026-10-17. Only tasks 4.1–4.4 are checked; broader Sprint 1 work remains open. See implementation-status.md for actual synthetic tests and limitations. No implementation acceptance level, parser compatibility or hardware accuracy is claimed achieved. This plan does not authorize later sprints.
+Sprint 1's selected affine/DAG and line/arc/rectangle subset now has numerical, fixture and structured diagnostic evidence, including the diagnostics slice from base 2980f65. Only tasks 4.1–4.4 are checked. Sprint 1 exit and further checkbox changes await evidence review; later import/camera/lifecycle obligations are not additional Sprint 1 implementation gates. See implementation-status.md for the per-task split. No Foundation acceptance level, parser compatibility or hardware accuracy is claimed achieved. This plan does not authorize later sprints.
 
 ## Acceptance levels and reporting
 
@@ -80,13 +80,13 @@ Rows are OPEN or PARTIAL; partial Geometry Core evidence is recorded in implemen
 | GEO-001 requirement | Planned coverage and original tasks | Current status |
 | --- | --- | --- |
 | Explicit coordinate frames and canonical units | S1: 3.1, 4.1–4.4; runtime image-size evidence S5: 4.6–4.8 | PARTIAL: core frames/units/oracles tested; runtime image geometry open |
-| Explicit transform direction, composition, and inversion | S1: 4.4–4.5; contextual camera paths S5: 4.6–4.14 | PARTIAL: direct affine operations tested; path resolution/camera maps open |
+| Explicit transform direction, composition, and inversion | S1: 4.4–4.5; contextual camera paths S5: 4.6–4.14 | PARTIAL: selected directed affine DAG paths, invalid products, four-corner ambiguity and context diagnostics tested; camera maps/lifecycle open |
 | Rotations and bottom-side parity | S1: 4.2–4.4; real footprint evidence S2: 5.4 | PARTIAL: synthetic orientation/parity scenarios pass; imported footprint integration open |
 | Planar camera mapping and pixel semantics | S5: 4.6–4.8, 4.12 | OPEN; deferred beyond Prototype |
 | Fiducial registration quality | S2 candidate data: 5.6; validated fits S5: 4.9–4.11 | OPEN; validated fitting deferred beyond Prototype |
 | Configurable synthetic calibration policies | S1 numeric contract subset; S5: 1.3, 3.3, 4.11–4.14 | OPEN; full policy enforcement deferred beyond Prototype |
 | Calibration and registration lifecycle isolation | S5: 4.13–4.14, 4.18 | OPEN; full six-machine calibration evidence deferred beyond Prototype |
-| Separate board capacity, fixture and camera travel | S1: 3.2, 4.15–4.17; complete hardware-free evidence S5: 6.5 | OPEN; physical dimensions intentionally unresolved |
+| Separate board capacity, fixture and camera travel | S1: 3.2, 4.15–4.17; complete hardware-free evidence S5: 6.5 | PARTIAL: capacity, selected rectangle fixture checks and unresolved travel tested; import integration open. Physical TBD is intentional, not a missing S1 implementation |
 
 | PCB-001 requirement | Planned coverage and original tasks | Current status |
 | --- | --- | --- |
@@ -98,8 +98,8 @@ Rows are OPEN or PARTIAL; partial Geometry Core evidence is recorded in implemen
 | Manufactured paste geometry | S3: 5.7–5.9; untested positive/negative scenarios S5: 6.4 | OPEN |
 | Placement and BOM joins with explicit authority | S4: 1.6, 5.10–5.12, 5.14 | OPEN |
 | Immutable revisions and deterministic provenance | S2: 3.4–3.5, 5.15, 5.17–5.18; recheck combined sources S4 | OPEN |
-| Independent data import and physical readiness | S1/S2: 4.15–4.17; mapping/REVIEW completion S5: 3.7, 4.12 | OPEN |
-| Atomic contracts and actionable validation reports | S1/S2: 3.6, 5.17; real multi-source failures S4; full boundary S5: 3.7 | OPEN |
+| Independent data import and physical readiness | S1/S2: 4.15–4.17; mapping/REVIEW completion S5: 3.7, 4.12 | PARTIAL: standalone unresolved/no-targeting reporting tested; import/publication and inspection boundary open |
+| Atomic contracts and actionable validation reports | S1/S2: 3.6, 5.17; real multi-source failures S4; full boundary S5: 3.7 | PARTIAL: immutable reports, stable ordering and resolver/fit diagnostic context tested; parser collection and atomic publication open |
 | Optional inspection-engine interoperability | S5: 6.1–6.2, 6.5 | OPEN; adapter-boundary evidence deferred beyond Prototype |
 
 ## Remaining decisions

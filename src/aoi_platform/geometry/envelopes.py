@@ -5,9 +5,9 @@ from enum import StrEnum
 from math import ulp
 from typing import ClassVar
 
-from .errors import ErrorCode, GeometryError, finite_number, require_text
+from .errors import ErrorCode, GeometryError, finite_number, require_text, diagnostic_json
 from .fixture_geometry import rectangle_bounds, rectangle_relation, transform_outline
-from .models import Frame, FrameKind, require_same_frame
+from .models import Frame, FrameKind, require_same_frame, frame_evidence, frame_snapshot
 from .outlines import EPS, Outline, outline_bounds
 from .reports import ContractError, Evidence, _evidence
 from .transforms import Transform2, TransformKind
@@ -188,7 +188,8 @@ def check_capacity(outline: Outline, capacity: BoardCapacity, *, rotation_deg: f
     if not isinstance(outline, Outline) or not isinstance(capacity, BoardCapacity):
         _schema("Supply Outline and BoardCapacity records.", "capacity.request")
     if outline.frame.kind is not FrameKind.PCB:
-        raise GeometryError(ErrorCode.CONTEXT_MISMATCH, "Capacity uses the canonical board outline in frame P.", field_path="capacity.frame")
+        raise GeometryError(ErrorCode.CONTEXT_MISMATCH, "Capacity uses the canonical board outline in frame P.", field_path="capacity.frame",
+                            expected=FrameKind.PCB.value, actual=frame_snapshot(outline.frame))
     rotation = finite_number(rotation_deg, "capacity.rotation_deg")
     bounds = outline_bounds(outline, rotation)
     width, height = bounds[2]-bounds[0], bounds[3]-bounds[1]
@@ -285,6 +286,45 @@ def validate_fit(outline: Outline, capacity: BoardCapacity, *, rotation_deg: flo
                  report_id: str, fixture: FixtureEnvelope | None = None,
                  travel: CameraTravelEnvelope | None = None,
                  load_transform: Transform2 | None = None) -> FitReport:
+    context = []
+    if isinstance(report_id, str) and report_id.strip():
+        context.append(("report_id", report_id))
+    if isinstance(outline, Outline):
+        context.append(("outline_id", outline.outline_id))
+        context.extend(frame_evidence("source", outline.frame))
+    if isinstance(capacity, BoardCapacity):
+        context.extend((("capacity.id", capacity.capacity_id), ("capacity.version", capacity.version),
+                        ("capacity.policy", CapacityResult.numerical_policy_id)))
+    if type(rotation_deg) in (int, float):
+        context.append(("capacity.rotation_deg", str(rotation_deg)))
+    if isinstance(load_transform, Transform2):
+        context.append(("transform_id", load_transform.transform_id))
+        context.extend(frame_evidence("load.source", load_transform.from_frame))
+        context.extend(frame_evidence("target", load_transform.to_frame))
+    for prefix, envelope, record_type in (("fixture", fixture, FixtureEnvelope), ("travel", travel, CameraTravelEnvelope)):
+        if isinstance(envelope, record_type):
+            for name in ("envelope_id", "version", "machine_id", "configuration_id"):
+                context.append((f"{prefix}.{name}", getattr(envelope, name)))
+            context.extend(frame_evidence(f"{prefix}.frame", envelope.frame))
+            if prefix == "fixture":
+                context.extend((("fixture.fixture_id", envelope.fixture_id), ("fixture.policy", "fixture-binary64-v1")))
+                if envelope.margin_mm is not None:
+                    context.append(("fixture.margin_mm", str(envelope.margin_mm)))
+                if envelope.usable_region is not None:
+                    context.append(("fixture.region_id", envelope.usable_region.outline_id))
+            else:
+                context.extend((("travel.camera_id", envelope.camera_id), ("travel.reference_point", envelope.reference_point)))
+    try:
+        return _validate_fit(outline, capacity, rotation_deg=rotation_deg, report_id=report_id,
+                             fixture=fixture, travel=travel, load_transform=load_transform)
+    except GeometryError as error:
+        raise error.with_context(tuple(context)) from error
+
+
+def _validate_fit(outline: Outline, capacity: BoardCapacity, *, rotation_deg: float,
+                  report_id: str, fixture: FixtureEnvelope | None = None,
+                  travel: CameraTravelEnvelope | None = None,
+                  load_transform: Transform2 | None = None) -> FitReport:
     """Evaluate capacity and selected rectangle fixture subset; never authorize motion."""
     result = check_capacity(outline, capacity, rotation_deg=rotation_deg)
     if fixture is not None and not isinstance(fixture, FixtureEnvelope):
@@ -302,7 +342,8 @@ def validate_fit(outline: Outline, capacity: BoardCapacity, *, rotation_deg: flo
                                 field_path="fit.load_transform.kind")
         require_same_frame(load_transform.from_frame, outline.frame, "fit.load_transform.from_frame")
         if load_transform.to_frame.kind is not FrameKind.MACHINE:
-            raise GeometryError(ErrorCode.CONTEXT_MISMATCH, "Load target must be frame M.", field_path="fit.load_transform.to_frame")
+            raise GeometryError(ErrorCode.CONTEXT_MISMATCH, "Load target must be frame M.", field_path="fit.load_transform.to_frame",
+                                expected=FrameKind.MACHINE.value, actual=frame_snapshot(load_transform.to_frame))
         frames.append(load_transform.to_frame)
     for envelope in (fixture, travel):
         if envelope is not None:
@@ -312,7 +353,9 @@ def validate_fit(outline: Outline, capacity: BoardCapacity, *, rotation_deg: flo
     for name in ("board_revision_id", "machine_id", "capture_id"):
         values = {getattr(frame, name) for frame in frames if getattr(frame, name) is not None}
         if len(values) > 1:
-            raise GeometryError(ErrorCode.CONTEXT_MISMATCH, f"Conflicting {name} in fit inputs.", field_path=f"fit.{name}")
+            first = next(getattr(frame, name) for frame in frames if getattr(frame, name) is not None)
+            raise GeometryError(ErrorCode.CONTEXT_MISMATCH, f"Conflicting {name} in fit inputs.", field_path=f"fit.{name}",
+                                expected=first, actual=diagnostic_json(sorted(values)))
     fixture_check = _fixture_check(outline, fixture, load_transform)
     camera_check = FitCheck(FitStatus.UNRESOLVED, ("OPTICAL_COVERAGE_AND_REACHABILITY_NOT_VALIDATED",),
                            () if travel is None else ((travel.envelope_id, travel.version),),

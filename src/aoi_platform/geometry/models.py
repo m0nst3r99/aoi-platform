@@ -135,4 +135,18 @@ def require_same_frame(actual: Frame, expected: Frame, field_path: str) -> None:
             ErrorCode.CONTEXT_MISMATCH,
             f"Expected frame {expected.frame_id!r} and its metadata; got {actual.frame_id!r}.",
             field_path=field_path,
+            expected=frame_snapshot(expected), actual=frame_snapshot(actual),
         )
+
+
+def frame_snapshot(frame: Frame) -> str:
+    from dataclasses import asdict
+    from .errors import diagnostic_json
+    return diagnostic_json(asdict(frame))
+
+
+def frame_evidence(prefix: str, frame: object) -> tuple[tuple[str, str], ...]:
+    if not isinstance(frame, Frame):
+        return ()
+    from dataclasses import asdict
+    return tuple((f"{prefix}.{key}", str(value)) for key, value in asdict(frame).items() if value is not None)

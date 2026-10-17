@@ -1,5 +1,45 @@
 # Geometry Core implementation evidence
 
+## Current diagnostics/evidence slice from 2980f65 — review pending
+
+The user authorized only Sprint 1 diagnostics/resolver evidence and documentation reconciliation. The existing 268-test baseline passed before adding regression cases. No normative capability requirement or task checkbox was changed. The sections below the historical divider are retained as history and must not be read as the current missing-work list.
+
+Implemented:
+
+- [errors.py](../../../src/aoi_platform/geometry/errors.py) retains an immutable diagnostic payload behind the compatible GeometryError/ValueError interface: code, message, field_path, sorted immutable context and separate expected/actual values. Exception traceback mechanics remain available. [models.py](../../../src/aoi_platform/geometry/models.py) supplies full frame mismatch snapshots and role-prefixed known metadata.
+- [resolver.py](../../../src/aoi_platform/geometry/resolver.py) retains source/target/domain/policy and graph budget evidence on failures. Known candidate paths and failing unvalidated transform IDs are carried where available. Graph metadata conflicts use stable transform-ID ordering; source/target mismatches preserve both records, and nonadjacent context conflicts retain all conflicting known values. No guessed identity or usable result is returned on failure.
+- Path diagnostics have their own explicit bound: 32 path entries, 128 IDs total, 8192 UTF-8 encoded-ID bytes per summary. Omitted counts are explicit; registry inventories are labeled as inventories, not inferred paths. If graph size already exceeds the resolution budget, diagnostics report omitted edge count without scanning/sorting the registry. Search/comparison limits are unchanged; bounded diagnostics do not imply partial resolution success.
+- [envelopes.py](../../../src/aoi_platform/geometry/envelopes.py) enriches errors before FitReport creation with known outline/report/capacity, source/load/target, envelope/configuration and numerical policy evidence. Role prefixes preserve conflicting machine/frame values. Unknown metadata is absent, not manufactured.
+- [reports.py](../../../src/aoi_platform/geometry/reports.py) automatically adapts retained evidence and expected/actual values without caller reconstruction. Additional caller evidence is validated; conflicting values reject rather than overwrite. Existing deterministic issue sorting/serialization and failure codes/field paths are preserved.
+
+New [test_diagnostics.py](../../../tests/test_diagnostics.py) has 27 cases: missing paths; absent metadata; full source mismatches; nonadjacent machine/revision/capture conflicts; unvalidated mapping; literal noncommuting graph oracles (8,1) versus (-2,11); origin-equal/corner-disagreeing affine paths; individually valid edges producing ill-conditioned or underflow-singular products; graph/comparison budget failures; large path/long-ID diagnostic omissions; stable reports under reordered registrations, including conflicting metadata; immutable errors and adapter overwrite rejection; pre-report fit failures and conflicting fixture/travel contexts; invalid report identity adaptation and duplicate registry ID retention. Tests call the public APIs and adapt errors without resupplying context. All prior tests remain intact.
+
+Executed full suite after final code/tests: `.venv/Scripts/python.exe -m pytest -q` **295 passed in 0.55s**, exit 0. `openspec validate board-geometry-foundation --strict` reported **valid**, exit 0; `git diff --check` passed, exit 0, with only LF/CRLF working-copy warnings. Passing tests do not declare Sprint 1 exit or either Foundation acceptance level.
+
+### Per-task review ledger: Sprint 1 evidence versus later obligations
+
+| Task | Sprint 1 evidence now available | Still open / later obligation |
+| --- | --- | --- |
+| 1.1 | Preserved conventions and four literal forward plus four inverse checkpoints in test_transforms; user-authorized implementation did not alter the oracles | Record review acceptance; no new camera/import work is needed for this decision task |
+| 1.2 | User selected fixture contact/margin and rectangle support; separate records, missing geometry and supplied travel/no-targeting tests pass | Record review acceptance; real physical dimensions/qualification stay TBD, not a Sprint 1 coding gate |
+| 3.1 | Finite immutable point/frame/affine records; explicit units/origin/axes and required context by frame kind | Broader image/projective/calibration/load models belong to S5; imported source metadata to S2–4 |
+| 3.2 | Capacity, fixture and camera-travel identities/versions/context/evidence; standalone unknown geometry remains unresolved | Narrow standalone record checklist has evidence; broader geometry/import integration is not automatically a missing record requirement |
+| 3.6 | Immutable structured diagnostics, automatic resolver/fit evidence retention, expected/actual conflicts, source-location and stable multi-issue report tests | Parser collection and publication rollback S2–4; inspection boundary S5. No claim of an implemented import collector |
+| 4.1 | Independent inch/mm and reverse conversion oracles | Already checked; imported normalization integration remains separate |
+| 4.2 | Reflection, bottom orientation/parity and explicit no-auto-mirror tests | Already checked; real footprint integration S2 |
+| 4.3 | Rotation/translation stage oracles, vector orientation, angle wrapping | Already checked; component import integration later |
+| 4.4 | Noncommuting composition, literal inverse checkpoints, seed-1007 scalar oracles/round trips | Already checked; projective/lens round trips S5 |
+| 4.5 | Directed affine DAG, all candidate corners/pairs, exact path context, budgets, invalid products and structured failure evidence | Camera/projective/active-stale-load lifecycle S5; cycle-capable graphs outside selected resolver subset |
+| 4.15 | Exact 280x550, explicit rotated 550x280, 0.001 mm overrun, placement independence and analytic arc bounds | Selected S1 acceptance evidenced; broader imported outline/cutout support remains open in import/general geometry scope |
+| 4.16 | Selected rectangle/line/arc fit, contact, margins, crossings/containment, arc extrema and capacity-pass/fixture-fail | Wider geometry not silently supported; physical qualification not claimed |
+| 4.17 | Standalone missing envelopes and camera rectangle remain unresolved, no motion/targeting | Import-success/publication scenario still requires S2 integration; REVIEW construction S5 |
+
+Status distinction: only 4.1–4.4 remain checked (4/63). Other rows can have sufficient selected Sprint 1 evidence without closing their complete task/capability obligations. This ledger is submitted for review, not an exit declaration. No parser, camera/calibration lifecycle, new geometry subset, commit/push, ZIP review or agent configuration modification was introduced.
+
+## Historical implementation entries — superseded as current status
+
+All following sections are historical snapshots. Their test counts, “pending” statements and “current/latest/remaining” headings describe their original deliveries only. In particular, resolver absence, pending fixture policy, missing fixture API and missing report-container statements no longer describe HEAD plus this slice. Their broader normative open obligations remain in force; use the per-task ledger above for current scope.
+
 ## Current result: selected fixture-fit subset implemented (base 1132718)
 
 This section supersedes the pending-policy and incomplete fixture-API statements in the historical entries below. The user selected both contact/margin semantics and the initial supported geometry set. Those decisions were written to [design.md](design.md) before connecting the kernel to the API. Normative capability specs and original task descriptions were not changed.

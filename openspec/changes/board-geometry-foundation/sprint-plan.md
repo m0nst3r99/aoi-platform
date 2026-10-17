@@ -1,12 +1,12 @@
 # Foundation execution plan — existing board-geometry-foundation change
 
-Planning only. No sprint has started, no implementation acceptance level is achieved, and no tests/parsers/hardware accuracy are claimed verified. All tasks in tasks.md remain unchecked. This plan orders the existing change; it does not create a new change or authorize `/opsx:apply`.
+Sprint 1 Geometry Core subset implemented under explicit user authorization on 2026-10-17. Only tasks 4.1–4.4 are checked; broader Sprint 1 work remains open. See implementation-status.md for actual synthetic tests and limitations. No implementation acceptance level, parser compatibility or hardware accuracy is claimed achieved. This plan does not authorize later sprints.
 
 ## Acceptance levels and reporting
 
 Design.md section 9 is the detailed acceptance contract. Foundation Prototype is proposed after Sprint 4: a bounded, tested geometry and real-board import/reconciliation path with explicit errors, context, immutable revisions and provenance. It must name its supported subset and every remaining OPEN requirement/scenario. Foundation Complete requires all normative scenarios, including camera/calibration and full machine isolation, to have passing implementation evidence. Sprint 5 is necessary but not sufficient if any requirement remains incomplete.
 
-Status vocabulary: OPEN (not yet evidenced), PARTIAL (some evidence, still open), SATISFIED (all requirement scenarios evidenced). This amendment initializes all implementation status to OPEN. Document validation cannot promote any status. Future sprint reviews must cite original task IDs, exact requirement/scenario titles, candidate version, fixtures/hashes, selected policies and test results. Never mark a whole task complete for a partial sprint slice.
+Status vocabulary: OPEN (not yet evidenced), PARTIAL (some evidence, still open), SATISFIED (all requirement scenarios evidenced). The initial plan set all status to OPEN; Geometry Core rows now record partial evidence below, with full conformance still open. Document validation cannot promote any status. Future sprint reviews must cite original task IDs, exact requirement/scenario titles, candidate version, fixtures/hashes, selected policies and test results. Never mark a whole task complete for a partial sprint slice.
 
 ## Sprint 1 — Typed geometry models and coordinate transformations
 
@@ -75,13 +75,13 @@ IDs are stable and retain their acceptance meaning in tasks.md. Every original t
 
 ## Initial open normative-requirement register
 
-Every row is currently OPEN. Coverage below describes intended work, not evidence. Exact scenario titles in the capability specs are the authoritative test checklist; tasks 6.4 and 7.2/7.3 must retain each incomplete scenario individually. Partial requirements remain open even if an earlier sprint or Prototype milestone is accepted.
+Rows are OPEN or PARTIAL; partial Geometry Core evidence is recorded in implementation-status.md. Planned later coverage is not executed evidence. Exact scenario titles in the capability specs are the authoritative test checklist; tasks 6.4 and 7.2/7.3 must retain each incomplete scenario individually. Partial requirements remain open even if an earlier sprint or Prototype milestone is accepted.
 
 | GEO-001 requirement | Planned coverage and original tasks | Current status |
 | --- | --- | --- |
-| Explicit coordinate frames and canonical units | S1: 3.1, 4.1–4.4; runtime image-size evidence S5: 4.6–4.8 | OPEN |
-| Explicit transform direction, composition, and inversion | S1: 4.4–4.5; contextual camera paths S5: 4.6–4.14 | OPEN |
-| Rotations and bottom-side parity | S1: 4.2–4.4; real footprint evidence S2: 5.4 | OPEN |
+| Explicit coordinate frames and canonical units | S1: 3.1, 4.1–4.4; runtime image-size evidence S5: 4.6–4.8 | PARTIAL: core frames/units/oracles tested; runtime image geometry open |
+| Explicit transform direction, composition, and inversion | S1: 4.4–4.5; contextual camera paths S5: 4.6–4.14 | PARTIAL: direct affine operations tested; path resolution/camera maps open |
+| Rotations and bottom-side parity | S1: 4.2–4.4; real footprint evidence S2: 5.4 | PARTIAL: synthetic orientation/parity scenarios pass; imported footprint integration open |
 | Planar camera mapping and pixel semantics | S5: 4.6–4.8, 4.12 | OPEN; deferred beyond Prototype |
 | Fiducial registration quality | S2 candidate data: 5.6; validated fits S5: 4.9–4.11 | OPEN; validated fitting deferred beyond Prototype |
 | Configurable synthetic calibration policies | S1 numeric contract subset; S5: 1.3, 3.3, 4.11–4.14 | OPEN; full policy enforcement deferred beyond Prototype |

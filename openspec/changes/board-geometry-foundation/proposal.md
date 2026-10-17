@@ -1,6 +1,6 @@
 # board-geometry-foundation
 
-Status: Proposed for review. Specification only; no implementation authorized by this change.
+Status: Geometry Core subset implemented under explicit user authorization on 2026-10-17; remaining change open. See implementation-status.md. Neither Foundation Prototype nor Foundation Complete is achieved.
 
 ## Why
 
@@ -11,7 +11,7 @@ The independent AOI platform needs trustworthy board geometry before inspection 
 - **GEO-001 — Board geometry:** define canonical millimeter PCB coordinates, individually identified source frames, camera pixel and machine XY frames, explicit transformation chains, side and rotation rules, fiducial registration, calibration records, typed contracts, errors, and synthetic acceptance tests.
 - **PCB-001 — PCB data import:** define validated, revision-bound import of KiCad PCB, Gerber Paste, component placement, BOM, footprints, pads, and fiducials into immutable canonical board data, with source provenance and explicit conflict handling.
 
-New capabilities: `board-geometry` and `pcb-data-import`. No existing capabilities are modified in this standalone workspace. Normative requirements are in `specs/<capability>/spec.md`; design decisions and shared model contracts are in `design.md`. `tasks.md` describes future implementation work and remains unchecked.
+New capabilities: `board-geometry` and `pcb-data-import`. No existing capabilities are modified in this standalone workspace. Normative requirements are in `specs/<capability>/spec.md`; design decisions and shared model contracts are in `design.md`. `tasks.md` preserves implementation traceability; only completed Geometry Core tasks 4.1–4.4 are checked.
 
 AOI Platform V0.1 initially targets **KiCad 10.0.7**. This is a development target, not verified compatibility. Exact tested builds, exporter settings, parser/library versions and test results remain TBD until real fixtures and tests establish evidence in `supported-inputs.md`.
 
@@ -31,7 +31,7 @@ A custom ESP32-S3 board will eventually control motion, lighting, sensors, and t
 
 ## Scope and impact
 
-Review deliverables are Markdown artifacts only. Future implementation will comprise a hardware-independent geometry library and import pipeline with synthetic/file fixtures. No camera resolution or model is fixed. Existing inspection software may consume an adapter contract; Aman9y/open-aoi is a possible component, never a dependency of the canonical data model.
+The original review package is now accompanied by the first hardware-independent Python Geometry Core and synthetic unit tests. The import pipeline and remaining specification work are still open. No camera resolution or model is fixed. Existing inspection software may consume an adapter contract; Aman9y/open-aoi is a possible component, never a dependency of the canonical data model.
 
 Excluded: hardware design, gantry travel design, motor commands, ESP32 firmware, image acquisition drivers, detection algorithms, production inspection tolerances, 3D reconstruction, reflow defect taxonomy, UI implementation, and distributed infrastructure.
 
@@ -39,6 +39,6 @@ Excluded: hardware design, gantry travel design, motor commands, ESP32 firmware,
 
 The canonical frame conventions and transform equations are preserved, with independent intermediate test oracles added. Calibration thresholds are configurable, versioned synthetic test policies, not verified production accuracy. Two metric fiducials can constrain a rigid pose; a planar homography requires four or more suitable points and independent validation evidence. Unvalidated mappings are rejected and cause REVIEW at the inspection boundary.
 
-Before any Gerber parser is implemented from scratch, evaluate reuse of PyGerber or Gerbonara and record the decision and fixture evidence. Unsupported constructs must fail explicitly. `supported-inputs.md` records exact tested versions, constructs, formats and representative fixtures; all unverified support is TBD. Future tasks are split into independently testable deliverables and remain unchecked.
+Before any Gerber parser is implemented from scratch, evaluate reuse of PyGerber or Gerbonara and record the decision and fixture evidence. Unsupported constructs must fail explicitly. `supported-inputs.md` records exact tested versions, constructs, formats and representative fixtures; all unverified support is TBD. Remaining tasks are split into independently testable deliverables and remain unchecked; implementation-status.md records the completed core subset.
 
 Open decisions: the real PCB identity/export bundle, KiCad 10.0.7 build evidence and exporter settings, parser/library versions and verified input subset, synthetic policy approval, and Gerber reuse selection. Fixture geometry/margins, camera travel/coverage and production qualification remain future optics/mechanics decisions. Review approval does not certify hardware performance or authorize implementation automatically.

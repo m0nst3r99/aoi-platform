@@ -1,6 +1,6 @@
 # Future tasks — board-geometry-foundation
 
-All tasks remain unchecked. This change amends specifications only. Implementation requires a separate instruction. Each item has a bounded deliverable and acceptance check; later items depend on applicable earlier contracts/evidence. No planned fixture or evaluation is claimed complete.
+Geometry Core was explicitly authorized and implemented on 2026-10-17. Only tasks 4.1–4.4 are completed; all other tasks remain open. See implementation-status.md for executed tests, partial model/error work and remaining scope. No importer, fixture evaluation, camera calibration or hardware accuracy is claimed verified.
 
 Execution order, entry/exit gates and original-task assignments are in `sprint-plan.md`; acceptance levels are in design.md section 9. IDs 1.1–6.6 below are preserved. A sprint may deliver part of a task, but that task and its incomplete normative requirements remain open until all acceptance checks have evidence. Foundation Prototype does not close the change; Foundation Complete requires full in-scope conformance. Both levels are currently unachieved.
 
@@ -29,10 +29,10 @@ Execution order, entry/exit gates and original-task assignments are in `sprint-p
 - [ ] 3.7 Define ready versus blocked REVIEW inspection input; verify blocked results retain reasons/context but no usable ROIs.
 
 ## 4. GEO-001 independently testable deliverables
-- [ ] 4.1 Add unit conversion; test (1,2) inch -> (25.4,50.8) mm independently.
-- [ ] 4.2 Add reflection/parity; test (25.4,-50.8) and bottom-mirror checkpoints.
-- [ ] 4.3 Add rotation/translation; test (50.8,25.4) then (60.8,45.4), direction vectors and angle wrapping.
-- [ ] 4.4 Add composition/inversion; test noncommuting transforms, inverse checkpoints and fixed-seed round trips.
+- [x] 4.1 Add unit conversion; test (1,2) inch -> (25.4,50.8) mm independently.
+- [x] 4.2 Add reflection/parity; test (25.4,-50.8) and bottom-mirror checkpoints.
+- [x] 4.3 Add rotation/translation; test (50.8,25.4) then (60.8,45.4), direction vectors and angle wrapping.
+- [x] 4.4 Add composition/inversion; test noncommuting transforms, inverse checkpoints and fixed-seed round trips.
 - [ ] 4.5 Add contextual path resolution; reject missing, ambiguous, singular and ill-conditioned mappings.
 - [ ] 4.6 Add distortion-free projection; verify affine/non-affine oracles, domain/horizon errors and runtime dimensions.
 - [ ] 4.7 Add selected lens-model inverse contract; verify nonlinear synthetic limits and no silent resolution scaling.

@@ -11,9 +11,9 @@ The independent AOI platform needs trustworthy board geometry before inspection 
 - **GEO-001 — Board geometry:** define canonical millimeter PCB coordinates, individually identified source frames, camera pixel and machine XY frames, explicit transformation chains, side and rotation rules, fiducial registration, calibration records, typed contracts, errors, and synthetic acceptance tests.
 - **PCB-001 — PCB data import:** define validated, revision-bound import of KiCad PCB, Gerber Paste, component placement, BOM, footprints, pads, and fiducials into immutable canonical board data, with source provenance and explicit conflict handling.
 
-New capabilities: `board-geometry` and `pcb-data-import`. No existing capabilities are modified in this standalone workspace. Normative requirements are in `specs/<capability>/spec.md`; design decisions and shared model contracts are in `design.md`. `tasks.md` preserves implementation traceability; only completed Geometry Core tasks 4.1–4.4 are checked.
+New capabilities: `board-geometry` and `pcb-data-import`. No existing capabilities are modified in this standalone workspace. Normative requirements are in `specs/<capability>/spec.md`; design decisions and shared model contracts are in `design.md`. `tasks.md` preserves implementation traceability; completed Geometry Core tasks 4.1–4.4 and acquisition gate 7.1 are checked.
 
-AOI Platform V0.1 initially targets **KiCad 10.0.7**. This is a development target, not verified compatibility. Exact tested builds, exporter settings, parser/library versions and test results remain TBD until real fixtures and tests establish evidence in `supported-inputs.md`.
+AOI Platform V0.1 initially targets **KiCad 10.0.7**. This is a development target, not verified compatibility. KiCad 10.0.7 export execution/settings and REAL-PCB-01-r1 hashes are recorded in `supported-inputs.md`; parser/library versions and compatibility results remain TBD.
 
 ## Implementation acceptance and sprint plan
 
@@ -21,7 +21,7 @@ AOI Platform V0.1 initially targets **KiCad 10.0.7**. This is a development targ
 
 **Foundation Prototype** is a proposed end-of-Sprint-4 milestone: tested typed geometry plus a bounded, provenance-preserving import/reconciliation path for the real V0.1 fixture, with explicit unsupported-input rejection and incomplete normative requirements still OPEN. It is not full GEO-001/PCB-001 conformance. **Foundation Complete** requires every normative requirement/scenario to have implementation and passing evidence, including camera/fiducial validation, lifecycle, machine isolation and failure handling. Sprint 5 is necessary but its completion alone does not establish this level. Neither level is currently achieved or represents hardware qualification. Detailed gates are in design.md section 9.
 
-Sprint 2 requires the `REAL-PCB-01` bundle defined in `supported-inputs.md`: one actual board revision with `.kicad_pcb`, F.Paste Gerber, placement, BOM and exporter configuration. B.Paste is additionally required only for requested bottom-side SPI. Board identity, files and evidence are currently TBD; planning this prerequisite does not fulfill it.
+Sprint 2 requires the `REAL-PCB-01` bundle defined in `supported-inputs.md`: one actual board revision with `.kicad_pcb`, F.Paste Gerber, placement, BOM and exporter configuration. B.Paste is additionally required only for requested bottom-side SPI. Acquisition gate 7.1 is accepted for REAL-PCB-01-r1; local checks and user-confirmed external report review are recorded in `supported-inputs.md`. This does not accept parser compatibility or the separate Sprint 1 coordinate gates.
 
 ## Platform boundaries
 
@@ -41,4 +41,4 @@ The canonical frame conventions and transform equations are preserved, with inde
 
 Before any Gerber parser is implemented from scratch, evaluate reuse of PyGerber or Gerbonara and record the decision and fixture evidence. Unsupported constructs must fail explicitly. `supported-inputs.md` records exact tested versions, constructs, formats and representative fixtures; all unverified support is TBD. Remaining tasks are split into independently testable deliverables and remain unchecked; implementation-status.md records the completed core subset.
 
-Open decisions: the real PCB identity/export bundle, KiCad 10.0.7 build evidence and exporter settings, parser/library versions and verified input subset, synthetic policy approval, and Gerber reuse selection. Fixture geometry/margins, camera travel/coverage and production qualification remain future optics/mechanics decisions. Review approval does not certify hardware performance or authorize implementation automatically.
+Open decisions: parser/library versions and verified input subset, synthetic policy approval, and Gerber reuse selection. Fixture geometry/margins, camera travel/coverage and production qualification remain future optics/mechanics decisions. Review approval does not certify hardware performance or authorize implementation automatically.

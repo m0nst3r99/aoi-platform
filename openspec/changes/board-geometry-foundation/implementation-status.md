@@ -1,6 +1,39 @@
 # Geometry Core implementation evidence
 
-## Current diagnostics/evidence slice from 2980f65 — review pending
+## Current review acceptance - 2026-10-19
+
+The user relayed acceptance of the inventory byte-admission slice after direct code review from the inventory ZIP: reviewer results were 370 passed, 1 skipped plus 1,200 independent cases passing. These are reviewer-reported results conveyed by the user, not new agent executions or an agent verification of the independent cases. The reviewer did not rerun the REAL-PCB-01-r1 bundle test; the earlier local agent result remains separate evidence.
+
+Review of Sprint 1 exit for the agreed affine/DAG and line/arc/rectangle subset, and review of decisions 1.1/1.2, are accepted in chat as reported by the user. Distinguish that review acceptance from the user's confirmation/instruction to record it; no signature, attestation or blanket normative-conformance approval is created. Earlier review-pending statements are historical and superseded by this section. Checkboxes are unchanged by this documentation-only update; 1.1/1.2 review is no longer a blocker. Aggregate tasks with outstanding obligations, including 3.4/5.1, stay PARTIAL/open. Neither Foundation acceptance level nor parser compatibility is achieved.
+
+Next work is to propose/evaluate KiCad reader reuse under 1.5/5.2, before choosing a reader; no parser implementation or new evaluation is performed in this documentation update.
+
+## Artifact inventory slice - 2026-10-19 (tasks 3.4/5.1 PARTIAL)
+
+The user explicitly authorized only byte inventory, with the accepted gate 7.1 left intact. [inventory.py](../../../src/aoi_platform/inventory.py) implements `inventory_artifacts(InventoryManifest, ByteSources, InventoryLimits)`. Frozen declaration/observation records separate claimed metadata and provenance from measured bytes/EOF/full SHA-256. Success has an inventory and scoped report; failure has only diagnostics and non-usable observation evidence. Geometry/profile semantics, revision equivalence and inspection readiness are never inferred from a matching hash.
+
+Profile/side role coverage follows design.md: geometry needs PCB; SPI needs Paste per requested SPI side; post-placement needs BOM/placement per assembly side; combined needs both. Multiple artifacts per role are allowed with unique IDs. Reference-only artifacts are hashed but cannot fulfill roles. Metadata key conflicts, schema/digest errors, duplicate IDs, missing roles/sources, I/O errors and hash/size conflicts reject. Diagnostics reuse ContractError/ValidationReport without changing geometry behavior; import/I/O ErrorCode members are additive. Artifact-ID traversal and report serialization are deterministic under input reordering, and repeated meaningful errors remain present.
+
+Sources are explicit trusted binary-stream factories; ownership transfers to inventory for one close attempt. Streaming SHA-256 uses explicit count/per-file/total/chunk limits, with at most one sentinel byte beyond a byte budget to distinguish EOF. All returned bytes from failed reads count; unsafe resource/protocol/close failures stop further I/O. Partial evidence never supplies a full digest. No filesystem/URL/archive adapter, reader/parser, reconciliation or publication is implemented.
+
+Executed evidence:
+
+- [test_inventory.py](../../../tests/test_inventory.py): 75 portable synthetic cases, literal known SHA-256 oracles, all profile coverage combinations, reference-only, schema/source/hash/size failures, exact/exceeded budgets and chunk ceiling, short reads, ownership, independent errors, determinism and failure without inventory.
+- Full `.venv/Scripts/python.exe -m pytest -q`: **370 passed, 1 skipped in 0.66s**, exit 0. All 295 prior tests remain. The single skip is the opt-in local fixture test, not a skipped inventory contract case.
+- [test_inventory_local.py](../../../tests/test_inventory_local.py), with `AOI_REAL_PCB_01_ROOT` pointing to the accepted REAL-PCB-01-r1: **1 passed in 0.20s**, exit 0. The API streamed all 25 SHA256SUMS entries (2,454,516 bytes), matched declared hashes, retained reference-only B.Paste, and read population evidence (57 footprints, 28 assembly references, 3 retained fiducials). These are byte/declaration checks, not renewed acquisition review or parser evidence. No fixture bytes copied or edited; the normal suite has no C:/dev dependency. Root-checked, explicit path factories exist only in this opt-in test.
+- `openspec validate board-geometry-foundation --strict`: valid, exit 0. `git diff --check`: exit 0, no whitespace errors (LF/CRLF notices only); the three new code/test files were also checked for trailing whitespace. The editor test tool did not discover pytest tests, so the repository virtual-environment pytest command supplied the executed test evidence.
+
+Task 3.4 remains PARTIAL: artifact/provenance admission is evidenced; parsed entity records and entity-level identities remain open. Task 5.1 remains PARTIAL at the full import boundary: bounded byte inventory/required-role/profile declarations are evidenced; integration with parsed candidates, complete ImportManifest semantic validation and later profile coverage/publication remain open. No checkbox changed. Reader/API evaluation, format support and geometry work are outside this authorization. Trusted factory blocking/timeouts and process-level memory enforcement are not provided by this synchronous byte API; factories must honor the protocol. SHA-256 is observation evidence, not a trusted-source signature.
+
+## Historical gate 7.1 closure - accepted REAL-PCB-01-r1, 2026-10-18
+
+Task 7.1 alone is promoted in this update. The local agent inspected files/export commands and reverified all 25 SHA-256 entries. The user confirmed external review of the forwarded preparation report and authorized acceptance. External reviewers did not directly verify bundle bytes; no third-party signature/attestation is created. See [supported-inputs.md](supported-inputs.md) for snapshot, authority, UUID population, conventions, warnings and hashes. The fixture is untouched; its pre-acceptance review-pending text remains historical.
+
+This supersedes acquisition-TBD/report-review-pending statements only. It does not close Sprint 1 decisions 1.1/1.2, accept Sprint 1 exit, verify parser compatibility or authorize Sprint 2 implementation. All other open tasks remain open to their full contracts. Existing diagnostics test results below are historical evidence, not rerun by this documentation update.
+
+Closure verification: all 25 bundle SHA-256 entries match; strict OpenSpec validation passes; git diff --check has no whitespace errors (working-copy LF/CRLF notices only). Only documentation changed, so pytest was not rerun. See sprint-plan.md for the proposed bounded-inventory API and KiCad API reuse assessment; neither is implemented.
+
+## Diagnostics/evidence slice from 2980f65 — historical pre-review report
 
 The user authorized only Sprint 1 diagnostics/resolver evidence and documentation reconciliation. The existing 268-test baseline passed before adding regression cases. No normative capability requirement or task checkbox was changed. The sections below the historical divider are retained as history and must not be read as the current missing-work list.
 
@@ -20,8 +53,8 @@ Executed full suite after final code/tests: `.venv/Scripts/python.exe -m pytest 
 
 | Task | Sprint 1 evidence now available | Still open / later obligation |
 | --- | --- | --- |
-| 1.1 | Preserved conventions and four literal forward plus four inverse checkpoints in test_transforms; user-authorized implementation did not alter the oracles | Record review acceptance; no new camera/import work is needed for this decision task |
-| 1.2 | User selected fixture contact/margin and rectangle support; separate records, missing geometry and supplied travel/no-targeting tests pass | Record review acceptance; real physical dimensions/qualification stay TBD, not a Sprint 1 coding gate |
+| 1.1 | Preserved conventions and four literal forward plus four inverse checkpoints in test_transforms; review accepted in chat per user update | Review is no longer pending; checkbox unchanged in this status-only update |
+| 1.2 | Separate contracts and agreed subset review accepted in chat per user update | Physical dimensions/qualification remain TBD, not a missing Sprint 1 review; checkbox unchanged |
 | 3.1 | Finite immutable point/frame/affine records; explicit units/origin/axes and required context by frame kind | Broader image/projective/calibration/load models belong to S5; imported source metadata to S2–4 |
 | 3.2 | Capacity, fixture and camera-travel identities/versions/context/evidence; standalone unknown geometry remains unresolved | Narrow standalone record checklist has evidence; broader geometry/import integration is not automatically a missing record requirement |
 | 3.6 | Immutable structured diagnostics, automatic resolver/fit evidence retention, expected/actual conflicts, source-location and stable multi-issue report tests | Parser collection and publication rollback S2–4; inspection boundary S5. No claim of an implemented import collector |

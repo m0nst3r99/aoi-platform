@@ -1,8 +1,10 @@
 # Future tasks — board-geometry-foundation
 
-Geometry Core was explicitly authorized and implemented on 2026-10-17. Only tasks 4.1–4.4 are completed; all other tasks remain open. See implementation-status.md for executed tests, partial model/error work and remaining scope. Synthetic fixture evaluation is evidenced only for the selected rectangle/line/arc subset. No importer, camera calibration or hardware accuracy is claimed verified.
+Geometry Core was explicitly authorized and implemented on 2026-10-17. Tasks 4.1–4.4 and acquisition gate 7.1 are completed; all other tasks remain open. See implementation-status.md for executed tests, partial model/error work and remaining scope. Synthetic fixture evaluation is evidenced only for the selected rectangle/line/arc subset. No importer, camera calibration or hardware accuracy is claimed verified.
 
 Execution order, entry/exit gates and original-task assignments are in `sprint-plan.md`; acceptance levels are in design.md section 9. IDs 1.1–6.6 below are preserved. A sprint may deliver part of a task, but that task and its incomplete normative requirements remain open until all acceptance checks have evidence. Foundation Prototype does not close the change; Foundation Complete requires full in-scope conformance. Both levels are currently unachieved.
+
+Inventory byte-admission code review is accepted (direct ZIP review; results relayed by user: 370 passed, 1 skipped plus 1,200 independent cases). Reviewer did not rerun the real bundle. Sprint 1 agreed-subset exit review and decisions 1.1/1.2 are accepted in chat. Aggregate task obligations remain open; no Foundation or parser-support claim.
 
 Latest authorized slice: 3.6 PARTIAL (structured geometry reports with deterministic serialization and source/context tests); 4.5 PARTIAL (directed DAG resolver, explicit finite-domain four-corner consistency, full-path context checks, deterministic selection and resource rejection are evidenced; broader normative path lifecycle remains open). See [implementation-status.md](implementation-status.md) for evidence and exact gaps. Neither checkbox is promoted by the passing tests.
 
@@ -12,7 +14,9 @@ Resumption added 21 independent kernel tests, followed by 30 public-API fixture 
 
 ## 1. Decisions and evidence
 - [ ] 1.1 Review preserved frame conventions and stage oracles; accept all four forward and four inverse expected checkpoints.
+  - Review ACCEPTED in chat per user update 2026-10-19 for the agreed Sprint 1 subset. Checkbox unchanged by this review-status-only update; no pending review blocker.
 - [ ] 1.2 Review separate capacity, fixture and travel contracts; confirm unknown physical dimensions remain TBD without targeting readiness.
+  - Review ACCEPTED in chat per user update 2026-10-19 for the agreed Sprint 1 subset. Checkbox unchanged by this review-status-only update; no pending review blocker.
 - [ ] 1.3 Define synthetic-geometry-v1 policy; check units, configurable limits, independent evidence and synthetic/production separation.
 - [ ] 1.4 Define synthetic-import-v1 reconciliation policy; check explicit selection and no production accuracy claim.
 - [ ] 1.5 Use KiCad 10.0.7 as the AOI Platform V0.1 initial target; record actual build/exporter versions/settings to evaluate, keeping compatibility/results TBD until verified.
@@ -30,6 +34,7 @@ Resumption added 21 independent kernel tests, followed by 30 public-API fixture 
 - [ ] 3.2 Define BoardCapacity and separate fixture/travel records; verify unknown geometry stays unresolved.
 - [ ] 3.3 Define CalibrationPolicy serialization; reject invalid limits and require revalidation on version changes.
 - [ ] 3.4 Define artifact/provenance/entity records; verify duplicate IDs and missing hashes yield actionable errors.
+  - PARTIAL (2026-10-19): immutable byte inventory declarations/observations, retained provenance, duplicate artifact IDs and missing/invalid hashes have executed evidence. Parsed entity records remain open; see implementation-status.md.
 - [ ] 3.5 Define immutable revision serialization; verify deterministic digests and changed-input identities.
 - [ ] 3.6 Define validation reports/error ordering; verify source locations and multiple discoverable errors.
 - [ ] 3.7 Define ready versus blocked REVIEW inspection input; verify blocked results retain reasons/context but no usable ROIs.
@@ -56,6 +61,7 @@ Resumption added 21 independent kernel tests, followed by 30 public-API fixture 
 
 ## 5. PCB-001 independently testable deliverables
 - [ ] 5.1 Add manifest inventory/hashing/limits; reject missing roles, unknown profiles and oversized input.
+  - PARTIAL (2026-10-19): streaming inventory, role/side coverage, typed schema/source errors and byte/count/chunk limits tested synthetically and against REAL-PCB-01-r1. Full import-manifest/candidate integration remains open; see implementation-status.md.
 - [ ] 5.2 Add evidence-based supported-version gates; reject unverified formats/constructs explicitly.
 - [ ] 5.3 Add tested KiCad outline/cutout import; verify independent topology and malformed-outline errors.
 - [ ] 5.4 Add footprint/component normalization; test rotated top/bottom coordinate oracles.
@@ -83,6 +89,6 @@ Resumption added 21 independent kernel tests, followed by 30 public-API fixture 
 - [ ] 6.6 Review future boundaries: no fabricated Z/volume, physical travel dimensions, production accuracy, motion output or distributed infrastructure; retain provenance/context/revision/machine isolation.
 
 ## 7. Additional planning gates (original IDs preserved)
-- [ ] 7.1 Acquire and document REAL-PCB-01 before Sprint 2: actual `.kicad_pcb`, F.Paste, placement, BOM and exporter configuration from one revision; B.Paste only for requested bottom-side SPI. Check hashes, producer evidence and declared conventions; current evidence TBD.
+- [x] 7.1 Acquire and document REAL-PCB-01 before Sprint 2: actual `.kicad_pcb`, F.Paste, placement, BOM and exporter configuration from one revision; B.Paste only for requested bottom-side SPI. Check hashes, producer evidence and declared conventions. Accepted for REAL-PCB-01-r1 on 2026-10-18 after local byte/export verification and user-confirmed external report review; see [supported-inputs.md](supported-inputs.md). This closes acquisition only, not parser support or all Sprint 2 entry conditions.
 - [ ] 7.2 Assess Foundation Prototype against design.md section 9 after Sprint 4; attach evidence and explicitly retain every incomplete requirement/scenario and partial original task as OPEN.
 - [ ] 7.3 Assess Foundation Complete after Sprint 5 and any remaining closure work; require evidence for every normative scenario and no unresolved in-scope requirement. Do not substitute document validation or sprint completion for implementation evidence.

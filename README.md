@@ -1,5 +1,13 @@
 # AOI Platform V0.1 — Geometry Core
 
+## Artifact byte inventory (partial Sprint 2 slice)
+
+`aoi_platform.inventory.inventory_artifacts(manifest, byte_sources, limits)` accepts frozen `InventoryManifest`/`ArtifactDeclaration` records and explicit `InventoryLimits`. Byte sources are a mapping of opaque source IDs to factories returning fresh binary streams; the inventory owns and closes each returned stream. It does not resolve paths or URLs. Supply fixture/source identities, declared SHA-256, optional sizes, per-artifact side coverage and separate requested SPI/assembly sides. Metadata/provenance remain declarations, never verified geometry or revision attestations.
+
+The result is `InventorySuccess` with a frozen inventory and report, or `InventoryFailure` with only diagnostics/evidence, no inventory. Both provide deterministic `to_json()`. SHA-256 is streamed with artifact-count, per-file, aggregate-byte and chunk limits; an exact-limit EOF probe may consume one extra byte before rejecting overflow. Required-role coverage excludes reference-only artifacts. Hash success is byte admission only, not parser compatibility, imported geometry, publication or inspection readiness. Full schema, supported roles and ownership/error semantics are in [design.md](openspec/changes/board-geometry-foundation/design.md).
+
+Portable inventory tests run with the normal pytest suite. An optional local byte test is enabled by setting `AOI_REAL_PCB_01_ROOT` to the existing accepted revision directory and running `python -m pytest tests/test_inventory_local.py -q -s`. It reads the bundle without copying or editing it; no local path is required by the normal suite. [Implementation evidence](openspec/changes/board-geometry-foundation/implementation-status.md) records the limits and remaining work.
+
 ## Capacity and envelope records (current partial Sprint 1 slice)
 
 `Outline`, `LineSegment` and `CircularArc` provide a single simple closed mm contour with analytic arc extrema. `Outline.polygon` closes the supplied vertex sequence explicitly; do not repeat the first vertex. Circular arcs have explicit start/end/center points and clockwise direction; full circles need at least two arcs. Holes, splines/ellipses, multiple contours, more than 512 edges, coordinates or radii above 1e6 mm, and unresolved/degenerate topology reject explicitly. No curve is replaced by endpoint chords.

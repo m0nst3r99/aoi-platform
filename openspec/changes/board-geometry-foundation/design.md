@@ -1,5 +1,298 @@
 # Board geometry foundation design
 
+## Authorized evaluation runner slice - 2026-10-19
+
+This section supersedes runner/staging/transport proposals below; observation
+semantics remain future work. Windows x64 + CPython x64, explicit ctypes Win32
+prototypes/structures, trusted host/executable/helper. No KiCad run/version pin,
+no inventory bridge or source factory/path resolution. Non-Windows and unsupported
+required capabilities fail explicitly; no weaker fallback. Tested OS/Python are
+recorded in execution evidence, not generalized to untested versions.
+
+**Staging ownership:** input is caller-staged, read-only local disk handle with
+artifact/source ID, exact size and SHA-256. Caller owns input/handle and must keep
+it stable during execution. Runner owns only its duplicated handle and execution
+resources; it never deletes caller input. Hash/size validation starts within the
+runner entry deadline; acquisition/staging deadlines belong to a future bridge.
+File-pointer sharing on duplicated handles is explicit: caller must not concurrently
+seek/read the shared file object; helper access may advance the shared offset.
+Validation uses read-only mapping without changing the caller offset. Input is
+passed as an explicitly inherited handle (argv placeholder), stdin is NUL.
+
+**Transport boundary:** runner controls executable/argv, cwd, explicit environment,
+handles, Job, pipes, budgets, exit and cleanup only. No JSON parsing, framing,
+backend version checks or handshake. Bounded malformed JSON is transport-success
+when the process/cleanup contract succeeds. Protocol tests belong to a later layer.
+Executable absolute path, shell=False semantics (direct CreateProcessW); no PATH
+search. Only stdout/stderr writers, NUL stdin and duplicated staged handle inherit;
+Job handle and parent's read ends do not. No breakaway flags.
+
+**Success predicate:** root exit=0 AND no observed error/budget violation AND both
+pipes reached EOF without read error AND Job accounting ActiveProcesses=0 AND root
+termination confirmed AND I/O finished AND every owned handle/view reclaimed
+within separate cleanup deadline. Query Job accounting, not Job signaled state or
+notifications alone. Cleanup uncertainty yields failure with explicit cleanup_state,
+not a claimed cleaned result. Failed assignment never resumes the suspended child.
+
+**Implementation choice:** single-threaded PeekNamedPipe/ReadFile polling with one
+reader per pipe and reads limited to bytes already available; rotate both streams.
+No reader threads and no outstanding overlapped reads exist to cancel. On failure,
+terminate Job, close I/O handles, query termination and release resources within
+cleanup deadline. Pipe peek/read/close errors remain failures. No unbounded
+communicate/capture_output. Execution deadline starts at function entry; cleanup
+gets its own deadline. Win32 calls on trusted local resources are not a hard
+real-time scheduling guarantee; native tests use an independent outer watchdog.
+
+Process/job committed-memory and active-process limits are set and read back before
+resume. KILL_ON_JOB_CLOSE applies. Raw status is retained; arbitrary crashes are
+not labeled MEMORY_BUDGET. Peak accounting cannot detect every denied allocation.
+Budget integers reject bool, zero and Win32 overflow. Raw output retention <= combined
+budget, each stream <= its own budget, temporary read buffers <= chunk; conversions
+may briefly double retained bytes. Failure prefixes share these bounds and are
+explicitly unusable. Diagnostic text/count have fixed internal caps. No whole-stream
+hash is claimed for prefixes. This is resource control, not a security sandbox.
+
+Test policy (synthetic only): `windows-runner-test-v1`, input 1 MiB, stdout/stderr
+64 KiB each, combined 96 KiB, chunk 4096 bytes, wall 5000 ms, cleanup 3000 ms,
+process commit 128 MiB, job commit 384 MiB, active processes 8. Tests explicitly
+replace individual limits for boundaries/enforcement; these are not production
+defaults. No support/checkbox promotion from passing runner tests.
+
+## Runner verification update - 2026-10-19
+
+The evaluation runner is implemented; see [runner scope/results](../../../evaluation/windows_runner/README.md)
+and [review-03 raw evidence](../../../evaluation/windows_runner/evidence/review-03/environment-command.json).
+491 passed / 1 existing fixture-opt-in skip includes 57 portable + 41 Windows
+runner cases. This replaces the old draft's runner NOT RUN status below only;
+observation/protocol/geometry cases remain future work. No external runner review
+acceptance yet. Task 1.5/5.2 remains PARTIAL. Universal parent-death cleanup is
+incomplete: CreateProcess-suspended and Assign are not atomic; the native parent
+crash test covers the already-assigned Job, not that earlier window. Other platform
+builds and naturally incompatible enclosing Jobs are not native-tested. Read/peek/
+close faults are tested; this implementation has no pending async read cancellation.
+
+## Review draft: native observation boundary (2026-10-19, tasks 1.5/5.2 PARTIAL)
+
+**Observation adapter proposal only. The separate runner slice above is authorized.** This
+refines planning without changing normative PCB-001/GEO-001 requirements. The
+existing inventory admits bytes, not geometry. Reader evaluation and accepted
+population errata/r2 establish neither parser compatibility nor complete input
+support. See [implementation status](implementation-status.md) and
+[evaluation evidence](../../../evaluation/kicad-reader/README.md).
+
+### Proposed API and immutable types
+
+```python
+observe_native(
+    request: NativeObservationRequest,
+    source: BinarySourceLease,
+    backend: BackendIdentity,
+    limits: ObservationLimits,
+) -> NativeObservationSuccess | NativeObservationFailure
+```
+
+Names and protocol are proposed, not existing symbols. Frozen records use tuples
+and primitive immutable values throughout; a frozen wrapper around mutable
+dicts/lists is insufficient. Transport JSON is validated before constructing them.
+
+| Record | Required fields and semantics |
+| --- | --- |
+| NativeObservationRequest | InventorySuccess admission plus selected artifact_id, source_id, computed SHA-256, actual size, fixture revision/snapshot, requested protocol `kicad-native-observation-v1`, mode `evaluation-only`. Require exactly one matching PCB artifact, EOF and full digest; reject InventoryFailure/reference-only admission. Revalidate consistency of supplied records, not object identity or a signature assumption. |
+| BinarySourceLease | Explicit host-issued capability for the selected source_id; read-only source handle, ownership/lifetime and resource capability description. No URL, archive or arbitrary path resolution. Proposed Windows first implementation accepts a controlled local regular-file handle only, not a network path/device/reparse traversal. |
+| BackendIdentity | Explicit absolute bundled Python executable, native extension/runtime dependency identity manifest and hashes, helper script hash, expected KiCad build `10.0.7`, architecture, Python ABI/version and protocol version. Record expected and observed identities independently. A directory named `10.0` or a child-reported version alone is not a pin. |
+| ObservationLimits | Versioned policy ID; positive input bytes, stdout bytes, stderr bytes, combined output bytes, chunk bytes, wall-time ms, cleanup-time ms, process committed-memory bytes, aggregate job committed-memory bytes, max processes, JSON nesting/string/entity/diagnostic counts, and staging disk bytes. No silent unlimited defaults. Chunk <=1 MiB proposed; other values explicit until measured, no invented production-safe defaults. |
+| NativeObservationSuccess | Frozen observations, provenance, required coverage/limitations tuple and ValidationReport scoped to `native-observation-evaluation-only`. Literal `geometry_usable=False`, `import_usable=False`, `targeting_authorized=False`; no BoardRevision/Transform object or implicit conversion into canonical models. Success means the observation protocol completed, not that the input format is supported for import. |
+| NativeObservationFailure | ValidationReport plus bounded ExecutionEvidence (hashes, counters, exit/status, bounded log bytes or log digests, cleanup state). **No observations field and no success-shaped partial output.** Discard any candidate observations on failure. |
+
+InventorySuccess contains no reusable source bytes. Before launch, stage a fresh
+read of the supplied capability with streaming SHA-256 and compare both size and
+hash against admitted evidence. Source ID, artifact ID and revision declarations
+remain attached throughout. TOCTOU between inventory and stage is a conflict,
+not permission to trust the previous digest. Do not pass the original fixture
+path to native loader. Staging uses a unique host-owned directory, fixed generated
+filename, restricted handle inheritance and no project/library sidecars.
+
+Ownership: caller retains its source lease; runner owns duplicated handles,
+temporary files and child resources and closes them on all paths. Stage bytes
+through the containment worker, not an arbitrary blocking factory on the host
+thread. Current inventory ByteSources factories are synchronous trusted callables
+without deadlines; they are **not automatically compatible** with this lease.
+If a deadline-capable source cannot be provided, fail `POLICY_INVALID` with
+reason `SOURCE_CAPABILITY_UNSUPPORTED` before starting native work. Exact local
+handle issuance/path/reparse/ACL checks require review and tests in a later bridge;
+do not silently expand inventory's source API.
+
+### Failures and diagnostic compatibility
+
+Reuse GeometryError -> ContractError.from_geometry_error -> ValidationReport,
+preserving code/field_path and all evidence already known. Proposed reason enum
+is stored in context `adapter_reason`; it does not pretend new ErrorCode members
+exist. Mappings below are proposals for review, not code changes.
+
+| Failure | Existing ErrorCode / proposed reason |
+| --- | --- |
+| Invalid request, duplicate IDs or malformed protocol/schema | SCHEMA_INVALID or DUPLICATE_ID / REQUEST_INVALID, PROTOCOL_INVALID |
+| Backend/protocol mismatch or native parse rejection | FORMAT_UNSUPPORTED / BACKEND_MISMATCH, PROTOCOL_VERSION_MISMATCH, NATIVE_LOAD_REJECTED |
+| Hash/size mismatch, source metadata conflict | SOURCE_CONFLICT / STAGED_BYTES_MISMATCH, DECLARATION_CONFLICT |
+| Missing/open/read/launch/crash/cleanup failure | SOURCE_NOT_FOUND or SOURCE_IO_ERROR / SOURCE_MISSING, READ_FAILED, LAUNCH_FAILED, PROCESS_CRASHED, CLEANUP_FAILED |
+| Input/output/time/memory/process limit | INPUT_LIMIT_EXCEEDED / INPUT_BUDGET, OUTPUT_BUDGET, TIMEOUT, MEMORY_BUDGET, PROCESS_BUDGET |
+| Requested containment unsupported/unverifiable | POLICY_INVALID / CONTAINMENT_UNAVAILABLE, LIMIT_UNSUPPORTED |
+
+Preserve artifact/source IDs, declared revision, source digest, backend identities,
+protocol, policy and limits; expected/actual must not overwrite each other.
+Native entity UUID and source location are included only if known; no invented
+line numbers from an API object. Diagnostics use existing canonical ordering and
+serialization with meaningful duplicates retained. Bound diagnostics; exceeding
+their count fails rather than returning an accepted truncated report. Runtime
+timestamps/PIDs belong to execution evidence, not semantic equality assertions.
+Report status ACCEPTED is restricted to its observation scope, never inspection
+readiness. A malformed negative-probe response or crash is not native rejection.
+
+### Subprocess lifecycle and Windows enforcement proposal
+
+Use explicit argv and executable; never shell=True, shell interpolation, PATH
+search or source-supplied options. Temporary backend: bundled pcbnew 10.0.7;
+native load success does not admit every KiCad 10 file. Pin and verify installation
+manifest plus helper hashes before execution; child handshake reports build/ABI/
+protocol and rehashes staged input. This is drift detection under a trusted host,
+not attestation against a malicious executable or a same-user attacker replacing
+the install. Reject an untrusted/writable backend installation policy.
+
+Proposed lifecycle: validate policy/capabilities -> create private stage/job ->
+bounded stage/hash -> verify backend -> create worker suspended with hidden UI ->
+assign job and verify limits -> resume -> bounded handshake/observations -> wait
+for worker and descendants -> validate complete JSON -> cleanup -> return.
+Never return success before cleanup; no resuming a worker that could not be
+assigned to the required job. End-to-end monotonic deadline includes staging,
+handshake and execution, with an explicit bounded cleanup deadline afterwards.
+
+| Resource | Proposed enforcement | Evidence still required |
+| --- | --- | --- |
+| Input/staging disk | Fixed-size streaming read/write and measured counters; reject before writing bytes beyond budget; at most one documented sentinel byte to distinguish exact EOF. Stage hash and size must match admission. No other writable artifacts allowed by the worker protocol. | Exact boundary, +1 byte, dishonest size, mutation between reads, disk/full/read failures; source-handle and sidecar behavior. A cooperative worker protocol is not a disk quota against hostile code. |
+| stdout/stderr | Drain both pipes concurrently in bounded chunks; per-stream and combined counters. Detect first overrun, terminate job, retain bounded prefix plus truncation/count evidence. No communicate(capture_output=True) unlimited buffering. | Flood either/both streams, deadlock, held pipes in descendants, invalid UTF-8, combined-limit boundary. |
+| Wall time/tree | CreateProcess suspended, AssignProcessToJobObject before resume, no breakaway flags; KILL_ON_JOB_CLOSE; TerminateJobObject and wait for all job members plus pipe readers. Closing only the root process is insufficient. | Actual Windows child/grandchild, parent crash, hung native call, denied job assignment/nested-job conflict, cleanup timeout and all handles closed. |
+| Memory | Set process and job committed-memory limits via JOBOBJECT_EXTENDED_LIMIT_INFORMATION; verify installed settings before resume. This bounds committed virtual memory, not RSS, kernel memory or the host Python process. | Real Windows allocation helper across descendants, memory-denial/crash behavior, accounting and diagnostic classification. Notifications alone are not proof every breach is reported. Unclassified failure stays failure, never guessed success. |
+| Processes | Job active-process limit, descendants inherit job; no breakaway allowed. | Attempt fork/spawn above limit; prove no surviving normal CreateProcess descendants. Out-of-job/service-mediated creation is not a security containment claim. |
+| Host decoding/diagnostics | Bounded byte buffers and bounded framing, duplicate JSON-key rejection, strict finite-number/type validation and explicit nesting/entity/string limits. Budget applies before constructing unbounded object graphs. | Deep/malformed JSON, duplicate keys, huge entity arrays, NaN/Infinity and report explosion. Host RSS is not bounded by child job; unsupported host-hard-memory policy fails explicitly. |
+| Cleanup | Terminate and reap workers, close read/write/job/process handles, release staged-file handle and remove only owned temporary directory. Unexpected files or residual handles are failure evidence. | Windows sharing violations, cleanup denied, parent termination, no success until cleanup verified. Persist a bounded cleanup record; no deletion outside owned stage. |
+
+These mechanisms are **not implemented or Windows-tested here**. If job assignment,
+hard memory enforcement, supported pipe cancellation or required policy cannot be
+established, return CONTAINMENT_UNAVAILABLE/LIMIT_UNSUPPORTED before native work;
+do not fall back to timeout-only execution. A child allocation refusal may be
+caught by a runtime, so protocol completeness still needs validation. No claim
+that peak accounting detects every denied allocation. A timeout/Job Object is
+resource control, **not a filesystem/network/security sandbox**. Requests requiring
+hostile-file isolation, hard host-memory caps or disk quotas are unsupported by
+this proposal and must fail rather than receive an overstated guarantee.
+
+Official platform references (consulted 2026-10-19; documentation, not probe
+evidence): [Job Objects](https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects),
+[committed-memory fields](https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_extended_limit_information),
+[process creation flags](https://learn.microsoft.com/en-us/windows/win32/procthread/process-creation-flags).
+No new native integration runs were performed for this contract.
+
+### Observation protocol and evidence origins
+
+One versioned UTF-8 JSON document on stdout after successful handshake, bounded by
+the agreed framing protocol; stderr is diagnostic-only. Echo request ID, artifact
+ID, stage hash, backend identity and protocol. Unknown version/fields, missing
+required fields, duplicate UUIDs/keys, invalid types and nonfinite numbers reject.
+The exact framing/handshake transport is a review decision below. Serialize records
+deterministically by UUID, preserving repeated pad number strings as distinct pads.
+
+Each observed field records origin (`native_api`, `derived`, `external_declaration`)
+and accessor/calculation/declaration provenance; do not blend origins into one
+unqualified value. Preserve native integer length coordinates and their scale when
+available; p.ToMM conversions are derived with the conversion identified. Source
+frame is artifact-hash-bound, not canonical P: source sheet coordinates, units,
+axis/origin declarations and confidence are explicit. Raw angles include API
+accessor and units without canonical modulo, sign or parity transformations.
+Side derives from layer ID/name with that mapping recorded; retain original layer
+membership and note that API expansion may lose original wildcard spelling.
+
+- Footprints: UUID/reference/value/library ID, native position/angle/layer,
+  raw attributes and API DNP/BOM/position exclusions; UUID links to source hash.
+- Pads: UUID/parent UUID/number string, native and footprint-relative positions,
+  native angles, shape/size/drill/layers and known padstack details. Missing
+  semantics are explicit coverage gaps, not zero/default shapes or rectangles.
+- Outline: separate board-level Edge.Cuts primitives from footprint-owned ones,
+  retaining parent frame, line endpoints and arc start/mid/end data. Native
+  outline validity, polygon/hole counts and bbox are derived native-algorithm
+  observations; none replaces original curves/topology or independent validation.
+- External population ledger/classifications are separately declared metadata;
+  disagreement is retained as expected/actual evidence, not silently overwritten.
+  Ledger agreement does **not** independently prove reader geometry/flags correct.
+  No automatic assembly eligibility or fiducial approval. Fiducial candidates
+  retain declaration UUID/source/provenance separately from observed geometry.
+- Bottom local/world values are observations only; no inferred mirror, pose,
+  source-to-canonical transform or targeting coordinates are returned.
+
+### Construct coverage matrix (current evidence, not a support allowlist)
+
+"Full" below means fields observed for the named fixture case, never whole-format
+support. Any unverified completeness keeps observations evaluation-only. Unknown
+features cannot be declared fail-closed unless detection is evidenced.
+
+| Construct | Current category | Detection / evidence needed before promotion |
+| --- | --- | --- |
+| r2 footprint UUID/ref/value/position/angle/layer and DNP/exclusion fields | Fully observed for fixture fields; only DNP source correction independently reviewed in full | Native accessors and all-UUID source audit; add independent synthetic top/bottom numeric and flag oracles. Ledger count/match alone is insufficient. |
+| Board-level Edge.Cuts lines/arcs | Observed primitive fields; partial geometry verification | Enumerate native drawing type/layer, preserve UUID/curves. 12 lines/3 arcs and 135x90 centerline evidenced. Add independent arc extrema/winding/topology; not merely bbox. |
+| Enclosed cutouts/multiple loops | Identification API available; positive support unverified | Explicit nested contour fixtures, independent hole count/boundary/orientation oracle; no inferred outlines. r2 has zero holes, not proof of cutout support. |
+| Footprint-local Edge.Cuts | Not detected by current board-drawing probe | Enumerate footprint graphical items and parent/local transforms; test top/bottom rotated local edges. Until then declare coverage unknown, not absent. |
+| Bottom geometry | Raw pose/side observed; normalization unverified | Native local/world pad/primitive queries versus independent rotated/reflected oracles. Never apply implicit reflection in observation stage. |
+| Simple/roundrect pads | Shape tags/basic dimensions identified; incomplete geometry | Preserve corner radius/ratios, orientation and per-layer properties with independent tests. Current dimensions alone are insufficient. |
+| Custom pads/primitives, chamfers, padstacks, overrides | Intended rejection when recognized; complete detector not implemented | Enumerate every native shape/primitive/per-layer construct; explicit unsupported reason and UUID. Synthetic instances for each enum; detect dropped/normalized properties independently. Cannot claim general rejection today. |
+| Splines/unknown visible native item types | Intended rejection of detected unsupported item | Exhaustive enumerator/type inventory and synthetic positive/negative fixtures; no default skip branch. |
+| Tokens/data omitted or normalized by native loader (incl. unknown future tokens) | **Not reliably detected** | Native API has no proven source-preservation/loss ledger. Requires upstream parser diagnostics/source-aware coverage evidence or independently audited enumerator. No custom S-expression parser authorized. Hash/version/load success cannot close this gap. |
+| Project/library/variant sidecar-dependent semantics | Not verified | Isolated stage without sidecars, explicit default-variant declaration and comparison fixtures; reject unsupported external dependency when detected, retain unknown coverage otherwise. |
+
+Consequently the first observation proposal cannot satisfy PCB-001's import
+fail-closed construct requirement. It produces **no usable geometry for import**.
+If caller asks for import-ready/complete coverage, reject the mode before reading.
+Do not lower the normative requirement or mark 5.2 complete to fit these limits.
+
+### Acceptance plan: distinguish three evidence classes
+
+| Class | Tests/evidence required | Current status |
+| --- | --- | --- |
+| Portable mocked | Identity/protocol mismatch, missing/malformed input, staged hash/size mismatch, schema/JSON/duplicates/nonfinite, bounded reads/output, timeout/crash classifications, deterministic diagnostics, no success-shaped failure, cleanup errors | Existing 23 harness regressions accepted; they do not test the proposed adapter/runner. New contract cases NOT RUN. |
+| Native Windows process integration | Actual job assignment before resume; time/memory/process budgets; stdout/stderr concurrent overflow; child/grandchild termination, withheld EOF, crash, sharing violations and cleanup; capability-unavailable rejection | Historical NOT RUN statement superseded by runner verification above; untested cases remain gaps. Mock tests cannot substitute. |
+| Native KiCad semantics | Read-only r2 with pinned build/hashes; independent small line/arc/cutout/top/bottom/local-Edge.Cuts/custom-pad and unsupported-token fixtures; source unchanged; exact population/provenance comparisons | Prior local r2 27/27 is narrow agent evidence; new synthetic oracles NOT RUN. No PASS for cutouts/bottom/custom/unknown-token coverage yet. |
+| Review | Reviewer verified ZIP 23/23 regressions, 133/133 packaged hashes, 25/25 per snapshot, all 12 DNP source blocks; replay r1 26/27 fail and r2 27/27 pass from saved subprocess output | User reports metadata errata/r2 accepted; reviewer did not rerun KiCad native. Acceptance is not native rerun evidence or parser compatibility. |
+
+### Historical proposal: bounded Windows process runner (superseded by implementation above)
+
+Deliver a separately testable, **evaluation-internal** process runner, its frozen
+execution request/result/failure schema and helper-process test fixtures. Proposed
+entry: `run_bounded_worker(staged_input, executable_identity, argv, limits)` ->
+`ExecutionSuccess | ExecutionFailure`. Success contains bounded raw bytes and
+execution evidence only, no parsed KiCad observations or geometry. Staged input
+uses the host-owned handle/digest contract; no new inventory source bridge in this
+slice. Reject unsupported capabilities explicitly. This is part of 1.5/5.2, not
+completion of either task or implementation of observe_native.
+
+Acceptance: portable runner tests AND actual Windows job/pipe/deadline/memory/
+descendant/cleanup tests above; exact-boundary/+1 tests, unchanged staged bytes,
+executable/argument validation, invalid JSON accepted as raw transport bytes,
+resource/launch/crash failure with preserved diagnostics,
+no usable partial output; all prior tests retained. Record OS/build, commands,
+hashes, results and limitations. If a mandatory capability is unavailable, the
+slice remains incomplete and returns typed failure; never downgrade the policy.
+
+Excluded: pcbnew observation semantics integration, new source parser, inventory
+bridge/public API change, Gerber/BOM readers, canonicalization, publication,
+camera/motion and automatic fixture mutation. Only the runner slice above is authorized.
+
+Review decisions still needed: approve evaluation-only scope and failure mapping;
+choose Win32 binding approach (ctypes vs pinned dependency) and minimum supported
+Windows version/nested-job behavior; agree explicit test limit values and trusted
+source/backend threat model; select bounded handshake framing (proposal: single
+length-prefixed request/response with separate stderr and strict JSON payload);
+approve native helper test matrix. These are proposed decisions, not normative
+facts or pre-authorized defaults. Later observation semantics needs a separately
+reviewed solution for loader omissions and source-local geometry completeness.
+
 ## 1. Context and decisions
 
 This proposal defines the two capabilities GEO-001 and PCB-001 for an independent AOI platform. The separately authorized Geometry Core implementation is recorded in implementation-status.md; the remaining models/contracts and capability behavior remain open. A future implementation should run as ordinary Python modules on a PC/server, using OpenCV where appropriate, with no firmware, camera, or gantry requirement. One process may serve multiple machines; deployment topology is not prescribed.

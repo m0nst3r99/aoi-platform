@@ -1,0 +1,8 @@
+4.3.1 msw (phoenix) wxWidgets 3.3.3
+LogStderr() -> None
+
+This class can be used to redirect the log messages to a C file stream
+(not to be confused with C++ streams).
+SetActiveTarget(logtarget) -> Log
+
+Sets the specified log target as the active one.

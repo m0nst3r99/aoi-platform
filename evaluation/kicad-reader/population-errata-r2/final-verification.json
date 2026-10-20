@@ -1,0 +1,29 @@
+{
+  "derived_manifest_payload_entries": 24,
+  "diff_check": "passed",
+  "harness_files_unchanged": 3,
+  "old_evidence_files_unchanged": 14,
+  "openspec": "strict validation passed",
+  "outcomes": {
+    "REAL-PCB-01-r1": {
+      "conflicts": 12,
+      "outcome": "failed",
+      "passed": 26
+    },
+    "REAL-PCB-01-r2": {
+      "conflicts": 0,
+      "outcome": "passed",
+      "passed": 27
+    }
+  },
+  "parent_unchanged": true,
+  "regressions": "23 passed in 1.14s; exit 0",
+  "review_status": "errata/r2 pending",
+  "semantic_changes": 12,
+  "snapshot_checksum_entries": {
+    "REAL-PCB-01-r1": 25,
+    "REAL-PCB-01-r2": 25
+  },
+  "source_attributes_confirmed": 12,
+  "unchanged_other_files": 23
+}

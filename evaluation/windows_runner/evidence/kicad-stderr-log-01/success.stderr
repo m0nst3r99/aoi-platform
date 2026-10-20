@@ -1,0 +1,21 @@
+milestone before-import-pcbnew monotonic=323838.296000
+milestone after-import-pcbnew monotonic=323838.328000
+loading 67c71f525eab73d2bde26eeb9f683cd2ac80a75ed6a43938cb553774a5fe33d0
+milestone before-LoadBoard monotonic=323838.390000
+Adding duplicate image handler for 'PNG file'
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+14:29:24: Font 'Lato Black' not found; substituting 'DejaVu Sans Bold'.
+14:29:24: Font 'Lato Heavy' not found; substituting 'DejaVu Sans Bold'.
+milestone after-LoadBoard monotonic=323838.515000
+loaded

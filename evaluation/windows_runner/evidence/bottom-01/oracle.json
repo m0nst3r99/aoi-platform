@@ -1,0 +1,146 @@
+{
+  "angle_rule": "Footprint raw=90. Pad file at-angle is API absolute orientation, raw 30/60, not 90+30/60. Derived relative angles would be -60/-30 but are not reader fields.",
+  "coordinate_tolerance_mm": 1e-06,
+  "expected_footprints": [
+    {
+      "angle_deg": 90,
+      "layer": "F.Cu",
+      "pads": [
+        {
+          "angle_deg": 30,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ],
+          "local_mm": [
+            1,
+            2
+          ],
+          "number": "1",
+          "position_mm": [
+            12,
+            9
+          ],
+          "size_mm": [
+            2,
+            1
+          ],
+          "uuid": "00000000-0000-0000-0000-0000000000c8"
+        },
+        {
+          "angle_deg": 60,
+          "layers": [
+            "F.Cu",
+            "F.Paste",
+            "F.Mask"
+          ],
+          "local_mm": [
+            -3,
+            1
+          ],
+          "number": "2",
+          "position_mm": [
+            11,
+            13
+          ],
+          "size_mm": [
+            3,
+            1.5
+          ],
+          "uuid": "00000000-0000-0000-0000-0000000000c9"
+        }
+      ],
+      "position_mm": [
+        10,
+        10
+      ],
+      "reference": "TOP1",
+      "uuid": "00000000-0000-0000-0000-000000000064",
+      "value": "SYNTHETIC"
+    },
+    {
+      "angle_deg": 90,
+      "layer": "B.Cu",
+      "pads": [
+        {
+          "angle_deg": 30,
+          "layers": [
+            "B.Cu",
+            "B.Paste",
+            "B.Mask"
+          ],
+          "local_mm": [
+            1,
+            2
+          ],
+          "number": "1",
+          "position_mm": [
+            32,
+            19
+          ],
+          "size_mm": [
+            2,
+            1
+          ],
+          "uuid": "00000000-0000-0000-0000-0000000000d2"
+        },
+        {
+          "angle_deg": 60,
+          "layers": [
+            "B.Cu",
+            "B.Paste",
+            "B.Mask"
+          ],
+          "local_mm": [
+            -3,
+            1
+          ],
+          "number": "2",
+          "position_mm": [
+            31,
+            23
+          ],
+          "size_mm": [
+            3,
+            1.5
+          ],
+          "uuid": "00000000-0000-0000-0000-0000000000d3"
+        }
+      ],
+      "position_mm": [
+        30,
+        20
+      ],
+      "reference": "BOT1",
+      "uuid": "00000000-0000-0000-0000-000000000065",
+      "value": "SYNTHETIC"
+    }
+  ],
+  "formula": "world=(X+u*cos(theta)+v*sin(theta), Y-u*sin(theta)+v*cos(theta)); theta=90: (X+v,Y-u). API relative is inverse rotation of world-origin, hence stored (u,v). No extra bottom mirror during this load.",
+  "modulo_comparison": false,
+  "numeric_world_oracle": {
+    "BOT1": [
+      [
+        32,
+        19
+      ],
+      [
+        31,
+        23
+      ]
+    ],
+    "TOP1": [
+      [
+        12,
+        9
+      ],
+      [
+        11,
+        13
+      ]
+    ]
+  },
+  "precision": "Source coordinates exact decimal mm; parser rounds to nm. Tolerance 1 nm=1e-6 mm, no angle tolerance/modulo needed for these positive integer angles.",
+  "raw_angle_equality": true
+}

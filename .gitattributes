@@ -1,0 +1,5 @@
+# Evaluation snapshots include raw captures, fixtures, independent oracles,
+# and scripts whose exact bytes are recorded in SHA-256 provenance.
+# Disable newline conversion only here; retain text diffs and raw whitespace.
+/evaluation/kicad-reader/** -text
+/evaluation/windows_runner/** -text

@@ -1,0 +1,58 @@
+{
+  "argv": [
+    "-u",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\kicad_staged_helper.py",
+    "{staged_handle}",
+    "912379",
+    "67c71f525eab73d2bde26eeb9f683cd2ac80a75ed6a43938cb553774a5fe33d0",
+    "C:\\Users\\nhanp\\AppData\\Local\\Temp\\vscode-agent-codex-sandbox-pEnjFs\\kicad-ab-83cu__po\\work",
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\probe.py"
+  ],
+  "caller_handle_usable": true,
+  "cwd": "C:\\Users\\nhanp\\AppData\\Local\\Temp\\vscode-agent-codex-sandbox-pEnjFs\\kicad-ab-83cu__po\\work",
+  "environment_different_names": [],
+  "environment_mode": "minimal",
+  "executable": "C:\\Program Files\\KiCad\\10.0\\bin\\python.exe",
+  "helper_temp_empty": false,
+  "limits": {
+    "chunk_bytes": 65536,
+    "cleanup_ms": 5000,
+    "combined_bytes": 2359296,
+    "input_bytes": 16777216,
+    "job_memory": 1610612736,
+    "policy_id": "kicad-local-test-v1",
+    "process_memory": 1073741824,
+    "processes": 4,
+    "stderr_bytes": 262144,
+    "stdout_bytes": 2097152,
+    "wall_ms": 30000
+  },
+  "result": {
+    "diagnostic_prefixes_usable": false,
+    "evidence": {
+      "active_processes": 0,
+      "artifact_id": "REAL-PCB-01-r2-pcb",
+      "cleanup_state": "cleaned",
+      "elapsed_ms": 30016,
+      "limits_verified": true,
+      "observed_stderr": 237,
+      "observed_stdout": 0,
+      "policy_id": "kicad-local-test-v1",
+      "resumed": true,
+      "root_exit": 3758096385,
+      "root_pid": 2760,
+      "source_id": "explicit-local-stage",
+      "stderr_eof": false,
+      "stdout_eof": false
+    },
+    "issues": [
+      {
+        "code": "TIMEOUT",
+        "operation": "entry-deadline",
+        "winerror": null
+      }
+    ]
+  },
+  "stage_unchanged": true,
+  "success": false
+}

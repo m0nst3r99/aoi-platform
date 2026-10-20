@@ -1,0 +1,1 @@
+{"outcome": "rejected", "code": "NATIVE_LOAD_REJECTED"}

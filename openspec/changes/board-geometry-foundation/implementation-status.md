@@ -1,5 +1,109 @@
 # Geometry Core implementation evidence
 
+## Current bounded Windows runner evidence - 2026-10-19
+
+Final checks: strict OpenSpec validation PASS; git diff --check PASS (only pre-existing LF/CRLF notices). New untracked runner code/docs whitespace check PASS. Raw commands/results are in runner evidence review-03/final-validation.json.
+
+Runner implementation evidence at HEAD `4e59ad93cc9f753e5c84ca8df7a49868dfde2470`.
+Existing uncommitted documentation/evaluation work is preserved. New evaluation-only
+runner is in [evaluation/windows_runner](../../../evaluation/windows_runner/README.md).
+The authorized ownership/transport/success contract was revised in design before
+implementation. No product code, fixture, normative spec, checkbox or allowlist
+changed by this runner slice; prior task/supported-inputs edits remain untouched.
+
+Latest actual run: **491 passed, 1 skipped in 17.99s**, evidence
+[evaluation/windows_runner/evidence/review-03](../../../evaluation/windows_runner/evidence/review-03/environment-command.json).
+This includes 57 portable runner tests and 41 Windows cases, 23 existing harness
+regressions and 370 product tests. Skip is the existing local-fixture opt-in.
+Actual OS: Windows 10.0 build 26300 AMD64; CPython 3.11.9 MSC v.1938 AMD64.
+Each native case has an independent watchdog. Fault-injected cases are distinguished
+from real enforcement in the runner README. No KiCad/accepted fixture was run.
+Earlier runner evidence is retained; review-03 supersedes review-01/02.
+
+**New runner code/results await review; not accepted by the prior reviews.**
+Errata/r2 metadata and harness acceptance below remain valid in their stated scope.
+Tasks 1.5/5.2 stay PARTIAL. Synthetic memory/count/output/tree tests do not establish
+parser compatibility or observation geometry. Slice remains incomplete for universal
+runner-parent crash protection: native crash test covers an assigned Job, while
+CreateProcess-suspended to Assign has an unprotected host-death window. Also not
+native-proven: naturally incompatible enclosing Jobs and other OS/runtime versions.
+Single-reader polling has no outstanding async I/O/thread to cancel; no claim of a
+CancelIo failure test. Permanent cleanup errors return unconfirmed, not success.
+
+Next: review transport code/evidence and resolve the non-atomic pre-assignment
+host-death gap before treating the entire runner contract as complete. Do not start
+KiCad adapter/bridge/protocol semantics from this evidence. Reproduction commands
+are in the runner README; fresh collector IDs preserve earlier runs. Review ZIP
+contains runner code/tests, raw results, contract, this handoff and SHA-256 manifest,
+without the large accepted fixtures.
+
+## Historical metadata acceptance / observation contract draft - 2026-10-19
+
+The user reports direct ZIP review **accepted errata and REAL-PCB-01-r2 only for
+population metadata correction**. Reviewer reran 23/23 regressions, verified
+133/133 packaged hashes and 25/25 checksums per snapshot, checked all twelve UUID
+DNP attributes against complete PCB source, confirmed exactly twelve dnp edits
+and 23 byte-identical other files. Replay using saved subprocess output produced
+r1 FAIL 26/27 and r2 PASS 27/27. Reviewer did not rerun KiCad native. These are
+user-relayed review results, distinct from previous local agent native runs;
+no third-party attestation or parser compatibility is asserted.
+
+r1 and all snapshots/evidence are unchanged. The [errata](../../../evaluation/kicad-reader/population-errata-r2/ERRATA.md)
+and parent-linked r2 manifest retain preparation history. Earlier pending-review
+statements below are superseded for this metadata scope only.
+
+The [observation contract in design](design.md#review-draft-native-observation-boundary-2026-10-19-tasks-1552-partial)
+is a new **review draft**, not implemented/accepted. It binds inventory admission,
+source hash, pinned backend and explicit limits; prevents usable observations on
+failure; names native-loader coverage gaps and a Windows enforcement/test plan.
+It proposes exactly one next slice: evaluation-internal bounded process runner
+with synthetic helpers, leaving KiCad semantics and inventory bridge separate.
+Windows containment and new geometry oracles are NOT RUN, not inferred from old
+harness tests. Tasks 1.5/5.2 remain PARTIAL/open; no checkbox or allowlist edits.
+No product code or fixture changes; no full pytest/native rerun for this docs turn.
+Verification: strict OpenSpec validation passed and git diff --check passed
+(LF/CRLF notices only). Prior uncommitted changes are preserved.
+
+## Current harness acceptance and population errata - 2026-10-19
+
+User reports direct ZIP v2 review accepted the harness fixes: reviewer reran
+23/23 regressions, verified 44/44 manifest hashes and 14 unchanged old logs.
+Reviewer did not have the full PCB source or rerun KiCad. No signature or
+attestation is created. Earlier harness-review-pending text is historical.
+
+[Population errata and derivation evidence](../../../evaluation/kicad-reader/population-errata-r2/ERRATA.md)
+correct twelve descriptive DNP fields in new REAL-PCB-01-r2 only. r1 and prior
+evidence remain unchanged. r2 manifest/inventory retain parent provenance and
+pending-review status; no parent acceptance copied. All other population fields,
+KiCad source and exports are unchanged. Earlier r1 population false declarations
+for these UUIDs are superseded by the errata, retained as history.
+
+Unmodified harness, fresh evidence directories: r1 FAIL 26/27 with 12 DNP
+conflicts; r2 PASS 27/27 with none. Local regressions: 23 passed. These are new
+agent observations; errata/r2 await review. Metadata consistency is not parser
+compatibility or publication. Tasks 1.5/5.2 remain PARTIAL/open; checkboxes and
+allowlist unchanged. No product adapter/code changes.
+
+## Current reader evaluation - 2026-10-19 (1.5/5.2 PARTIAL)
+
+The user authorized evaluation, superseding the historical inventory-only scope
+and "next work is to evaluate" statements below. [Report and reproduction](../../../evaluation/kicad-reader/README.md)
+and [machine-readable results](../../../evaluation/kicad-reader/results.json)
+record native CLI/pcbnew 10.0.7 observations, official IPC/SWIG documentation and
+a source-only kiutils assessment. No product reader, version allowlist, parser
+compatibility claim or checkbox change. New findings are not yet reviewed;
+prior gate/inventory/Sprint 1 review acceptance remains unchanged.
+
+Nine of ten aggregate fixture checks pass; population equality fails for twelve
+G*** DNP declarations (ledger false, API true). A representative source multiline
+attribute block confirms dnp; full UUID/expected/actual evidence is preserved.
+The harness exits 1 to expose the conflict. Snapshot hashes before/after agree.
+Malformed native load and pre-load missing-file failures are recorded separately.
+Full pytest is not rerun because shared code/tests are unchanged. Positive cutout
+tests, complete pad semantics, unsupported-construct detection and containment
+remain open. Next work is review and the proposed bounded observation adapter,
+not geometry import/publication. Tasks 1.5/5.2 remain PARTIAL/open.
+
 ## Current review acceptance - 2026-10-19
 
 The user relayed acceptance of the inventory byte-admission slice after direct code review from the inventory ZIP: reviewer results were 370 passed, 1 skipped plus 1,200 independent cases passing. These are reviewer-reported results conveyed by the user, not new agent executions or an agent verification of the independent cases. The reviewer did not rerun the REAL-PCB-01-r1 bundle test; the earlier local agent result remains separate evidence.

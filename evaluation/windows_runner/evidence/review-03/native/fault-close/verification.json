@@ -1,0 +1,7 @@
+{
+  "case": "fault-close",
+  "watchdog_root_exit": 0,
+  "assertions_passed": true,
+  "process_tree_verified_dead": false,
+  "watchdog_timeout_seconds": 20
+}

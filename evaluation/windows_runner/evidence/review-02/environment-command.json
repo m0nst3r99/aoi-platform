@@ -1,0 +1,42 @@
+{
+  "started_utc": "2026-10-19T15:33:46.869037+00:00",
+  "command": [
+    "C:\\dev\\aoi-platform\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests",
+    "evaluation/kicad-reader/test_harness.py",
+    "evaluation/windows_runner/test_portable.py",
+    "evaluation/windows_runner/test_native.py",
+    "-q",
+    "--tb=short",
+    "--junitxml=C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\review-02\\pytest.xml"
+  ],
+  "cwd": "C:\\dev\\aoi-platform",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "executable": "C:\\dev\\aoi-platform\\.venv\\Scripts\\python.exe",
+  "base_executable": "C:\\Users\\nhanp\\AppData\\Local\\Python\\pythoncore-3.11-64\\python.exe",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "architecture": "AMD64",
+  "windows_build": [
+    10,
+    0,
+    26300,
+    2,
+    ""
+  ],
+  "note": "Native helpers only; no KiCad, accepted fixtures or product imports by runner.",
+  "code_sha256": {
+    "collect_evidence.py": "303db2832a88fda677f55ed78532218c48639e6f90731d2929b1e759ea26945d",
+    "helper.py": "7e9be5991ee40debf05f71655eca8f4d91a67c298bb27240acf57df91f3c0549",
+    "models.py": "6ca5e32c12d1012546a57b17cc71e7d39dc820ebf9dd762c0a942344242b8b20",
+    "native_case.py": "33266a04acee3af66c659627dc1a9f0dfe732b08ff513824921ffbf976c9f644",
+    "policy.py": "0410f1c18689ef9b073082ab9d4465c97c834e1ec9c226abc89d07b47d2721ba",
+    "runner.py": "c83e1268ae8b618070358b67307b4016f07428cf99f996088bcd20fe4a49bade",
+    "test_native.py": "975962e20f7e496ef2459b16e9bf8ad61cd7445cfd24d3974cd24338a143c45d",
+    "test_portable.py": "acfe4650731ab313bd43c67263c6308fb1b0420084096757ac70b49eb4a79c6e",
+    "winapi.py": "cf3b89d97bd1432b87efd0a6c43dfd5a79b7e2e22fd0e0cfb3fa2db67468014e"
+  },
+  "exit_code": 0,
+  "finished_utc": "2026-10-19T15:34:05.054535+00:00"
+}

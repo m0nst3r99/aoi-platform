@@ -1,0 +1,97 @@
+{
+  "cases": {
+    "A": {
+      "comparison": "not-run",
+      "helper_temp_empty": false,
+      "owner_temp_removed": true,
+      "runner_cleanup": "cleaned",
+      "transport": false
+    },
+    "B": {
+      "comparison": "not-run",
+      "helper_temp_empty": false,
+      "owner_temp_removed": true,
+      "runner_cleanup": "cleaned",
+      "transport": false
+    }
+  },
+  "command": [
+    "evaluation/windows_runner/kicad_local.py",
+    "--ab",
+    "evaluation/windows_runner/evidence/kicad-ab-01"
+  ],
+  "dependencies_sha256": {
+    "C:\\Program Files\\KiCad\\10.0\\bin\\python.exe": "335616b5bb42f1c3489b14f89d05fc3e5d097259f3cec9ff6d63941080c600c6",
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\probe.py": "ea32fa162587c333d3b61d54d6051dad0679cd1aca18bc950e06a81d2ae73a50",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\kicad_local.py": "36e4e1f47000da06926bfa6043bdc7f45a32329ef34ce06ba4ef8fa09e0c4287",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\kicad_staged_helper.py": "ed89dbc38978e42b14653f5cb165ebf5dae7504edd484d4e1305a7194e9408d4",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\models.py": "6ca5e32c12d1012546a57b17cc71e7d39dc820ebf9dd762c0a942344242b8b20",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\runner.py": "c83e1268ae8b618070358b67307b4016f07428cf99f996088bcd20fe4a49bade",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\winapi.py": "cf3b89d97bd1432b87efd0a6c43dfd5a79b7e2e22fd0e0cfb3fa2db67468014e"
+  },
+  "diagnostics": [],
+  "fixture_after": {
+    "SHA256SUMS.txt": "0b3a46a1f77cecc741120d6dfc25b6e6b80d7c2062d62d41e3a0cb53c5cdc6b1",
+    "before/Edgeberry.kicad_pcb": "67c71f525eab73d2bde26eeb9f683cd2ac80a75ed6a43938cb553774a5fe33d0",
+    "before/Edgeberry.kicad_pro": "492601cf13fe9a4f6b5d42edf128db24980a8d98dd2836c4b9e3936dadd41fea",
+    "before/Edgeberry.kicad_sch": "0d2ce13b2b71ec798cdd6597cfcaf875c3abad4b8eda31fe11605979bc68c153",
+    "before/LICENSE.txt": "4b6a7717ef4fcd145eabb577de44d84ffdc893532177b67479dad42f6c4e355e",
+    "before/exports/bom/Edgeberry-bom.csv": "ddf3a2782394b665a90868c0441907948e971acef1e9614833a1945d405fdfc7",
+    "before/exports/gerber/Edgeberry-B_Paste.gbr": "1bb3b1d6f3ad0c3178baf16a0758f649baa3a005529826d47cff2842d0f38f1e",
+    "before/exports/gerber/Edgeberry-Edge_Cuts.gbr": "f9bad5aeb65070708d9582988eff376ecd891e1a5a406cb11ff7e60de312a6a3",
+    "before/exports/gerber/Edgeberry-F_Paste.gbr": "53c9a95b6b3bb4ad864c75c562faaedba4603e6da9a02b30e30ee29cd676620f",
+    "before/exports/gerber/Edgeberry-job.gbrjob": "7911117ccbd13a9a6a98588f2c663d2444283f0eebe2d60e587b60db2e84cbfd",
+    "before/exports/placement/Edgeberry-all-pos.csv": "80c2df9ccc73a98febc6f6abe359235eb60b088c3c855972e8d9ce1612642738",
+    "exports/bom/Edgeberry-bom.csv": "dfd5e23c2613225074604adf22805a7fd8e6fbdb2931ea1d91ab6f244c52446f",
+    "exports/gerber/Edgeberry-Edge_Cuts.gbr": "dd405ff4cbe58ccbffc98d47770b1ce436e29811d978d78387aac0e430044e9f",
+    "exports/gerber/Edgeberry-F_Paste.gbr": "fb96fd6e9764b00637a45f8fcad5974fb4d1a525cfe0ec906f0c9dcefce0af5c",
+    "exports/gerber/Edgeberry-job.gbrjob": "cce9ac82fefd5a6c50c65ba77a0ffbe9827a52608b790bb6a240e0f679d10b02",
+    "exports/placement/Edgeberry-all-pos.csv": "80c2df9ccc73a98febc6f6abe359235eb60b088c3c855972e8d9ce1612642738",
+    "finalize-evidence.py": "37acfced178f50e2b585f961901277ddf714cdce1577e1154d00d734a7bb5456",
+    "manifest.json": "400627d96de821cff441d083ab53c562d057c441080f2ecb3bdccd9ded0ba61f",
+    "population.json": "002b6c2fb744815ad4da5d08c08880d77ed9b7c83ddb07d36a258c7d0304837d",
+    "prepare-fixture.py": "216ca5d21103cccb2fc83ab0b4b37c2c965fad7791156c85fec7e16267525bae",
+    "resume-after-bom-error.py": "54ae07a616b97aa22e43f2cb1ebf029381f206e45673b649e477372da4e44cb4",
+    "source/Edgeberry.kicad_pcb": "67c71f525eab73d2bde26eeb9f683cd2ac80a75ed6a43938cb553774a5fe33d0",
+    "source/Edgeberry.kicad_prl": "fdb7c34b55795053a8bea36740057c94ccc7227b9661c7650b6672221635f37e",
+    "source/Edgeberry.kicad_pro": "492601cf13fe9a4f6b5d42edf128db24980a8d98dd2836c4b9e3936dadd41fea",
+    "source/Edgeberry.kicad_sch": "662de42821e25cef31f67f5373aa7e3bdf2c377d1f1339ccc25b73d48688815c",
+    "source/LICENSE.txt": "4b6a7717ef4fcd145eabb577de44d84ffdc893532177b67479dad42f6c4e355e"
+  },
+  "fixture_before": {
+    "SHA256SUMS.txt": "0b3a46a1f77cecc741120d6dfc25b6e6b80d7c2062d62d41e3a0cb53c5cdc6b1",
+    "before/Edgeberry.kicad_pcb": "67c71f525eab73d2bde26eeb9f683cd2ac80a75ed6a43938cb553774a5fe33d0",
+    "before/Edgeberry.kicad_pro": "492601cf13fe9a4f6b5d42edf128db24980a8d98dd2836c4b9e3936dadd41fea",
+    "before/Edgeberry.kicad_sch": "0d2ce13b2b71ec798cdd6597cfcaf875c3abad4b8eda31fe11605979bc68c153",
+    "before/LICENSE.txt": "4b6a7717ef4fcd145eabb577de44d84ffdc893532177b67479dad42f6c4e355e",
+    "before/exports/bom/Edgeberry-bom.csv": "ddf3a2782394b665a90868c0441907948e971acef1e9614833a1945d405fdfc7",
+    "before/exports/gerber/Edgeberry-B_Paste.gbr": "1bb3b1d6f3ad0c3178baf16a0758f649baa3a005529826d47cff2842d0f38f1e",
+    "before/exports/gerber/Edgeberry-Edge_Cuts.gbr": "f9bad5aeb65070708d9582988eff376ecd891e1a5a406cb11ff7e60de312a6a3",
+    "before/exports/gerber/Edgeberry-F_Paste.gbr": "53c9a95b6b3bb4ad864c75c562faaedba4603e6da9a02b30e30ee29cd676620f",
+    "before/exports/gerber/Edgeberry-job.gbrjob": "7911117ccbd13a9a6a98588f2c663d2444283f0eebe2d60e587b60db2e84cbfd",
+    "before/exports/placement/Edgeberry-all-pos.csv": "80c2df9ccc73a98febc6f6abe359235eb60b088c3c855972e8d9ce1612642738",
+    "exports/bom/Edgeberry-bom.csv": "dfd5e23c2613225074604adf22805a7fd8e6fbdb2931ea1d91ab6f244c52446f",
+    "exports/gerber/Edgeberry-Edge_Cuts.gbr": "dd405ff4cbe58ccbffc98d47770b1ce436e29811d978d78387aac0e430044e9f",
+    "exports/gerber/Edgeberry-F_Paste.gbr": "fb96fd6e9764b00637a45f8fcad5974fb4d1a525cfe0ec906f0c9dcefce0af5c",
+    "exports/gerber/Edgeberry-job.gbrjob": "cce9ac82fefd5a6c50c65ba77a0ffbe9827a52608b790bb6a240e0f679d10b02",
+    "exports/placement/Edgeberry-all-pos.csv": "80c2df9ccc73a98febc6f6abe359235eb60b088c3c855972e8d9ce1612642738",
+    "finalize-evidence.py": "37acfced178f50e2b585f961901277ddf714cdce1577e1154d00d734a7bb5456",
+    "manifest.json": "400627d96de821cff441d083ab53c562d057c441080f2ecb3bdccd9ded0ba61f",
+    "population.json": "002b6c2fb744815ad4da5d08c08880d77ed9b7c83ddb07d36a258c7d0304837d",
+    "prepare-fixture.py": "216ca5d21103cccb2fc83ab0b4b37c2c965fad7791156c85fec7e16267525bae",
+    "resume-after-bom-error.py": "54ae07a616b97aa22e43f2cb1ebf029381f206e45673b649e477372da4e44cb4",
+    "source/Edgeberry.kicad_pcb": "67c71f525eab73d2bde26eeb9f683cd2ac80a75ed6a43938cb553774a5fe33d0",
+    "source/Edgeberry.kicad_prl": "fdb7c34b55795053a8bea36740057c94ccc7227b9661c7650b6672221635f37e",
+    "source/Edgeberry.kicad_pro": "492601cf13fe9a4f6b5d42edf128db24980a8d98dd2836c4b9e3936dadd41fea",
+    "source/Edgeberry.kicad_sch": "662de42821e25cef31f67f5373aa7e3bdf2c377d1f1339ccc25b73d48688815c",
+    "source/LICENSE.txt": "4b6a7717ef4fcd145eabb577de44d84ffdc893532177b67479dad42f6c4e355e"
+  },
+  "fixture_unchanged": true,
+  "sequential_not_simultaneous": true,
+  "source": {
+    "sha256": "67c71f525eab73d2bde26eeb9f683cd2ac80a75ed6a43938cb553774a5fe33d0",
+    "size": 912379
+  },
+  "staging_removed": true,
+  "watchdog_seconds": 45
+}

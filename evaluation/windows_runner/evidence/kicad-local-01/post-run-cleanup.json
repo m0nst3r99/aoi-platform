@@ -1,0 +1,10 @@
+{
+  "staging_directory": "C:\\Users\\nhanp\\AppData\\Local\\Temp\\vscode-agent-codex-sandbox-pEnjFs\\kicad-local-sxhzxqa0",
+  "staging_removed_by_owner": true,
+  "helper_cleanup_before_owner": false,
+  "runner_cleanup_state": "cleaned",
+  "job_active_processes": 0,
+  "observed_kicad_build": null,
+  "build_note": "No successful JSON observation; 10.0.7 not verified in this run. Executable hash recorded, not full dependency pin.",
+  "blocker": "TIMEOUT during native LoadBoard: loading digest printed, loaded not printed; cause undetermined. No budget increased; no diagnostic prefix parsed."
+}

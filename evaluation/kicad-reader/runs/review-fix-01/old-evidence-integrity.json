@@ -1,0 +1,16 @@
+{
+  "cli-export-help.stderr.txt": true,
+  "cli-export-help.stdout.txt": true,
+  "cli-pcb-help.stderr.txt": true,
+  "cli-pcb-help.stdout.txt": true,
+  "cli-version.stderr.txt": true,
+  "cli-version.stdout.txt": true,
+  "malformed.kicad_pcb": true,
+  "malformed.stderr.txt": true,
+  "malformed.stdout.txt": true,
+  "missing.stderr.txt": true,
+  "missing.stdout.txt": true,
+  "pcbnew.stderr.txt": true,
+  "pcbnew.stdout.txt": true,
+  "results.json": true
+}

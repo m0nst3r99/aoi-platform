@@ -1,0 +1,31 @@
+{
+  "checks": [
+    {
+      "command": [
+        "cmd",
+        "/c",
+        "openspec",
+        "validate",
+        "board-geometry-foundation",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "Change 'board-geometry-foundation' is valid\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "safe.directory=C:/dev/aoi-platform",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'openspec/changes/board-geometry-foundation/supported-inputs.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'openspec/changes/board-geometry-foundation/tasks.md', LF will be replaced by CRLF the next time Git touches it\n"
+    }
+  ],
+  "new_runner_trailing_whitespace": [],
+  "note": "No pytest rerun after documentation-only edits; code hashes below must match review-03."
+}

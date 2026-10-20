@@ -1,5 +1,24 @@
 # Supported inputs and verification register
 
+Acceptance update 2026-10-19: user reports direct ZIP review accepted the errata
+and REAL-PCB-01-r2 **population metadata correction only**: 23/23 regression,
+133/133 package hashes, 25/25 per-snapshot checksums, all twelve source UUID DNP
+blocks, twelve field edits and 23 unchanged files verified. Saved-output replay
+gave r1 FAIL 26/27 and r2 PASS 27/27; reviewer did not rerun KiCad native. The
+pending-review wording in the preparation note below is historical, superseded
+only for metadata acceptance. Frozen r1/r2 manifests remain untouched. No parser
+support-table/allowlist promotion; see the new review-only contract in [design](design.md).
+
+Population errata (2026-10-19): the accepted r1 snapshot is retained unchanged,
+but its population.json DNP=false descriptions for twelve G*** UUIDs are wrong.
+[Errata](../../../evaluation/kicad-reader/population-errata-r2/ERRATA.md) binds all
+twelve source attribute excerpts and native observations to hashes. Source DNP
+is true. Historical references below to r1 population flags must be read with
+that correction; exclusions/classifications/eligibility and all geometry are
+unchanged. Derived REAL-PCB-01-r2 corrects only those twelve population fields
+plus its revision manifest/hash inventory and **awaits review**. r1 acquisition
+acceptance is not inherited by r2, and neither is parser compatibility evidence.
+
 Status: REAL-PCB-01-r1 acquisition gate 7.1 accepted on 2026-10-18. File/export/hash checks are evidenced; importer/parser compatibility is not verified. All unverified entries are **TBD**. Target formats and planned fixture names are not working-support claims. Do not infer versions from memory, presumed compatibility or advertised library features.
 
 AOI Platform V0.1 initial target: **KiCad 10.0.7**. This target is selected; verified compatibility is not. Producer/export execution and hashes for REAL-PCB-01-r1 are recorded below. Parser/library versions, compatibility results and other unverified settings remain TBD. A candidate profile may be exercised in isolated development tests to establish evidence; this does not add it to the released support allowlist. Foundation Prototype and Foundation Complete gates are defined in design.md section 9 and scheduled in sprint-plan.md.

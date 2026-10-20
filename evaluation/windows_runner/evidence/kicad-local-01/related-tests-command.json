@@ -1,0 +1,11 @@
+{
+  "command": [
+    ".venv/Scripts/python.exe",
+    "-m",
+    "pytest",
+    "evaluation/windows_runner/test_portable.py",
+    "evaluation/kicad-reader/test_harness.py",
+    "-q"
+  ],
+  "exit_code": 0
+}

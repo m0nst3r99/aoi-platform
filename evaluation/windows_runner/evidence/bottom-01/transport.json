@@ -1,0 +1,46 @@
+{
+  "argv": [
+    "-u",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\kicad_staged_helper.py",
+    "{staged_handle}",
+    "2051",
+    "890c7a6e40ea38b61943d68d8be34ced50742ad9849f82b2405f96f49c45a7a2",
+    "C:\\Users\\nhanp\\AppData\\Local\\Temp\\vscode-agent-codex-sandbox-pEnjFs\\bottom-control-11h7u3hl\\helper",
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\probe.py"
+  ],
+  "caller_handle_usable": true,
+  "helper_temp_empty": true,
+  "limits": {
+    "chunk_bytes": 65536,
+    "cleanup_ms": 5000,
+    "combined_bytes": 2359296,
+    "input_bytes": 16777216,
+    "job_memory": 1610612736,
+    "policy_id": "kicad-local-test-v1",
+    "process_memory": 1073741824,
+    "processes": 4,
+    "stderr_bytes": 262144,
+    "stdout_bytes": 2097152,
+    "wall_ms": 30000
+  },
+  "result": {
+    "evidence": {
+      "active_processes": 0,
+      "artifact_id": "synthetic-bottom-rotation-v1",
+      "cleanup_state": "cleaned",
+      "elapsed_ms": 1530,
+      "limits_verified": true,
+      "observed_stderr": 937,
+      "observed_stdout": 4504,
+      "policy_id": "kicad-local-test-v1",
+      "resumed": true,
+      "root_exit": 0,
+      "root_pid": 28072,
+      "source_id": "owned-stage",
+      "stderr_eof": true,
+      "stdout_eof": true
+    }
+  },
+  "stage_unchanged": true,
+  "success": true
+}

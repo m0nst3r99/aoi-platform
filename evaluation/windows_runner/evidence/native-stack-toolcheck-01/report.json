@@ -1,0 +1,13 @@
+{
+  "status": "BLOCKED_TOOLING",
+  "native_runs": 0,
+  "snapshot_obtained": false,
+  "thread_wait_location": "unknown; no native stack/wait chain obtained",
+  "inventory_exit": 0,
+  "wpr_profiles_exit": 0,
+  "limits": "Listed locations only, inaccessible entries omitted. GUI resmon/taskmgr exist but native GUI control unavailable in session. WPR profile listing is not a captured thread snapshot; no trace started.",
+  "next_tool": "Microsoft CDB x64 (Debugging Tools for Windows), or provide path to existing suitable debugger",
+  "reference": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools",
+  "no_install_no_elevation": true,
+  "cleanup": "No helper launched, no stage created; no new Job/fixture operation to verify."
+}

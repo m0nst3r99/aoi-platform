@@ -1,0 +1,48 @@
+{
+  "case": "binary",
+  "kind": "ExecutionSuccess",
+  "result": {
+    "stdout": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff",
+    "stderr": "00ff657272",
+    "evidence": {
+      "root_pid": 8412,
+      "root_exit": 0,
+      "active_processes": 0,
+      "stdout_eof": true,
+      "stderr_eof": true,
+      "cleanup_state": "cleaned",
+      "elapsed_ms": 77,
+      "observed_stdout": 256,
+      "observed_stderr": 5,
+      "limits_verified": true,
+      "resumed": true,
+      "artifact_id": "test-artifact",
+      "source_id": "test-source",
+      "policy_id": "windows-runner-test-v1"
+    }
+  },
+  "caller_ownership": true,
+  "faults": [],
+  "limits": {
+    "policy_id": "windows-runner-test-v1",
+    "input_bytes": 1048576,
+    "stdout_bytes": 65536,
+    "stderr_bytes": 65536,
+    "combined_bytes": 98304,
+    "chunk_bytes": 4096,
+    "wall_ms": 5000,
+    "cleanup_ms": 3000,
+    "process_memory": 134217728,
+    "job_memory": 402653184,
+    "processes": 8
+  },
+  "reader_threads_unchanged": true,
+  "executable": "C:\\Users\\nhanp\\AppData\\Local\\Python\\pythoncore-3.11-64\\python.exe",
+  "handles_before": 136,
+  "handles_after": 136,
+  "initial_handles": 133,
+  "warmup_deltas": [
+    3,
+    0
+  ]
+}

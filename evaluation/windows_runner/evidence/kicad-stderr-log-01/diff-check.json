@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "warning: in the working copy of 'HANDOFF.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'openspec/changes/board-geometry-foundation/supported-inputs.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'openspec/changes/board-geometry-foundation/tasks.md', LF will be replaced by CRLF the next time Git touches it\n"
+}

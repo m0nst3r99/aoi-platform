@@ -1,0 +1,51 @@
+{
+  "checks": {
+    "build": true,
+    "cleanup": true,
+    "eight_source_segments": true,
+    "fixture_unchanged": true,
+    "input_hash": true,
+    "no_footprints": true,
+    "outline": true,
+    "schema": true
+  },
+  "command": [
+    "evaluation/windows_runner/cutout_control.py",
+    "evaluation/windows_runner/evidence/cutout-01"
+  ],
+  "dependencies_sha256": {
+    "C:\\Program Files\\KiCad\\10.0\\bin\\python.exe": "335616b5bb42f1c3489b14f89d05fc3e5d097259f3cec9ff6d63941080c600c6",
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\probe.py": "ea32fa162587c333d3b61d54d6051dad0679cd1aca18bc950e06a81d2ae73a50",
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\run.py": "7935e1b0771b494549c33a7e13789a1d39a9a0242f5e9d98b2eaa03f023f4a89",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\cutout_control.py": "df52f251400984ba3b175eb86c023c1b7649b07999ab3feb40c5fd4797e994b5",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\kicad_staged_helper.py": "e6548dc6b0839ab42e677fdb0c4a9fb3f0a10804430e7ef792cdb92971e791ac",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\models.py": "6ca5e32c12d1012546a57b17cc71e7d39dc820ebf9dd762c0a942344242b8b20",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\runner.py": "c83e1268ae8b618070358b67307b4016f07428cf99f996088bcd20fe4a49bade",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\winapi.py": "cf3b89d97bd1432b87efd0a6c43dfd5a79b7e2e22fd0e0cfb3fa2db67468014e"
+  },
+  "diagnostics": [],
+  "owner_staging_removed": true,
+  "passed": true,
+  "required_checks": [
+    "schema",
+    "build",
+    "input_hash",
+    "eight_source_segments",
+    "outline",
+    "no_footprints",
+    "cleanup",
+    "fixture_unchanged"
+  ],
+  "source_sha256": "a85ff465cb0d1094dc2a290ba4c66a7dc546cfb617aae72537fad24317afc69f",
+  "transport_success": true,
+  "watchdog_seconds": 45,
+  "worker_command": [
+    "C:\\Users\\nhanp\\AppData\\Local\\Python\\pythoncore-3.11-64\\python.exe",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\cutout_control.py",
+    "--worker",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\cutout-01",
+    "C:\\Users\\nhanp\\AppData\\Local\\Temp\\vscode-agent-codex-sandbox-pEnjFs\\cutout-control-aslj5_60\\stage.pcb",
+    "C:\\Users\\nhanp\\AppData\\Local\\Temp\\vscode-agent-codex-sandbox-pEnjFs\\cutout-control-aslj5_60\\helper"
+  ],
+  "worker_exit": 0
+}

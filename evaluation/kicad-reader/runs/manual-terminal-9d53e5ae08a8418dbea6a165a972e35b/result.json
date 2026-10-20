@@ -1,0 +1,15 @@
+﻿{
+    "startedUtc":  "2026-10-20T07:17:24.5217104Z",
+    "executable":  "C:\\Program Files\\KiCad\\10.0\\bin\\python.exe",
+    "probe":  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\probe.py",
+    "input":  "C:\\dev\\aoi-reference\\Edgeberry-Baseboard-working\\fixture-revisions\\REAL-PCB-01-r2\\source\\Edgeberry.kicad_pcb",
+    "timeoutSeconds":  30,
+    "pid":  35372,
+    "timedOut":  false,
+    "exitCode":  null,
+    "rootExitConfirmed":  true,
+    "cleanup":  "not-needed",
+    "error":  null,
+    "cleanupLimit":  "Root process only; descendants are not guaranteed terminated. Not containment.",
+    "finishedUtc":  "2026-10-20T07:17:28.5666782Z"
+}

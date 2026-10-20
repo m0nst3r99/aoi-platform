@@ -20,6 +20,7 @@ Resumption added 21 independent kernel tests, followed by 30 public-API fixture 
 - [ ] 1.3 Define synthetic-geometry-v1 policy; check units, configurable limits, independent evidence and synthetic/production separation.
 - [ ] 1.4 Define synthetic-import-v1 reconciliation policy; check explicit selection and no production accuracy claim.
 - [ ] 1.5 Use KiCad 10.0.7 as the AOI Platform V0.1 initial target; record actual build/exporter versions/settings to evaluate, keeping compatibility/results TBD until verified.
+  - PARTIAL (2026-10-19): [reader evaluation](../../../evaluation/kicad-reader/README.md) records actual 10.0.7 probes, source hash and limits. Not yet reviewed; no parser compatibility acceptance.
 - [ ] 1.6 Select tabular header/dialect profiles; document units/origin/angle/population mappings without guessing.
 
 ## 2. Gerber reuse gate — before custom parsing
@@ -63,6 +64,7 @@ Resumption added 21 independent kernel tests, followed by 30 public-API fixture 
 - [ ] 5.1 Add manifest inventory/hashing/limits; reject missing roles, unknown profiles and oversized input.
   - PARTIAL (2026-10-19): streaming inventory, role/side coverage, typed schema/source errors and byte/count/chunk limits tested synthetically and against REAL-PCB-01-r1. Full import-manifest/candidate integration remains open; see implementation-status.md.
 - [ ] 5.2 Add evidence-based supported-version gates; reject unverified formats/constructs explicitly.
+  - PARTIAL (2026-10-19): [evaluation evidence](../../../evaluation/kicad-reader/README.md) only. Product version/construct gates and bounded adapter remain open; 12 DNP declaration conflicts are retained for review.
 - [ ] 5.3 Add tested KiCad outline/cutout import; verify independent topology and malformed-outline errors.
 - [ ] 5.4 Add footprint/component normalization; test rotated top/bottom coordinate oracles.
 - [ ] 5.5 Add pad records; preserve repeated number strings with unique IDs and provenance.

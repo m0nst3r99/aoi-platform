@@ -1,0 +1,24 @@
+{
+  "checks": {
+    "R7_R8_presence": true,
+    "R7_R8_values": true,
+    "R7_pad_oracle": true,
+    "accepted_baseline_passed": true,
+    "all_observations_equal_accepted": true,
+    "build": true,
+    "footprint_count": true,
+    "format": true,
+    "outline_bbox": true,
+    "outline_count": true,
+    "outline_holes": true,
+    "outline_valid": true,
+    "population_fields": true,
+    "pose_side": true,
+    "schema": true,
+    "source_hash": true,
+    "unique_uuid": true,
+    "uuid_set": true
+  },
+  "observed_build": "10.0.7",
+  "passed": true
+}

@@ -1,0 +1,119 @@
+{
+  "expected": {
+    "edges": [
+      {
+        "end_mm": [
+          20,
+          0
+        ],
+        "shape": 0,
+        "start_mm": [
+          0,
+          0
+        ],
+        "uuid": "00000000-0000-0000-0000-000000000001"
+      },
+      {
+        "end_mm": [
+          20,
+          10
+        ],
+        "shape": 0,
+        "start_mm": [
+          20,
+          0
+        ],
+        "uuid": "00000000-0000-0000-0000-000000000002"
+      },
+      {
+        "end_mm": [
+          0,
+          10
+        ],
+        "shape": 0,
+        "start_mm": [
+          20,
+          10
+        ],
+        "uuid": "00000000-0000-0000-0000-000000000003"
+      },
+      {
+        "end_mm": [
+          0,
+          0
+        ],
+        "shape": 0,
+        "start_mm": [
+          0,
+          10
+        ],
+        "uuid": "00000000-0000-0000-0000-000000000004"
+      },
+      {
+        "end_mm": [
+          8,
+          6
+        ],
+        "shape": 0,
+        "start_mm": [
+          8,
+          4
+        ],
+        "uuid": "00000000-0000-0000-0000-000000000005"
+      },
+      {
+        "end_mm": [
+          12,
+          6
+        ],
+        "shape": 0,
+        "start_mm": [
+          8,
+          6
+        ],
+        "uuid": "00000000-0000-0000-0000-000000000006"
+      },
+      {
+        "end_mm": [
+          12,
+          4
+        ],
+        "shape": 0,
+        "start_mm": [
+          12,
+          6
+        ],
+        "uuid": "00000000-0000-0000-0000-000000000007"
+      },
+      {
+        "end_mm": [
+          8,
+          4
+        ],
+        "shape": 0,
+        "start_mm": [
+          12,
+          4
+        ],
+        "uuid": "00000000-0000-0000-0000-000000000008"
+      }
+    ],
+    "outline": {
+      "count": 1,
+      "holes": [
+        1
+      ],
+      "origin_mm": [
+        0,
+        0
+      ],
+      "size_mm": [
+        20,
+        10
+      ],
+      "valid": true
+    }
+  },
+  "rationale": "Two disjoint closed axis-aligned loops, inner strictly inside outer: API outer count 1, HoleCount(0)=1. Centerline bbox, not stroke width.",
+  "scope": "Board-level line primitives only; no footprints or generalized topology claim."
+}

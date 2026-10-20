@@ -1,0 +1,64 @@
+{
+    "commands":  [
+                     {
+                         "Name":  "wpr.exe",
+                         "Source":  "C:\\windows\\system32\\wpr.exe"
+                     },
+                     {
+                         "Name":  "resmon.exe",
+                         "Source":  "C:\\windows\\system32\\resmon.exe"
+                     },
+                     {
+                         "Name":  "Taskmgr.exe",
+                         "Source":  "C:\\windows\\system32\\Taskmgr.exe"
+                     }
+                 ],
+    "windbg_packages":  [
+
+                        ],
+    "scans":  [
+                  {
+                      "root":  "C:/Program Files",
+                      "matches":  [
+
+                                  ],
+                      "note":  "Unreadable entries omitted; not an exhaustive machine inventory"
+                  },
+                  {
+                      "root":  "C:/Program Files (x86)",
+                      "matches":  [
+
+                                  ],
+                      "note":  "Unreadable entries omitted; not an exhaustive machine inventory"
+                  },
+                  {
+                      "root":  "C:\\Users\\nhanp\\AppData\\Local/Programs",
+                      "matches":  [
+
+                                  ],
+                      "note":  "Unreadable entries omitted; not an exhaustive machine inventory"
+                  },
+                  {
+                      "root":  "C:\\Users\\nhanp\\AppData\\Local/Microsoft/WindowsApps",
+                      "matches":  [
+
+                                  ],
+                      "note":  "Unreadable entries omitted; not an exhaustive machine inventory"
+                  },
+                  {
+                      "root":  "C:\\Users\\nhanp/.vscode/extensions",
+                      "matches":  [
+
+                                  ],
+                      "note":  "Unreadable entries omitted; not an exhaustive machine inventory"
+                  },
+                  {
+                      "exists":  false,
+                      "root":  "C:/Tools"
+                  },
+                  {
+                      "exists":  false,
+                      "root":  "C:/Sysinternals"
+                  }
+              ]
+}

@@ -1,0 +1,12 @@
+﻿{
+    "startedUtc":  "2026-10-20T07:22:36.2417999Z",
+    "timeoutSeconds":  30,
+    "pid":  null,
+    "timedOut":  false,
+    "exitCode":  null,
+    "rootExitConfirmed":  false,
+    "cleanup":  "not-needed",
+    "error":  "Item has already been added. Key in dictionary: \u0027PATH\u0027  Key being added: \u0027Path\u0027",
+    "cleanupLimit":  "Root process only; descendants not guaranteed terminated; not containment.",
+    "finishedUtc":  "2026-10-20T07:22:36.2628162Z"
+}

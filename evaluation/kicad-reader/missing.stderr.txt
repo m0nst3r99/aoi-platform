@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\dev\aoi-platform\evaluation\kicad-reader\probe.py", line 14, in <module>
+    with open(path, "rb") as stream:
+         ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\missing.kicad_pcb'

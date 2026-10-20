@@ -1,0 +1,7 @@
+{
+  "case": "parent-crash",
+  "watchdog_root_exit": 9,
+  "assertions_passed": true,
+  "process_tree_verified_dead": true,
+  "watchdog_timeout_seconds": 20
+}

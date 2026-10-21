@@ -1,0 +1,12 @@
+{
+  "C:\\Program Files\\KiCad\\10.0\\bin\\python.exe": "335616b5bb42f1c3489b14f89d05fc3e5d097259f3cec9ff6d63941080c600c6",
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\observation_schema.py": "4555269681e36410f1fc2366c5c941729f9da4abe1cec3ee6fb324aa94d5c3f7",
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\probe.py": "7dafae2051ea346129d504405248ad13a708f333a129766ad5e7ce3bdffe4053",
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\run.py": "3b7643c97529e463458a98f75fb1b2e8468b3d3784632f8a7ca1425dcd722943",
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\kicad_local.py": "52710b02125658c2d88e34f240ac114b010d1442135a8b819aef544767fa049b",
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\kicad_staged_helper.py": "e6548dc6b0839ab42e677fdb0c4a9fb3f0a10804430e7ef792cdb92971e791ac",
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\models.py": "6ca5e32c12d1012546a57b17cc71e7d39dc820ebf9dd762c0a942344242b8b20",
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\repeated_pads_control.py": "82ef354f8c747d7e72ccba3b470fe697d43cc2f78c6bf68c8cf6701643abc82d",
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\runner.py": "c83e1268ae8b618070358b67307b4016f07428cf99f996088bcd20fe4a49bade",
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\winapi.py": "cf3b89d97bd1432b87efd0a6c43dfd5a79b7e2e22fd0e0cfb3fa2db67468014e"
+}

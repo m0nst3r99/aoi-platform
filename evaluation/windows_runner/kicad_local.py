@@ -113,7 +113,7 @@ def ab(output):
     report = dict(cases={}, diagnostics=[], fixture_before=before, watchdog_seconds=45,
                   sequential_not_simultaneous=True, command=sys.argv)
     paths = [EXECUTABLE, HERE/'kicad_staged_helper.py', HERE/'kicad_local.py',
-             HERE/'runner.py', HERE/'models.py', HERE/'winapi.py', READER/'probe.py']
+             HERE/'runner.py', HERE/'models.py', HERE/'winapi.py', READER/'probe.py', READER/'run.py', READER/'observation_schema.py']
     report['dependencies_sha256'] = {str(p):sha(p) for p in paths}
     root = None
     try:
@@ -176,7 +176,7 @@ def main(output):
     before = snapshot()
     report['fixture_before'] = before
     paths = [EXECUTABLE, HERE/'kicad_staged_helper.py', HERE/'kicad_local.py', READER/'probe.py',
-             READER/'run.py', READER/'runs/errata-r2-01/pcbnew.stdout.txt', READER/'runs/errata-r2-01/results.json',
+             READER/'run.py', READER/'observation_schema.py', READER/'runs/errata-r2-01/pcbnew.stdout.txt', READER/'runs/errata-r2-01/results.json',
              HERE/'runner.py', HERE/'winapi.py', HERE/'models.py']
     try:
         report['dependencies_sha256'] = {str(p):sha(p) for p in paths}

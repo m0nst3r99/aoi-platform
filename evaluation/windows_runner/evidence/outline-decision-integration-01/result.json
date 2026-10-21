@@ -1,0 +1,15 @@
+{
+  "argv": [
+    ".venv/Scripts/python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "evaluation/kicad-reader/test_harness.py",
+    "evaluation/kicad-reader/test_outline_decision.py",
+    "-q",
+    "-o",
+    "cache_dir=evaluation\\windows_runner\\evidence\\outline-decision-integration-01\\pytest-cache"
+  ],
+  "cwd": "C:\\dev\\aoi-platform",
+  "exit_code": 0
+}

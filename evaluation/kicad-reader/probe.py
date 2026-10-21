@@ -24,7 +24,25 @@ if b is None:
     print(json.dumps(dict(outcome="rejected", code="NATIVE_LOAD_REJECTED")))
     raise SystemExit(2)
 records = []
+footprint_edges = []
 for f in b.GetFootprints():
+    for item in f.GraphicalItems():
+        if item.GetLayer() != p.Edge_Cuts:
+            continue
+        if not isinstance(item, p.PCB_SHAPE):
+            raise RuntimeError("Unsupported footprint Edge.Cuts graphical item type")
+        parent = item.GetParentFootprint()
+        if parent is None or parent.m_Uuid.AsString() != f.m_Uuid.AsString():
+            raise RuntimeError("Footprint Edge.Cuts parent mismatch")
+        shape = int(item.GetShape())
+        footprint_edges.append(dict(
+            uuid=item.m_Uuid.AsString(), parent_footprint_uuid=parent.m_Uuid.AsString(),
+            shape=shape, primitive_type="segment" if shape == int(p.SHAPE_T_SEGMENT)
+            else "native-shape-" + str(shape), layer=b.GetLayerName(item.GetLayer()),
+            source_accessor="FOOTPRINT.GraphicalItems",
+            coordinate_space="native-api-unclassified",
+            endpoint_accessor="PCB_SHAPE.GetStart/GetEnd",
+            api_start_mm=point(item.GetStart()), api_end_mm=point(item.GetEnd())))
     pads = []
     for pad in f.Pads():
         pads.append(dict(uuid=pad.m_Uuid.AsString(), number=pad.GetNumber(),
@@ -55,7 +73,11 @@ for d in b.GetDrawings():
 outline = p.SHAPE_POLY_SET()
 ok = b.GetBoardPolygonOutlines(outline, False, None, True, False)
 box = outline.BBox()
-result = dict(build=p.GetBuildVersion(), input_sha256=digest,
+result = dict(protocol_version=2, build=p.GetBuildVersion(), input_sha256=digest,
+              footprint_edges=sorted(footprint_edges, key=lambda x: x["uuid"]),
+              geometry_coverage=dict(board_edges_scope="board-drawings-only",
+                                     footprint_edges_scope="footprint-graphical-items-only",
+                                     geometry_complete=False),
               format_version=b.GetFileFormatVersionAtLoad(),
               footprints=sorted(records, key=lambda x: x["uuid"]),
               edges=sorted(edges, key=lambda x: x["uuid"]),

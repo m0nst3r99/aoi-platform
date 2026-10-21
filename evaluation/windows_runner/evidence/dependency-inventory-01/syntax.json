@@ -1,0 +1,15 @@
+{
+  "evaluation\\windows_runner\\bottom_control.py": "syntax-pass",
+  "evaluation\\windows_runner\\bow_tie_control.py": "syntax-pass",
+  "evaluation\\windows_runner\\cutout_control.py": "syntax-pass",
+  "evaluation\\windows_runner\\d_bbox_diagnostic_control.py": "syntax-pass",
+  "evaluation\\windows_runner\\d_outline_control.py": "syntax-pass",
+  "evaluation\\windows_runner\\footprint_edges_control.py": "syntax-pass",
+  "evaluation\\windows_runner\\roundrect_diagnostic_control.py": "syntax-pass",
+  "evaluation\\windows_runner\\kicad_local.py": "syntax-pass",
+  "evaluation\\kicad-reader\\run.py": "syntax-pass",
+  "evaluation\\kicad-reader\\observation_schema.py": "syntax-pass",
+  "evaluation\\kicad-reader\\outline_decision.py": "syntax-pass",
+  "evaluation\\kicad-reader\\test_harness.py": "syntax-pass",
+  "evaluation\\kicad-reader\\test_outline_decision.py": "syntax-pass"
+}

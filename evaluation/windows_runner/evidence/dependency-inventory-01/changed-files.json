@@ -1,0 +1,11 @@
+[
+  "evaluation/windows_runner/bottom_control.py",
+  "evaluation/windows_runner/bow_tie_control.py",
+  "evaluation/windows_runner/cutout_control.py",
+  "evaluation/windows_runner/d_bbox_diagnostic_control.py",
+  "evaluation/windows_runner/d_outline_control.py",
+  "evaluation/windows_runner/footprint_edges_control.py",
+  "evaluation/windows_runner/roundrect_diagnostic_control.py",
+  "evaluation/windows_runner/kicad_local.py",
+  "evaluation/kicad-reader/run.py"
+]

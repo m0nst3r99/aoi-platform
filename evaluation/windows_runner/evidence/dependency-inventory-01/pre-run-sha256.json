@@ -1,0 +1,17 @@
+{
+  "evaluation/windows_runner/bottom_control.py": "1d129b67cabae2c7074288b3645a0d7c16d4d3ee4700748f10139b32b9b9a8a4",
+  "evaluation/windows_runner/bow_tie_control.py": "bc52b75f3f4a3894c27d974a39e024eeecc50282882ce2ebfcf3868dfe63ba9d",
+  "evaluation/windows_runner/cutout_control.py": "7b7c6c88e0f4ab17efb292b3654a38f9e2796d0f01dcdfa9ff2d2943ee52cf09",
+  "evaluation/windows_runner/d_bbox_diagnostic_control.py": "61f362b6fdab278b791f1c6f88e110b066db6f819c2c14b6c1c1ebf0ddde468c",
+  "evaluation/windows_runner/d_outline_control.py": "111a2ec5961922ddfb5de80f366430f25a77423c8a69dd72c3900c8fab81c7c6",
+  "evaluation/windows_runner/footprint_edges_control.py": "bf776a3032d2f2e5a2be32535f7e4e2c414f536a616fb3375283831d41568672",
+  "evaluation/windows_runner/roundrect_diagnostic_control.py": "96d4d816b419e15453e5738b15ba514ea65497bd0af2b3d44af0f214e92de22d",
+  "evaluation/windows_runner/kicad_local.py": "52710b02125658c2d88e34f240ac114b010d1442135a8b819aef544767fa049b",
+  "evaluation/kicad-reader/run.py": "3b7643c97529e463458a98f75fb1b2e8468b3d3784632f8a7ca1425dcd722943",
+  "evaluation/kicad-reader/observation_schema.py": "4555269681e36410f1fc2366c5c941729f9da4abe1cec3ee6fb324aa94d5c3f7",
+  "evaluation/kicad-reader/outline_decision.py": "81a1637d73dae4d6b9eefec91eabf0485e01051719ab613264567fde955ff436",
+  "evaluation/kicad-reader/test_harness.py": "3d7a75e921e7ad9966980ec8b3b9daac241cd0f51a39354c6957830586c146b3",
+  "evaluation/kicad-reader/test_outline_decision.py": "75a0e23a356eb929855eeeb196995312a51f34085390fd9fc6a8bd506723c905",
+  "evaluation/kicad-reader/pcbnew.stdout.txt": "10f57cac75d8d998e450cf91d2aaf748e289fd512f1c1568b5ca9298a9494b9c",
+  "evaluation/windows_runner/evidence/bow-tie-01/stdout.bin": "5d395598b0a7a4ec369cd887cf25a992ddd6f74181a19d58dea7c38705fd224e"
+}

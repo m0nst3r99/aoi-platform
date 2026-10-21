@@ -1,0 +1,79 @@
+{
+  "build": "10.0.7",
+  "edges": [
+    {
+      "end_mm": [
+        10.0,
+        10.0
+      ],
+      "shape": 0,
+      "start_mm": [
+        0.0,
+        0.0
+      ],
+      "uuid": "00000000-0000-0000-0000-000000000708"
+    },
+    {
+      "end_mm": [
+        0.0,
+        10.0
+      ],
+      "shape": 0,
+      "start_mm": [
+        10.0,
+        10.0
+      ],
+      "uuid": "00000000-0000-0000-0000-000000000709"
+    },
+    {
+      "end_mm": [
+        10.0,
+        0.0
+      ],
+      "shape": 0,
+      "start_mm": [
+        0.0,
+        10.0
+      ],
+      "uuid": "00000000-0000-0000-0000-00000000070a"
+    },
+    {
+      "end_mm": [
+        0.0,
+        0.0
+      ],
+      "shape": 0,
+      "start_mm": [
+        10.0,
+        0.0
+      ],
+      "uuid": "00000000-0000-0000-0000-00000000070b"
+    }
+  ],
+  "footprint_edges": [],
+  "footprints": [],
+  "format_version": 20240108,
+  "geometry_coverage": {
+    "board_edges_scope": "board-drawings-only",
+    "footprint_edges_scope": "footprint-graphical-items-only",
+    "geometry_complete": false
+  },
+  "input_sha256": "627bdf46445d81e8d3bf6ae45f2adf028d7107483b5fa6456787aeefe5cc397b",
+  "outline": {
+    "count": 2,
+    "holes": [
+      0,
+      0
+    ],
+    "origin_mm": [
+      0.0,
+      0.0
+    ],
+    "size_mm": [
+      10.0,
+      10.0
+    ],
+    "valid": false
+  },
+  "protocol_version": 2
+}

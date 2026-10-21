@@ -3,10 +3,10 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
-import math
+import runpy
+from dataclasses import asdict
 from pathlib import Path
 import subprocess
-from uuid import UUID
 
 ROOT = Path(__file__).resolve().parent
 BIN = Path("C:/Program Files/KiCad/10.0/bin")
@@ -31,51 +31,14 @@ def snapshot(root):
     return {p.relative_to(root).as_posix(): sha(p) for p in sorted(root.rglob("*")) if p.is_file()}
 
 
-def schema(data):
-    """Require the full observation protocol, including fields not used by oracles."""
-    def fields(row, declarations):
-        for name, kind in declarations.items():
-            if type(row[name]) is not kind:
-                raise ValueError(f"{name}: expected {kind.__name__}")
-    def point(value):
-        if type(value) is not list or len(value) != 2 or not all(type(n) in (int, float) and math.isfinite(n) for n in value):
-            raise ValueError("finite 2D point required")
-    def identity(row):
-        UUID(row['uuid'])
-    fields(data, dict(build=str, input_sha256=str, format_version=int, footprints=list, edges=list, outline=dict))
-    fields(data['outline'], dict(valid=bool, count=int, holes=list, origin_mm=list, size_mm=list))
-    point(data['outline']['origin_mm'])
-    point(data['outline']['size_mm'])
-    for f in data['footprints']:
-        fields(f, dict(uuid=str, reference=str, value=str, footprint=str, position_mm=list,
-                       layer=str, attributes=int, dnp=bool, exclude_from_bom=bool,
-                       exclude_from_position=bool, pads=list))
-        identity(f)
-        point(f['position_mm'])
-        point([f['angle_deg'], 0])
-        for pad in f['pads']:
-            fields(pad, dict(uuid=str, number=str, shape=int, attribute=int, layers=list, net=str))
-            identity(pad)
-            for key in ('position_mm', 'local_mm', 'size_mm', 'drill_mm'):
-                point(pad[key])
-            point([pad['angle_deg'], 0])
-            if not all(type(n) is str for n in pad['layers']):
-                raise ValueError('layer names required')
-    for edge in data['edges']:
-        fields(edge, dict(uuid=str, shape=int))
-        identity(edge)
-        point(edge['start_mm'])
-        point(edge['end_mm'])
-        if edge['shape'] == 2:
-            point(edge['mid_mm'])
-            point(edge['center_mm'])
-            point([edge['radius_mm'], 0])
-    return True
+schema = runpy.run_path(str(ROOT / 'observation_schema.py'))['schema']
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("fixture", type=Path)
+    parser.add_argument("--allow-legacy-protocol", action="store_true",
+                        help="Historical unversioned replay only; footprint edge coverage stays unknown")
     parser.add_argument("--output", type=Path, required=True,
                         help="New directory only; existing evidence is never overwritten")
     args = parser.parse_args()
@@ -83,7 +46,10 @@ def main():
     out.mkdir(parents=True, exist_ok=False)
     result = dict(observed_at=datetime.now(timezone.utc).isoformat(),
                   required_checks=list(REQUIRED), checks={k: False for k in REQUIRED},
-                  diagnostics=[], runs=[], conflicts=[], outcome="failed")
+                  diagnostics=[], runs=[], conflicts=[], outcome="failed",
+                  outline_decision=None,
+                  dependencies_sha256={str(p): sha(p) for p in
+                      (ROOT / 'run.py', ROOT / 'observation_schema.py')})
 
     def issue(check, code, **evidence):
         result["diagnostics"].append(dict(check=check, code=code, **evidence))
@@ -146,8 +112,25 @@ def main():
             except (ValueError, TypeError) as error:
                 issue("pcbnew-json", "JSON_INVALID", detail=str(error))
                 data = {}
+            historical = (args.allow_legacy_protocol
+                          and result['checks']['pcbnew-json']
+                          and not any(k in data for k in ('protocol_version', 'footprint_edges', 'geometry_coverage')))
+            if historical:
+                result['outline_decision'] = dict(status='not_applicable_historical_replay', diagnostics=[])
+            else:
+                result['dependencies_sha256'][str(ROOT / 'outline_decision.py')] = sha(ROOT / 'outline_decision.py')
+                evaluate_outline = runpy.run_path(str(ROOT / 'outline_decision.py'))['evaluate_outline']
+                decision = evaluate_outline(raw)
+                result['outline_decision'] = asdict(decision)
+                for diagnostic in decision.diagnostics:
+                    details = asdict(diagnostic)
+                    code = details.pop('code')
+                    issue('outline_decision', code, **details)
             population = json.loads((fixture / "population.json").read_text(encoding="utf-8-sig"))
-            check("observation_schema", lambda: schema(data))
+            check("observation_schema", lambda: schema(data, allow_legacy=args.allow_legacy_protocol))
+            result["protocol_version"] = data.get("protocol_version", "legacy-unversioned")
+            result["footprint_edge_coverage"] = (
+                data.get("geometry_coverage") if data.get("protocol_version") == 2 else "unknown")
             check("build", lambda: data["build"] == "10.0.7")
             check("format", lambda: data["format_version"] == 20260206)
             check("input_hash", lambda: data["input_sha256"] == sha(source) == EXPECTED_HASH)

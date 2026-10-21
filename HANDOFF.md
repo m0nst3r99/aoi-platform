@@ -415,3 +415,208 @@ Synthetic rectangular cutout control (2026-10-20), awaiting review: exactly one 
 Cutout control accepted per user-relayed ZIP review: 12/12 hashes, eight primitives/endpoints, outer20x10/cutout4x2, evidence8/8 PASS; reviewer did not rerun native. Not generalized topology/import support.
 
 Bottom rotation synthetic control (2026-10-20), awaiting review: exactly one native runner control, transport PASS in 1530 ms, 44/44 checks PASS, build 10.0.7. Top origin(10,10), bottom(30,20), each footprint90deg, pads stored local(1,2)/(-3,1), raw angles30/60deg. Independent pre-run oracle from KiCad tag10.0.7 parser/BOARD_ITEM/RotatePoint/PAD source: world=(X+v,Y-u), no extra mirror for already-stored bottom coordinates; top world(12,9)/(11,13), bottom(32,19)/(31,23). UUID/parent association, raw angles, local/world positions, size and layer sets matched. Coordinate tolerance1nm; no angle modulo normalization. Source/reference/formula/oracle hashes frozen before launch and unchanged. Raw actual retained. Cleanup cleaned, Job active0, helper-temp/staging removed, synthetic PCB unchanged. No runner/probe/product/r1/r2 changes or old regression/full-suite runs. Diff check PASS. Script: evaluation/windows_runner/bottom_control.py; evidence: evaluation/windows_runner/evidence/bottom-01. Only this fixture convention established; no canonical/targeting geometry or general bottom support. Task1.5/5.2 PARTIAL, host-crash gap open. Next: review this narrow geometry evidence.
+
+Bottom rotation review accepted per user-relayed ZIP review: 13/13 hashes and independent fixture/oracle matched. Reviewer did not rerun native KiCad or verify all source links; no canonical bottom transform established. This supersedes the preceding awaiting-review wording only within that scope.
+
+Footprint-local Edge.Cuts evaluation (2026-10-20), pending review: probe protocol v2 adds separate footprint_edges and explicit incomplete geometry coverage. Bundled API metadata inspected before implementation. Independent source-authored oracle frozen before exactly one native control: two asymmetric segments on top/bottom footprints at 90 degrees; board-level rectangle remains four separate edges. Transport PASS, 641 ms; 10/10 detection/schema/hash/cleanup checks PASS. Native aggregate outline valid=false/count=0 retained, not used to derive detection expectations. API endpoints retained as native-api-unclassified, distinct from file-local declarations. Job active0, cleaned, helper-temp empty, caller handle usable, owner staging removed; fixture/oracle unchanged. Focused portable regressions: 53 PASS (23 historical replay with explicit legacy opt-in, 30 new schema cases); new tests initially reproduced 28 failures/2 passes before fix. No full suite or historical native reruns. Files: [protocol](evaluation/kicad-reader/PROTOCOL-v2.md), [control](evaluation/windows_runner/footprint_edges_control.py), [evidence](evaluation/windows_runner/evidence/footprint-edges-01/report.json). Tasks1.5/5.2 remain PARTIAL; no canonical geometry, general topology, parser compatibility or host-crash containment claim. Next: review detection/protocol delta and this narrow native evidence.
+
+
+Footprint-local Edge.Cuts detection accepted per user-relayed ZIP review: 20/20 manifest hashes matched; two segments with correct parent/type/layer and four separate board edges verified. Reviewer did not rerun native KiCad or the 53 tests, and did not independently verify baseline/index or native-run count. Acceptance is limited to detection in this fixture, not canonical geometry or topology; Tasks 1.5/5.2 remain PARTIAL. This supersedes the preceding pending-review wording only within that scope. Future control runs now include kicad_local.py in dependencies_sha256; historical reports/hashes/evidence remain unchanged. No native rerun for this provenance addition.
+
+
+Portable test implementer rerun (2026-10-21): 53 passed in 1.31s, exit code 0, for test_harness.py and test_footprint_edges.py only. This is an implementer rerun, not an independent reviewer rerun. Explicit argv used -o cache_dir inside the new evidence directory, with no -p option. [Evidence: argv/cwd/exit code/stdout/stderr](evaluation/windows_runner/evidence/footprint-edges-portable-rerun-03/); rerun-01/02 remain unchanged. No native KiCad or full suite run. Tasks 1.5/5.2 remain PARTIAL.
+
+
+Portable probe enumeration (2026-10-21): implementer run, 58 passed in 1.22s, exit 0 (5 new runpy/fake-pcbnew cases plus 53 existing portable tests). [Test](evaluation/kicad-reader/test_probe_enumeration.py); [argv/cwd/exit/stdout/stderr](evaluation/windows_runner/evidence/footprint-enumeration-portable-01/). Covers empty/incomplete collection, two parent/item identities and separate board edges, raw asymmetric API endpoints without transforms, other-layer skip, and explicit non-PCB_SHAPE/missing-parent/wrong-parent failures without observation JSON. Fake supplies constant accessors only; no KiCad parsing/geometry simulation. Probe logic unchanged. This verifies Python enumeration/rejection control flow, not native API behavior, topology, canonical geometry or parser compatibility; no native/full-suite run. Tasks 1.5/5.2 remain PARTIAL. No historical evidence, runner/helper, product or checkbox changes.
+
+
+Portable non-segment footprint Edge.Cuts case (2026-10-21): added exactly one enumeration test for fake PCB_SHAPE enum 2 (SHAPE_T_ARC), retaining UUID/parent/layer, native-shape-2 tag and asymmetric API endpoints; actual probe payload passes existing schema and coverage remains incomplete. Enumeration file only: 6 passed in 0.13s, exit 0, implementer mocked run. [argv/cwd/exit/stdout/stderr](evaluation/windows_runner/evidence/footprint-enumeration-portable-02/). No arc geometry inferred from endpoints; no native evidence or general arc support claim. Probe/schema unchanged; Tasks 1.5/5.2 remain PARTIAL. No native/full suite, ZIP, commit or push.
+
+
+D-outline native control (2026-10-21): exactly one new run, overall FAIL (26/27 checks). [Control](evaluation/windows_runner/d_outline_control.py); [report](evaluation/windows_runner/evidence/d-outline-01/report.json); [individual comparisons](evaluation/windows_runner/evidence/d-outline-01/comparisons.json). Analytic oracle and hashes written before launch: arc start(10,0), mid(15,5), end(10,10), center(10,5), radius5; closing diameter; tolerance1nm. Both UUID/types and all primitive fields PASS; native valid=true/count1/holes[0]/origin(10,0) PASS. Native bbox size(5.00252,10) versus expected(5,10): X error0.00252mm exceeds 0.000001mm. Cause not established; tessellation is a hypothesis, not a verified diagnosis. No tolerance/oracle changes or rerun. Transport PASS, 561ms, root exit0, schema/build10.0.7/source hash PASS. Job active0/cleaned, helper-temp empty, caller handle usable, stage/source/oracle unchanged and owner staging removed. Raw stdout/stderr and actual/expected retained. No winding/general-topology/canonical claim. Tasks1.5/5.2 remain PARTIAL. No existing probe/schema/runner/helper/evidence changes; no full suite, ZIP, commit/push. Stop at bbox discrepancy for review.
+
+
+D bbox diagnostic (2026-10-21), implementer evidence awaiting review: metadata introspection (no LoadBoard) confirmed m_MaxError/Outline/PointCount/CPoint accessors. Exactly one diagnostic native run via unchanged runner/helper/budgets/logging, 13/13 checks PASS. Byte-identical d-outline-01 source copy hash 6b719b92832c6c10d03618c7fc5c6369e926497389d81b33d40513f5c79bb9e7; separate polygon prediction/hash frozen before launch. Actual max error5000IU, bbox width5.002520mm and extreme(15.00252,5)mm match prediction within1nm. All outer contour vertices retained in raw JSON. This supports the source-derived approximation explanation; does NOT change d-outline-01 FAIL or its analytic oracle/tolerance and does not establish topology/canonical geometry. Cleanup cleaned/Job active0, helper-temp empty, caller handle usable, owner staging removed; source/prediction unchanged. Prior control/evidence and probe/schema/runner/helper hashes preserved. [Evidence](evaluation/windows_runner/evidence/d-bbox-diagnostic-01/); scripts d_bbox_diagnostic_control.py and d_bbox_diagnostic_probe.py in evaluation/windows_runner. Tasks1.5/5.2 PARTIAL. No full suite, ZIP, commit/push.
+
+
+D bbox diagnostic accepted by user (2026-10-21), limited to the D fixture and based on implementer-provided code/results: runtime m_MaxError=5000IU, bbox width5.002520mm and extreme(15.00252,5)mm match the polygon prediction. No direct evidence-bundle review or independent native rerun has occurred. This supersedes the preceding awaiting-review wording only within this acceptance scope. d-outline-01 remains FAIL against its original analytic oracle; historical results/tolerance unchanged. Topology/canonical geometry remain unverified; Tasks1.5/5.2 remain PARTIAL.
+
+
+Roundrect diagnostic (2026-10-21), implementer evidence awaiting review: bundled metadata introspection confirmed ratio/radius F_Cu accessors and ROUNDRECT enum4; saved KiCad tag10.0.7 pad/padstack source verifies KiROUND(min(size.x,size.y)*ratio). Independent oracle frozen before exactly one native run: top unrotated footprint, one pad4x2mm, ratio0.25, radius0.5mm; size/radius tolerance1nm, ratio tolerance1e-12. 21/21 checks PASS including UUID/parent, shape, size, ratio/radius, layer set, build/source hash and cleanup. Job active0/cleaned, helper-temp empty, caller handle usable, owner stage removed; fixture/oracle/references unchanged. [Evidence/source citations/raw output/comparisons](evaluation/windows_runner/evidence/roundrect-01/); separate roundrect_diagnostic_control.py and roundrect_diagnostic_probe.py under evaluation/windows_runner. Only fixture parameters verified; boundary, rotation/bottom, per-layer overrides and canonical geometry remain unverified. Existing probe/schema/protocol/runner/helper unchanged. Tasks1.5/5.2 PARTIAL. No real board, full suite, historical rerun, ZIP, commit/push.
+
+
+Roundrect fixture-parameter acceptance (2026-10-21), per user-relayed review: ZIP CRC passed; 26/26 manifest hashes and 9/9 Python dependency hashes matched. Oracle/source snapshot, raw output and 21/21 checks agree on pad4x2mm, ratio0.25, radius0.5mm. Reviewer checked schema against saved JSON; did not rerun native or independently verify online source/executable. Acceptance is limited to roundrect parameters of this fixture, not boundary, rotation/bottom, per-layer overrides or canonical geometry. Supersedes prior awaiting-review wording only within this scope. Tasks1.5/5.2 remain PARTIAL.
+
+
+Bow-tie negative native control (2026-10-21), implementer evidence awaiting review: exactly one run, 32/32 checks PASS, outcome expected_invalid_outline_observed. Four source-authored segments/UUIDs and analytic crossing(5,5), t=u=0.5, frozen with hashes before launch; endpoint tolerance1nm. Transport/schema/build10.0.7/input hash PASS, root exit0; exactly four segment UUIDs/endpoints and empty footprint_edges verified. Native outline.valid=false as expected; no count/holes/bbox expectations for invalid outline. Control PASS means invalid detection observed, not crash/transport failure. Job active0/cleaned, caller handle usable, helper-temp empty, owner staging removed; fixture/oracle unchanged. [Control](evaluation/windows_runner/bow_tie_control.py); [raw output/comparisons/hashes/transport/report](evaluation/windows_runner/evidence/bow-tie-01/). Only native invalid-outline detection for this fixture; product OUTLINE_INVALID/publication gate unproven. Tasks1.5/5.2 PARTIAL. Existing probe/schema/runner/helper/evidence unchanged; no real board, full suite, ZIP, commit/push.
+
+
+Bow-tie fixture detection accepted per user-relayed review (2026-10-21): ZIP CRC clean; 20/20 manifest hashes, 8/8 Python dependency hashes and 2/2 pre-run hashes matched. Independent crossing(5,5) oracle, raw primitives, 32 checks and 23 comparisons consistent; schema on saved JSON PASS. Native evidence records outline.valid=false, exit0, transport561ms and successful cleanup. Reviewer did not rerun native or verify executable/runtime. Acceptance only covers native invalid-outline detection of this fixture, not product OUTLINE_INVALID/publication gate. Supersedes preceding awaiting-review wording only within this scope. Tasks1.5/5.2 remain PARTIAL.
+
+
+Evaluation outline decision (2026-10-21): new outline_decision.py validates JSON bytes with existing strict-v2 schema, no legacy opt-in. Invalid native outline yields immutable rejected/OUTLINE_INVALID diagnostic at outline.valid retaining schema-validated input_sha256/build, no inferred entity UUID. Expected decoding/schema errors yield rejected/SCHEMA_INVALID without unvalidated provenance. valid=true yields only not_rejected_by_outline_check. No revision/usable geometry output or publication call. [Portable evidence](evaluation/windows_runner/evidence/outline-decision-portable-01/): only test_outline_decision.py run, 17 passed in0.06s, exit0; includes original bow-tie stdout bytes replay. Schema acceptance is not provenance authentication or complete geometry validation; product OUTLINE_INVALID/atomic publication remain unproven. Tasks1.5/5.2 PARTIAL. Existing probe/schema/protocol/runner/helper/evidence unchanged. No native/full suite/ZIP/commit/push.
+
+
+Outline-decision evaluation accepted per user-relayed review (2026-10-21): ZIP CRC clean, 9/9 manifest hashes matched; replay bytes and schema byte-identical to reviewed bow-tie ZIP. Reviewer exercised OUTLINE_INVALID, valid=true intermediate status and 14 invalid inputs in memory with expected results. Implementer log records17 pytest PASS; reviewer did not rerun the complete pytest/import-path execution. Acceptance is evaluation decision only, not provenance authentication, product rejection or atomic publication. Supersedes prior unreviewed status only within this scope. Tasks1.5/5.2 remain PARTIAL.
+
+
+Outline decision entrypoint integration (2026-10-21), implementer evidence awaiting review: run.py persists JSON outline_decision and typed diagnostics on successful strict-v2 probe execution. Rejected decisions force failed outcome/nonzero exit via diagnostics; existing required oracle checks remain unchanged. valid=true is only not_rejected_by_outline_check. Transport failure/timeout leaves outline_decision=null, never evaluates partial stdout. Explicit unversioned historical replay records not_applicable_historical_replay and unknown coverage; v2 markers prevent legacy fallback. Existing schema function moved verbatim into observation_schema.py; run.py re-exports schema, decision loads shared definitions without reexecuting entrypoint. [Evidence](evaluation/windows_runner/evidence/outline-decision-integration-01/): exactly test_harness.py and test_outline_decision.py, 53 passed in2.35s, exit0 (23 existing harness, 13 integration, 17 decision cases). Evaluation-only; schema does not authenticate provenance, intermediate status is not import-ready, product rejection/atomic publication remain unproven. Tasks1.5/5.2 PARTIAL. No native/full suite, probe/protocol/runner/helper/historical evidence changes, ZIP, commit/push.
+
+
+## Safe continuation checkpoint (2026-10-21; no Git commit)
+
+HEAD verified: 6e52b4c0cd2843e321512fa9ce6636e7b0ebf6a9. Index empty.
+Tracked unstaged changes: HANDOFF.md, evaluation/kicad-reader/probe.py, run.py,
+test_harness.py. New evaluation modules/tests/controls/evidence remain untracked;
+untracked .agents/ and .claude/ are pre-existing integration files, leave untouched.
+No AGENTS.md found at C:/, C:/dev/, repo root or repository search excluding
+.git/.venv. OpenSpec status board-geometry-foundation reports planning artifacts
+complete; this is NOT implementation completion. Tasks1.5/5.2 explicitly PARTIAL
+and unchecked. No task/status/allowlist edits authorized.
+
+Current task finished: package outline-decision entrypoint integration for review.
+[Review ZIP](aoi-outline-integration-review-044be98424c0.zip): 13/13 manifest hashes,
+CRC and inventory verified; packaged current evaluation files match disk at this
+checkpoint. Contains pre-integration run.py byte-for-byte under review-reference,
+from reviewed aoi-outline-decision-review-4ecfbfb9badb.zip. Shared schema function
+AST and newline-normalized text match old schema; run.py still exposes schema.
+New schema module is a dependency, not a new protocol. Report has typed rejection
+for strict-v2, intermediate true status, null decision on transport failure and
+explicit not-applicable historical replay. Existing oracle checks remain required.
+Integration is awaiting user/reviewer feedback; do NOT record acceptance yet.
+Standalone outline decision, bow-tie detection, roundrect parameters and earlier
+narrow fixture acceptances are recorded above with their distinct review limits.
+
+[Latest test evidence](evaluation/windows_runner/evidence/outline-decision-integration-01/):
+53 passed in2.35s, exit0, implementer run of test_harness.py and
+test_outline_decision.py only. argv/cwd/exit/raw stdout/stderr saved. No tests/native
+rerun during packaging/checkpoint. LF normalization followed that test execution;
+current manifest is not a historical test-time dependency attestation.
+Other evidence: outline-decision-portable-01 (17 PASS), bow-tie-01 (32 checks),
+roundrect-01 (21 checks), d-bbox-diagnostic-01 (13 checks), d-outline-01 remains FAIL
+on analytic bbox; none of these historical results may be overwritten.
+Reproduction when separately authorized: .venv/Scripts/python.exe -B -m pytest
+evaluation/kicad-reader/test_harness.py evaluation/kicad-reader/test_outline_decision.py
+-q -o cache_dir=<NEW-EVIDENCE-DIRECTORY>/pytest-cache
+
+Open provenance gap: bottom_control.py, bow_tie_control.py, cutout_control.py,
+d_bbox_diagnostic_control.py, d_outline_control.py, footprint_edges_control.py,
+kicad_local.py and roundrect_diagnostic_control.py hash run.py but lack new
+observation_schema.py/outline_decision.py inventory. Schema-only consumers require
+the former; strict entrypoint decision paths additionally require the latter.
+kicad_local.py has an older inventory omitting run.py itself. Report gaps only;
+do not retrofit historical hashes. Older standalone scripts/bundles copied alone
+may need coherent dependency snapshots. Planning/status descriptions containing
+old review-pending/DNP notes are historical and not comprehensively synchronized.
+
+Restrictions: evaluation-only, no product adapter/publication/usable canonical
+geometry claim; schema does not authenticate provenance. Host-crash before Job
+assignment containment gap remains. Preserve fixtures, oracle bytes, all old
+logs/ZIPs, source/probe/runner/helper unless specifically authorized. No reset,
+cleanup, staging, commit/push, archive or checkbox changes. Preserve Task1.5/5.2
+PARTIAL. Current request permits HANDOFF edits only.
+
+Next single action: await review feedback on the integration ZIP; read that feedback
+before selecting any implementation or dependency-inventory correction. Do not
+start another geometry/native slice automatically.
+
+## Integration acceptance and dependency inventory (2026-10-21)
+
+Supersedes the checkpoint's pending-review/next-action statements: user reports
+outline-decision integration ZIP review PASS within evaluation-only scope,
+independent rerun 53 passed and no manifest hash mismatch. This is not product
+acceptance, complete geometry or atomic publication; Tasks 1.5/5.2 stay PARTIAL.
+
+Updated eight Windows control/integration inventories to include observation_schema.py
+where run.py.schema is consumed (including both kicad_local inventories; the older
+A/B inventory now includes run.py). Those paths do not invoke outline_decision.py.
+The evaluation run.py report now hashes itself and shared schema; it additionally
+hashes outline_decision.py only on the strict decision path, not transport failure
+or historical replay. No runner/helper mechanics or observation semantics changed.
+
+[New portable evidence](evaluation/windows_runner/evidence/dependency-inventory-01/):
+56 passed in 2.34s, exit 0 (test_harness.py + test_outline_decision.py; includes
+three dependency-path/hash regressions). Implementer rerun, not independent review.
+invocation/result/raw stdout/stderr, pre-run code/input hashes, syntax checks and
+inventory audit retained; all recorded code/input hashes unchanged after tests.
+No native/full-suite rerun; old evidence and recorded hashes were not rewritten.
+Historical dependency gaps remain historical limitations, not retroactively fixed.
+
+Next action: review this inventory-only change and new portable evidence before
+selecting further work. No commit/push, checkbox/allowlist or fixture changes.
+
+## Dependency inventory review acceptance (2026-10-21)
+
+User reports review PASS for aoi-dependency-inventory-review-b25561382762.zip,
+within evaluation-only scope: independent rerun 56 passed; 42/42 manifest hashes,
+15/15 pre-run hashes and eight packaged diffs verified. Current inventory accepted
+with the documented baseline limitations. No historical baseline reconstruction or
+evidence modification is required. This supersedes the preceding pending-review
+next action. No claim of product acceptance, complete geometry or atomic publication.
+Tasks 1.5/5.2 remain PARTIAL; no checkbox/allowlist change.
+
+Proposed next slice (not implemented or authorized by this note): one synthetic
+native control for repeated pad number strings, tracing tasks 5.5 and pcb-data-import
+spec's Bottom footprint and repeated pad numbers scenario. Use two distinct pad UUIDs
+both numbered "1" in one unrotated top footprint at explicit asymmetric positions;
+verify both observations survive with exact string numbers, parent association and
+independent coordinates. Existing probe already emits pad UUID/number/position.
+Pre-run oracle/hashes, one bounded native run, unchanged fixture and cleanup evidence;
+no canonicalization/publication, no claim to close the full combined scenario.
+Next action: user review of this single proposal before implementation.
+
+
+## Repeated pad numbers native control (2026-10-21; pending review)
+
+One new native control through the existing runner/helper, unchanged budgets and
+stderr logging: [repeated-pads-01](evaluation/windows_runner/evidence/repeated-pads-01/).
+36/36 checks PASS; transport 1812 ms, root exit 0, build 10.0.7, strict schema PASS.
+Two separate UUIDs under one top unrotated footprint retain string number "1";
+local (1,2)/(4,3), world (11,12)/(14,13) mm match the pre-launch independent
+translation oracle within 1 nm. Parent association is nested observation membership,
+not a separate native parent accessor. Size and layer membership also match.
+Fixture/oracle and dependency hashes unchanged; Job active_processes=0, cleaned,
+caller handle usable, helper-temp empty and owner staging removed. Native duplicate
+image-handler warnings remain in stderr; not suppressed. No test suite rerun.
+
+Only new repeated_pads_control.py and new evidence added, plus this handoff note.
+No probe/schema/runner/helper changes. Native acceptance remains pending ZIP review;
+this does not establish canonical pad records, combined bottom/cutout behavior,
+product acceptance or atomic publication. Tasks 1.5/5.2 remain PARTIAL.
+
+Next action: review repeated-pad ZIP. User authorizes commit/push of accepted related
+changes only after review PASS. Current branch is master; use a separate working
+branch for that checkpoint, do not merge/push development into main/master. Remote
+origin is https://github.com/m0nst3r99/aoi-platform.git. No commit/push yet; inspect
+scope/index and exclude caches, environments and temporary files before staging.
+
+## Repeated pads review acceptance and checkpoint authorization (2026-10-21)
+
+User reports ZIP aoi-repeated-pads-review-ea63f736c34e.zip PASS for evaluation-only
+repeated pads: reviewer verified 27/27 manifest hashes, fixture/oracle, nine Python
+dependency hashes and independently checked raw observation; no native rerun.
+This supersedes the pending-review next action above. Tasks 1.5/5.2 remain PARTIAL;
+no product acceptance, complete geometry or atomic publication claim.
+
+Checkpoint scope: current code/evidence in the three reviewed outline integration,
+dependency inventory and repeated-pad packages, plus this HANDOFF. 49/49 current
+packaged evaluation files match the latest reviewed bytes. Required untracked
+D-bbox/roundrect probe dependencies match their accepted historical report hashes;
+the D-outline fixture matches its control-pinned hash. These are included unchanged
+so staged controls have their local dependencies. Other historical evidence/tests,
+agent integration files and review ZIPs remain outside this checkpoint.
+
+User authorized one checkpoint commit and push on new branch
+checkpoint/outline-inventory-repeated-pads; no main/master commit/push or merge.
+Verify staged byte hashes and diff before committing. No native/test rerun in this
+checkpoint operation. Preserve all historical evidence and documented limitations.
+
+Checkpoint pre-commit verification: 48 changed paths staged, evaluation blobs
+byte-identical to working files and latest applicable reviewed package hashes.
+No ZIP/cache/environment/agent files staged; maximum staged file 58,935 bytes
+before this note. Recognizable private-key/token pattern scan found no matches
+(not an exhaustive secret audit). Default cached diff --check exits 2: 1,867
+whitespace findings. CR-aware check leaves one new blank line at EOF in
+observation_schema.py:79. These are reviewed preserved bytes, intentionally not
+rewritten; do not report whitespace validation PASS. No algorithm/test/oracle
+changes made during commit preparation. Remaining historical files stay uncommitted.

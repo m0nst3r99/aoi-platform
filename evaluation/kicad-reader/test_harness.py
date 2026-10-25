@@ -213,3 +213,103 @@ def test_dependency_hashes_follow_executed_path(tmp_path, monkeypatch, v2, statu
     assert {Path(p).name for p in hashes} == expected
     for path, digest in hashes.items():
         assert digest == hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+@pytest.mark.parametrize('case', ['accepted', 'same-footprint', 'different-footprints'])
+def test_repeated_pad_replay_through_entrypoint(tmp_path, monkeypatch, case):
+    from observation_schema import schema
+    original = (HERE.parent / 'windows_runner/evidence/repeated-pads-01/stdout.bin').read_bytes()
+    data = json.loads(original)
+    first, second = data['footprints'][0]['pads']
+    if case == 'different-footprints':
+        other = copy.deepcopy(data['footprints'][0])
+        other.update(uuid='00000000-0000-0000-0000-000000009999', reference='U2', pads=[second])
+        data['footprints'][0]['pads'] = [first]
+        data['footprints'].append(other)
+        assert len({f['uuid'] for f in data['footprints']}) == 2
+    assert schema(data) is True  # Control before the sole invalid change.
+    if case != 'accepted':
+        second['uuid'] = first['uuid']
+    raw = original if case == 'accepted' else json.dumps(data).encode()
+    code, report = execute(tmp_path, monkeypatch, raw=raw, legacy=False)
+    decision = report['outline_decision']
+    if case == 'accepted':
+        assert decision == dict(status='not_rejected_by_outline_check', diagnostics=[])
+        assert report['checks']['observation_schema']
+        # This synthetic board does not satisfy the real-board harness oracles.
+        assert code != 0 and report['outcome'] == 'failed'
+    else:
+        assert decision == dict(status='rejected', diagnostics=[dict(
+            code='SCHEMA_INVALID', field='payload', input_sha256=None, build=None)])
+        assert code != 0 and report['outcome'] == 'failed'
+        assert not report['checks']['observation_schema']
+        assert any(d['code'] == 'SCHEMA_INVALID' for d in report['diagnostics'])
+
+
+def test_legacy_duplicate_pad_behavior_is_unchanged(tmp_path, monkeypatch):
+    def duplicate(data):
+        pads = next(f['pads'] for f in data['footprints'] if len(f['pads']) >= 2)
+        pads[1]['uuid'] = pads[0]['uuid']
+    code, report = execute(tmp_path, monkeypatch, mutation=duplicate, legacy=True)
+    assert code == 0 and report['outcome'] == 'passed'
+    assert report['outline_decision'] == dict(status='not_applicable_historical_replay', diagnostics=[])
+
+
+@pytest.mark.parametrize('equivalent', [False, True])
+def test_duplicate_board_edges_entrypoint(tmp_path, monkeypatch, equivalent):
+    from observation_schema import schema
+    original = (HERE.parent / 'windows_runner/evidence/repeated-pads-01/stdout.bin').read_bytes()
+    data = json.loads(original)
+    assert schema(data) is True
+    before = copy.deepcopy(data)
+    edge_id = data['edges'][0]['uuid']
+    data['edges'][1]['uuid'] = '{' + edge_id + '}' if equivalent else edge_id
+    restored = copy.deepcopy(data)
+    restored['edges'][1]['uuid'] = before['edges'][1]['uuid']
+    assert restored == before
+    raw = json.dumps(data).encode()
+    code, report = execute(tmp_path, monkeypatch, raw=raw, legacy=False)
+    assert code != 0 and report['outcome'] == 'failed'
+    assert report['outline_decision'] == dict(status='rejected', diagnostics=[dict(
+        code='SCHEMA_INVALID', field='payload', input_sha256=None, build=None)])
+    assert not report['checks']['observation_schema']
+    assert any(d['code'] == 'SCHEMA_INVALID' for d in report['diagnostics'])
+    assert json.dumps(data).encode() == raw
+
+
+def test_legacy_board_edge_collision_entrypoint_unchanged(tmp_path, monkeypatch):
+    def duplicate(data):
+        data['edges'][1]['uuid'] = data['edges'][0]['uuid']
+    code, report = execute(tmp_path, monkeypatch, mutation=duplicate, legacy=True)
+    assert code == 0 and report['outcome'] == 'passed'
+    assert report['outline_decision'] == dict(status='not_applicable_historical_replay', diagnostics=[])
+
+
+@pytest.mark.parametrize('variant', ['positive', 'identical', 'equivalent'])
+def test_footprint_uuid_identity_entrypoint(tmp_path, monkeypatch, variant):
+    import copy
+    from observation_schema import schema
+    data = json.loads((HERE.parent / 'windows_runner/evidence/repeated-pads-01/stdout.bin').read_bytes())
+    assert data['footprint_edges'] == []
+    first, second = data['footprints'][0]['pads']
+    other = copy.deepcopy(data['footprints'][0])
+    other.update(uuid='00000000-0000-0000-0000-000000009999', reference='U2', pads=[second])
+    data['footprints'][0]['pads'] = [first]
+    data['footprints'].append(other)
+    assert len({p['uuid'] for f in data['footprints'] for p in f['pads']}) == 2
+    assert schema(data) is True
+    if variant != 'positive':
+        value = data['footprints'][0]['uuid']
+        other['uuid'] = '{' + value + '}' if variant == 'equivalent' else value
+    before = copy.deepcopy(data)
+    code, report = execute(tmp_path, monkeypatch, raw=json.dumps(data).encode(), legacy=False)
+    if variant == 'positive':
+        assert report['checks']['observation_schema']
+        assert report['outline_decision'] == dict(status='not_rejected_by_outline_check', diagnostics=[])
+    else:
+        assert report['outline_decision'] == dict(status='rejected', diagnostics=[dict(
+            code='SCHEMA_INVALID', field='payload', input_sha256=None, build=None)])
+        assert not report['checks']['observation_schema']
+    # Synthetic positive is not the real-board oracle; never claim import readiness.
+    assert code != 0 and report['outcome'] == 'failed'
+    assert data == before

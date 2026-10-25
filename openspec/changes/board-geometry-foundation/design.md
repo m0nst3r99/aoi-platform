@@ -539,3 +539,417 @@ Missing usable geometry, margin or explicit load leaves fixture status unresolve
 ### Evidence and status rules
 
 Record level, candidate revision, fixture/source hashes, selected policy IDs, exact versions/settings, test identifiers/results, and per-requirement status OPEN/PARTIAL/SATISFIED. PARTIAL is still open for conformance. Only recorded passing evidence can promote a scenario; one passing scenario cannot close a requirement with other open scenarios. Prototype acceptance may coexist with OPEN requirements. Complete acceptance may not. Current state: Geometry Core has executed synthetic tests; tasks 4.1–4.4 and acquisition gate 7.1 are completed. Neither acceptance level is achieved. Remaining implementation/fixture/calibration results stay open or TBD; see implementation-status.md. See sprint-plan.md for sprint entry/exit gates, original-task mapping and the initial open-requirement register.
+
+
+## REVIEW DRAFT: immutable canonical Pad candidate (2026-10-23)
+
+Status: proposal only for parts of tasks 3.4/5.5/5.13; no product implementation,
+reader bridge, BoardRevision construction or publication. D1-D5 were selected by the user; the refinement below is controlling.
+Numeric policy values and explicitly listed open decisions still require review. This section does not amend normative
+requirements or imply compatibility from accepted evaluation observations.
+
+### Normative requirements versus proposed subset
+
+PCB-001 `Canonical outline, footprints, components, pads, and fiducials` requires
+unique pad identity, repeated source number strings, copper geometry/transforms,
+side/layers and provenance; its invalid-input scenario requires rejection before
+publication. GEO-001 requires physical P in mm, X right/Y up, revision context,
+explicit directed transformations and no guessed origin or bottom reflection.
+Design section 4 scopes stable IDs to an immutable revision and defines Pad fields;
+section 5 separates candidate validation from atomic publication.
+These are existing requirements. Rectangle-only/SMD/top-only support, API names,
+polygon representation, identity syntax and batch limits below are NEW proposals.
+They cannot close the full tasks or the combined bottom/cutout scenario.
+
+### Existing implementation constraints
+
+- `Frame`/`Point2` in `src/aoi_platform/geometry/models.py`: full frame metadata,
+  physical units, finite values; PCB frame requires board_revision_id and mm/right/up.
+  `require_same_frame` compares the full record, not only its ID.
+- `Transform2` in `geometry/transforms.py`: directed column-vector affine maps,
+  explicit conversion/rotation/translation/reflection factories and composition;
+  `conventions_validated`, singularity/conditioning and parity are existing guards.
+  A transform's numerical validity is not independent evidence of a correct source datum.
+- `TransformGraph` in `geometry/resolver.py`: explicit DAG/path/context/domain policy.
+  First candidate slice proposes an already supplied transform, no new graph search.
+- `ContractError`/`ValidationReport` in `geometry/reports.py` preserve diagnostics,
+  expected/actual and stable ordering. Adapter preserves GeometryError evidence.
+- `InventorySuccess` in `inventory.py` proves admitted artifact bytes only. It does
+  not establish source geometry, same-design revision, parser support or readiness.
+- No current product Pad model/reader-to-canonical bridge exists. Evaluation UUID
+  rejection is not product entity validation.
+
+### Proposed API and immutable records (not yet selected)
+
+`build_rectangular_pad_candidates(request, limits) -> PadBatchSuccess | PadBatchFailure`
+
+Frozen dataclasses with immutable nested tuples; no mutable dict/list references.
+All identity/context fields supplied by caller; function generates no identity.
+
+| Record | Proposed required fields and semantics |
+| --- | --- |
+| Request | schema_version, policy_id/version, board_id, candidate_scope_id, target Frame P, successful ArtifactInventory, tuple of parent records, tuple of source pads |
+| Parent | footprint_id, source_entity_id, source artifact_id/hash, source Frame, side, validated source-to-P Transform2 and independent convention evidence IDs |
+| SourcePad | pad_id, footprint_id, source_entity_id, pad_number exact string, side, explicit copper layers, pad_type, source Frame, rectangle, provenance; optional net; drill explicitly absent for this subset |
+| Rectangle | center Point2, width/height strictly positive in source-frame units, pad-local orientation with declared zero/direction; suggested input basis +X right/+Y up and CCW degrees |
+| Provenance | artifact_id, source_id, computed SHA-256 and source snapshot/fixture revision references matched to inventory; source pad/parent identifiers, producer/parser or synthetic authoring profile/version, declaration/evidence IDs and optional actual SourceLocation |
+| Candidate | unchanged pad/footprint/number/source IDs, side/copper layers/type/net, four copper boundary vertices Point2 in P, original rectangle/frame, full applied transform and convention evidence, provenance, candidate scope/schema/policy; published=False, targeting_authorized=False |
+| Success | tuple of all candidates plus ValidationReport with explicit scope canonical-pad-candidate-only; not import-ready/BoardRevision accepted |
+| Failure | ValidationReport plus bounded diagnostic evidence; NO candidates property or partially usable geometry |
+
+Parent IDs must resolve exactly once in request; source pad parent association and
+artifact/context must match the parent record. Require unique pad IDs across batch
+and unique parent IDs; repeated pad numbers remain permitted and unchanged. Source
+entity IDs are scoped by artifact; never infer parent association from pad number.
+Identity syntax/scope is D1/D2, not silently assumed to be KiCad UUID everywhere.
+Missing source location remains absent; no fabricated lines or source metadata.
+Source flags/assembly eligibility are not inferred from copper presence.
+
+### Proposed rectangle transformation and independent oracle
+
+Input rectangle is fully expressed in its declared source frame, including pad angle.
+If this is footprint-local, the supplied transform must include footprint placement;
+if board-source, it must not apply placement twice. Parent record declares which;
+no inference from native API field names. Local corner order before transformation:
+(-w/2,-h/2), (w/2,-h/2), (w/2,h/2), (-w/2,h/2), rotated about center then translated.
+Output stores all four transformed corners with original index correspondence,
+not an axis-aligned bbox. No repeated closing vertex. Reflection can reverse winding;
+do not silently reorder, and do not treat winding as side. Filled polygon semantics
+and reflection support require D3/D4. No rounded-corner/polygon approximation.
+
+Independent proposed oracle: source mm/right/up, center (2,3), size (4,2), pad angle 0.
+Source corners (0,2),(4,2),(4,4),(0,4). Explicit CCW90 then translation (10,20):
+P corners (8,20),(8,24),(6,24),(6,20); center (7,22). Compute with integer formula
+(x,y)->(10-y,20+x), without calling Transform2 to generate expected values.
+If D3 includes reflection, explicit X reflection then same rotation/translation:
+(8,20),(8,16),(6,16),(6,20), preserving corner association and reflected parity.
+Test oracle tolerance proposed 1e-6 mm (1 nm), a synthetic assertion threshold,
+not manufacturing tolerance or a policy to admit near-rectangular unsupported maps.
+No intermediate rounding, no automatic bottom mirroring. Inch support, if chosen,
+needs a separate independently calculated factor25.4 oracle and declared units.
+
+### Validation, errors and all-or-nothing behavior
+
+Validate request/schema/limits first; validate inventory membership, unique IDs,
+parent association, geometry and contexts before constructing a success result.
+Same frame ID with changed unit/origin/axes/context is a mismatch. Target must be
+complete P; source and target revisions must match the selected candidate-scope
+policy. Reject all known revision/machine/capture conflicts, never fill absent
+metadata from another frame. Proposed first slice uses board-only context (no
+machine/capture), top SMD copper F.Cu; other contexts/sides/layers reject explicitly.
+No paste or mask geometry is generated from copper. D3 may broaden only by approval.
+
+Explicit transform endpoints must match full source/target records. Missing mapping
+is TRANSFORM_MISSING; unvalidated convention change is MAPPING_UNVALIDATED. Preserve
+existing singular/ill-conditioned/context failures. Require supplied independent
+convention evidence; evidence IDs are references, not signature/authenticity proofs.
+No identity fallback, guessed unit factor/datum, or implicit resolver invocation.
+
+Proposed supported maps after accounting for declared unit conversion: Euclidean
+isometries (rotation/translation, and reflection only if D3 selected). Reject shear,
+physical scaling, perspective/pixel/camera maps. Reuse the existing normalized
+isometry guard if appropriate; its numerical policy must be documented, not silently
+made looser. General affine support would require accepting parallelograms and a
+separate geometry decision, not calling them rectangles.
+Reject roundrect/custom/holes/drills/per-layer overrides and unsupported primitives
+with GEOMETRY_UNSUPPORTED or FORMAT_UNSUPPORTED as appropriate, not truncation.
+Malformed/nonfinite/nonpositive dimensions -> SCHEMA_INVALID; duplicates ->
+DUPLICATE_ID; missing parent -> SCHEMA_INVALID with requested parent evidence;
+artifact/hash conflict -> SOURCE_CONFLICT; context conflict -> CONTEXT_MISMATCH.
+Invalid limits -> POLICY_INVALID; exhausted batch/diagnostic budget ->
+INPUT_LIMIT_EXCEEDED, no success. No downgrade to warnings for required data.
+
+Errors use ContractError and existing ValidationReport ordering; retain pad/parent,
+artifact/hash, source/target frame snapshots, transform and policy when known.
+Keep expected and actual distinct. Report all safely discoverable independent errors
+within explicit limits; on exhaustion state incomplete diagnostics and blocking
+budget error. No cross-batch persistence or mutation. No partial success inventory,
+geometry/candidates on failure, or automatic deduplication. `accepted` report status,
+if reused, applies only to this candidate operation and must carry that scope.
+
+### Historical D1-D5 options (superseded by selection below)
+
+| ID | Recommendation for smallest slice | Alternative / reason this needs a decision |
+| --- | --- | --- |
+| D1 candidate revision context | Caller reserves immutable candidate scope token, also used as Frame.board_revision_id; explicitly not a published revision or content digest | Separate candidate frame/context model avoids overloading existing revision field but expands core types. Existing spec does not settle prepublication identity allocation. Never generate/finalize revision ID here. |
+| D2 identity and provenance binding | Opaque nonempty pad/parent IDs, exact string uniqueness scoped to candidate; separate source entity IDs; require successful inventory membership/hash | UUID-only canonical IDs or independently supplied provenance token are API choices not specified. Synthetic tests may use in-memory admitted authoring artifact; no native bridge required. |
+| D3 supported subset | Start top-only SMD, F.Cu, mm/right/up source; rotation+translation only; reject all else explicitly | Add explicit reflection/inch/bottom support later with dedicated conventions/evidence. Normative full import still requires broader support. |
+| D4 output geometry | Four indexed Point2 vertices, retain source corner order; filled convex quadrilateral, no bbox substitution | Or oriented rectangle type. Polygon ordering/serialization API is new; no canonical digest/publication is defined by this slice. |
+| D5 resource/numeric policy | Explicit required limits for pads, parents, diagnostics, text/evidence lengths and finite coordinate/dimension bounds; positive integers, reject bool; named synthetic policy | Exact caps, isometry numeric guard and allowed empty batch still need selection. Recommend reject empty batch; test limits are not production defaults. |
+
+The original options above are historical; use the selected contract refinement below. No product implementation has been authorized.
+
+### Proposed acceptance after contract selection
+
+Portable synthetic product tests: exact independent four-corner oracle, repeated
+number strings with distinct IDs, duplicate/unknown-parent rejection, full-frame
+mismatch (including reused ID), source/target context conflict, missing/unvalidated
+mapping, unsupported transform/geometry, nonfinite/overflow, artifact/hash mismatch,
+limits exact/exceeded and immutable/no-mutation inputs. Mixed valid+invalid batch
+must yield failure with no candidate collection. Stable diagnostics and candidate
+ordering under input permutations require a selected ordering policy (recommend
+pad_id lexical ordering within scope); tests must not invent a revision digest.
+Verify no published/targeting authority by result types, not a fake publication spy.
+No native run needed. Candidate success is not PCB-001 import acceptance. Tasks
+3.4/5.5/5.13 remain partial; Tasks 1.5/5.2 remain PARTIAL.
+
+
+### Selected Pad candidate contract refinement (2026-10-23; review revision 2)
+
+This subsection supersedes conflicting recommendations in the original draft.
+D1-D4 and the structural parts of D5 are USER-SELECTED policy, not newly inferred
+normative requirements. Numbers marked PROPOSED remain subject to review. Full
+normative import/geometry scope remains open; no changes to Frame/Transform2 guards.
+
+#### Selected identity, context and ordering
+
+Caller supplies candidate_scope_id. Every source/target Frame used by a parent,
+pad, point or transform must have board_revision_id exactly equal to that token.
+It denotes unpublished revision context only: no content digest, accepted revision
+or identity allocation is implied. target is FrameKind.PCB, mm/right/up. Proposed
+source kinds SOURCE or FOOTPRINT; reject machine/capture context in this subset.
+All complete endpoint records must match, including origin, axes and IDs.
+
+Canonical pad_id and footprint_id are nonempty opaque strings, exact comparison
+within candidate scope. Do not strip/normalize/case-fold or derive from pad_number.
+Separate namespaces for pad and footprint IDs are proposed; do not impose a new
+cross-type UUID namespace. Source entity IDs are paired with artifact_id; retain
+original strings, no auto-generated mapping. All caller IDs are retained on output.
+Candidate tuple order is pad_id lexical (Python Unicode code-point string order,
+not locale collation). Diagnostics use existing ValidationReport ordering; neither
+ordering implies a revision/content digest.
+
+#### Field/type/requiredness and origin
+
+Names describe proposed frozen dataclasses; R=required, O=optional. Tuples are deep
+immutable and input objects are not mutated. Request does not read source bytes or
+load native files. No arbitrary metadata dictionaries accepted.
+
+| Record.field | Type; requirement | Source / validation |
+| --- | --- | --- |
+| Request.schema_version | str; R | Caller, exact proposed `rect-pad-candidate-v1` |
+| Request.policy | SyntheticPadPolicy; R | Caller-selected exact ID/version and explicit limits; no defaults |
+| Request.board_id | str; R | Caller board identity, not inferred from filename/hash |
+| Request.candidate_scope_id | str; R | Caller reservation; equals every related frame revision context |
+| Request.target_frame | Frame; R | Caller canonical P including explicit origin; no guessed datum |
+| Request.inventory | InventorySuccess; R | Successful byte-admission result; embedded report accepted and evidence internally consistent; not authentication of object constructor |
+| Request.parents | tuple[Parent,...]; R | Caller declarations; nonempty, unique footprint_id |
+| Request.pads | tuple[SourcePad,...]; R | Caller declarations; nonempty, unique pad_id |
+| Parent.footprint_id | str; R | Caller canonical ID within scope |
+| Parent.source_entity_id | str; R | Caller source parent ID, artifact-scoped |
+| Parent.artifact_id | str; R | Exact inventory artifact ID, exists once |
+| Parent.source_frame | Frame; R | Explicit frame in which its pad rectangle coordinates are expressed; SOURCE or FOOTPRINT proposal |
+| Parent.coordinate_basis | enum board-source / footprint-local; R | Caller; source frame kind must match chosen basis |
+| Parent.side | literal top; R | Caller; mismatch with pad rejected |
+| Parent.source_to_p | Transform2; R | Caller, complete endpoints match source_frame/target_frame; proper rigid only |
+| Parent.convention_evidence | tuple[EvidenceReference,...]; R | Nonempty references for declared origin/axes/angle/placement; not inferred from `conventions_validated` alone |
+| Parent.provenance | Provenance; R | Parent source identity/hash binding |
+| SourcePad.pad_id | str; R | Caller, not pad number |
+| SourcePad.footprint_id | str; R | Resolves exactly one parent |
+| SourcePad.source_entity_id | str; R | Caller original pad ID |
+| SourcePad.source_parent_entity_id | str; R | Caller declared association, matches resolved parent's source_entity_id |
+| SourcePad.artifact_id | str; R | Same artifact as parent for this first subset |
+| SourcePad.source_frame | Frame; R | Full equality with parent's coordinate frame |
+| SourcePad.pad_number | str; R | Exact source string, repeated values allowed; whether empty string is allowed remains O2 below |
+| SourcePad.side / copper_layers | literal top / tuple containing only `F.Cu`; R | Explicit declaration; duplicate layer entries rejected; no mask/paste derived |
+| SourcePad.pad_type / drill | literal smd / literal None; R | Explicit absence of drill; holes/THT rejected |
+| SourcePad.net | str or None; O | Source declaration if available; no invented empty/default net |
+| SourcePad.rectangle | Rectangle; R | Filled rectangle, no cutouts/rounding/overrides |
+| SourcePad.provenance | Provenance; R | Own source ID and parent assertion retained |
+| Rectangle.center | Point2; R | Caller center in full source frame |
+| Rectangle.width / height | finite positive float mm; R | Source dimensions; int inputs may convert to float, bool rejected |
+| Rectangle.angle_deg | finite float; R | Explicit pad-local orientation, CCW from source +X, arbitrary finite angle within selected budget; do not require zero |
+| Provenance.artifact_id / source_id | str; R | Both exactly match admitted ArtifactObservation.declaration |
+| Provenance.computed_sha256 | 64 lower hex str; R | Exact computed hash of admitted complete/EOF artifact, not merely declared hash |
+| Provenance.source_entity_id | str; R | Matches pad or parent field; parent assertion stored separately |
+| Provenance.source_snapshot / fixture_revision | str; R | Exact inventory manifest references; claims, not proof of same design revision |
+| Provenance.authoring_profile / version | str; R | Synthetic authoring or parser identity explicitly supplied; not invented by operation |
+| Provenance.source_location | SourceLocation or None; O | Actual location if supplied; never fabricate line/column |
+| Provenance.evidence | tuple[EvidenceReference,...]; R | Nonempty source-entity/association declaration evidence; bounded |
+| EvidenceReference.artifact_id / computed_sha256 / locator | str; R | Reference to admitted evidence artifact + its computed hash + opaque source locator; no external fetch |
+| Candidate | frozen record; R on success only | Copies pad ID/parent ID/number/side/layers/type/net, source rectangle/frame and provenance; carries board_id/scope/policy/schema, source_to_p, convention evidence and association verification status |
+| Candidate.vertices | tuple[Point2,Point2,Point2,Point2]; R | Index 0..3 is source corner correspondence; all frame P; no closing vertex |
+| Candidate.published / targeting_authorized | literal False; R | Fixed by result type, never caller-controlled |
+| Candidate.association_status | literal declaration-consistent; R | Does not claim parsed-source verification |
+| PadBatchSuccess.candidates / report | tuple[Candidate,...] / ValidationReport; R | Complete sorted batch; report scope `canonical-pad-candidate-only` |
+| PadBatchFailure.report / truncation | ValidationReport / Truncation; R | No candidates/usable geometry field |
+| Truncation.occurred / reason | bool / bounded enum or None; R | Whether processing/reporting was incomplete |
+| Truncation.omitted_count | int or None; R | Exact only when known; None if scan stopped; do not invent a total |
+
+Every required identity is nonempty without rewriting. Text validity is checked
+before serialization. Inventory membership validates artifact ID, source ID, EOF,
+actual size and declared/computed hash agreement, including reference-only evidence
+artifacts; reference-only cannot supply the primary geometry artifact. Accepted
+InventorySuccess is an in-process trusted result, not a security token/signature.
+
+#### Parent association: what is and is not proved
+
+The operation checks canonical parent lookup, same artifact/hash, source parent ID,
+source frame/basis, side and candidate scope. It retains source locator and evidence
+references. This proves consistency of supplied declarations with admitted bytes'
+identities; it DOES NOT inspect those bytes to prove pad containment/membership.
+A caller assertion or synthetic fixture oracle is not independent native-parser
+verification. `declaration-consistent` must remain visible on success. A future
+reader must supply its own source-aware association evidence and tests; this slice
+cannot certify arbitrary source files. Requiring independently verified native
+association here would require an out-of-scope reader; see O1 below.
+
+#### Selected geometry and transform subset
+
+Top SMD, only F.Cu; source mm/right/up; pad angle is explicit CCW about center.
+For half extents (a,b), corners are (-a,-b),(a,-b),(a,b),(-a,b).
+Apply R(pad_angle) then center translation in source, then source_to_p.
+Proper rotation+translation only, no reflection/scale/shear. Preserve corner order;
+output is the rectangle's four indexed P vertices, not its bbox or fitted rectangle.
+Reject unsupported shapes and transform classes, do not project/approximate them.
+
+PROPOSED enforcement: require TransformKind.RIGID and conventions_validated; reuse
+existing Transform2 rigid validation: column squared norms within 1e-12 of 1,
+column dot within 1e-12 of 0, rel_tol=0, Parity.PRESERVED. Existing finite/singular/
+condition guards remain. Do not accept a raw AFFINE map merely because it happens
+to approximate a rotation; caller must use validated rigid factories/composition.
+Guard is numerical admission of floating-point rotation, not a physical stretch
+allowance; slight residual within guard is retained, never silently orthogonalized.
+`max_condition_number=1e8` is existing core guard, not sufficient proof of rigidity.
+No changes to private Transform2 guard or new looser tolerance authorized.
+
+#### Independent rotated-pad oracle (additional to previous oracle)
+
+Explicit source center (2,3), width4, height2, pad angle +90 degrees.
+R90(u,v)=(-v,u), producing source corners (3,1),(3,5),(1,5),(1,1).
+Then source_to_p CCW90 + (10,20), formula (x,y)->(10-y,20+x):
+P corners (9,23),(5,23),(5,21),(9,21), center (7,22).
+Compare each indexed vertex, not only bbox or center. The earlier angle0 case
+has (8,20),(8,24),(6,24),(6,20); this difference detects ignored pad rotation or
+applying parent rotation twice. Expected numbers are fixed elementary arithmetic,
+never generated via production geometry functions. Test oracle tolerance proposed
+1e-6 mm; this is independent from the dimensionless 1e-12 transform guard.
+
+#### PROPOSED numeric policy table, pending confirmation
+
+Name/version proposed: `synthetic-rect-pad-candidate` / `1`. Explicit policy object
+contains all values below. Version1 accepts the exact reviewed values rather than
+silent defaults/loosening. Integers must be type int, not bool; all counts positive.
+These limits bound this operation, not upstream inventory memory or a security sandbox.
+
+| Field | Proposed value | Measurement / enforcement |
+| --- | --- | --- |
+| max_pads / max_parents | 4096 / 4096 | Reject before per-record processing; empty pads or parents rejected |
+| max_inventory_artifacts | 1024 | Bound inventory lookup scan before indexing |
+| max_id_utf8_bytes | 256 | Each opaque ID, number, origin label and policy/schema/profile/version string |
+| max_text_utf8_bytes | 1024 | Each net, source locator/location text or descriptive string |
+| max_evidence_refs_per_record | 16 | Each provenance or convention-evidence tuple |
+| max_total_evidence_refs | 32768 | Whole request, including parent and pad references |
+| max_total_input_utf8_bytes | 8388608 (8 MiB) | All traversed request and inventory metadata string occurrences, including repeats; reject before copying into outputs |
+| max_diagnostics | 128 | All errors/warnings combined; includes reserved terminal budget issue |
+| max_diagnostic_utf8_bytes | 4096 | Serialized JSON UTF-8 bytes per ContractError, including expected/actual/context |
+| max_total_diagnostic_utf8_bytes | 524288 (512 KiB) | Sum serialized issue bytes; truncation metadata additionally bounded to 256 bytes |
+| max_abs_coordinate_mm | 1000000 | Source centers/corners, transform translations and output corners; finite checks before/after arithmetic |
+| min_dimension_mm / max_dimension_mm | 0.000001 / 1000000 | Positive width/height inclusive; minimum is proposed numerical subset, not manufacturing resolution |
+| max_abs_angle_deg | 360000 | Source pad angle, retain raw angle; any trig argument reduction must be declared, not change recorded value |
+| rigid_guard_abs / rel | 1e-12 / 0 | Existing dimensionless Transform2 norm/dot guard; positive parity mandatory |
+| test_oracle_abs_mm | 1e-6 | Test assertion only; not a runtime acceptance slack for limits or unsupported geometry |
+
+Check text length with bounded counting before allocating encoded oversized strings;
+no giant serialization solely to discover it exceeds budget. Bounds apply to copied
+provenance too; do not repeatedly attach the whole inventory to each candidate.
+Exact boundary accepted where geometric validity permits; +1 byte/count or numeric
+overrun rejects, with no tolerance added to resource/coordinate/dimension bounds.
+Nonfinite/overflow rejects. Floating-point degeneracy (collapsed corners/zero area)
+rejects even when dimension bounds pass; no polygon repair. Numerical tests must
+cover bounds plus large-center/small-dimension combinations.
+
+#### Diagnostic budget exhaustion without a usable batch
+
+Reserve one issue slot AND 4096 serialized bytes from total budget for a compact
+blocking INPUT_LIMIT_EXCEEDED issue. Reserve exists even if no truncation eventually
+occurs. With the proposed policy, ordinary issues may use at most127 slots and
+520192 bytes. A single oversize diagnostic is not emitted partially or silently
+trimmed: stop recording it, use reserved budget issue and set truncation.occurred.
+Do not promote any candidate. The terminal issue uses a fixed bounded message,
+field_path/policy identifier and known counters; do not echo arbitrarily long IDs.
+Truncation.reason is an enum (issue_count/issue_bytes/input_budget), omitted_count
+is None unless exact. Failure retains no candidates; known full issues remain.
+
+Traverse bounded validated identities in stable pad_id order, with deterministic
+field order for malformed records (original index may be used when identity is
+unavailable). Apply existing report sorting to retained issues plus the terminal
+issue. Never deduplicate meaningful errors. Budget-exhaustion invariance across
+malformed permutations is NOT promised when identity is absent; successful inputs
+and identified-entity diagnostics remain deterministic. This explicit boundary
+must be tested. An invalid policy cannot supply its own trustworthy budget: return
+one fixed-size POLICY_INVALID issue within the same implementation hard cap,
+without enumerating all malformed policy contents. No recursive reporting failure.
+
+#### Remaining decisions / spec alignment
+
+- O1: confirm declaration-consistent candidate association is acceptable for this
+  first product candidate operation; actual source membership verification belongs
+  to the future reader. No claim that inventory hash proves membership is permitted.
+- O2: confirm pad_number permits empty string as an explicitly retained source value,
+  or reject it for this subset. Recommendation: permit empty string, never invent a
+  number; required means field present/type str. Canonical IDs remain nonempty.
+- O3: approve exact numeric table, diagnostic reservation/fallback, minimum dimension,
+  coordinate/angle caps, and rigid-kind restriction. These are proposals, not prior
+  normative values. Recommend values above; no production accuracy claim.
+- O4: confirm source entity uniqueness per artifact for pads and parents (separate
+  typed namespaces) and reject two canonical records aliasing the same typed source
+  entity; recommendation reject aliases to avoid duplicated copper. Normative spec
+  requires unique canonical IDs but does not define source alias handling here.
+
+No normative conflict identified if this remains an explicit bounded candidate
+subset. General bottom/units/geometry import, independent source validation, full
+revision lifecycle and atomic publication remain open. Candidate scope reuse must
+not imply content equality; content digest and final identity allocation remain
+future BoardRevision responsibilities. Implementation awaits contract selection
+and explicit authorization; Tasks 1.5/5.2 stay PARTIAL.
+
+
+### Pad candidate implementation authorization: selected O1-O4 (2026-10-23)
+
+User selected O1 declaration-consistent association (no source-byte membership
+verification); O2 empty pad_number preserved, all IDs still nonempty; O3 exact
+revision-2 numeric table and rigid-kind restriction, diagnostic reservation/fallback,
+reject empty batch; O4 reject aliases of typed source entity within artifact using
+SOURCE_CONFLICT when canonical IDs differ, DUPLICATE_ID when canonical IDs repeat.
+Pad/parent source namespaces are separate. These selections supersede O1-O4 pending
+language above and authorize only the bounded candidate operation, not native reader,
+BoardRevision construction/publication or targeting. Policy is synthetic v1, not
+production accuracy. Candidate ordering is lexical pad_id; existing report ordering.
+
+### Bounded Pad candidate implementation notes (2026-10-24)
+
+O1-O4 above are selected; earlier pending/proposed wording is historical. API is
+`build_rectangular_pad_candidates(PadCandidateRequest) -> PadBatchSuccess | PadBatchFailure`
+in `src/aoi_platform/pad_candidates.py`. The exact explicit SyntheticPadPolicy v1
+implements the selected table; no production defaults. Candidate source and parent
+are retained frozen records, with four ordered Point2 vertices. Failure has no
+candidate collection. No reader, revision construction, publication or targeting.
+
+Preflight bounds the complete metadata tree before sorting/indexing/serialization,
+counts string occurrences and evidence references, and excludes mutable/custom types.
+Enums are fixed implementation vocabulary; variable strings are UTF-8 budgeted.
+The structural work guard is 64*(max_pads+max_parents+max_inventory_artifacts+
+max_total_evidence_refs) visited nodes and depth32; valid declared record nesting
+fits below these bounds. This additionally bounds malformed nested tuple structures.
+Binary integers exceeding1024 bits reject before serialization (not finite binary64
+geometry). Snapshot/revision descriptions use the1024-byte text bound. Other IDs,
+numbers, origins and policy/schema strings use256. These implementation safeguards
+bound malformed work without increasing any selected geometry/resource allowance.
+Duplicate-identity sort ties use bounded canonical record JSON after preflight;
+normal candidates sort by exact pad_id. Diagnostic reservation still applies.
+The total diagnostic byte cap is redundant at the selected127 ordinary slots times
+4096 bytes, but independently checked; tests fill that exact520192-byte ordinary
+budget and exercise the reserved blocker. Whitespace-only opaque IDs are preserved;
+if the existing report's nonblank text guard prevents an entity field, its exact
+value is retained under entity_id_json/artifact_id_json without relaxing report guards.
+
+Corner construction uses explicit pad-angle rotation, source-center translation,
+then the validated proper-rigid source_to_p mapping. Consecutive vector cross products
+avoid cancellation from absolute-coordinate shoelace sums. No fitted/orthogonalized
+replacement is made. Tests include independently derived45-degree corners in addition
+to angle0/+90, and a1nm dimension rectangle near1e6mm. Numerical guard is not the
+1e-6mm test oracle tolerance. Association remains declaration-consistent only.
+
+New candidate evidence has a narrow -text Git attribute so future checkpoint staging
+preserves its raw capture/hash bytes. Existing evidence attributes and bytes are unchanged.

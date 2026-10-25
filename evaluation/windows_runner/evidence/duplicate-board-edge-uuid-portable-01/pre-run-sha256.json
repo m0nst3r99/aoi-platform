@@ -1,0 +1,10 @@
+{
+  "evaluation/kicad-reader/run.py": "3b7643c97529e463458a98f75fb1b2e8468b3d3784632f8a7ca1425dcd722943",
+  "evaluation/kicad-reader/observation_schema.py": "cb70b437a3016addec069f46fcb9349aa72decf91c5e0df41a533dc7a5ba625b",
+  "evaluation/kicad-reader/outline_decision.py": "81a1637d73dae4d6b9eefec91eabf0485e01051719ab613264567fde955ff436",
+  "evaluation/kicad-reader/test_harness.py": "18fa1eac46f5f56cd2bc5b6fbde217b953ba64049caec98d75792beb8378cdd4",
+  "evaluation/kicad-reader/test_outline_decision.py": "6f373cfada01248504707c37597d9a044368ee3111334bbc84568d5df0e71317",
+  "evaluation/kicad-reader/pcbnew.stdout.txt": "10f57cac75d8d998e450cf91d2aaf748e289fd512f1c1568b5ca9298a9494b9c",
+  "evaluation/windows_runner/evidence/repeated-pads-01/stdout.bin": "71bb16f9c90a8e4ba9dc70837f3869eac4fcff2956fe847dbdbceedffa462011",
+  "evaluation/windows_runner/evidence/bow-tie-01/stdout.bin": "5d395598b0a7a4ec369cd887cf25a992ddd6f74181a19d58dea7c38705fd224e"
+}

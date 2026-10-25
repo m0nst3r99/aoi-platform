@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "C:\\Users\\nhanp\\AppData\\Roaming\\npm\\openspec.CMD",
+    "validate",
+    "board-geometry-foundation",
+    "--strict"
+  ],
+  "cwd": "C:\\dev\\aoi-platform"
+}

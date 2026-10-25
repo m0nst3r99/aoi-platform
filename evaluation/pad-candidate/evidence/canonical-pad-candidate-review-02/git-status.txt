@@ -1,0 +1,47 @@
+ M .gitattributes
+ M HANDOFF.md
+ M evaluation/kicad-reader/observation_schema.py
+ M evaluation/kicad-reader/test_harness.py
+ M evaluation/kicad-reader/test_outline_decision.py
+ M openspec/changes/board-geometry-foundation/design.md
+ M openspec/changes/board-geometry-foundation/implementation-status.md
+?? .agents/
+?? .claude/
+?? evaluation/kicad-reader/PROTOCOL-v2.md
+?? evaluation/kicad-reader/test_footprint_edges.py
+?? evaluation/kicad-reader/test_probe_enumeration.py
+?? evaluation/pad-candidate/
+?? evaluation/windows_runner/evidence/bow-tie-01/actual-expected.json
+?? evaluation/windows_runner/evidence/bow-tie-01/bow-tie.kicad_pcb
+?? evaluation/windows_runner/evidence/bow-tie-01/comparisons.json
+?? evaluation/windows_runner/evidence/bow-tie-01/oracle.json
+?? evaluation/windows_runner/evidence/bow-tie-01/pre-run-hashes.json
+?? evaluation/windows_runner/evidence/bow-tie-01/report.json
+?? evaluation/windows_runner/evidence/bow-tie-01/stderr.bin
+?? evaluation/windows_runner/evidence/bow-tie-01/transport.json
+?? evaluation/windows_runner/evidence/bow-tie-01/watchdog.stderr
+?? evaluation/windows_runner/evidence/bow-tie-01/watchdog.stdout
+?? evaluation/windows_runner/evidence/d-bbox-diagnostic-01/
+?? evaluation/windows_runner/evidence/d-outline-01/actual-expected.json
+?? evaluation/windows_runner/evidence/d-outline-01/comparisons.json
+?? evaluation/windows_runner/evidence/d-outline-01/oracle.json
+?? evaluation/windows_runner/evidence/d-outline-01/pre-run-hashes.json
+?? evaluation/windows_runner/evidence/d-outline-01/report.json
+?? evaluation/windows_runner/evidence/d-outline-01/stderr.bin
+?? evaluation/windows_runner/evidence/d-outline-01/stdout.bin
+?? evaluation/windows_runner/evidence/d-outline-01/transport.json
+?? evaluation/windows_runner/evidence/d-outline-01/watchdog.stderr
+?? evaluation/windows_runner/evidence/d-outline-01/watchdog.stdout
+?? evaluation/windows_runner/evidence/duplicate-board-edge-uuid-portable-01/
+?? evaluation/windows_runner/evidence/duplicate-footprint-uuid-portable-01/
+?? evaluation/windows_runner/evidence/duplicate-pad-uuid-portable-01/
+?? evaluation/windows_runner/evidence/footprint-edges-01/
+?? evaluation/windows_runner/evidence/footprint-edges-portable-rerun-01/
+?? evaluation/windows_runner/evidence/footprint-edges-portable-rerun-02/
+?? evaluation/windows_runner/evidence/footprint-edges-portable-rerun-03/
+?? evaluation/windows_runner/evidence/footprint-enumeration-portable-01/
+?? evaluation/windows_runner/evidence/footprint-enumeration-portable-02/
+?? evaluation/windows_runner/evidence/outline-decision-portable-01/
+?? evaluation/windows_runner/evidence/roundrect-01/
+?? src/aoi_platform/pad_candidates.py
+?? tests/test_pad_candidates.py

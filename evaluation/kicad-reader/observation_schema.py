@@ -53,8 +53,24 @@ def schema(data, *, allow_legacy=False):
             or coverage.get("footprint_edges_scope") != "footprint-graphical-items-only"
             or coverage.get("geometry_complete") is not False):
         raise ValueError("Incomplete or incorrect geometry coverage metadata")
+    # Strict-v2 only: legacy replay returned above. Compare UUID identity without
+    # rewriting source strings or merging pads with repeated number labels.
+    pad_ids = set()
+    for footprint in data['footprints']:
+        for pad in footprint['pads']:
+            pad_id = UUID(pad['uuid'])
+            if pad_id in pad_ids:
+                raise ValueError('Duplicate pad UUID')
+            pad_ids.add(pad_id)
+    # Board-edge collection only; no new cross-entity collision policy.
+    board_edge_ids = set()
+    for edge in data['edges']:
+        edge_id = UUID(edge['uuid'])
+        if edge_id in board_edge_ids:
+            raise ValueError('Duplicate board edge UUID')
+        board_edge_ids.add(edge_id)
     parents = [f["uuid"] for f in data["footprints"]]
-    if len(parents) != len(set(parents)):
+    if len(parents) != len({UUID(value) for value in parents}):
         raise ValueError("Duplicate footprint UUID")
     seen = {edge["uuid"] for edge in data["edges"]} | set(parents)
     for edge in data["footprint_edges"]:

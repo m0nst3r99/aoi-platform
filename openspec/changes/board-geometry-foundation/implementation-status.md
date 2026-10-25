@@ -360,3 +360,256 @@ raise SystemExit(exit_code)
 ```
 
 Strict OpenSpec validation is run after these corrections; its result is reported in delivery. The same 59 tasks remain open, including full contextual path resolution, envelope checks, calibration and imports. No new inspection validation workflow, source parser, hardware qualification or other OpenSpec task was implemented. No commit or push was performed.
+
+
+## Strict-v2 duplicate pad UUID evaluation (2026-10-22; pending review)
+
+Shared observation_schema.py now rejects duplicate pad UUID identity across all
+footprints in strict-v2 only. UUID objects are compared without changing source
+strings, merging or dropping pads. Distinct UUIDs with repeated number string "1"
+remain valid. Legacy replay returns before this new check; its behavior is unchanged.
+Decision reports SCHEMA_INVALID; entrypoint fails with nonzero exit. No product
+DUPLICATE_ID/publication/canonical geometry claim; Tasks 1.5/5.2 remain PARTIAL.
+
+Portable evidence: evaluation/windows_runner/evidence/duplicate-pad-uuid-portable-01/.
+Exactly test_harness.py and test_outline_decision.py executed: 64 passed in 2.44s,
+exit 0. Raw repeated-pads stdout bytes match the accepted review ZIP. Negatives
+are in-memory copies: same footprint, distinct valid parent UUIDs across footprints,
+and equivalent UUID spelling. Before introducing collisions, schema-valid controls
+are asserted. Schema does not mutate the payload. Replayed synthetic board passes
+the outline decision only; unrelated real-board harness oracles still fail as expected.
+Eight code/input hashes match before/after; argv/cwd/raw stdout/stderr recorded.
+Implementer portable run only, no native/full-suite run or independent review yet.
+
+Changes: shared schema, two portable test files, this status note and HANDOFF.
+Probe, run.py decision routing, runner/helper, legacy protocol, historical evidence,
+checkboxes and allowlist unchanged. Prior HANDOFF workflow edits retained.
+Next: review the duplicate-pad UUID ZIP. No commit/push authorization for this slice.
+
+
+## Duplicate pad UUID review acceptance (2026-10-23)
+
+User reports duplicate-pad-uuid review ZIP PASS within evaluation-only scope:
+independent rerun 64 passed; 28/28 manifest hashes and eight pre/post-run hashes
+match; raw repeated-pads replay matches the previously accepted bytes. This
+supersedes the pending-review and no-independent-review statements above for this
+slice only. No native rerun is claimed. Historical evidence remains unchanged.
+Tasks 1.5/5.2 remain PARTIAL; no product rejection/publication or canonical geometry
+acceptance. No commit/push authorization has been given for this slice.
+
+Next proposal for review, not implemented: strict-v2 duplicate board-level edge UUID
+rejection. Current schema validates each UUID but constructs a set from board edges
+without checking duplicates within that collection. Trace: task 3.4 and PCB-001
+invalid-outline/nonfinite/duplicate-entity scenario. Portable replay with a single
+in-memory UUID collision should reject SCHEMA_INVALID through decision and entrypoint;
+valid distinct-edge replay and historical legacy behavior must remain unchanged.
+No new native fixture/run, geometry normalization or publication implementation.
+
+
+## Strict-v2 duplicate board-edge UUID evaluation (2026-10-23; pending review)
+
+Observation schema now rejects duplicate UUID identity within board-level edges,
+including identical and equivalent UUID strings. This is separate from accepted
+pad UUID checks; no new cross-entity collision rule. Payloads are not changed,
+merged or dropped. Legacy returns before the strict-v2 checks and is unchanged.
+SCHEMA_INVALID propagates through decision and failed/nonzero entrypoint.
+
+Evidence: evaluation/windows_runner/evidence/duplicate-board-edge-uuid-portable-01/.
+Exactly test_harness.py and test_outline_decision.py: 71 passed in 3.06s, exit 0.
+Seven new cases cover identity spellings, nonmutation and legacy behavior. Existing
+accepted raw repeated-pads positive replay remains schema-valid/intermediate (not
+import-ready). Negative copies change only one edge UUID after asserting a valid
+control. Eight pre/post code/input hashes match; argv/cwd and raw outputs retained.
+No native/full-suite run or historical evidence changes. Implementer evidence only;
+new slice awaits review. Tasks 1.5/5.2 remain PARTIAL; no product/publication claim.
+
+Only shared schema and its two portable test files changed, plus HANDOFF/status.
+Git f77efa1 predates accepted pad-UUID work: Git diffs are cumulative. Review package
+also includes exact pad-UUID ZIP baseline and separate diffs isolating new code/tests;
+document diffs additionally include the intervening acceptance notes.
+No commit/push. Next action: review board-edge UUID ZIP before any publishing.
+
+
+## Duplicate board-edge UUID review acceptance (2026-10-23)
+
+User reports duplicate-board-edge-uuid ZIP PASS within evaluation-only scope:
+independent rerun 71 passed; 38/38 manifest hashes, eight pre/post-run hashes and
+ten baseline/diffs match. Pad-UUID baseline matches the previously accepted version.
+This supersedes pending-review statements for this slice only. No native rerun or
+product/canonical/publication acceptance is inferred. Tasks 1.5/5.2 remain PARTIAL.
+Historical evidence unchanged; no commit/push authorization.
+
+Next proposal, not implemented: compare footprint UUID uniqueness by UUID identity
+in strict-v2. Current schema compares footprint UUID strings, unlike accepted pad
+and board-edge identity checks; equivalent spellings can evade that collection's
+duplicate check. Trace task 3.4 and PCB-001 duplicate-entity scenario. Portable
+controls should start with two valid distinct footprints and disjoint pad UUIDs,
+then change only the second footprint UUID to an identical/equivalent first UUID.
+Require SCHEMA_INVALID through decision and failed/nonzero entrypoint, nonmutation,
+and unchanged legacy behavior. Scope excludes cross-entity collision and parent
+reference matching policy. No native run or geometry normalization is proposed.
+
+
+## Strict-v2 footprint UUID identity (2026-10-23; pending review)
+
+Footprint uniqueness now compares UUID identity instead of strings. Parent list and
+reference matching, cross-entity collision checks, pad/board-edge checks, probe and
+runner are unchanged. No payload rewriting. Legacy behavior unchanged.
+Evidence: evaluation/windows_runner/evidence/duplicate-footprint-uuid-portable-01/.
+Only test_harness.py and test_outline_decision.py ran: 78 passed in 2.67s, exit 0.
+Seven new cases use two valid distinct footprints with disjoint pad UUIDs and no
+footprint_edges. Identical/equivalent footprint collisions reject SCHEMA_INVALID;
+positive remains intermediate, entrypoint retains unrelated real-board oracles.
+Nonmutation and legacy checked. Eight pre/post code/input hashes match. No native.
+Tasks 1.5/5.2 remain PARTIAL; historical evidence retained. No commit/push.
+
+Next proposal (not implemented): review a product-facing immutable canonical Pad
+candidate contract for tasks 3.4/5.5 with explicit source artifact/hash/entity and
+validated source-to-P transform, starting with synthetic rectangular copper pads.
+Design.md Pad contract (line 410) requires geometry in P, identity/number/layers and
+provenance; task 5.13 forbids guessed transforms. Define all required fields and
+failure behavior before code, preserve repeated numbers, reject invalid/missing
+provenance/context/unsupported geometry, and keep candidate non-published. No native
+reader bridge, BoardRevision publication or targeting authority in that first slice.
+This replaces a proposed continuing chain of evaluation-only UUID hardening.
+
+Review packaging: exact Git f77efa1 baseline yields cumulative pad/edge/footprint
+diff; accepted board-edge ZIP provides separate baseline/diff for this slice.
+Documentation diff includes intervening acceptance notes. Await review authorization.
+
+
+## Footprint UUID acceptance and Pad candidate contract (2026-10-23)
+
+User reports footprint UUID ZIP review PASS within evaluation-only scope:
+independent rerun 78 passed; 38/38 manifest hashes, eight pre/post-run hashes and
+ten baseline/diffs match. Supersedes pending-review statements for this slice only;
+no native rerun/product acceptance inferred. Historical evidence unchanged.
+Tasks 1.5/5.2 remain PARTIAL; no commit/push authorization.
+
+New review draft in design.md: immutable canonical Pad candidate, tasks 3.4/5.5/5.13.
+Normative requirements separated from D1-D5 proposals: candidate revision scope,
+identity/provenance binding, supported geometry/maps, output representation and
+limits/numeric policy. Product implementation blocked on selection; no reader bridge,
+BoardRevision creation, publication, targeting or native run. Next action: review
+contract and select decisions, then authorize a bounded implementation separately.
+
+
+## Pad candidate contract revision 2 (2026-10-23; documentation only)
+
+D1-D4 and structural D5 selections recorded in design.md. Candidate scope is caller
+supplied unpublished revision context, all source/target frames match it; no core
+guards relaxed. Opaque canonical IDs retain exact strings; top SMD/F.Cu/mm proper
+rigid subset supports explicit nonzero pad angle and indexed vertices.
+Complete field/source/context table, parent declaration-versus-verification boundary,
+proposed numeric budgets/diagnostic reservation and independent +90-degree pad oracle
+added. O1-O4 remain for review: declaration-consistent association, empty pad number,
+exact limits/numeric guard and source-entity alias policy. No product code/tests/native,
+commit/push or historical evidence edits. Tasks 1.5/5.2 PARTIAL. Next: select remaining
+contract decisions before implementation authorization.
+
+## Canonical Pad candidate implementation (2026-10-24; review pending)
+
+O1-O4 selected by user; this supersedes the earlier pending-contract entry.
+`src/aoi_platform/pad_candidates.py` adds immutable bounded synthetic top-SMD/F.Cu
+rectangle candidates from explicit mm/right/up proper-rigid maps. Input inventory
+identity/hash and complete frame/scope are checked; repeated/empty pad numbers stay
+unchanged. Source aliases reject; batch failure has no candidates. Association is
+only declaration-consistent, not verified membership from source bytes. No reader,
+BoardRevision, publication, targeting authority or native execution was added.
+
+`tests/test_pad_candidates.py`: independent angle0/+90/45 corner oracles, context,
+provenance, alias/identity, immutable/all-or-nothing behavior, malformed inputs,
+exact/exceeded metadata/count/numeric limits and diagnostic reservation coverage.
+Evidence: `evaluation/pad-candidate/evidence/canonical-pad-candidate-02/`.
+Focused100 PASS (exit0); default full pytest470 PASS/1 skipped (exit0). The skip is
+opt-in local REAL-PCB-01 inventory, not a passing real-fixture test. This default
+suite uses testpaths=tests; historical evaluation/native suites were not rerun.
+28 code/test/config hashes match before/after and current bytes; raw stdout/stderr
+and argv/cwd/exit are preserved. Strict OpenSpec validation passed. Earlier run01
+is retained as development evidence, not the final reviewed-code result. No rerun
+was needed for packaging because the28 inputs still match. These are implementer
+results; new candidate implementation awaits independent review.
+
+Only a narrow `/evaluation/pad-candidate/** -text` attribute was added to preserve
+new evidence bytes. No historical evidence or existing core guards were changed.
+Tasks3.4/5.5/5.13 remain PARTIAL (this bounded candidate subset only); Tasks1.5/5.2
+remain PARTIAL. General pad geometry, native association, full import/reconciliation,
+canonical revision lifecycle and atomic publication remain open. InventorySuccess
+is a trusted in-process result, not authentication or proof of design consistency.
+
+Branch checkpoint/outline-inventory-repeated-pads; HEAD f77efa171cfb58e843e93ebbe6d16a0f30ab9358.
+Index stays empty; pre-existing evaluation/document/untracked work is retained.
+No native, commit or push. Next single action: review the canonical Pad candidate
+ZIP and its isolated pre-implementation baseline/diffs before any further work.
+
+## Canonical Pad candidate review accepted (2026-10-24)
+
+User reports review PASS for the selected bounded candidate subset. Reviewer rerun:
+470 passed, 1 skipped; 74/74 manifest hashes, 28/28 pre/post hashes and all six
+baseline/diffs matched. Review package: aoi-canonical-pad-candidate-review-a3365c21c98c.zip.
+This supersedes the review-pending status and review-next-action above; those entries
+remain historical. These are reviewer results relayed by the user, not a new agent
+rerun or an attestation.
+
+Acceptance is limited to the selected synthetic top-SMD/F.Cu rectangle candidate
+operation with explicit proper-rigid transforms and declaration-consistent association.
+It does not verify native source membership, general geometry/parser compatibility,
+BoardRevision publication, atomic publication, targeting or production accuracy.
+The skipped local fixture test remains unverified by this rerun. Tasks 1.5/5.2 and
+aggregate 3.4/5.5/5.13 remain PARTIAL; no checkbox changes.
+
+This update changes documentation only: no code/evidence edits, tests/native runs,
+commit or push. Await explicit authorization for any next implementation or publishing.
+
+## Repeated-pads replay bridge review accepted (2026-10-24; fixture-only)
+
+User reports review PASS for aoi-repeated-pads-bridge-review-e3e1903f89b6.zip.
+Reviewer rerun: 21 passed; 28/28 manifest hashes and 20/20 pre/post hashes matched.
+These are reviewer results relayed by the user, not a new agent rerun or attestation.
+The bridge's review-pending status is superseded by this fixture-only acceptance.
+Evidence remains evaluation/kicad-reader/evidence/repeated-pads-bridge-01/.
+
+Acceptance covers only the accepted repeated-pads replay: explicit normalization
+N(x,y)=(x,-y), separate reflection evidence, caller-declared translation (0,20),
+and inventory-bound PCB/raw observation hashes. Build/schema checks are value
+checks, not backend authentication. Association remains declaration-consistent;
+no general reader/geometry compatibility, native membership verification,
+BoardRevision/publication, atomic publication, targeting or production accuracy
+is established. Tasks 1.5/5.2 and aggregate 3.4/5.5/5.13 remain PARTIAL.
+
+Documentation-only acceptance update; no code/evidence changes, tests/native runs,
+checkbox changes, commit or push. Await explicit authorization for further work.
+
+## Portable Pad candidate control review accepted (2026-10-25)
+
+User reports review PASS for aoi-pad-candidate-control-review-39b45b1cd14a.zip.
+Reviewer rerun: 25 passed; 30/30 manifest hashes and 23/23 pre/post hashes matched.
+These reviewer results were relayed by the user; no new agent rerun or attestation.
+Evidence: evaluation/windows_runner/evidence/pad-candidate-control-portable-01/.
+
+Acceptance covers portable orchestration with fake execution: forwarding the exact
+execution stdout, no historical fallback, and blocking before bridge on transport
+failure/timeout, unconfirmed cleanup or hash mismatch. It does not establish a
+native runner/helper/probe-to-candidate end-to-end path or backend authenticity.
+The repeated-pads fixture-only scope, declaration-consistent association and runner
+host-crash gap remain. No general geometry/import compatibility, BoardRevision,
+publication/atomic publication, targeting or production accuracy claim is made.
+Tasks 1.5/5.2 and aggregate 3.4/5.5/5.13 remain PARTIAL; no checkbox changes.
+
+Documentation-only acceptance update; no code/evidence changes, tests/native runs,
+commit or push. Further implementation or native execution requires authorization.
+
+## Native callback review accepted (2026-10-25; portable only)
+
+User reports PASS for aoi-pad-native-callback-review-74fa0a1b712d.zip: reviewer rerun
+14 passed; 20/20 manifest hashes and 10/10 pre/post hashes matched. Tests used fake
+Popen; native end-to-end execution, backend authenticity and complete containment
+are not established. The existing host-crash gap remains open. Tasks 1.5/5.2 and
+aggregate 3.4/5.5/5.13 remain PARTIAL. No geometry/publication scope expanded.
+
+User explicitly authorized the related accepted checkpoint commit/push on the
+current checkpoint branch, not master. Includes accepted UUID validation dependencies,
+canonical Pad candidates, replay bridge, portable control/callback and reviewed evidence.
+Unrelated historical evidence and agent integration files remain outside this checkpoint.
+Two exact source/test -text rules preserve reviewed candidate bytes at staging.
+No tests/native were rerun for this documentation/checkpoint operation.

@@ -1,5 +1,43 @@
 # Current State / Next Action
 
+Snapshot: 2026-11-13, Git strategy reconciliation at verified master HEAD.
+
+| Item | Current handoff |
+|---|---|
+| Repository | `C:/dev/aoi-platform`; verified real checkout |
+| Actual branch / HEAD | `master` / `59429ebaf111c4ab7d7e01db6c8a4385375cb779` |
+| Git strategy | `master` is the primary development branch. `checkpoint/outline-inventory-repeated-pads` at `3262563f4638d6da63799b69de0dad6f50b4acfe` preserves history/evidence only. No automatic merge, switch or cherry-pick |
+| Origin comparison | Local `origin/master` equals HEAD; ahead/behind 0/0. No live remote query or fetch in this documentation task |
+| Entry / final working tree | Entry: no tracked or staged edits; existing untracked agent configuration and evaluation/evidence/review directories. This task modifies only HANDOFF and implementation-status; index and untracked content remain untouched |
+| Snapshot reconciliation | Prior snapshot named `6e52b4c`; new commit `59429eb` adds bootstrap documentation only (AGENTS, HANDOFF, implementation-status). It does not integrate checkpoint implementation |
+| Actual master implementation | Tracked product tree contains geometry core and bounded byte inventory; evaluation reader and Windows runner exist. Checkpoint-only pad candidate/boundary modules and source-checked preflight/hash/declarations/boundaries are absent from master HEAD |
+| Completed in this task | Reconciled Git strategy and current code scope; preserved prior snapshots below; aligned implementation-status navigation. No AOI implementation |
+| Evidence / checks | Read-only Git root/branch/HEAD/status, diff summaries, commit/tree and scoped branch comparisons. `git diff --check` PASS, exit 0 (LF/CRLF notices only). No pytest, native or OpenSpec validation rerun; no evidence hashes reverified |
+| Historical evidence limits | Checkpoint handoff records pinned C1+C2 boundary-record static acceptance: 95 manifest hashes, 79 SHA-256/size inputs; 233 PASS is saved implementer output, not a reviewer rerun or current master result. Checkpoint code/evidence and untracked logs do not establish implementation on master |
+| Completion limits | Tasks 1.5/5.2 and other partial obligations remain PARTIAL/open; checkboxes unchanged. No Foundation acceptance, import readiness or publication claim. Runner containment and historical provenance limitations remain unresolved in their recorded scope |
+| Next single action (proposal only) | Prepare a read-only, master-based gap/dependency assessment for the next bounded KiCad evaluation slice under 1.5/5.2: compare master's reader/runner/inventory with relevant checkpoint history, then propose one minimal slice and its acceptance tests on master |
+| Acceptance for next action | Identify exact master files/capabilities, missing dependencies and applicable historical failures/limits; distinguish saved evidence from tests that would need fresh runs. Produce a bounded scope/test plan for explicit implementation authorization. Do not assume receipt/PreparedRequest is the next implementable step or import checkpoint acceptance into master |
+
+## Session startup and scope
+
+Follow [AGENTS.md](AGENTS.md), verifying Git and preserving existing changes first.
+Continue development planning on master; the branch decision is settled. Any future
+merge, switch or cherry-pick requires explicit authorization. The proposed next
+assessment is not permission to implement AOI or run native evaluation.
+
+Read only relevant [implementation status](openspec/changes/board-geometry-foundation/implementation-status.md),
+[tasks](openspec/changes/board-geometry-foundation/tasks.md) and code/evidence.
+Use checkpoint history through bounded read-only Git inspection when needed.
+No commit or push is authorized by this task.
+
+## Preserved prior bootstrap snapshot - superseded 2026-11-13
+
+The prior document follows unchanged, including its old Current/Next headings.
+Its proposal to develop on checkpoint is superseded by the master-only development
+strategy above; historical results retain their original branch and scope.
+
+# Current State / Next Action
+
 Snapshot: 2026-11-13, local repository verification; recheck Git at every session.
 
 | Item | Current handoff |

@@ -1,3 +1,30 @@
+## Current branch scope - 2026-11-13 at 59429eb
+
+Start with [HANDOFF Current State / Next Action](../../../HANDOFF.md#current-state--next-action).
+Verified checkout: `master` at `59429ebaf111c4ab7d7e01db6c8a4385375cb779`.
+Master is the primary development branch; `checkpoint/outline-inventory-repeated-pads`
+(`3262563f4638d6da63799b69de0dad6f50b4acfe`) is history/evidence only.
+Do not automatically merge, switch or cherry-pick. Branch direction is settled;
+the older branch-confirmation/checkpoint-target proposal below is superseded.
+
+The new master commit adds bootstrap documentation only. Master HEAD contains
+geometry core, bounded byte inventory and reader/runner evaluation, but not the
+checkpoint's pad-candidate/boundary product modules or source-checked preparation
+phases. Checkpoint acceptance and untracked evidence are not master implementation.
+No task checkbox, PARTIAL status or acceptance level is changed.
+
+Next proposed action: a read-only gap/dependency assessment under 1.5/5.2 to define
+one bounded KiCad evaluation slice on master, with exact files, missing dependencies,
+historical limitations and fresh-test acceptance criteria. Implementation requires
+explicit scope authorization; receipt/PreparedRequest is not assumed ready to start.
+This task changes only HANDOFF/status documentation; no pytest/native/OpenSpec rerun,
+evidence rehash, commit or push. `git diff --check` PASS, exit 0 (LF/CRLF notices only).
+
+### Preserved prior navigation snapshot (superseded)
+
+The older navigation and implementation evidence below are retained unchanged.
+Read their branch, dates and evidence scope; the current Git strategy above governs.
+
 ## Session navigation / branch scope - 2026-11-13
 
 Start with [HANDOFF Current State / Next Action](../../../HANDOFF.md#current-state--next-action)

@@ -3,6 +3,9 @@
 Start with [HANDOFF](../../../HANDOFF.md#current-state--next-action) and
 [AGENTS](../../../AGENTS.md). Authorized merge parents: master `350c1e3` and
 checkpoint `3262563`; master remains the development branch, checkpoint is retained.
+Verified merge commit: `5d5658bc1ac29a4100b0ada8dc0c33db70c52256`, exactly those
+two parents. Post-commit verification retained all 7,098 local-only files with
+matching size/SHA-256 and zero accidentally tracked. No push occurred.
 This section supersedes historical branch-specific current/next instructions below.
 The entire checkpoint technical-history baseline is preserved below unchanged.
 

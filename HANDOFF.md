@@ -3,6 +3,9 @@
 Snapshot: 2026-11-13, authorized integration on master; merge parents are
 `350c1e3c7de7037f8c187b4b1011cb383433c5de` (master) and
 `3262563f4638d6da63799b69de0dad6f50b4acfe` (checkpoint).
+Verified merge snapshot: `5d5658bc1ac29a4100b0ada8dc0c33db70c52256`, with exactly
+those two parents. This follow-up documentation commit records verification;
+obtain the current HEAD from Git rather than treating the snapshot as latest HEAD.
 
 | Item | Current state |
 |---|---|
@@ -14,6 +17,7 @@ Snapshot: 2026-11-13, authorized integration on master; merge parents are
 | Risks | Pinned C1+C2 coverage is not general parsing; effective copper, graphics/model and zone-fill semantics remain unverified. Runner pre-assignment host-death gap and recorded historical provenance limitations remain |
 | Preservation | Checkpoint technical history below is retained byte-for-byte as the baseline; master governance is retained in AGENTS. Local-only inventory: 1,755 untracked and 5,343 ignored files, including 66 ignored ZIPs. All 7,098 matched SHA-256/size after merge |
 | Audit location | Local temporary directory `C:/Users/nhanp/AppData/Local/Temp/vscode-agent-codex-sandbox-oaYh4G/aoi-merge-preflight-c8665007b9a54b2180a4fc2fd8dc1524`; contains local-only manifest, parent tracked-tree inventories and preservation checks. Not uploaded or committed |
+| Post-merge result | 7,098/7,098 local-only files still match size/SHA-256; zero accidentally tracked. All checkpoint blobs except the two intentionally reconciled documents match the merge tree; AGENTS is the preserved master-only file with seven governance lines added. No master file lost. No push; final tracked changes consist only of this documentation follow-up |
 | Current checks | Git preflight and path-collision checks PASS; checkpoint non-document blob preservation PASS; no lost master files/unmerged entries/conflict markers; strict OpenSpec validation PASS. Default staged whitespace check exits 2 on preserved historical content (17,815 non-document findings, identical to checkpoint baseline); no new non-document findings. New documentation-prefix and AGENTS checks PASS. No pytest/native/expensive runner rerun |
 | Next single action (proposal) | Define and review the bounded receipt/PreparedRequest construction slice atop the existing source-checked boundary result, under 1.5/5.2 and 3.4/5.5/5.13; no implementation is authorized by this merge task |
 | Acceptance / stop conditions | Require complete field/span/normalization provenance, one operation ledger, immutable request/receipt, explicit unchecked categories and atomic failure; preparation must never call binding/candidates. Stop if intermediate results cannot supply required provenance within existing budgets or require widening pinned scope; do not fabricate receipt evidence |

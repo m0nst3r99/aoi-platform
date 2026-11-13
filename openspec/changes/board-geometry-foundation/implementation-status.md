@@ -1,3 +1,19 @@
+## Session navigation / branch scope - 2026-11-13
+
+Start with [HANDOFF Current State / Next Action](../../../HANDOFF.md#current-state--next-action)
+and [repository session rules](../../../AGENTS.md). Actual checkout for this docs-only
+update: `master` at `6e52b4c0cd2843e321512fa9ce6636e7b0ebf6a9`; no staged edits at entry.
+The newer local checkpoint branch is `checkpoint/outline-inventory-repeated-pads`
+at `3262563f4638d6da63799b69de0dad6f50b4acfe`. Its handoff records the C1+C2 boundary
+phase acceptance (static review; 233 PASS from implementer log, no reviewer rerun).
+That result is not a rerun or implementation claim for this master checkout.
+
+No task checkbox or acceptance level changes here. Tasks 1.5/5.2 remain PARTIAL;
+receipt/PreparedRequest and later execution require separate authorization on the
+appropriate branch. Existing implementation evidence below remains historical and
+branch-specific. Next action is branch/task confirmation, not automatic development.
+No tests/native, commit or push for this update.
+
 # Geometry Core implementation evidence
 
 ## Current bounded Windows runner evidence - 2026-10-19

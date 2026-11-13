@@ -1,3 +1,45 @@
+# Current State / Next Action
+
+Snapshot: 2026-11-13, local repository verification; recheck Git at every session.
+
+| Item | Current handoff |
+|---|---|
+| Repository | `C:/dev/aoi-platform`; real checkout, not the read-only chat mirror |
+| Actual branch / HEAD | `master` / `6e52b4c0cd2843e321512fa9ce6636e7b0ebf6a9` |
+| Other local checkpoint | `checkpoint/outline-inventory-repeated-pads` / `3262563f4638d6da63799b69de0dad6f50b4acfe`; inspected with `git show`, not checked out |
+| Working tree | Entry: no tracked edits or staged changes; existing untracked agent configs, historical evaluation evidence, review staging and temporary test files. This task adds `AGENTS.md` and edits only HANDOFF/status; index remains untouched |
+| Current task | Session bootstrap documentation only; no AOI feature implementation authorized by this task |
+| Completed | Added root bootstrap rules and this concise entry point; preserved all older handoff text below |
+| Evidence attribution | Checkpoint branch handoff records boundary-record static review PASS: 95 manifest hashes, 79 SHA-256/size inputs, two baselines/diffs; 233 PASS is saved implementer output, reviewer did not rerun. This is branch-specific historical evidence, not a test run on current master |
+| Decisions / limits | Pinned C1+C2; one ledger across preflight/hash/source/boundary; intermediate only. No receipt/PreparedRequest or binding/candidate execution in preparation. Tasks 1.5/5.2 and broader obligations stay PARTIAL |
+| Blocker | Current master predates the reviewed checkpoint implementation. Do not infer availability from untracked logs or import newer branch acceptance into master support claims |
+| Next single action | Obtain explicit branch/task direction before further AOI implementation. Proposed target is the existing checkpoint branch; do not switch automatically |
+| Acceptance for next action | Verify chosen branch/HEAD and preserved working tree, read that branch's latest handoff/status, establish exact authorized scope. No feature work until authorized; no commit/push under this task |
+
+## Session startup (progressive disclosure)
+
+1. Verify root, branch, HEAD, short status and staged/unstaged diff summaries.
+2. Read [AGENTS.md](AGENTS.md), then this section (about the first 45 lines).
+3. Reconcile actual Git state with the snapshot; a mismatch is not permission to
+   switch branches or replay old work.
+4. Read relevant status headings and the task's OpenSpec/source/evidence only.
+   Use `rg -n` and small file ranges; inspect long logs only for the needed result.
+5. Confirm the next task is explicitly authorized. Otherwise report the proposed
+   action and wait. Never promote PARTIAL based on a historical PASS.
+6. Finish with an updated snapshot, preserved history and attributed checks.
+
+Navigation: [implementation status](openspec/changes/board-geometry-foundation/implementation-status.md),
+[tasks](openspec/changes/board-geometry-foundation/tasks.md),
+[design](openspec/changes/board-geometry-foundation/design.md).
+For the newer branch only, inspect the last acceptance with
+`git show checkpoint/outline-inventory-repeated-pads:HANDOFF.md` and bounded output.
+No remote refresh or test/native execution was performed for this documentation task.
+
+## Preserved handoff history (branch-specific snapshots)
+
+The following bytes are retained unchanged. Old headings labelled Current/Next and
+historical HEAD values describe their own date/branch, not this session's Git state.
+
 # Handoff — 2026-10-19 (Asia/Bangkok)
 
 ## Supervised KiCad-through-runner attempt - 2026-10-20

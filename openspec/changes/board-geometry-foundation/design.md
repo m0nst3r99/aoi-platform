@@ -953,3 +953,211 @@ to angle0/+90, and a1nm dimension rectangle near1e6mm. Numerical guard is not th
 
 New candidate evidence has a narrow -text Git attribute so future checkpoint staging
 preserves its raw capture/hash bytes. Existing evidence attributes and bytes are unchanged.
+
+## Source-checked records to candidate request - draft contract v1 (2026-11-06)
+
+Review draft only; no implementation authorization or normative spec change.
+Supports parts of Tasks 3.4/5.5/5.13; Tasks 1.5/5.2 and all incomplete aggregate
+obligations remain PARTIAL. This is a candidate operation, not ValidateImport,
+BoardRevision construction, publication or targeting authority.
+
+### Scope and trust boundary
+
+Profile: `c1-c2-source-checked-request-v1`. It remains fixture-specific:
+REAL-PCB-01-r2 PCB, 912379 bytes, SHA-256
+`67c71f525eab73d2bde26eeb9f683cd2ac80a75ed6a43938cb553774a5fe33d0`.
+Exactly the two parent/four pad UUID pairs and all eight artifact size/hash pins
+in [the accepted replay profile](../../../../evaluation/kicad-reader/c1_c2_replay_batch.py)
+remain required. These are fixed profile constants, not caller-overridable pins.
+Observation is strict-v2 (196944 bytes, SHA-256
+`cd3734ece758d2611b44dc89cec2c88e439ba2d5585024d484671645ed7725b9`);
+C1/C2 boundary, report and transport pins remain separate. A future implementation
+must freeze these constants in its reviewed profile, not trust mutable configuration.
+Removing a pin is a new scope decision, not general importer support.
+
+Operation: `prepare_source_checked_pad_request(admitted_bytes, inventory,
+ declarations, caller_context, profile, limits) -> PreparedRequest | PreparationFailure`.
+Names are fixed by this contract, not implemented APIs. Inputs/outputs and nested records are immutable.
+`admitted_bytes` is an explicit bounded tuple of artifact-ID/bytes records; no path
+resolution, source factory, native execution or implicit source acquisition occurs.
+Validate inventory success and nested consistency, then independently hash/size-check
+the exact bytes consumed against computed inventory observations AND fixed pins.
+A caller-created InventorySuccess, record, status string, span or prior receipt is
+not proof that bytes were read or that source verification occurred. Recompute checks
+in this operation; reject a forged/conflicting declaration rather than repair it.
+
+The adapter itself scans PCB bytes to EOF with existing ancestry/budget rules,
+reconstructs source fields, validates pinned observation schema, reconstructs boundary
+records from pinned bytes, and compares supplied declarations. It uses the existing
+source-pose, coverage, layer and artifact comparison logic without relaxing guards.
+Build strings/schema/hash equality do not authenticate a KiCad backend. Source-check
+receipts are audit results of this operation, not signed attestations or transferable
+capabilities; downstream callers cannot bypass rechecking by constructing one.
+
+### Mapping and ownership of facts
+
+| Field / immutable type | Adapter checks or derives from admitted bytes | Caller declaration retained separately |
+|---|---|---|
+| Canonical `board_id`, `candidate_scope_id`, parent/pad IDs: nonempty strings | Exact-string uniqueness, source aliases and association consistency; no identity generation/trim | All canonical IDs and unpublished scope; scope is not a content digest or accepted revision |
+| Source parent/pad UUID and number: strings | Direct footprint/pad ancestry, direct UUID field, shared footprint/pad uniqueness; exact number retained, including repeated/empty numbers | Requested canonical-to-source association must match reconstructed pairs |
+| Type/shape/side/layers | Source `smd rect`, footprint direct `F.Cu`/`attr smd`; exact explicit pad layers versus observation; candidate copper layer `('F.Cu',)` and top side | No caller shape/side flag overrides source; F.Mask/F.Paste are retained as source layers, not candidate copper |
+| Pose/size: literals, Decimal values, spans | Direct footprint/at, pad/at, pad/size; cardinal rotation of local center once; pad angle is world rectangle orientation; compare observation center/angle/size and declarations | Caller does not supply authoritative geometry; supplied geometry is checked before constructing request |
+| Rectangle / four indexed P vertices | Derive from source Decimal cardinal math, normalize Y once; correspondence `(3,2,1,0)`; source/observation coordinate tolerance 1 nm, exact angle rules unchanged | P datum must explicitly be normalized native-board, translation `(0,0)` for this profile; no bbox alignment |
+| Frames and Transform2 | Full frame/context equality and existing validated-conventions/proper-rigid guards; normalized source is mm/right/up; reflection recorded separately, never slipped into rigid transform | Frame IDs, candidate scope, explicit source-to-P map and any machine/capture context; source does not prove these external contexts. Reject conflicting/unsupported declarations, never guess missing values |
+| Provenance: artifact/source IDs, computed SHA-256, size, byte spans `[start,end)`, 1-based lines | Match inventory IDs/hash/size; derive spans/lines from exact source; bind observation/boundary/report/transport hashes and locators | Snapshot/revision labels and canonical locators are supplied metadata, not proof of common design revision |
+| Coverage: immutable per-path records | Retain source path/value/span and checked/presence-only/unsupported result; enforce current exact pad/footprint paths, modifier rejection and graphics layer policy | Caller cannot upgrade unknown or semantics-unchecked to verified; supplied coverage claims remain distinct |
+
+Only the four source memberships and the explicitly checked declarations are
+established. Metadata/net/pintype/zone_connect, graphics/text semantics and model 3D
+remain unchecked beyond existing structural/layer rules. Construct completeness,
+effective copper and zone-fill effects remain unverified. All eight boundary
+coverage categories and their existing assurance semantics remain unchanged.
+
+### Ordering, bounded failure and candidate execution
+
+1. Joint bounded validation of input types, successful inventory, immutable bytes,
+   pins, exact artifact/entity set and caller context before dereferencing records.
+2. Source scan/coverage/field checks; independently rebuild pose and artifact records.
+   Compare every supplied record with reconstructed values; no fallback to caller data.
+3. Only after all four pass, produce a complete PadCandidateRequest and separate
+   SourceCheckEvidence. The orchestrator may pass that request to existing
+   `bind_pad_boundaries` once (which calls the candidate API once). Preparation
+   itself never calls the candidate API; do not call it again for pre-validation.
+4. Any failed phase returns PreparationFailure with bounded ValidationReport and
+   truncation data, no prepared request or candidates. Existing candidate/binding
+   failure remains all-or-nothing; no partial success is published or retained as usable.
+
+Use existing candidate/boundary limits and diagnostic reservation, scanner depth128,
+raw token64KiB and total500000 tokens; exact fixed profile input sizes bound bytes.
+Reject invalid limits before traversal; budget hashing, metadata collection and
+comparisons, not only output. Keep deterministic source/pad/field diagnostic order.
+Malformed input uses SCHEMA_INVALID, declaration/source disagreement SOURCE_CONFLICT,
+unsupported path/type/map GEOMETRY_UNSUPPORTED, budget exhaustion INPUT_LIMIT_EXCEEDED;
+retain existing typed inventory errors for byte admission. Diagnostics preserve
+artifact/hash, parent/pad UUID, full field path, source span and expected/actual.
+Opaque caller IDs use existing JSON-in-context handling; never trim identity.
+
+PreparedRequest contains the request plus separate SourceCheckEvidence: profile and
+verifier identity/version, artifact computed hashes/sizes, selected source pairs,
+per-field checks/spans, normalization evidence and explicit unchecked categories.
+Fixed receipt status: `selected-source-declarations-checked` (not `source-verified`).
+The result does not upgrade candidate `association_status='declaration-consistent'`
+or binding `source_membership_status='not-verified'`/coverage assurances. Evidence
+about selected source checks lives alongside them; import-ready/published/targeting
+remain false. These distinctions also apply when a serialized receipt is replayed.
+
+### Acceptance examples and review boundary
+
+Positive: real inventory of the same eight pinned C1+C2 artifacts; reconstruct all
+four pairs and declarations, then bind once. Require four candidates and all16 P
+corners against independent C1/C2 oracles, preserved spans/hashes, exactly one candidate
+batch call, unchanged inputs, and unchanged candidate/binding assurances.
+
+Negative: keep all admitted PCB/observation/boundary bytes unchanged; add0.001mm to
+one supplied C2 center.x. Require SOURCE_CONFLICT with source-derived expected and
+caller actual, parent/pad UUID, PCB hash and pose span; no prepared request, no
+binding/candidate call and no candidates. This tests a declaration conflict after
+real hash admission, not modified source bytes admitted via a test double.
+
+The profile/API/receipt names and immutable types below are fixed for contract v1;
+the contract remains for review, with no implementation authorization. Existing
+numeric policies and accepted gates are reused, not new accuracy claims. No broader
+source support, verifier authority, publication or task completion is established.
+
+
+### Immutable profile v1: exact bytes and source entity set
+
+Artifact IDs are also the source IDs in this profile. Each ID occurs exactly once;
+no extra artifact is admitted. Only `pcb` has role `kicad_pcb`; the other seven
+have role `supporting`, reference_only=true. Pins are literal immutable tuples.
+
+| Artifact ID | Exact bytes | SHA-256 |
+|---|---:|---|
+| pcb | 912379 | 67c71f525eab73d2bde26eeb9f683cd2ac80a75ed6a43938cb553774a5fe33d0 |
+| observation | 196944 | cd3734ece758d2611b44dc89cec2c88e439ba2d5585024d484671645ed7725b9 |
+| C1_boundary | 1689 | 9cd1d26d7756d81fc91d81712be01cba295a742ece11f9847c83866b897748b2 |
+| C1_report | 813 | ae359be006e70c9b6d97b87d80b250d365b27b8196b3d230d1d21954f90852cc |
+| C1_transport | 1354 | 003d26bee58ac17377275ca8e5c74d5dc4c9a57038b35f0e0a282f047537da07 |
+| C2_boundary | 1689 | a8134211861f9f2709330e6d8e4c8185662e3d58f153895dbf5811270329b176 |
+| C2_report | 813 | 098fc91d66b941f1c02fbeb4177816026837c40ed014a69bd9872ecbaa57d7ae |
+| C2_transport | 1355 | 3a1381fa096b973de18f9fc9c96130775da0da8771d03803a516ee4f0c5b8d2e |
+
+| Group | Direct footprint UUID | Direct pad UUID |
+|---|---|---|
+| C1 | 00000000-0000-0000-0000-00005bd482c8 | e2743daf-d278-4538-a77e-8f62f1b7978c |
+| C1 | 00000000-0000-0000-0000-00005bd482c8 | 4e53dd71-4be4-4973-9c48-191e7b2e27bb |
+| C2 | 00000000-0000-0000-0000-00005bd482e1 | 21e4d927-86ab-439d-8b84-9241bc089b89 |
+| C2 | 00000000-0000-0000-0000-00005bd482e1 | fc38c22a-efcb-4dfc-b42c-80a66f75e1a4 |
+
+### Fixed immutable API records
+
+All new records are frozen, slotted dataclasses; nested collections are exact tuples,
+bytes and existing immutable model records. No dict/list, mutable bytearray/view,
+iterator or callback input is accepted. All listed fields are required. Optionality
+inside reused model types remains as defined there; malformed nested records fail
+before dereference. Type annotations do not themselves confer validation authority.
+
+| Type | Fields/types and cardinality |
+|---|---|
+| AdmittedArtifactBytes | artifact_id: str; data: bytes |
+| AdmittedBytes | tuple[AdmittedArtifactBytes, ...], exactly eight unique profile IDs; size checked before hash/parse |
+| SourceDeclarations | parents: tuple[PadParent, ...] exactly two; pads: tuple[SourcePad, ...] exactly four; boundaries: tuple[BoundaryEvidence, ...] exactly four. These are untrusted supplied records, with no source-check status field |
+| CallerContext | schema_version: str; board_id: str; candidate_scope_id: str; target_frame: Frame; candidate_policy: SyntheticPadPolicy; boundary_policy: BoundaryBindingPolicy. Parent source frames/transforms are supplied in SourceDeclarations; full context must agree |
+| SourceCheckProfile | profile_id: literal c1-c2-source-checked-request-v1; version: literal 1; pins: tuple[ArtifactPin, ...]; pairs: tuple[SourcePair, ...], exact tables above, no override |
+| ArtifactPin | artifact_id: str; size_bytes: int; sha256: str |
+| SourcePair | parent_uuid: str; pad_uuid: str |
+| PreparationLimits | candidate_policy: SyntheticPadPolicy; boundary_policy: BoundaryBindingPolicy; max_artifacts=8; max_total_bytes=1117036; scanner_max_depth=128; scanner_max_token_bytes=65536; scanner_max_tokens=500000. Exact values required; policies must equal CallerContext policies |
+| SourceSpan | start_byte: int; end_byte: int (exclusive); first_line: int; last_line: int (1-based, inclusive), checked against source bytes |
+| FieldCheck | artifact_id: str; source_pair: SourcePair; path: tuple[str, ...]; literals: tuple[str, ...]; spans: tuple[SourceSpan, ...]; result: literal checked or semantics-unchecked; expected_json: str; actual_json: str. JSON values are bounded diagnostic-style representations, not geometry authority |
+| SourceCheckEvidence | profile: SourceCheckProfile; verifier_id: literal c1-c2-source-declaration-checker; verifier_version: literal 1; artifacts: tuple[ArtifactPin, ...] with recomputed values; pairs: tuple[SourcePair, ...]; checks: tuple[FieldCheck, ...]; normalization: tuple[EvidenceReference, ...]; unchecked_categories: tuple[str, ...]; status fixed selected-source-declarations-checked |
+| PreparedRequest | request: PadCandidateRequest; boundary_declarations: tuple[BoundaryEvidence, ...] exactly four, reconstructed/compared; source_check: SourceCheckEvidence; report: ValidationReport (successful preparation). No candidates field |
+| PreparationFailure | report: ValidationReport (blocking); truncation: PadTruncation. No request, boundary declarations, success receipt or candidates |
+
+The preparation signature uses these exact types, plus inventory: InventorySuccess;
+invalid runtime types (including failed/forged inventory internals) yield failure.
+Prepared request embeds the validated inventory without duplicating it per pad.
+Canonical pad order is lexical pad_id; boundary_declarations have the same associated
+pad order. Receipts sort artifact IDs, source UUID pairs and field path/span, while
+report diagnostics retain the accepted ordering contract.
+
+The orchestrator passes `prepared.request`, `prepared.boundary_declarations` and
+`caller_context.boundary_policy` to `bind_pad_boundaries` exactly once. Preparation
+must not call `evaluate_source_boundaries`, `evaluate_artifact_boundaries`, replay
+entrypoints or another flow which executes binding/candidates. Reuse their checks
+by minimally extracting bounded, side-effect-free checking/reconstruction helpers;
+keep existing flow behavior/tests intact. No broad refactor or hidden candidate
+pre-validation. Source checks return facts/errors, not a binding success.
+
+### Exact resource accounting
+
+Total raw input is exactly 1117036 bytes across eight artifacts (per-artifact exact
+lengths above); reject length/count excess before hashing or parsing. Acquisition is
+outside this operation. Hash the supplied immutable bytes, not a reopened path.
+
+Use the accepted `synthetic-rect-pad-candidate`/1 and
+`synthetic-rect-boundary-binding`/1 exact policies in
+[boundary contract: Exact synthetic policy and bounded work](boundary-evidence-binding-contract.md#exact-synthetic-policy-and-bounded-work-supplemental-values-for-review),
+including its diagnostic fallback/reservation. Explicit limits: metadata traversal
+root depth0/max32, 2686976 node occurrences, 8388608 UTF-8 input-text bytes, 256-byte
+IDs/enums, 1024-byte descriptive values, 16 refs per collection and 32768 total refs.
+Scanner has its separate 128-depth/65536-byte-token/500000-token limits. Numeric
+source literals retain the accepted 64-character/plain Decimal/cardinal restrictions.
+Exactly two parents/four pads/four boundaries further restrict the general policies.
+Boundary correspondence remains max8 mappings/64 component comparisons per pad;
+geometry matching occurs only in subsequent binding, not preparation.
+
+Use one preparation work ledger across declarations, context, inventory metadata,
+reconstructed records and receipt collection: do not reset per artifact/pad or
+materialize an unbounded receipt before checking limits. Count occurrences and stop
+before expanding nested collections; no whole-record JSON serialization for admission.
+FieldCheck JSON text is bounded before serialization using the same text budgets.
+Source bytes/token text scanning is charged to scanner limits; retained metadata is
+also charged to the shared metadata ledger. Raw input bytes are not UTF-8 metadata.
+
+One diagnostic budget: 128 issues, 4096 UTF-8 bytes each, 524288 total; reserve one
+slot/4096 bytes for blocking INPUT_LIMIT_EXCEEDED (ordinary max127/520192 bytes).
+On exhaustion return truncation with omitted_count=None unless actually known. Invalid
+policy uses the accepted fixed fallback, never caller-supplied invalid limits. Reuse
+policy numeric guards without tolerance relaxation. A successful preparation has no
+blocking diagnostics; subsequent binding keeps its existing budget/assurances and
+must not merge failures into a usable preparation or partial candidate batch.

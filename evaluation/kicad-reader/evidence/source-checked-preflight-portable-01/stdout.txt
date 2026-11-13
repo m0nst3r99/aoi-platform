@@ -1,0 +1,37 @@
+.........................................................F.F.            [100%]
+================================== FAILURES ===================================
+____________________ test_joint_text_and_unicode_boundary _____________________
+
+    def test_joint_text_and_unicode_boundary():
+        ledger=s.Ledger();ledger.walk((('?'*128,str,'id'),))
+>       assert ledger.text_bytes==256
+E       assert 128 == 256
+E        +  where 128 = <source_checked_preflight.Ledger object at 0x000002503F5AD3D0>.text_bytes
+
+evaluation\kicad-reader\test_source_checked_preflight.py:124: AssertionError
+____________________ test_full_preflight_metadata_boundary ____________________
+
+    def test_full_preflight_metadata_boundary():
+        a=list(inputs());a[3]=replace(a[3],board_id='?'*128)
+        assert isinstance(run(a),s.PreparationPreflightSuccess)
+>       a[3]=replace(a[3],board_id=a[3].board_id+'x');failure(run(a),'INPUT_LIMIT_EXCEEDED')
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+evaluation\kicad-reader\test_source_checked_preflight.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+result = PreparationPreflightSuccess(nodes=1581, text_bytes=9343, evidence_refs=20, raw_bytes=1117036)
+code = 'INPUT_LIMIT_EXCEEDED'
+
+    def failure(result,code=None):
+>       assert isinstance(result,s.PreparationFailure),result
+E       AssertionError: PreparationPreflightSuccess(nodes=1581, text_bytes=9343, evidence_refs=20, raw_bytes=1117036)
+E       assert False
+E        +  where False = isinstance(PreparationPreflightSuccess(nodes=1581, text_bytes=9343, evidence_refs=20, raw_bytes=1117036), <class 'source_checked_preflight.PreparationFailure'>)
+E        +    where <class 'source_checked_preflight.PreparationFailure'> = s.PreparationFailure
+
+evaluation\kicad-reader\test_source_checked_preflight.py:36: AssertionError
+=========================== short test summary info ===========================
+FAILED evaluation/kicad-reader/test_source_checked_preflight.py::test_joint_text_and_unicode_boundary
+FAILED evaluation/kicad-reader/test_source_checked_preflight.py::test_full_preflight_metadata_boundary
+2 failed, 59 passed in 0.40s

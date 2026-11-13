@@ -1,0 +1,23 @@
+{
+  "argv": [
+    ".venv/Scripts/python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "evaluation/kicad-reader/test_source_checked_boundaries.py",
+    "evaluation/kicad-reader/test_source_checked_declarations.py",
+    "evaluation/kicad-reader/test_source_checked_bytes.py",
+    "evaluation/kicad-reader/test_source_checked_preflight.py",
+    "evaluation/kicad-reader/test_c1_c2_graphics_layers.py",
+    "evaluation/kicad-reader/test_c1_c2_footprint_coverage.py",
+    "evaluation/kicad-reader/test_c1_c2_footprint_fields.py",
+    "evaluation/kicad-reader/test_c1_c2_pad_coverage.py",
+    "evaluation/kicad-reader/test_c1_c2_source_pose.py",
+    "evaluation/kicad-reader/test_c1_c2_source_membership.py",
+    "evaluation/kicad-reader/test_c1_c2_artifact_binding.py",
+    "-q",
+    "-o",
+    "cache_dir=C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-boundaries-portable-01\\pytest-cache"
+  ],
+  "cwd": "C:\\dev\\aoi-platform"
+}

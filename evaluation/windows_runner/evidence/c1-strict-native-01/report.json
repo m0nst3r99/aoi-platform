@@ -1,0 +1,34 @@
+{
+  "candidate_count": 2,
+  "control_staging_removed": true,
+  "diagnostics": [],
+  "fixture_unchanged": true,
+  "inputs_unchanged": true,
+  "native_attempts": 1,
+  "observation_sha256": "cd3734ece758d2611b44dc89cec2c88e439ba2d5585024d484671645ed7725b9",
+  "output_hashes": {
+    "stderr.bin": "913f451d0cc224e2dff95aacb3d6c8a2d57ca801e428d62d0e8caff3f5d36689",
+    "stdout.bin": "cd3734ece758d2611b44dc89cec2c88e439ba2d5585024d484671645ed7725b9"
+  },
+  "owner_removed": true,
+  "passed": true,
+  "scope": "two C1/F.Cu pads only; host-crash gap remains",
+  "staging_removed": true,
+  "transport_evidence": {
+    "active_processes": 0,
+    "artifact_id": "REAL-PCB-01-r2-pcb",
+    "cleanup_state": "cleaned",
+    "elapsed_ms": 1983,
+    "limits_verified": true,
+    "observed_stderr": 1081,
+    "observed_stdout": 196944,
+    "policy_id": "kicad-local-test-v1",
+    "resumed": true,
+    "root_exit": 0,
+    "root_pid": 22396,
+    "source_id": "owned-stage",
+    "stderr_eof": true,
+    "stdout_eof": true
+  },
+  "worker_exit": 0
+}

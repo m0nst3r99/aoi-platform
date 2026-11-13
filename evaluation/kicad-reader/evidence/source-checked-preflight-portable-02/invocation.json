@@ -1,0 +1,13 @@
+{
+  "argv": [
+    ".venv/Scripts/python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "evaluation/kicad-reader/test_source_checked_preflight.py",
+    "-q",
+    "-o",
+    "cache_dir=C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preflight-portable-02\\pytest-cache"
+  ],
+  "cwd": "C:\\dev\\aoi-platform"
+}

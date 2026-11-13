@@ -1,0 +1,72 @@
+{
+  "build": "10.0.7",
+  "clearance_iu": 0,
+  "coordinate_space": "board-world X-right/Y-down",
+  "error_location": "ERROR_INSIDE",
+  "input_sha256": "67c71f525eab73d2bde26eeb9f683cd2ac80a75ed6a43938cb553774a5fe33d0",
+  "iu_per_mm": 1000000,
+  "max_error_iu": 1,
+  "pads": [
+    {
+      "accessor": "PAD.TransformShapeToPolygon",
+      "contours": [
+        {
+          "closed": true,
+          "hole_count": 0,
+          "vertices_iu": [
+            [
+              191648850,
+              63766060
+            ],
+            [
+              191648850,
+              60265940
+            ],
+            [
+              194049150,
+              60265940
+            ],
+            [
+              194049150,
+              63766060
+            ]
+          ]
+        }
+      ],
+      "layer": "F.Cu",
+      "parent_uuid": "00000000-0000-0000-0000-00005bd482c8",
+      "uuid": "e2743daf-d278-4538-a77e-8f62f1b7978c"
+    },
+    {
+      "accessor": "PAD.TransformShapeToPolygon",
+      "contours": [
+        {
+          "closed": true,
+          "hole_count": 0,
+          "vertices_iu": [
+            [
+              191648850,
+              70268460
+            ],
+            [
+              191648850,
+              66768340
+            ],
+            [
+              194049150,
+              66768340
+            ],
+            [
+              194049150,
+              70268460
+            ]
+          ]
+        }
+      ],
+      "layer": "F.Cu",
+      "parent_uuid": "00000000-0000-0000-0000-00005bd482c8",
+      "uuid": "4e53dd71-4be4-4973-9c48-191e7b2e27bb"
+    }
+  ],
+  "protocol": "c1-boundary-diagnostic-v1"
+}

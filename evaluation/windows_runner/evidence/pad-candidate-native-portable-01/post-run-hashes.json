@@ -1,0 +1,12 @@
+{
+  "evaluation/windows_runner/pad_candidate_native.py": "e3b82d3c11c9d7142ee7501bc0536bfd0ec08b84d9f1cc856324e56c9044b61d",
+  "evaluation/windows_runner/test_pad_candidate_native.py": "59605849d6d0d70baeea9d061bcb284c378b5a0d9df1ca6c7d0711620c6d5e13",
+  "evaluation/windows_runner/models.py": "6ca5e32c12d1012546a57b17cc71e7d39dc820ebf9dd762c0a942344242b8b20",
+  "evaluation/windows_runner/repeated_pads_control.py": "82ef354f8c747d7e72ccba3b470fe697d43cc2f78c6bf68c8cf6701643abc82d",
+  "evaluation/windows_runner/kicad_local.py": "52710b02125658c2d88e34f240ac114b010d1442135a8b819aef544767fa049b",
+  "evaluation/windows_runner/runner.py": "c83e1268ae8b618070358b67307b4016f07428cf99f996088bcd20fe4a49bade",
+  "evaluation/windows_runner/winapi.py": "cf3b89d97bd1432b87efd0a6c43dfd5a79b7e2e22fd0e0cfb3fa2db67468014e",
+  "evaluation/windows_runner/kicad_staged_helper.py": "e6548dc6b0839ab42e677fdb0c4a9fb3f0a10804430e7ef792cdb92971e791ac",
+  "evaluation/kicad-reader/probe.py": "7dafae2051ea346129d504405248ad13a708f333a129766ad5e7ce3bdffe4053",
+  "pyproject.toml": "eb804386aefc3eb59dd9d6b950fbeeac4802ac094313b2e7f1bf77e0dafa12f8"
+}

@@ -14,10 +14,11 @@ HERE = Path(__file__).resolve().parent
 
 
 def execute(tmp_path, monkeypatch, mutation=None, status=0, negative=None, raw=None,
-            negative_payload=None, cli_status=0):
+            negative_payload=None, cli_status=0, v2=False, legacy=True):
     sandbox = tmp_path / "harness"
     sandbox.mkdir()
-    shutil.copyfile(HERE / "run.py", sandbox / "run.py")
+    for name in ("run.py", "observation_schema.py", "outline_decision.py"):
+        shutil.copyfile(HERE / name, sandbox / name)
     fixture = tmp_path / "fixture"
     (fixture / "source").mkdir(parents=True)
     (fixture / "source/Edgeberry.kicad_pcb").write_text("synthetic")
@@ -39,13 +40,17 @@ def execute(tmp_path, monkeypatch, mutation=None, status=0, negative=None, raw=N
             return Fixed()
         return original_digest(stream, algorithm)
     monkeypatch.setattr(hashlib, 'file_digest', digest)
+    if v2:
+        data.update(protocol_version=2, footprint_edges=[], geometry_coverage=dict(
+            board_edges_scope='board-drawings-only',
+            footprint_edges_scope='footprint-graphical-items-only', geometry_complete=False))
     if mutation:
         mutation(data)
     def fake(argv, **kwargs):
         name = str(argv[-1])
         if name.endswith('Edgeberry.kicad_pcb'):
             if status == 'timeout':
-                raise subprocess.TimeoutExpired(argv, 30)
+                raise subprocess.TimeoutExpired(argv, 30, output=raw)
             return subprocess.CompletedProcess(argv, status, raw if raw is not None else json.dumps(data).encode(), b'')
         if name.endswith('malformed.kicad_pcb') or name.endswith('missing.kicad_pcb'):
             if negative == 'timeout':
@@ -55,7 +60,10 @@ def execute(tmp_path, monkeypatch, mutation=None, status=0, negative=None, raw=N
                 negative_payload if negative_payload is not None else json.dumps({'outcome': 'rejected', 'code': kind}).encode(), b'')
         return subprocess.CompletedProcess(argv, cli_status, b'10.0.7\n', b'')
     monkeypatch.setattr(subprocess, 'run', fake)
-    monkeypatch.setattr(sys, 'argv', [str(sandbox / 'run.py'), str(fixture), '--output', str(sandbox / 'new')])
+    # The preserved baseline is unversioned; replay is deliberately explicit.
+    monkeypatch.setattr(sys, 'argv', [str(sandbox / 'run.py'), str(fixture),
+                                    *(['--allow-legacy-protocol'] if legacy else []),
+                                    '--output', str(sandbox / 'new')])
     try:
         runpy.run_path(str(sandbox / 'run.py'), run_name='__main__')
     except SystemExit as error:
@@ -122,3 +130,186 @@ def test_cli_failure_is_required(tmp_path, monkeypatch):
     code, report = execute(tmp_path, monkeypatch, cli_status=1)
     assert code != 0
     assert not report['checks']['cli-version']
+
+
+def test_v2_outline_rejection_is_typed(tmp_path, monkeypatch):
+    code, report = execute(tmp_path, monkeypatch, v2=True, legacy=False,
+                           mutation=lambda d: d['outline'].update(valid=False))
+    assert code != 0 and report['outcome'] == 'failed'
+    decision = report['outline_decision']
+    assert decision['status'] == 'rejected'
+    diagnostic = decision['diagnostics'][0]
+    assert diagnostic == dict(code='OUTLINE_INVALID', field='outline.valid', build='10.0.7',
+        input_sha256='67c71f525eab73d2bde26eeb9f683cd2ac80a75ed6a43938cb553774a5fe33d0')
+    assert any(d['code']=='OUTLINE_INVALID' for d in report['diagnostics'])
+    assert not report['checks']['outline_valid']
+    assert report['checks']['outline_count']  # Existing checks still run.
+
+
+@pytest.mark.parametrize('raw', [b'{broken', b'[]'])
+def test_entrypoint_json_rejected_by_decision(tmp_path, monkeypatch, raw):
+    code, report = execute(tmp_path, monkeypatch, raw=raw)
+    assert code != 0
+    assert report['outline_decision']['diagnostics'][0]['code'] == 'SCHEMA_INVALID'
+
+
+@pytest.mark.parametrize('mutation', [
+    lambda d: d['outline'].pop('valid'),
+    lambda d: d['outline'].update(valid=1),
+    lambda d: d.pop('footprint_edges'),
+    lambda d: d.pop('protocol_version'),
+])
+def test_v2_malformed_never_legacy_bypass(tmp_path, monkeypatch, mutation):
+    code, report = execute(tmp_path, monkeypatch, v2=True, legacy=True, mutation=mutation)
+    assert code != 0 and report['outcome']=='failed'
+    assert report['outline_decision']['status']=='rejected'
+    assert report['outline_decision']['diagnostics'][0]['code']=='SCHEMA_INVALID'
+
+
+def test_v2_intermediate_does_not_override_oracle(tmp_path, monkeypatch):
+    code, report = execute(tmp_path, monkeypatch, v2=True, legacy=False,
+                           mutation=lambda d: d['outline'].update(count=2))
+    assert code != 0 and report['outcome']=='failed'
+    assert report['outline_decision']==dict(status='not_rejected_by_outline_check',diagnostics=[])
+    assert not report['checks']['outline_count']
+
+
+@pytest.mark.parametrize('status', [1, 'timeout'])
+def test_transport_partial_output_is_not_observation(tmp_path, monkeypatch, status):
+    raw=(HERE.parent/'windows_runner/evidence/bow-tie-01/stdout.bin').read_bytes()
+    code, report = execute(tmp_path, monkeypatch, status=status, raw=raw, v2=True)
+    assert code != 0
+    assert report['outline_decision'] is None
+    assert any(d['code']=='PROBE_FAILED' for d in report['diagnostics'])
+    assert not any(d['code']=='OUTLINE_INVALID' for d in report['diagnostics'])
+
+
+def test_legacy_explicit_not_applicable(tmp_path, monkeypatch):
+    code, report = execute(tmp_path, monkeypatch)
+    assert code==0
+    assert report['outline_decision']==dict(status='not_applicable_historical_replay',diagnostics=[])
+    assert report['footprint_edge_coverage']=='unknown'
+
+
+def test_legacy_without_optin_is_rejected(tmp_path, monkeypatch):
+    code, report = execute(tmp_path, monkeypatch, legacy=False)
+    assert code != 0
+    assert report['outline_decision']['diagnostics'][0]['code']=='SCHEMA_INVALID'
+
+
+def test_v2_all_checks_still_required(tmp_path, monkeypatch):
+    code, report = execute(tmp_path, monkeypatch, v2=True, legacy=False)
+    assert code==0 and all(report['checks'].values())
+    assert report['outline_decision']['status']=='not_rejected_by_outline_check'
+
+
+@pytest.mark.parametrize('v2,status,decision_used', [(True, 0, True), (False, 0, False), (True, 'timeout', False)])
+def test_dependency_hashes_follow_executed_path(tmp_path, monkeypatch, v2, status, decision_used):
+    _, report = execute(tmp_path, monkeypatch, v2=v2, status=status)
+    hashes = report['dependencies_sha256']
+    expected = {'run.py', 'observation_schema.py'}
+    if decision_used:
+        expected.add('outline_decision.py')
+    assert {Path(p).name for p in hashes} == expected
+    for path, digest in hashes.items():
+        assert digest == hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+@pytest.mark.parametrize('case', ['accepted', 'same-footprint', 'different-footprints'])
+def test_repeated_pad_replay_through_entrypoint(tmp_path, monkeypatch, case):
+    from observation_schema import schema
+    original = (HERE.parent / 'windows_runner/evidence/repeated-pads-01/stdout.bin').read_bytes()
+    data = json.loads(original)
+    first, second = data['footprints'][0]['pads']
+    if case == 'different-footprints':
+        other = copy.deepcopy(data['footprints'][0])
+        other.update(uuid='00000000-0000-0000-0000-000000009999', reference='U2', pads=[second])
+        data['footprints'][0]['pads'] = [first]
+        data['footprints'].append(other)
+        assert len({f['uuid'] for f in data['footprints']}) == 2
+    assert schema(data) is True  # Control before the sole invalid change.
+    if case != 'accepted':
+        second['uuid'] = first['uuid']
+    raw = original if case == 'accepted' else json.dumps(data).encode()
+    code, report = execute(tmp_path, monkeypatch, raw=raw, legacy=False)
+    decision = report['outline_decision']
+    if case == 'accepted':
+        assert decision == dict(status='not_rejected_by_outline_check', diagnostics=[])
+        assert report['checks']['observation_schema']
+        # This synthetic board does not satisfy the real-board harness oracles.
+        assert code != 0 and report['outcome'] == 'failed'
+    else:
+        assert decision == dict(status='rejected', diagnostics=[dict(
+            code='SCHEMA_INVALID', field='payload', input_sha256=None, build=None)])
+        assert code != 0 and report['outcome'] == 'failed'
+        assert not report['checks']['observation_schema']
+        assert any(d['code'] == 'SCHEMA_INVALID' for d in report['diagnostics'])
+
+
+def test_legacy_duplicate_pad_behavior_is_unchanged(tmp_path, monkeypatch):
+    def duplicate(data):
+        pads = next(f['pads'] for f in data['footprints'] if len(f['pads']) >= 2)
+        pads[1]['uuid'] = pads[0]['uuid']
+    code, report = execute(tmp_path, monkeypatch, mutation=duplicate, legacy=True)
+    assert code == 0 and report['outcome'] == 'passed'
+    assert report['outline_decision'] == dict(status='not_applicable_historical_replay', diagnostics=[])
+
+
+@pytest.mark.parametrize('equivalent', [False, True])
+def test_duplicate_board_edges_entrypoint(tmp_path, monkeypatch, equivalent):
+    from observation_schema import schema
+    original = (HERE.parent / 'windows_runner/evidence/repeated-pads-01/stdout.bin').read_bytes()
+    data = json.loads(original)
+    assert schema(data) is True
+    before = copy.deepcopy(data)
+    edge_id = data['edges'][0]['uuid']
+    data['edges'][1]['uuid'] = '{' + edge_id + '}' if equivalent else edge_id
+    restored = copy.deepcopy(data)
+    restored['edges'][1]['uuid'] = before['edges'][1]['uuid']
+    assert restored == before
+    raw = json.dumps(data).encode()
+    code, report = execute(tmp_path, monkeypatch, raw=raw, legacy=False)
+    assert code != 0 and report['outcome'] == 'failed'
+    assert report['outline_decision'] == dict(status='rejected', diagnostics=[dict(
+        code='SCHEMA_INVALID', field='payload', input_sha256=None, build=None)])
+    assert not report['checks']['observation_schema']
+    assert any(d['code'] == 'SCHEMA_INVALID' for d in report['diagnostics'])
+    assert json.dumps(data).encode() == raw
+
+
+def test_legacy_board_edge_collision_entrypoint_unchanged(tmp_path, monkeypatch):
+    def duplicate(data):
+        data['edges'][1]['uuid'] = data['edges'][0]['uuid']
+    code, report = execute(tmp_path, monkeypatch, mutation=duplicate, legacy=True)
+    assert code == 0 and report['outcome'] == 'passed'
+    assert report['outline_decision'] == dict(status='not_applicable_historical_replay', diagnostics=[])
+
+
+@pytest.mark.parametrize('variant', ['positive', 'identical', 'equivalent'])
+def test_footprint_uuid_identity_entrypoint(tmp_path, monkeypatch, variant):
+    import copy
+    from observation_schema import schema
+    data = json.loads((HERE.parent / 'windows_runner/evidence/repeated-pads-01/stdout.bin').read_bytes())
+    assert data['footprint_edges'] == []
+    first, second = data['footprints'][0]['pads']
+    other = copy.deepcopy(data['footprints'][0])
+    other.update(uuid='00000000-0000-0000-0000-000000009999', reference='U2', pads=[second])
+    data['footprints'][0]['pads'] = [first]
+    data['footprints'].append(other)
+    assert len({p['uuid'] for f in data['footprints'] for p in f['pads']}) == 2
+    assert schema(data) is True
+    if variant != 'positive':
+        value = data['footprints'][0]['uuid']
+        other['uuid'] = '{' + value + '}' if variant == 'equivalent' else value
+    before = copy.deepcopy(data)
+    code, report = execute(tmp_path, monkeypatch, raw=json.dumps(data).encode(), legacy=False)
+    if variant == 'positive':
+        assert report['checks']['observation_schema']
+        assert report['outline_decision'] == dict(status='not_rejected_by_outline_check', diagnostics=[])
+    else:
+        assert report['outline_decision'] == dict(status='rejected', diagnostics=[dict(
+            code='SCHEMA_INVALID', field='payload', input_sha256=None, build=None)])
+        assert not report['checks']['observation_schema']
+    # Synthetic positive is not the real-board oracle; never claim import readiness.
+    assert code != 0 and report['outcome'] == 'failed'
+    assert data == before

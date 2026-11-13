@@ -76,7 +76,7 @@ def main(out):
                   'eight_source_segments', 'outline', 'no_footprints', 'cleanup', 'fixture_unchanged'])
     report['dependencies_sha256'] = {str(p): local.sha(p) for p in
         (Path(__file__).resolve(), local.EXECUTABLE, HERE/'runner.py', HERE/'winapi.py',
-         HERE/'models.py', HERE/'kicad_staged_helper.py', local.READER/'probe.py', local.READER/'run.py')}
+         HERE/'models.py', HERE/'kicad_staged_helper.py', local.READER/'probe.py', local.READER/'run.py', local.READER/'observation_schema.py')}
     owned = None
     try:
         with tempfile.TemporaryDirectory(prefix='cutout-control-') as owned:

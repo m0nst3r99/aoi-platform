@@ -1,0 +1,318 @@
+{
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\audit_dnp.py": {
+    "sha256": "ac58bf90b4e5102e5c2c8e07f0abd05a0a9acc7e32f24d1a7de7e2d542ffa451",
+    "size": 2673
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\c1_boundary_compare.py": {
+    "sha256": "84ae1e972b7a89cf035529c5d44b61be8cf4cdeea5e604bdb764bdd1f2127f64",
+    "size": 2881
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\c1_boundary_probe.py": {
+    "sha256": "135399db33b3903e7be9588ff3abef99f9dffb4136d737ad74e67ccf1474478a",
+    "size": 2622
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\c1_c2_artifact_binding.py": {
+    "sha256": "ea6203b8429938d22b31c6709402b2eec728cc12208cf3fcc638015e9981b07f",
+    "size": 10850
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\c1_c2_replay_batch.py": {
+    "sha256": "10cf376479263e2f97d96d14f4e7920475407e34fbe8aa16823eb27ed629fabb",
+    "size": 8593
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\c1_c2_source_membership.py": {
+    "sha256": "c99e464f2fbf040c0612be4f11afa2f47ac6be54250147c9ebdb8437c8d2ec78",
+    "size": 31496
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\c1_c2_source_pose.py": {
+    "sha256": "7bd79a5c29022e737ae85b62b97d9f1ca4d0e341731fdc6b3feea1b09c2e486d",
+    "size": 5202
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\c1_replay_flow.py": {
+    "sha256": "112dab080984d37ae83bf00d7a24d422c50e4fe96933b33fef325e3adb76d304",
+    "size": 7782
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\c1_strict_control.py": {
+    "sha256": "10523f005dac806308e6a5b44fc2533b2fd0e79435b3682d2da03c9840caae34",
+    "size": 5468
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\c2_boundary_compare.py": {
+    "sha256": "c0beb2d39cb2be63c2f02b9273d16119b57e6280485930787fc523f0edf5c563",
+    "size": 2828
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\c2_boundary_probe.py": {
+    "sha256": "9a79624697ad142009126ea2543a447a6361fd83c13e56ea90172b0217026042",
+    "size": 2618
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\c2_replay_flow.py": {
+    "sha256": "2dab6138de18e8e4416634a7d804400d1315ad478e8597746003cecb583d53ba",
+    "size": 7548
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\derive_r2.py": {
+    "sha256": "17743b26729c19854518747aeb745bc0a833b5937b480e14c6fba45b94eaf22c",
+    "size": 6389
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\observation_schema.py": {
+    "sha256": "7931c160a30dcec3bede0c40d565ee8fd7b255d1d298f1e7d71e069ed0f4c9ee",
+    "size": 5025
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\outline_decision.py": {
+    "sha256": "81a1637d73dae4d6b9eefec91eabf0485e01051719ab613264567fde955ff436",
+    "size": 1266
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\probe-before-review.py": {
+    "sha256": "b243134a68afc5b975b30f0d696fe877c4cd1920b37ac5fa03eb1e089bbbf9d1",
+    "size": 2825
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\probe.py": {
+    "sha256": "7dafae2051ea346129d504405248ad13a708f333a129766ad5e7ce3bdffe4053",
+    "size": 4378
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\repeated_pads_bridge.py": {
+    "sha256": "8a79d7a3f16b7fe461303bb0d215461172da9b49de663542106680e239522322",
+    "size": 8704
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\run-before-review.py": {
+    "sha256": "46e0b948456e0ca86d3b40a494531bf3be2224c31d55e8bcac83d7d8f7deac28",
+    "size": 4477
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\run.py": {
+    "sha256": "3b7643c97529e463458a98f75fb1b2e8468b3d3784632f8a7ca1425dcd722943",
+    "size": 11140
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\source_checked_boundaries.py": {
+    "sha256": "d9b3903948ecb2d4fd22caea5dec715ba61fcdb07c700cedecfb3450af69ffbd",
+    "size": 4867
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\source_checked_declarations.py": {
+    "sha256": "8824e02cfcccaa45b6264a7e80d58b05916c45741d735e7dfb0af2f4f01075c8",
+    "size": 5401
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\source_checked_preflight.py": {
+    "sha256": "a04b2ec469bc94fd3e7d29b786849b7f1b8aa989ca2c29a3ef9f9b5d2b51e596",
+    "size": 15946
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_boundary.py": {
+    "sha256": "5213676d95f696486b0a0e6441d906b0867dc6a5f4d08f69c23421a6b4254903",
+    "size": 3474
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_c2_artifact_binding.py": {
+    "sha256": "38c99badd5b95586b4c14bf1b1dd6b9cf8b827d0938f9815c4be725f12dc1cc7",
+    "size": 4792
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_c2_boundary_binding.py": {
+    "sha256": "a5f2ca37e054f8baef2447af3b5011e6b4f2a32d8aec3ccd4a02dd324e57f248",
+    "size": 6010
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_c2_footprint_coverage.py": {
+    "sha256": "adc284093bf089b8527b54c4b73adc8fc98d4e11b84c3912535d261db2ca0b56",
+    "size": 5160
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_c2_footprint_fields.py": {
+    "sha256": "7b8575729ab871e948ccef6d00ca76e8e85330d6c05352421babddb2ba7ba8ae",
+    "size": 4345
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_c2_graphics_layers.py": {
+    "sha256": "4160ed712fadf55bc1e97115a52a4c73326589a2b649dbc1fa5cfef5e6385650",
+    "size": 4548
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_c2_pad_coverage.py": {
+    "sha256": "a378e9f34e5167efd854304caba005d074bc9c45b22bc0791e1d6686aa894bc7",
+    "size": 6155
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_c2_replay_batch.py": {
+    "sha256": "e639fb53a6f5763064849f0744c9e19e0ac2598b97b99a418238787bda752b0e",
+    "size": 6666
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_c2_source_membership.py": {
+    "sha256": "3893751fef38b5e34e708eed3fcc13f3c0edcbee2f1e944bfdf1895a0f789145",
+    "size": 13478
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_c2_source_pose.py": {
+    "sha256": "8c6387b641de60bb13e3e4b5d178da00fcbbc042b0b186481e4b10ebded57b0f",
+    "size": 5302
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_real_inventory.py": {
+    "sha256": "e6532f089ce1f17da31f6628cf56233fbfefa8f5046abd28fa381895b1f87474",
+    "size": 5136
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_rectangle.py": {
+    "sha256": "e25638c37d3b1bd3aaf8cee072e8e916f2fea2820914b44f9fefa0549e9e0d7e",
+    "size": 5146
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_replay_flow.py": {
+    "sha256": "834c7fd0b58fe13cb73b87378d932a06b6f54c15c7dbecf1d9829c0f163ccc9a",
+    "size": 5717
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c1_strict_control.py": {
+    "sha256": "68fc7e71eabba1b1ff4a5e1c823eac77b80732b7bb549bb4fdfa8eff9a6873c9",
+    "size": 6809
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c2_boundary.py": {
+    "sha256": "b26aad647446ddaa8ec4e06a6f59eb91b58b0159d21418f588fb347aab36e60e",
+    "size": 3391
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c2_real_inventory.py": {
+    "sha256": "4419c124cd2c700745a90090222519247a166868897cd0659e8f826e20278b16",
+    "size": 6572
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_c2_replay_flow.py": {
+    "sha256": "cfb583dc282dbd7976c2df148eef1b5b47bbb1a88f54fb64f508dd779e5d4018",
+    "size": 5805
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_footprint_edges.py": {
+    "sha256": "68777b0a24ca3b5da8e226de93e7bd22a0829d56184eb9520c087e4e9e854512",
+    "size": 3446
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_harness.py": {
+    "sha256": "4ef721bc2f18d067d4a05dc64420622c0687e48d0136f3195a3d129078238915",
+    "size": 15449
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_outline_decision.py": {
+    "sha256": "10b072f06dbbdc794697b99c9f2191664aa28f55dacd60932bbc5dbcd1e8fb9a",
+    "size": 8003
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_probe_enumeration.py": {
+    "sha256": "f839381746652ea7232528df97b41768d204ac3e9af5880945c504d3499202d6",
+    "size": 5900
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_repeated_pads_bridge.py": {
+    "sha256": "eea97aee604bb1b97fe6d7bfc1a27462b52756928f237d2b8c5709ea3a47d20c",
+    "size": 5788
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_source_checked_boundaries.py": {
+    "sha256": "6204729fee4d71bf9a335d2e2a11cc72b021de4d515e16cfae9379ca519a022c",
+    "size": 7222
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_source_checked_bytes.py": {
+    "sha256": "7d727f1e8e51fc03e3a9213a180e13791d7806dfb160351322bafd4fdd69427a",
+    "size": 3804
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_source_checked_declarations.py": {
+    "sha256": "7635a24c536b6e36d9b5340d9741f83b8696bfdd8d6cff5c276154bba04cade1",
+    "size": 3475
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\test_source_checked_preflight.py": {
+    "sha256": "16758576807b64cd9d211e7b3962835b27f87317efbf0c20d4ffd281af4b71af",
+    "size": 9833
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\verify_and_package_r2.py": {
+    "sha256": "62fa6d06f6a8ed494afd34980f74bb6978512c0f22a05f2966867748f406167f",
+    "size": 6689
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\c1-boundary-native-01\\report.json": {
+    "sha256": "ae359be006e70c9b6d97b87d80b250d365b27b8196b3d230d1d21954f90852cc",
+    "size": 813
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\c1-boundary-native-01\\stdout.bin": {
+    "sha256": "9cd1d26d7756d81fc91d81712be01cba295a742ece11f9847c83866b897748b2",
+    "size": 1689
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\c1-boundary-native-01\\transport.json": {
+    "sha256": "003d26bee58ac17377275ca8e5c74d5dc4c9a57038b35f0e0a282f047537da07",
+    "size": 1354
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\c1-strict-native-01\\report.json": {
+    "sha256": "6f78afc689e1059f9bb2825292129bce0b84f07d9dd87ffb4e0f137604d7951d",
+    "size": 1064
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\c1-strict-native-01\\stdout.bin": {
+    "sha256": "cd3734ece758d2611b44dc89cec2c88e439ba2d5585024d484671645ed7725b9",
+    "size": 196944
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\c1-strict-native-01\\transport.json": {
+    "sha256": "aecbfe2c5caa7df35673398342b05f8896441abf326f89b17eac0856209531ed",
+    "size": 1370
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\c2-boundary-native-01\\report.json": {
+    "sha256": "098fc91d66b941f1c02fbeb4177816026837c40ed014a69bd9872ecbaa57d7ae",
+    "size": 813
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\c2-boundary-native-01\\stdout.bin": {
+    "sha256": "a8134211861f9f2709330e6d8e4c8185662e3d58f153895dbf5811270329b176",
+    "size": 1689
+  },
+  "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\c2-boundary-native-01\\transport.json": {
+    "sha256": "3a1381fa096b973de18f9fc9c96130775da0da8771d03803a516ee4f0c5b8d2e",
+    "size": 1355
+  },
+  "C:\\dev\\aoi-platform\\openspec\\changes\\board-geometry-foundation\\design.md": {
+    "sha256": "d3c7a8c22c7e7e3d34ce86ecdfdb3101d244143a0c8eb8117e8b3a23c2ae3603",
+    "size": 127009
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\__init__.py": {
+    "sha256": "1ab51ef26cde5d80e6848449b957e53ec2e3246c1250fb740cf01e349985ab87",
+    "size": 57
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\boundary_binding.py": {
+    "sha256": "631efba1ffd9354c7854c1836e6f00345a543c03c79558584722782e2afb6271",
+    "size": 5885
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\boundary_correspondence.py": {
+    "sha256": "7d25b6ed6492a48ea1d90f63076fabfd92c546177c3336809b165d4d1981be89",
+    "size": 4741
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\boundary_evidence.py": {
+    "sha256": "aee176a216fa98b3c8d45ebba5f436e83b54c6788c5e6c26a229cec7dc205b8f",
+    "size": 22971
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\geometry\\__init__.py": {
+    "sha256": "acfd51aa42784f11d4fd240ca8504740bece6781a3de103946f8e9096e6b4f16",
+    "size": 1355
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\geometry\\angles.py": {
+    "sha256": "4c96fddde36cef23343fd7b40ad8d73c063ddde6e6a0a326a4c3992da98aa387",
+    "size": 674
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\geometry\\envelopes.py": {
+    "sha256": "f3d8d7e91a7dccb2f0d850bda2ab2f19f128b2672b67eee98a22979666befab8",
+    "size": 20764
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\geometry\\errors.py": {
+    "sha256": "bdc0e6d4e68bab1fe23d288e427f50162faa221dda6783f0c34e0ea38f97711c",
+    "size": 5217
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\geometry\\fixture_geometry.py": {
+    "sha256": "829aa0cb55e7956bff16ca8fccf67bc49fb7dfd3bd1f652775add380f2ffb61e",
+    "size": 7070
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\geometry\\models.py": {
+    "sha256": "d334905bcf758e73ba5266961b584efdd453b573f964586a3549c9a5c6bb8356",
+    "size": 5207
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\geometry\\outlines.py": {
+    "sha256": "30f58e3d1368d1de01eeb1e304298baa057c0ec12a559c6e485dd0a010926240",
+    "size": 11850
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\geometry\\reports.py": {
+    "sha256": "558aa2528825e3d42b84b7291334b5afd754c602405c1b552a73f23af120d926",
+    "size": 8091
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\geometry\\resolver.py": {
+    "sha256": "f6f091bb909837f7f1dfd9419504412da03126d6616b693e63be2999dec3f189",
+    "size": 17815
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\geometry\\transforms.py": {
+    "sha256": "ddfea94671d0ebd674b9f36991d9f076ad2ebba939e316b5706987cf2171cc00",
+    "size": 15725
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\inventory.py": {
+    "sha256": "b5281015f44c97921f62b2b0125ee266d2487124b3c9c6e82649f5db79b2ab2b",
+    "size": 16702
+  },
+  "C:\\dev\\aoi-platform\\src\\aoi_platform\\pad_candidates.py": {
+    "sha256": "6a2454f503cdff8661848937d8abbaac10821aa612f0f8884c332bba9a5cad5e",
+    "size": 28382
+  },
+  "C:\\dev\\aoi-platform\\tests\\test_boundary_preflight.py": {
+    "sha256": "def6b63389c342e8a9c9e141616d64e58d4c71ddf9911316455bf83915c47c41",
+    "size": 6148
+  },
+  "C:\\dev\\aoi-platform\\tests\\test_pad_candidates.py": {
+    "sha256": "db98c48308e0bf674b6c84d763570378d7489463dad5062b1cac77c1d44cf5f7",
+    "size": 22689
+  },
+  "C:\\dev\\aoi-reference\\Edgeberry-Baseboard-working\\fixture-revisions\\REAL-PCB-01-r2\\source\\Edgeberry.kicad_pcb": {
+    "sha256": "67c71f525eab73d2bde26eeb9f683cd2ac80a75ed6a43938cb553774a5fe33d0",
+    "size": 912379
+  }
+}

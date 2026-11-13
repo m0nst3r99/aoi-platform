@@ -1,0 +1,4 @@
+warning: in the working copy of '.gitattributes', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'HANDOFF.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'openspec/changes/board-geometry-foundation/design.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'openspec/changes/board-geometry-foundation/implementation-status.md', LF will be replaced by CRLF the next time Git touches it

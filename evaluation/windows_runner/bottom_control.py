@@ -120,7 +120,7 @@ def main(out):
     report = dict(passed=False, diagnostics=[], pre_run_hashes=frozen, checks={})
     report['dependencies_sha256'] = {str(p):local.sha(p) for p in
         [Path(__file__).resolve(), local.EXECUTABLE, HERE/'runner.py', HERE/'models.py',
-         HERE/'winapi.py', HERE/'kicad_staged_helper.py', local.READER/'probe.py', local.READER/'run.py']}
+         HERE/'winapi.py', HERE/'kicad_staged_helper.py', local.READER/'probe.py', local.READER/'run.py', local.READER/'observation_schema.py']}
     owned = None
     try:
         with tempfile.TemporaryDirectory(prefix='bottom-control-') as owned:

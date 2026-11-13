@@ -1,0 +1,34 @@
+{
+  "cleanup": true,
+  "comparison": {
+    "oracle_to_raw_indices": {
+      "4e53dd71-4be4-4973-9c48-191e7b2e27bb": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "e2743daf-d278-4538-a77e-8f62f1b7978c": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "passed": true,
+    "scope": "C1 F_Cu only; no publication or candidate authority",
+    "tolerance_iu": 1
+  },
+  "diagnostics": [],
+  "fixture_unchanged": true,
+  "inputs_unchanged": true,
+  "output_hashes": {
+    "stderr.bin": "7156d8919bc3f1829e1297199d7d909b3234430ddc9978c96891404836900ced",
+    "stdout.bin": "9cd1d26d7756d81fc91d81712be01cba295a742ece11f9847c83866b897748b2"
+  },
+  "passed": true,
+  "staging_removed": true,
+  "transport": true,
+  "watchdog_seconds": 45,
+  "worker_exit": 0
+}

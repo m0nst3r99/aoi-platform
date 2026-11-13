@@ -1,0 +1,215 @@
+{
+  "actual": {
+    "build": "10.0.7",
+    "edges": [
+      {
+        "end_mm": [
+          20.0,
+          0.0
+        ],
+        "shape": 0,
+        "start_mm": [
+          0.0,
+          0.0
+        ],
+        "uuid": "00000000-0000-0000-0000-00000000083e"
+      },
+      {
+        "end_mm": [
+          20.0,
+          20.0
+        ],
+        "shape": 0,
+        "start_mm": [
+          20.0,
+          0.0
+        ],
+        "uuid": "00000000-0000-0000-0000-00000000083f"
+      },
+      {
+        "end_mm": [
+          0.0,
+          20.0
+        ],
+        "shape": 0,
+        "start_mm": [
+          20.0,
+          20.0
+        ],
+        "uuid": "00000000-0000-0000-0000-000000000840"
+      },
+      {
+        "end_mm": [
+          0.0,
+          0.0
+        ],
+        "shape": 0,
+        "start_mm": [
+          0.0,
+          20.0
+        ],
+        "uuid": "00000000-0000-0000-0000-000000000841"
+      }
+    ],
+    "footprint_edges": [],
+    "footprints": [
+      {
+        "angle_deg": 0.0,
+        "attributes": 2,
+        "dnp": false,
+        "exclude_from_bom": false,
+        "exclude_from_position": false,
+        "footprint": "Synthetic:RepeatedNumbers",
+        "layer": "F.Cu",
+        "pads": [
+          {
+            "angle_deg": 0.0,
+            "attribute": 1,
+            "drill_mm": [
+              0.0,
+              0.0
+            ],
+            "layers": [
+              "F.Cu",
+              "F.Mask",
+              "F.Paste"
+            ],
+            "local_mm": [
+              1.0,
+              2.0
+            ],
+            "net": "",
+            "number": "1",
+            "position_mm": [
+              11.0,
+              12.0
+            ],
+            "shape": 1,
+            "size_mm": [
+              2.0,
+              1.0
+            ],
+            "uuid": "00000000-0000-0000-0000-000000000835"
+          },
+          {
+            "angle_deg": 0.0,
+            "attribute": 1,
+            "drill_mm": [
+              0.0,
+              0.0
+            ],
+            "layers": [
+              "F.Cu",
+              "F.Mask",
+              "F.Paste"
+            ],
+            "local_mm": [
+              4.0,
+              3.0
+            ],
+            "net": "",
+            "number": "1",
+            "position_mm": [
+              14.0,
+              13.0
+            ],
+            "shape": 1,
+            "size_mm": [
+              2.0,
+              1.0
+            ],
+            "uuid": "00000000-0000-0000-0000-000000000836"
+          }
+        ],
+        "position_mm": [
+          10.0,
+          10.0
+        ],
+        "reference": "U1",
+        "uuid": "00000000-0000-0000-0000-000000000834",
+        "value": "SYNTHETIC"
+      }
+    ],
+    "format_version": 20240108,
+    "geometry_coverage": {
+      "board_edges_scope": "board-drawings-only",
+      "footprint_edges_scope": "footprint-graphical-items-only",
+      "geometry_complete": false
+    },
+    "input_sha256": "56ef80c3e8ef0bf2d530f10a93155b423506756fac63c9961098fd5fd85747a6",
+    "outline": {
+      "count": 1,
+      "holes": [
+        0
+      ],
+      "origin_mm": [
+        0.0,
+        0.0
+      ],
+      "size_mm": [
+        20.0,
+        20.0
+      ],
+      "valid": true
+    },
+    "protocol_version": 2
+  },
+  "expected": {
+    "footprint_angle_deg": 0,
+    "footprint_layer": "F.Cu",
+    "footprint_position_mm": [
+      10,
+      10
+    ],
+    "formula": "Top unrotated footprint: world=(10+u,10+v). (1,2)->(11,12); (4,3)->(14,13). No rotation/mirror normalization.",
+    "pads": [
+      {
+        "layers": [
+          "F.Cu",
+          "F.Paste",
+          "F.Mask"
+        ],
+        "local_mm": [
+          1,
+          2
+        ],
+        "number": "1",
+        "position_mm": [
+          11,
+          12
+        ],
+        "size_mm": [
+          2,
+          1
+        ],
+        "uuid": "00000000-0000-0000-0000-000000000835"
+      },
+      {
+        "layers": [
+          "F.Cu",
+          "F.Paste",
+          "F.Mask"
+        ],
+        "local_mm": [
+          4,
+          3
+        ],
+        "number": "1",
+        "position_mm": [
+          14,
+          13
+        ],
+        "size_mm": [
+          2,
+          1
+        ],
+        "uuid": "00000000-0000-0000-0000-000000000836"
+      }
+    ],
+    "parent_association": "Pad is nested under the expected footprint UUID in probe output; not an independent parent accessor.",
+    "parent_uuid": "00000000-0000-0000-0000-000000000834",
+    "reference": "U1",
+    "scope": "Two distinct source pad UUIDs with identical string number 1 must both survive; not canonical pad records or publication.",
+    "tolerance_mm": 1e-06
+  }
+}

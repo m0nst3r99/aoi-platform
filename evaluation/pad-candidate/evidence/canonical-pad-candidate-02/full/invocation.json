@@ -1,0 +1,12 @@
+{
+  "argv": [
+    ".venv/Scripts/python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "-o",
+    "cache_dir=C:\\dev\\aoi-platform\\evaluation\\pad-candidate\\evidence\\canonical-pad-candidate-02\\full\\pytest-cache"
+  ],
+  "cwd": "C:\\dev\\aoi-platform"
+}

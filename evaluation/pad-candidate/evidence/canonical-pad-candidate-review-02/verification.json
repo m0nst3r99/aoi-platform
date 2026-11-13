@@ -1,0 +1,54 @@
+{
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "-c",
+        "safe.directory=C:/dev/aoi-platform",
+        "diff",
+        "--check"
+      ],
+      "cwd": "C:\\dev\\aoi-platform",
+      "exit_code": 0,
+      "note": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "safe.directory=C:/dev/aoi-platform",
+        "diff",
+        "--no-index",
+        "--check",
+        "--",
+        "/dev/null",
+        "src/aoi_platform/pad_candidates.py"
+      ],
+      "cwd": "C:\\dev\\aoi-platform",
+      "exit_code": 1,
+      "note": "no-index exit1 denotes new file difference; whitespace diagnostics would be in stdout"
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "safe.directory=C:/dev/aoi-platform",
+        "diff",
+        "--no-index",
+        "--check",
+        "--",
+        "/dev/null",
+        "tests/test_pad_candidates.py"
+      ],
+      "cwd": "C:\\dev\\aoi-platform",
+      "exit_code": 1,
+      "note": "no-index exit1 denotes new file difference; whitespace diagnostics would be in stdout"
+    }
+  ],
+  "current_inputs_match": true,
+  "input_count": 28,
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "head": "f77efa171cfb58e843e93ebbe6d16a0f30ab9358",
+  "branch": "checkpoint/outline-inventory-repeated-pads",
+  "index_empty": true
+}

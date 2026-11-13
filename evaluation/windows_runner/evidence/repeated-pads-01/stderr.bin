@@ -1,0 +1,19 @@
+milestone before-import-pcbnew monotonic=440052.531000
+milestone after-import-pcbnew monotonic=440053.250000
+loading 56ef80c3e8ef0bf2d530f10a93155b423506756fac63c9961098fd5fd85747a6
+milestone before-LoadBoard monotonic=440053.390000
+Adding duplicate image handler for 'PNG file'
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+milestone after-LoadBoard monotonic=440053.421000
+loaded

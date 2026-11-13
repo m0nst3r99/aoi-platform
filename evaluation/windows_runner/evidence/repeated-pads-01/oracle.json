@@ -1,0 +1,58 @@
+{
+  "footprint_angle_deg": 0,
+  "footprint_layer": "F.Cu",
+  "footprint_position_mm": [
+    10,
+    10
+  ],
+  "formula": "Top unrotated footprint: world=(10+u,10+v). (1,2)->(11,12); (4,3)->(14,13). No rotation/mirror normalization.",
+  "pads": [
+    {
+      "layers": [
+        "F.Cu",
+        "F.Paste",
+        "F.Mask"
+      ],
+      "local_mm": [
+        1,
+        2
+      ],
+      "number": "1",
+      "position_mm": [
+        11,
+        12
+      ],
+      "size_mm": [
+        2,
+        1
+      ],
+      "uuid": "00000000-0000-0000-0000-000000000835"
+    },
+    {
+      "layers": [
+        "F.Cu",
+        "F.Paste",
+        "F.Mask"
+      ],
+      "local_mm": [
+        4,
+        3
+      ],
+      "number": "1",
+      "position_mm": [
+        14,
+        13
+      ],
+      "size_mm": [
+        2,
+        1
+      ],
+      "uuid": "00000000-0000-0000-0000-000000000836"
+    }
+  ],
+  "parent_association": "Pad is nested under the expected footprint UUID in probe output; not an independent parent accessor.",
+  "parent_uuid": "00000000-0000-0000-0000-000000000834",
+  "reference": "U1",
+  "scope": "Two distinct source pad UUIDs with identical string number 1 must both survive; not canonical pad records or publication.",
+  "tolerance_mm": 1e-06
+}

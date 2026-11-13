@@ -2,6 +2,9 @@
 
 - The real repository `C:/dev/aoi-platform` is the source of truth. Chat mirrors
   and earlier messages are context, not proof of the current checkout.
+- `master` is the primary development branch; checkpoint branches preserve history
+  and evidence. Branch changes, merges, commits and pushes require explicit user
+  authorization. Develop against the relevant OpenSpec contracts and tasks.
 - At session entry, verify `git rev-parse --show-toplevel`, `git branch --show-current`,
   `git rev-parse HEAD`, and `git status --short`; inspect staged and unstaged diff
   summaries. Preserve all existing edits and untracked files.
@@ -19,6 +22,10 @@
   rewrite, branch deletion or protection changes without explicit authorization.
 - Never delete or overwrite historical evidence, fixtures, oracles or review ZIPs.
   Use fresh evidence directories. No indiscriminate staging or destructive cleanup.
+- Before merges, inventory untracked and ignored local-only artifacts with relative
+  paths, sizes and SHA-256 in a safe location outside the repository. Stop on incoming
+  path collisions; verify every inventoried file after merging. Never automatically
+  move, stage, commit or upload local-only artifacts; report their categories separately.
 - Separate tests run now, saved implementer logs and user-relayed review results.
   Record exact scope, paths, exit/results and reviewer rerun limitations. A passing
   subset does not establish complete geometry, import readiness or publication.

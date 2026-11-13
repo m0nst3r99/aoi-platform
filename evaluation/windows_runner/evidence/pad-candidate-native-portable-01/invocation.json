@@ -1,0 +1,15 @@
+{
+  "argv": [
+    ".venv/Scripts/python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "evaluation/windows_runner/test_pad_candidate_native.py",
+    "-q",
+    "-o",
+    "cache_dir=C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\pad-candidate-native-portable-01\\pytest-cache",
+    "--basetemp",
+    "C:\\dev\\aoi-platform\\evaluation\\windows_runner\\evidence\\pad-candidate-native-portable-01\\pytest-temp"
+  ],
+  "cwd": "C:\\dev\\aoi-platform"
+}

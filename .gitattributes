@@ -3,3 +3,8 @@
 # Disable newline conversion only here; retain text diffs and raw whitespace.
 /evaluation/kicad-reader/** -text
 /evaluation/windows_runner/** -text
+/evaluation/pad-candidate/** -text
+
+# Reviewed candidate source/test bytes referenced by evidence hashes.
+/src/aoi_platform/pad_candidates.py -text
+/tests/test_pad_candidates.py -text

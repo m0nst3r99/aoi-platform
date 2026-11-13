@@ -1,0 +1,50 @@
+[
+  {
+    "script": "evaluation/windows_runner/bottom_control.py",
+    "inventory_count": 1,
+    "consumer": "schema-only via run.py; does not invoke outline decision",
+    "schema_sha256": "4555269681e36410f1fc2366c5c941729f9da4abe1cec3ee6fb324aa94d5c3f7"
+  },
+  {
+    "script": "evaluation/windows_runner/bow_tie_control.py",
+    "inventory_count": 1,
+    "consumer": "schema-only via run.py; does not invoke outline decision",
+    "schema_sha256": "4555269681e36410f1fc2366c5c941729f9da4abe1cec3ee6fb324aa94d5c3f7"
+  },
+  {
+    "script": "evaluation/windows_runner/cutout_control.py",
+    "inventory_count": 1,
+    "consumer": "schema-only via run.py; does not invoke outline decision",
+    "schema_sha256": "4555269681e36410f1fc2366c5c941729f9da4abe1cec3ee6fb324aa94d5c3f7"
+  },
+  {
+    "script": "evaluation/windows_runner/d_bbox_diagnostic_control.py",
+    "inventory_count": 1,
+    "consumer": "schema-only via run.py; does not invoke outline decision",
+    "schema_sha256": "4555269681e36410f1fc2366c5c941729f9da4abe1cec3ee6fb324aa94d5c3f7"
+  },
+  {
+    "script": "evaluation/windows_runner/d_outline_control.py",
+    "inventory_count": 1,
+    "consumer": "schema-only via run.py; does not invoke outline decision",
+    "schema_sha256": "4555269681e36410f1fc2366c5c941729f9da4abe1cec3ee6fb324aa94d5c3f7"
+  },
+  {
+    "script": "evaluation/windows_runner/footprint_edges_control.py",
+    "inventory_count": 1,
+    "consumer": "schema-only via run.py; does not invoke outline decision",
+    "schema_sha256": "4555269681e36410f1fc2366c5c941729f9da4abe1cec3ee6fb324aa94d5c3f7"
+  },
+  {
+    "script": "evaluation/windows_runner/roundrect_diagnostic_control.py",
+    "inventory_count": 1,
+    "consumer": "schema-only via run.py; does not invoke outline decision",
+    "schema_sha256": "4555269681e36410f1fc2366c5c941729f9da4abe1cec3ee6fb324aa94d5c3f7"
+  },
+  {
+    "script": "evaluation/windows_runner/kicad_local.py",
+    "inventory_count": 2,
+    "consumer": "schema-only via run.py; does not invoke outline decision",
+    "schema_sha256": "4555269681e36410f1fc2366c5c941729f9da4abe1cec3ee6fb324aa94d5c3f7"
+  }
+]

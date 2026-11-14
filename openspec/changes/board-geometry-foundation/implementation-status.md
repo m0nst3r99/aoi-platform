@@ -1,3 +1,15 @@
+## Source-evidence design review - 2026-11-14
+
+Static review at master `d1e7117`: DESIGN CHANGES REQUIRED before complete receipt/
+PreparedRequest construction. Existing intermediate records support bounded reuse,
+but need explicit field-check/span retention, one ledger through receipt/output
+construction (including reference accounting), shared parsed observation and
+normalized frame/context validation without binding. See the current
+[handoff](../../../HANDOFF.md#current-state--next-action) for the next owner-review
+action and [documentation policy](../../../AGENTS.md#documentation-and-verification-policy).
+No implementation, tests, acceptance promotion or task checkbox changes; historical
+evidence and all matrix statuses remain unchanged.
+
 ## Approved verification inventory - 2026-11-14
 
 The owner approved the complete 47-scenario inventory (24 GEO-001, 23 PCB-001)

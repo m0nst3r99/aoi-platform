@@ -1,5 +1,20 @@
 # Current State / Next Action
 
+Current review update, 2026-11-14: actual `master` HEAD is
+`d1e7117c407e832f005fd3d20869de6a05509c9f`, equal to local `origin/master`;
+the matrix is committed and all 47 original mappings match. Entry tracked tree
+and index were clean. Source-evidence design review: **DESIGN CHANGES REQUIRED**.
+Before receipt implementation, agree how to retain field-check/span provenance,
+carry one ledger through output construction, reuse one parsed observation, and
+validate the normalized frame/context without invoking binding. Current results
+are intermediate facts, not complete receipts. The detailed field/test proposal
+is in this session's review response; the next action is owner review of that
+bounded proposal, not implementation. [AGENTS](AGENTS.md#documentation-and-verification-policy)
+now includes the permanent documentation policy. This task changes only AGENTS,
+this pointer and the status note; no tests, evidence changes, commit or push.
+The preceding baseline snapshot below is retained as history, including its older
+HEAD and then-current validation results.
+
 Snapshot: 2026-11-14. Actual repository `C:/dev/aoi-platform`, branch `master`,
 HEAD `f9b2fbf51978cf59164f784007941a3ad7d2cb3b`. Local `origin/master` is equal
 (ahead 0 / behind 0); no live remote query or push was performed. Entry tracked

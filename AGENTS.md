@@ -37,3 +37,36 @@
 - Report changed files, checks actually run, remaining limitations and Git state.
   Docs-only work needs `git diff --check`, not the AOI test suite. Do not alter agent
   configuration outside the explicitly authorized process-documentation scope.
+
+## Documentation and Verification Policy
+
+- Documentation is part of Definition of Done for each authorized implementation
+  slice. Update only directly affected documents incrementally alongside code;
+  keep changed docstrings, interface contracts and invariants consistent.
+- Approved OpenSpec specifications and design decisions are authoritative; code
+  must conform. Never silently rewrite requirements to match implementation.
+  For a discrepancy, identify the exact conflict and technical impact, propose
+  alternatives, and obtain owner approval before changing normative requirements.
+- Before proposing tests, consult the affected rows and evidence mappings in the
+  [verification matrix](openspec/changes/board-geometry-foundation/verification-matrix.md).
+  Reuse historical evidence first. Reruns need a technical reason tied to changed
+  source, dependencies, fixtures, oracles, environment or an identified coverage
+  gap; session, branch and documentation changes alone are not such a reason.
+- After verification, update affected matrix mappings with exact test identities,
+  results, evidence paths, provenance, limitations and justified acceptance status.
+  Verification and acceptance remain separate; the evidence/authorization rule
+  above applies to scenario promotion and task checkbox closure.
+- At meaningful slice completion, update implementation status with progress,
+  unresolved gaps and blockers. Follow the handoff rule above, keeping its current
+  entry concise: repository state, relevant links, unresolved decisions and next
+  authorized action (or an explicitly labelled proposal awaiting authorization).
+- Prefer relevant sections, precise links and incremental updates. Preserve
+  historical records; do not duplicate evidence or create a new documentation
+  framework or lengthy session report when authoritative records already suffice.
+- Documentation-only work needs no regression tests unless executable
+  configuration, generated artifacts or software-consumed contracts change;
+  in that case justify the necessary checks within the authorized scope.
+- Documentation maintenance grants no authority for unrelated refactoring,
+  additional tests, branch operations, commits or pushes. At slice completion,
+  report code/documentation changes, actual verification results, remaining
+  acceptance gaps and any required owner decision.

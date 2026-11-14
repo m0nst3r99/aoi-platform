@@ -1,3 +1,14 @@
+## Approved verification inventory - 2026-11-14
+
+The owner approved the complete 47-scenario inventory (24 GEO-001, 23 PCB-001)
+as the official baseline. See [Verification & Acceptance Matrix](verification-matrix.md)
+for original requirement/scenario mappings, historical evidence, reviewer decisions,
+reuse limits and remaining gates. This approval is about inventory/scope, not
+47 passing verifications or blanket acceptance. Existing bounded acceptance and
+all task checkboxes are unchanged. No tests ran for this documentation update.
+Future slices must consult the matrix before proposing tests and update evidence
+mappings after verification. The historical implementation record below is retained.
+
 ## Current merged-master scope - 2026-11-13
 
 Start with [HANDOFF](../../../HANDOFF.md#current-state--next-action) and

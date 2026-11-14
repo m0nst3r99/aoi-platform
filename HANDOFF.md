@@ -1,5 +1,38 @@
 # Current State / Next Action
 
+Snapshot: 2026-11-14. Actual repository `C:/dev/aoi-platform`, branch `master`,
+HEAD `f9b2fbf51978cf59164f784007941a3ad7d2cb3b`. Local `origin/master` is equal
+(ahead 0 / behind 0); no live remote query or push was performed. Entry tracked
+working tree and index were clean; existing local-only artifacts were retained.
+
+| Item | Current state |
+| --- | --- |
+| Owner-approved baseline | [Verification & Acceptance Matrix](openspec/changes/board-geometry-foundation/verification-matrix.md): 47/47 normative scenarios approved for inventory and acceptance scope (24 GEO-001, 23 PCB-001). This is not certification that all scenarios passed |
+| Verification / acceptance | Matrix preserves evidence-based statuses, historical execution/reviewer distinctions and existing bounded-scope acceptance. Session/branch changes alone invalidate no historical tests. Eight selected Sprint 1 scenario rows are SATISFIED; remaining rows are PARTIAL/OPEN; aggregate tasks and checkboxes unchanged |
+| Actual implementation | Sprint 2 bounded evaluation/integration. Geometry, inventory, candidates and pinned source/boundary checks exist; full importer, receipt/PreparedRequest construction, Gerber/reconciliation and camera/lifecycle obligations remain incomplete |
+| Work in this task | Documentation only: persisted matrix; updated handoff and status navigation. No tests executed, source/test/fixture/oracle/evidence edits, staging, commit or push. Prior integration snapshot and checkpoint history are preserved below |
+| Documentation checks | PASS: 47 unique rows match exact original scenario/requirement titles (24 GEO + 23 PCB); 174 links/anchors in matrix and new prefixes resolve; table columns/whitespace valid; editor diagnostics clear for all three documents; tracked diff and new-matrix whitespace checks pass. Working changes: two tracked documents plus the new untracked matrix; index unchanged |
+| Evidence limits | Historical 233 PASS is saved implementer output with static reviewer review; 30 PASS smoke has transcript-only evidence. Earlier 268/295 and 1,200 reviewer-case execution provenance is incomplete. Matrix records exact available mappings and reuse limits; no blanket Foundation acceptance |
+| Git strategy | master remains primary; checkpoint history/evidence is retained without automatic branch changes, merge or cherry-pick. Current master code must be checked directly; a historical branch label is not implementation proof |
+| Next single action (proposal) | Review the bounded receipt/PreparedRequest construction plan using matrix P01/P06/P07/P08/P21 and E-B/E-S, under 1.5/5.2 and 3.4/5.5/5.13. No implementation or test execution is authorized by this documentation task |
+| Acceptance / stop conditions | Plan must preserve complete field/span/normalization provenance, one operation ledger, immutable receipt/request, explicit unchecked categories and atomic failure. Preparation must not call binding/candidates. Stop on missing provenance, budget incompatibility or widening pinned scope |
+
+## Session startup
+
+Read [AGENTS.md](AGENTS.md), verify actual Git root/branch/HEAD/status and staged/
+unstaged diff summaries, then read this section. Consult relevant
+[implementation status](openspec/changes/board-geometry-foundation/implementation-status.md)
+and [tasks](openspec/changes/board-geometry-foundation/tasks.md).
+**Before proposing tests for any implementation slice, consult the affected
+[verification matrix](openspec/changes/board-geometry-foundation/verification-matrix.md)
+rows and reuse existing evidence first.** Document the technical reason for a
+rerun; after verification, update evidence mappings, exact scope/results,
+provenance and limitations without conflating verification with acceptance.
+Preserve local-only artifacts. A Next Action remains a proposal, not authority
+to implement, run tests, change branches, commit or push.
+
+# Historical snapshot - authorized integration, 2026-11-13
+
 Snapshot: 2026-11-13, authorized integration on master; merge parents are
 `350c1e3c7de7037f8c187b4b1011cb383433c5de` (master) and
 `3262563f4638d6da63799b69de0dad6f50b4acfe` (checkpoint).

@@ -1,0 +1,33 @@
+﻿{
+    "scope":  "New preparation tests and regressions of changed checker/decoder/ledger interfaces; no native or full suite",
+    "argv":  [
+                 "-B",
+                 "-m",
+                 "pytest",
+                 "-p",
+                 "no:cacheprovider",
+                 "-q",
+                 "--tb=short",
+                 "--junitxml=evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/pytest.xml",
+                 "evaluation/kicad-reader/test_source_checked_preparation.py",
+                 "evaluation/kicad-reader/test_source_checked_preflight.py",
+                 "evaluation/kicad-reader/test_source_checked_bytes.py",
+                 "evaluation/kicad-reader/test_source_checked_declarations.py",
+                 "evaluation/kicad-reader/test_source_checked_boundaries.py",
+                 "evaluation/kicad-reader/test_c1_c2_source_membership.py",
+                 "evaluation/kicad-reader/test_c1_c2_source_pose.py",
+                 "evaluation/kicad-reader/test_c1_c2_footprint_fields.py",
+                 "evaluation/kicad-reader/test_c1_c2_artifact_binding.py",
+                 "evaluation/kicad-reader/test_outline_decision.py",
+                 "tests/test_boundary_orchestration.py"
+             ],
+    "environment":  {
+                        "AOI_C2_R2_PCB":  "C:/dev/aoi-reference/Edgeberry-Baseboard-working/fixture-revisions/REAL-PCB-01-r2/source/Edgeberry.kicad_pcb",
+                        "PYTEST_DISABLE_PLUGIN_AUTOLOAD":  "1",
+                        "PYTHONDONTWRITEBYTECODE":  "1"
+                    },
+    "started_utc":  "2026-11-14T13:02:43.3339517Z",
+    "head":  "c44e4b2d2b5aadd29cc94e4cfd6c5f6171f3b210",
+    "cwd":  "C:\\dev\\aoi-platform",
+    "executable":  "C:/dev/aoi-platform/.venv/Scripts/python.exe"
+}

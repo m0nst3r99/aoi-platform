@@ -1,5 +1,51 @@
 # Current State / Next Action
 
+Snapshot: 2026-11-15; `master` at `c44e4b2d2b5aadd29cc94e4cfd6c5f6171f3b210`,
+ahead 1 / behind 0 against local `origin/master`; no live remote query. Index empty.
+Prior implementation and these targeted audit fixes remain uncommitted; no push.
+
+- User-relayed independent audit: FIX REQUIRED (F1-F3 MEDIUM, F4 LOW). Implemented
+  duplicate evidence-ID rejection, canonical parent validation order, and bounded
+  JSON conflict provenance; added independently authored accounting expectations.
+- Verification: **55 PASS / 0 FAIL / 0 SKIP**, 45.86 s, exit 0. Preparation 29,
+  boundary checker 17, artifact binding 9; no native/full historical suite.
+  [Matrix E-PR/H55](openspec/changes/board-geometry-foundation/verification-matrix.md#e-pr--h55---targeted-audit-fixes-2026-11-15)
+  records exact tests, independent oracles and limits. All 82 inputs and 23 historical
+  evidence files matched pre/post hashes; H249 and the failed first audit-fix run
+  are preserved. [Implementation status](openspec/changes/board-geometry-foundation/implementation-status.md).
+- All 47 scenario identities/statuses remain; P01/P06/P07/P08/P21 PARTIAL, task
+  checkboxes unchanged. Results are implementer evidence, not reviewer acceptance.
+- Next action (proposal awaiting authorization): independent re-review of F1-F4,
+  especially failure provenance and the focused accounting oracle. No automatic
+  broader implementation, implementation commit or push.
+
+## Previous snapshot: preparation implementation, 2026-11-14
+
+Snapshot: 2026-11-14; `master` at documentation baseline commit
+`c44e4b2d2b5aadd29cc94e4cfd6c5f6171f3b210`, ahead 1 / behind 0 relative to the
+local `origin/master` ref. No live remote query or push. Only the three approved
+documentation files were committed; implementation, tests, new evidence and the
+current documentation updates remain uncommitted. Index is empty.
+
+- Completed: bounded immutable SourceCheckEvidence/PreparedRequest construction,
+  one admission-to-output ledger, computed artifact facts, source spans/comparison
+  records, shared parsed observation and pure frame/context validation. Preparation
+  does not bind or execute candidates. See [implementation status](openspec/changes/board-geometry-foundation/implementation-status.md).
+- Verification: 249 PASS / 0 FAIL / 0 SKIP, 35.62 s; 82/82 pre/post inputs unchanged.
+  See [matrix E-PR/H249](openspec/changes/board-geometry-foundation/verification-matrix.md)
+  for exact evidence, justified regressions, private-cap/span fault-test limits and
+  preserved failed development attempt. No native or full historical suite.
+- Acceptance remains bounded: P01/P06/P07/P08/P21 PARTIAL and task checkboxes unchanged.
+  Full importer, broader source semantics and publication remain open. New results
+  are implementer verification awaiting independent review.
+- Next action (proposal): owner/reviewer review of the uncommitted receipt/request
+  slice, particularly source/JSON provenance, resource accounting and unchanged
+  binding assurances. No implementation commit or push without separate authority.
+- Existing local-only artifacts and historical evidence are retained. New logs use
+  fresh preparation-portable-01/02 directories; no cleanup or broad staging.
+
+## Previous snapshots (historical)
+
 Current review update, 2026-11-14: actual `master` HEAD is
 `d1e7117c407e832f005fd3d20869de6a05509c9f`, equal to local `origin/master`;
 the matrix is committed and all 47 original mappings match. Entry tracked tree

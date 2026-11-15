@@ -1,6 +1,7 @@
 """Source-check intermediate for fixed C1+C2; no receipt or candidate execution."""
 from dataclasses import dataclass, fields, is_dataclass
 from decimal import Decimal
+from enum import Enum
 import json
 import source_checked_preflight as pre
 import c1_c2_source_membership as source
@@ -35,7 +36,8 @@ def _charge(ledger, value):
         value,depth=stack.pop()
         ledger.take('nodes',1,ledger.p.max_nodes)
         pre.b._check(depth<=ledger.p.max_depth,'budget.source_depth',pre.ErrorCode.INPUT_LIMIT_EXCEEDED)
-        if type(value) is str: ledger.text(value,'detail')
+        if isinstance(value,Enum): ledger.text(value.value,'detail')
+        elif type(value) is str: ledger.text(value,'detail')
         elif type(value) is bytes: ledger.take('text_bytes',len(value),ledger.p.max_total_input_utf8_bytes)
         elif type(value) is Decimal: ledger.text(str(value),'detail')
         elif type(value) in (tuple,list):
@@ -45,6 +47,8 @@ def _charge(ledger, value):
             pre.b._check(ledger.nodes+len(stack)+2*len(value)<=ledger.p.max_nodes,'budget.nodes',pre.ErrorCode.INPUT_LIMIT_EXCEEDED)
             for k,v in value.items():stack.extend(((k,depth+1),(v,depth+1)))
         elif is_dataclass(value):
+            if type(value) in (pre.c.EvidenceReference,pre.b.ArtifactRef):
+                ledger.take('refs',1,ledger.p.max_total_evidence_refs)
             fs=fields(value)
             pre.b._check(ledger.nodes+len(stack)+len(fs)<=ledger.p.max_nodes,'budget.nodes',pre.ErrorCode.INPUT_LIMIT_EXCEEDED)
             stack.extend((getattr(value,f.name),depth+1) for f in fs)
@@ -63,26 +67,34 @@ def _failure(issue):
         tuple(sink.issues),()),sink.truncation)
 
 
-def _check_source(admitted_bytes, inventory, declarations, caller_context, profile, limits, ledger):
+def _check_source(admitted_bytes, inventory, declarations, caller_context, profile, limits, ledger,
+                  *, state=None, recorder=None):
     verified=pre._verify_bytes(admitted_bytes,inventory,declarations,caller_context,profile,limits,ledger)
     if isinstance(verified,pre.PreparationFailure):return verified
     raw={item.artifact_id:item.data for item in admitted_bytes}  # eight references; no copies
     try:
+        if recorder is not None: recorder.admitted(raw)
         records=source._scan_checked(raw['pcb'],charge=lambda v:_charge(ledger,v),
                                      verified_digest=source.PCB_HASH)
         if isinstance(records,source.SourceFailure):return _failure(records.diagnostic)
         for gate in (source.check_footprint_fields,source.check_footprint_coverage,source.check_graphics_layers):
-            rejected=gate(records,source.PCB_HASH)
+            rejected=(gate(records,source.PCB_HASH,record_check=recorder.source_check)
+                      if recorder is not None and gate is source.check_footprint_fields
+                      else gate(records,source.PCB_HASH))
             if rejected is not None:return _failure(rejected.diagnostic)
         # Exact pinned JSON has bounded length and known depth, not arbitrary input.
         observation=json.loads(raw['observation'])
         _charge(ledger,observation)
         schema(observation)  # strict-v2; no legacy opt-in
+        if state is not None: state['observation']=observation
         ctx=caller_context
         request=pre.c.PadCandidateRequest(ctx.schema_version,ctx.candidate_policy,ctx.board_id,
             ctx.candidate_scope_id,ctx.target_frame,inventory,declarations.parents,declarations.pads)
-        rejected=source.check_source_records(records,request,declarations.boundaries,observation)
+        if recorder is not None: recorder.context(request,declarations.boundaries)
+        rejected=source.check_source_records(records,request,declarations.boundaries,observation,
+            record_check=recorder.source_check if recorder is not None else None)
         if rejected is not None:return _failure(rejected.diagnostic)
+        if recorder is not None: recorder.source_coverage(records)
         poses=[]
         for record in records:
             pose=source_pose(record)  # bounded cardinal arithmetic; checked above

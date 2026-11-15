@@ -73,7 +73,7 @@ def source_pose(record):
         return SourcePose(f,p,size,center,(center[0],-center[1]),tuple(vertices))
 
 
-def check_pose(record, pad, footprint, observation):
+def check_pose(record, pad, footprint, observation, *, record_check=None):
     # Local import avoids reexecuting entrypoints or a module import cycle.
     from c1_c2_source_membership import _failure
     try:
@@ -102,6 +102,7 @@ def check_pose(record, pad, footprint, observation):
             tolerance = Decimal(0) if name.endswith('angle') else TOLERANCE
             if not value.is_finite() or abs(value-expected) > tolerance:
                 raise PoseError(name,str(expected),str(actual))
+            if record_check is not None: record_check(record,name,expected,actual)
     except PoseError as error:
         result = _failure(error.field,error.expected,error.actual,record,ErrorCode.SOURCE_CONFLICT)
         spans = tuple((name, tuple(field[1] for field in fields)) for name,fields in (

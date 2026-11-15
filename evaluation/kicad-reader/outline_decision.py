@@ -27,6 +27,12 @@ def evaluate_outline(raw: bytes) -> Decision:
         if type(raw) is not bytes:
             raise TypeError('JSON bytes required')
         data = json.loads(raw)
+        return _evaluate_parsed(data)
+    except (ValueError, TypeError, KeyError, AttributeError, OverflowError, RecursionError):
+        return Decision('rejected', (Diagnostic('SCHEMA_INVALID', 'payload'),))
+def _evaluate_parsed(data) -> Decision:
+    """Private operation-owned parsed observation; same strict validation gate."""
+    try:
         _schema(data)  # Strict v2; never enable historical legacy replay.
     except (ValueError, TypeError, KeyError, AttributeError, OverflowError, RecursionError):
         return Decision('rejected', (Diagnostic('SCHEMA_INVALID', 'payload'),))

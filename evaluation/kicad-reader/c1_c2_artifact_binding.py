@@ -100,7 +100,7 @@ def evaluate_artifact_boundaries(request, declarations, raw, policy):
     return ArtifactBindingSuccess(tuple(sorted(records,key=lambda r:(r.parent_uuid,r.pad_uuid))),result)
 
 
-def _records_from_verified(request, declarations, raw, charge=None):
+def _records_from_verified(request, declarations, raw, charge=None, *, observation=None, recorder=None):
     """Private: preflight and exact byte pins must have passed. Never binds.
 
     Optional charge runs before retaining parsed metadata/reconstructed records.
@@ -110,12 +110,15 @@ def _records_from_verified(request, declarations, raw, charge=None):
     pins={k:(h,n) for k,h,n in profile.PINS}
     def equal(field, expected, actual):
         if expected!=actual:raise _Conflict(field,expected,actual)
+        if recorder is not None: recorder.json_check(artifact or 'observation',parent,pad,field,expected,actual)
     try:
         # From here all JSON is byte-identical to the bounded reviewed artifacts.
-        decision=profile.evaluate_outline(raw['observation'])
+        if observation is None:
+            observation=json.loads(raw['observation'])
+            if charge is not None:charge(observation)
+        from outline_decision import _evaluate_parsed
+        decision=_evaluate_parsed(observation)
         equal('observation.decision','not_rejected_by_outline_check',decision.status)
-        observation=json.loads(raw['observation'])
-        if charge is not None:charge(observation)
         equal('observation.build','10.0.7',observation['build'])
         equal('observation.input_sha256',pins['pcb'][0],observation['input_sha256'])
         expected_pairs={(c.PARENT,uid) for _,c in profile.GROUPS for uid in c.PADS}
@@ -124,12 +127,15 @@ def _records_from_verified(request, declarations, raw, charge=None):
             parent,pad=item.source_parent_id,item.source_pad_id
             equal('declaration.duplicate',False,(parent,pad) in declared)
             declared[parent,pad]=item
+        parent=pad=None
         equal('declaration.pairs',expected_pairs,set(declared))
         records=[]
         for group,comparator in profile.GROUPS:
+            parent,pad=comparator.PARENT,None
             artifact=group+'_boundary';digest=pins[artifact][0]
             payload=json.loads(raw[artifact])
             if charge is not None:charge(payload)
+            if recorder is not None: recorder.parsed_json(artifact,payload)
             equal('boundary.oracle',True,comparator.compare(payload)['passed'])
             equal('boundary.input_sha256',pins['pcb'][0],payload['input_sha256'])
             footprints=[f for f in observation['footprints'] if f['uuid']==comparator.PARENT]
@@ -172,9 +178,15 @@ def _records_from_verified(request, declarations, raw, charge=None):
                     payload['coordinate_space'],payload['iu_per_mm'],payload['clearance_iu'],payload['max_error_iu'],payload['error_location'],'top')
                 if charge is not None:charge(args)
                 records.append(ObservedBoundaryRecord(*args))
+            pad=None
             equal('boundary.pairs',{(comparator.PARENT,u) for u in comparator.PADS},seen)
+        parent=pad=None
+        artifact=None
         equal('record_count',4,len(records))
     except _Conflict as error:
+        if recorder is not None:
+            return ArtifactBindingFailure(recorder.json_conflict(
+                artifact or 'observation',parent,pad,error.field,error.expected,error.actual))
         # Caller metadata was jointly bounded. Pins fix artifact and source IDs.
         # Keep comparisons compact; do not serialize whole inventories/payloads.
         field=error.field

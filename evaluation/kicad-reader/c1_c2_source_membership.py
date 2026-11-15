@@ -118,6 +118,7 @@ class SourceRecord:
     nodes: tuple[PadNodeDeclaration, ...] = ()
     footprint_fields: tuple[FootprintField, ...] = ()
     footprint_nodes: tuple[FootprintNodeDeclaration, ...] = ()
+    header_fields: tuple = ()  # exact number/type/shape token spans, not enclosing pad span
 
 
 @dataclass(frozen=True)
@@ -213,6 +214,7 @@ class _Node:
     deferred_structure_error: tuple | None = None
     footprint_fields: dict = field(default_factory=dict)
     footprint_nodes: list = field(default_factory=list)
+    atom_spans: list = field(default_factory=list)
 
 
 def _scan(data, charge=None):
@@ -353,7 +355,8 @@ def _scan(data, charge=None):
                         tuple(sorted(pad.pad_nodes, key=lambda item: item.span)),
                         tuple(f for name in ('layer','attr')
                               for f in node.footprint_fields.get(name, ())),
-                        tuple(sorted(node.footprint_nodes, key=lambda item: item.span))))
+                        tuple(sorted(node.footprint_nodes, key=lambda item: item.span)),
+                        tuple(pad.atom_spans)))
             if parent is None:
                 if node.head != 'kicad_pcb':
                     raise ScanError('root is not kicad_pcb', node.start, node.line)
@@ -370,6 +373,8 @@ def _scan(data, charge=None):
                 if node.children_started:
                     raise ScanError('atom after child list unsupported', start, line)
                 node.atoms.append(value)
+                if node.head == 'pad' and len(node.atom_spans)<3:
+                    node.atom_spans.append(((start,end),(line,end_line)))
                 node.quoted_atoms |= kind == 'string'
     if stack or not root_closed:
         raise ScanError('incomplete root at EOF', len(data), data.count(b'\n') + 1)
@@ -504,7 +509,7 @@ def _footprint_failure(record, name, fields, digest, expected, actual, code):
             ('field_lines', tuple(f.lines for f in fields))))))
 
 
-def check_footprint_fields(records, digest):
+def check_footprint_fields(records, digest, *, record_check=None):
     """Two fields only, after scanning EOF; not whole-footprint coverage.
 
     Exactly one direct leaf layer F.Cu and attr smd. No other attr flags,
@@ -520,6 +525,8 @@ def check_footprint_fields(records, digest):
             if fields[0].has_children or fields[0].values != expected:
                 return _footprint_failure(record,name,fields,digest,(expected,'leaf'),
                     (fields[0].values,fields[0].has_children),ErrorCode.GEOMETRY_UNSUPPORTED)
+            if record_check is not None:
+                record_check(record,'footprint.direct.'+name,expected,fields[0].values)
     return None
 
 
@@ -587,7 +594,7 @@ def check_graphics_layers(records, digest):
     return None
 
 
-def check_source_records(records, request, declarations, observation):
+def check_source_records(records, request, declarations, observation, *, record_check=None):
     """Shared checks only; inputs are bounded/admitted by the calling flow."""
     from aoi_platform.pad_candidates import PadRectangle
     for record in records:
@@ -614,13 +621,16 @@ def check_source_records(records, request, declarations, observation):
         for field_name, expected, actual in comparisons:
             if expected != actual:
                 return _failure(field_name, expected, actual, record)
+            if record_check is not None: record_check(record,field_name,expected,actual)
         from c1_c2_source_pose import check_pose
         footprint = next(f for f in observation['footprints'] if f['uuid'] == record.parent_uuid)
         source_layer = next(f for f in record.footprint_fields if f.name == 'layer')
         if footprint['layer'] != source_layer.values[0]:
             return _footprint_failure(record, 'layer', (source_layer,), PCB_HASH,
                 source_layer.values[0], footprint['layer'], ErrorCode.SOURCE_CONFLICT)
-        pose_error = check_pose(record, pad, footprint, obs)
+        if record_check is not None:
+            record_check(record,'footprint.layer',source_layer.values[0],footprint['layer'])
+        pose_error = check_pose(record, pad, footprint, obs,record_check=record_check)
         if pose_error is not None:
             return pose_error
     return None

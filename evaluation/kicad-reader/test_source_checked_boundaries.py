@@ -98,8 +98,8 @@ def test_shared_budget_blocks_before_retained_record(real,no_execution,monkeypat
     # Private ledger exhaustion double, not full-profile admission at the cap.
     if target=='links':
         original=phase.source._check_source
-        def fill(*args):
-            result=original(*args);args[-1].text_bytes=8388608;return result
+        def fill(*args,**kwargs):
+            result=original(*args,**kwargs);args[-1].text_bytes=8388608;return result
         monkeypatch.setattr(phase.source,'_check_source',fill)
         monkeypatch.setattr(phase,'BoundaryArtifactLink',lambda *a:pytest.fail('unbudgeted link'))
     else:

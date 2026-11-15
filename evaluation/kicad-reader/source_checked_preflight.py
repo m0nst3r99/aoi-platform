@@ -152,6 +152,7 @@ class Ledger(b._Budget):
         super().__init__(B_POLICY)
         self.raw_bytes=0
         self.hashed_bytes=0
+        self.artifacts=[]  # private computed facts, retained only after charging
 
     def walk(self, roots):
         stack=[(v,t,name,0) for v,t,name in reversed(roots)]
@@ -308,6 +309,8 @@ def _verify_bytes(admitted_bytes, inventory, declarations, caller_context,
                         ('actual_size',str(len(item.data)))))
                 return PreparationFailure(ValidationReport('source-bytes',PROFILE.profile_id,(issue,),()),
                     c.PadTruncation(False,None,None))
+            ledger.walk(((ArtifactPin(item.artifact_id,len(item.data),actual),ArtifactPin,'artifact'),))
+            ledger.artifacts.append(ArtifactPin(item.artifact_id,len(item.data),actual))
         return ByteVerificationSuccess(ledger.nodes,ledger.text_bytes,ledger.refs,
                                        ledger.raw_bytes,ledger.hashed_bytes)
     except b._Reject as error:

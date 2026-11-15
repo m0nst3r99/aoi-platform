@@ -28,8 +28,11 @@ def test_real_eight_buffers_same_ledger(real,monkeypatch):
     assert len(ledgers)==1 and len(calls)==8
     assert all(data is item.data for data,item in zip(calls,sorted(real[0],key=lambda x:x.artifact_id)))
     assert result.hashed_bytes==result.raw_bytes==1117036
-    assert result.nodes==baseline.nodes and result.evidence_refs==baseline.evidence_refs
-    assert result.text_bytes==baseline.text_bytes+8*64==ledgers[0].text_bytes
+    # Eight retained ArtifactPin records: one record + three fields each.
+    assert result.nodes==baseline.nodes+8*4 and result.evidence_refs==baseline.evidence_refs
+    retained_text=sum(len(p.artifact_id.encode('utf-8'))+64 for p in s.PINS)
+    assert result.text_bytes==baseline.text_bytes+8*64+retained_text==ledgers[0].text_bytes
+    assert tuple(ledgers[0].artifacts)==tuple(sorted(s.PINS,key=lambda p:p.artifact_id))
     assert result.status=='bytes-match-pins-and-inventory-only'
     for name in ('request','source_check','candidates'):assert not hasattr(result,name)
     assert s.verify_source_checked_bytes(tuple(reversed(real[0])),*real[1:])==result

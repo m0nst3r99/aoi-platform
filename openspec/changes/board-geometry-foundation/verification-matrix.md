@@ -84,14 +84,14 @@ Foundation gate summaries follow the evidence register.
 | G22 | [GEO-001: Separate board capacity, fixture and camera travel](specs/board-geometry/spec.md#requirement-separate-board-capacity-fixture-and-camera-travel) | [Synthetic fixture fit is independent of capacity](specs/board-geometry/spec.md#scenario-synthetic-fixture-fit-is-independent-of-capacity) | 4.16 | E-F | IMPLEMENTED | VERIFIED | SATISFIED | REUSABLE | Whole-outline synthetic rectangle contact/margin/exclusion checks; fixture failure independent of capacity and camera defaults. | S1 retained; reuse |
 | G23 | [GEO-001: Separate board capacity, fixture and camera travel](specs/board-geometry/spec.md#requirement-separate-board-capacity-fixture-and-camera-travel) | [Unresolved mechanics does not invent readiness](specs/board-geometry/spec.md#scenario-unresolved-mechanics-does-not-invent-readiness) | 4.17 | E-F | PARTIAL | PARTIAL | PARTIAL | REUSABLE / INSUFFICIENT | Standalone unresolved fit/reachability verified; real import integration missing; rectangle alone never proves optical coverage. | S2 integrate; Prototype |
 | G24 | [GEO-001: Separate board capacity, fixture and camera travel](specs/board-geometry/spec.md#requirement-separate-board-capacity-fixture-and-camera-travel) | [Complete coordinate verification without hardware](specs/board-geometry/spec.md#scenario-complete-coordinate-verification-without-hardware) | 6.5 | E-G, E-D, E-F | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Offline fixed-seed affine/rigid and independent oracles exist; complete projective cases and capability suite absent. | S5; Complete |
-| P01 | [PCB-001: Verified input support evidence](specs/pcb-data-import/spec.md#requirement-verified-input-support-evidence) | [Unverified versions remain TBD](specs/pcb-data-import/spec.md#scenario-unverified-versions-remain-tbd) | 1.5, 5.2, 6.3 | E-A, E-N | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Register remains bounded/TBD; general product version allowlist and FORMAT_UNSUPPORTED gates not implemented. | S2 support gate |
+| P01 | [PCB-001: Verified input support evidence](specs/pcb-data-import/spec.md#requirement-verified-input-support-evidence) | [Unverified versions remain TBD](specs/pcb-data-import/spec.md#scenario-unverified-versions-remain-tbd) | 1.5, 5.2, 6.3 | E-A, E-N, E-PR | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Register remains bounded/TBD; general product version allowlist and FORMAT_UNSUPPORTED gates not implemented. | S2 support gate |
 | P02 | [PCB-001: Declared source formats and import profiles](specs/pcb-data-import/spec.md#requirement-declared-source-formats-and-import-profiles) | [Complete combined import](specs/pcb-data-import/spec.md#scenario-complete-combined-import) | 5.16-5.17 | NONE | NOT IMPLEMENTED | UNVERIFIED | OPEN | UNVERIFIABLE | One immutable revision with both profile capabilities, hashes, mappings and accepted report absent. | S4; Prototype |
 | P03 | [PCB-001: Declared source formats and import profiles](specs/pcb-data-import/spec.md#requirement-declared-source-formats-and-import-profiles) | [Missing or unsupported input](specs/pcb-data-import/spec.md#scenario-missing-or-unsupported-input) | 5.1-5.2, 5.16 | E-I | PARTIAL | PARTIAL | PARTIAL | REUSABLE / INSUFFICIENT | Byte inventory enforces required roles; parser/version/profile semantics and no-publication integration incomplete. | S2-S4 integrate |
 | P04 | [PCB-001: Declared source formats and import profiles](specs/pcb-data-import/spec.md#requirement-declared-source-formats-and-import-profiles) | [Geometry-only import](specs/pcb-data-import/spec.md#scenario-geometry-only-import) | 3.5, 5.16-5.17 | NONE | NOT IMPLEMENTED | UNVERIFIED | OPEN | UNVERIFIABLE | Canonical geometry publication and later unfulfilled-profile inspection rejection absent. | S2 implement |
 | P05 | [PCB-001: Per-source units, origin, side, and revision evidence](specs/pcb-data-import/spec.md#requirement-per-source-units-origin-side-and-revision-evidence) | [Independent Gerber and placement origins](specs/pcb-data-import/spec.md#scenario-independent-gerber-and-placement-origins) | 5.13 | E-G | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Transform math reusable; real Gerber (50,25) mm offset and inch-placement independent source alignment/removal tests absent. | S3-S4 integrate |
-| P06 | [PCB-001: Per-source units, origin, side, and revision evidence](specs/pcb-data-import/spec.md#requirement-per-source-units-origin-side-and-revision-evidence) | [Contradictory units or side](specs/pcb-data-import/spec.md#scenario-contradictory-units-or-side) | 5.13 | E-G, E-P, E-S | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Pinned source conflicts/declarations checked; general import inch/mm and bottom/top metadata conflict integration absent. | S2-S4 integrate |
-| P07 | [PCB-001: Canonical outline, footprints, components, pads, and fiducials](specs/pcb-data-import/spec.md#requirement-canonical-outline-footprints-components-pads-and-fiducials) | [Bottom footprint and repeated pad numbers](specs/pcb-data-import/spec.md#scenario-bottom-footprint-and-repeated-pad-numbers) | 5.3-5.5 | E-P, E-B, E-N, E-S | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Candidate repeated-number IDs/oracles and pinned boundary checks reusable; combined rotated-bottom/nonrectangular/cutout product import absent. | S2 implement |
-| P08 | [PCB-001: Canonical outline, footprints, components, pads, and fiducials](specs/pcb-data-import/spec.md#requirement-canonical-outline-footprints-components-pads-and-fiducials) | [Invalid outline or nonfinite coordinate](specs/pcb-data-import/spec.md#scenario-invalid-outline-or-nonfinite-coordinate) | 5.3, 5.5 | E-F, E-P, E-N | PARTIAL | PARTIAL | PARTIAL | REUSABLE / INSUFFICIENT | Topology/numeric/duplicate controls exist for bounded subsets; complete source-entity diagnostics before product publication missing. | S2 integrate |
+| P06 | [PCB-001: Per-source units, origin, side, and revision evidence](specs/pcb-data-import/spec.md#requirement-per-source-units-origin-side-and-revision-evidence) | [Contradictory units or side](specs/pcb-data-import/spec.md#scenario-contradictory-units-or-side) | 5.13 | E-G, E-P, E-S, E-PR | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Pinned source conflicts/declarations checked; general import inch/mm and bottom/top metadata conflict integration absent. | S2-S4 integrate |
+| P07 | [PCB-001: Canonical outline, footprints, components, pads, and fiducials](specs/pcb-data-import/spec.md#requirement-canonical-outline-footprints-components-pads-and-fiducials) | [Bottom footprint and repeated pad numbers](specs/pcb-data-import/spec.md#scenario-bottom-footprint-and-repeated-pad-numbers) | 5.3-5.5 | E-P, E-B, E-N, E-S, E-PR | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Candidate repeated-number IDs/oracles and pinned boundary checks reusable; combined rotated-bottom/nonrectangular/cutout product import absent. | S2 implement |
+| P08 | [PCB-001: Canonical outline, footprints, components, pads, and fiducials](specs/pcb-data-import/spec.md#requirement-canonical-outline-footprints-components-pads-and-fiducials) | [Invalid outline or nonfinite coordinate](specs/pcb-data-import/spec.md#scenario-invalid-outline-or-nonfinite-coordinate) | 5.3, 5.5 | E-F, E-P, E-N, E-PR | PARTIAL | PARTIAL | PARTIAL | REUSABLE / INSUFFICIENT | Topology/numeric/duplicate controls exist for bounded subsets; complete source-entity diagnostics before product publication missing. | S2 integrate |
 | P09 | [PCB-001: Canonical outline, footprints, components, pads, and fiducials](specs/pcb-data-import/spec.md#requirement-canonical-outline-footprints-components-pads-and-fiducials) | [Fiducial approval](specs/pcb-data-import/spec.md#scenario-fiducial-approval) | 5.6 | E-A metadata only | NOT IMPLEMENTED | UNVERIFIED | OPEN | INSUFFICIENT | Accepted fixture designation is not importer classification/approval retaining all fiducial fields; circular pads must not auto-promote. | S2 implement |
 | P10 | [PCB-001: Gerber parser reuse evaluation](specs/pcb-data-import/spec.md#requirement-gerber-parser-reuse-evaluation) | [Reuse evaluation precedes a custom parser](specs/pcb-data-import/spec.md#scenario-reuse-evaluation-precedes-a-custom-parser) | 2.1-2.5 | NONE | NOT IMPLEMENTED | BLOCKED | OPEN | UNVERIFIABLE | Pinned PyGerber/Gerbonara license/API/geometry/provenance/resource/fixture evaluation must precede custom-parser decision. | S3 prerequisite |
 | P11 | [PCB-001: Gerber parser reuse evaluation](specs/pcb-data-import/spec.md#requirement-gerber-parser-reuse-evaluation) | [Library cannot interpret a construct](specs/pcb-data-import/spec.md#scenario-library-cannot-interpret-a-construct) | 2.4, 5.8 | NONE | NOT IMPLEMENTED | BLOCKED | OPEN | UNVERIFIABLE | Dependency/support matrix absent; unsupported constructs need source-location FORMAT_UNSUPPORTED and no publication. | S3 after P10 |
@@ -104,7 +104,7 @@ Foundation gate summaries follow the evidence register.
 | P18 | [PCB-001: Immutable revisions and deterministic provenance](specs/pcb-data-import/spec.md#requirement-immutable-revisions-and-deterministic-provenance) | [Mixed board exports](specs/pcb-data-import/spec.md#scenario-mixed-board-exports) | 5.15 | E-I byte evidence only | NOT IMPLEMENTED | UNVERIFIED | OPEN | INSUFFICIENT | Matching hashes/names/dimensions do not establish cross-export revision attestation or semantic consistency. | S4 implement |
 | P19 | [PCB-001: Independent data import and physical readiness](specs/pcb-data-import/spec.md#requirement-independent-data-import-and-physical-readiness) | [Valid board with unresolved physical envelopes](specs/pcb-data-import/spec.md#scenario-valid-board-with-unresolved-physical-envelopes) | 4.17, 5.17 | E-F | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Separate unresolved reports exist; immutable import publication/provenance integration absent; no targeting or production claim. | S2; Prototype |
 | P20 | [PCB-001: Atomic contracts and actionable validation reports](specs/pcb-data-import/spec.md#requirement-atomic-contracts-and-actionable-validation-reports) | [Multiple errors and rollback](specs/pcb-data-import/spec.md#scenario-multiple-errors-and-rollback) | 3.6, 5.17 | E-D, E-I, E-P | PARTIAL | PARTIAL | OPEN | INSUFFICIENT | Stable diagnostics and bounded atomic results exist; BOM/placement multi-error collection and revision rollback absent. Explicitly OPEN in status ledger. | S2-S4 integrate |
-| P21 | [PCB-001: Atomic contracts and actionable validation reports](specs/pcb-data-import/spec.md#requirement-atomic-contracts-and-actionable-validation-reports) | [Import bounds and parsing settings](specs/pcb-data-import/spec.md#scenario-import-bounds-and-parsing-settings) | 5.1, 1.6 | E-I, E-S | PARTIAL | PARTIAL | PARTIAL | REUSABLE / INSUFFICIENT | Byte/scanner shared-budget rejection reusable; full entity limits and ambiguous CSV decimal/delimiter rejection absent. | S2-S4 integrate |
+| P21 | [PCB-001: Atomic contracts and actionable validation reports](specs/pcb-data-import/spec.md#requirement-atomic-contracts-and-actionable-validation-reports) | [Import bounds and parsing settings](specs/pcb-data-import/spec.md#scenario-import-bounds-and-parsing-settings) | 5.1, 1.6 | E-I, E-S, E-PR | PARTIAL | PARTIAL | PARTIAL | REUSABLE / INSUFFICIENT | Byte/scanner shared-budget rejection reusable; full entity limits and ambiguous CSV decimal/delimiter rejection absent. | S2-S4 integrate |
 | P22 | [PCB-001: Optional inspection-engine interoperability](specs/pcb-data-import/spec.md#requirement-optional-inspection-engine-interoperability) | [Adapter absent](specs/pcb-data-import/spec.md#scenario-adapter-absent) | 6.1, 6.5 | E-G, E-I, E-P, E-B | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Existing portable subsets run offline; complete GEO/PCB normative suite and optional-engine evaluation still absent. | S5; Complete |
 | P23 | [PCB-001: Optional inspection-engine interoperability](specs/pcb-data-import/spec.md#requirement-optional-inspection-engine-interoperability) | [Engine changes image frame](specs/pcb-data-import/spec.md#scenario-engine-changes-image-frame) | 6.2, 4.8 | NONE | NOT IMPLEMENTED | UNVERIFIED | OPEN | UNVERIFIABLE | Fake-engine crop/alignment mapping, revision/capture mismatch and pixel-vs-mm checks absent. | S5 implement |
 
@@ -122,7 +122,7 @@ not manufacture an independent reviewer attestation or a new execution.
 | E-F | [envelopes](../../../src/aoi_platform/geometry/envelopes.py), [fixture geometry](../../../src/aoi_platform/geometry/fixture_geometry.py), [outlines](../../../src/aoi_platform/geometry/outlines.py); [envelope tests](../../../tests/test_envelopes.py): `test_capacity_required_oracles`, `test_machine_translation_does_not_affect_capacity`, `test_fixture_exact_outer_contact_and_small_violation`, `test_outer_margin_exact_and_one_micron_shortfall`, `test_missing_physical_envelopes_never_imply_readiness`, `test_supplied_camera_rectangle_still_unresolved_with_evidence`; [fixture tests](../../../tests/test_fixture_geometry.py). | H268/H295/H370/H491; accepted selected line/arc board-contour and rectangular fixture/exclusion subset. Physical dimensions remain TBD; broader holes/envelopes are not implied. Standalone unresolved report does not prove product import publication. |
 | E-I | [inventory](../../../src/aoi_platform/inventory.py); [tests](../../../tests/test_inventory.py): `test_profile_minimums_and_multiple_artifacts_same_role`, `test_hash_and_size_mismatch_expected_actual_context_and_order`, `test_boundaries_streaming_short_reads_and_ownership`, `test_failure_after_successful_read_is_not_partial_success`; [local test](../../../tests/test_inventory_local.py): `test_real_pcb_01_r1_bytes`. | H370/H491; byte-admission slice accepted after direct ZIP review (user-relayed 370 PASS/1 SKIP and 1,200 independent cases). Local REAL-PCB-01-r1: 25 entries, 2,454,516 bytes; local 1 PASS was not rerun by reviewer. Hash/role checks do not certify geometry, revision equivalence or parser support. |
 | E-P | [pad candidates](../../../src/aoi_platform/pad_candidates.py), [tests](../../../tests/test_pad_candidates.py): `test_independent_oracles`, `test_repeated_empty_numbers_and_lexical_order`, `test_mixed_batch_atomic_and_diagnostic_order`; independent 0/90/45-degree corner oracles, repeated/empty source numbers, atomic rejects. | H470/H30; accepted rectangular candidate subset via user-relayed review. 100 focused tests are included in the 470-pass full run. This is not a complete KiCad importer or effective-copper implementation. |
-| E-B | [boundary evidence](../../../src/aoi_platform/boundary_evidence.py), [correspondence](../../../src/aoi_platform/boundary_correspondence.py), [binding](../../../src/aoi_platform/boundary_binding.py); [preflight](../../../tests/test_boundary_preflight.py), [binding tests](../../../tests/test_boundary_binding.py), [correspondence tests](../../../tests/test_boundary_correspondence.py), [orchestration](../../../tests/test_boundary_orchestration.py). Eight independent order oracles, exact/exceeded 1e-6 component tolerance, identity conflicts and one-call/atomic batch controls. | Bounded historical reviews in [implementation status](implementation-status.md), plus H30 smoke. Dataclass contracts `SourceCheckEvidence`/`PreparedRequest` exist; complete receipt/request construction API does not. Binding/candidate acceptance is not source provenance certification. |
+| E-B | [boundary evidence](../../../src/aoi_platform/boundary_evidence.py), [correspondence](../../../src/aoi_platform/boundary_correspondence.py), [binding](../../../src/aoi_platform/boundary_binding.py); [preflight](../../../tests/test_boundary_preflight.py), [binding tests](../../../tests/test_boundary_binding.py), [correspondence tests](../../../tests/test_boundary_correspondence.py), [orchestration](../../../tests/test_boundary_orchestration.py). Eight independent order oracles, exact/exceeded 1e-6 component tolerance, identity conflicts and one-call/atomic batch controls. | Bounded historical reviews in [implementation status](implementation-status.md), plus H30 smoke. At the approved inventory snapshot only dataclass contracts existed; the new bounded construction API and its limits are recorded in E-PR/H249. Binding/candidate acceptance is not source provenance certification. |
 | E-S | [source preflight/hash](../../../evaluation/kicad-reader/source_checked_preflight.py), [declarations](../../../evaluation/kicad-reader/source_checked_declarations.py), [boundaries](../../../evaluation/kicad-reader/source_checked_boundaries.py); [preflight tests](../../../evaluation/kicad-reader/test_source_checked_preflight.py), [byte tests](../../../evaluation/kicad-reader/test_source_checked_bytes.py), [declaration tests](../../../evaluation/kicad-reader/test_source_checked_declarations.py), [boundary tests](../../../evaluation/kicad-reader/test_source_checked_boundaries.py), plus seven C1/C2 modules in H233 invocation. | H233 and its earlier 66/81/216-test subsets. Latest reviewer performed static review of 95 manifest entries/79 inputs and saved 233 results, not a rerun. Positive four raw record links share one ledger; eight-artifact hash failures stop scanning, source conflicts stop later boundary checks, and link/record budgets charge before retention. C2 +0.001 conflict is a negative control. No receipt construction or general source semantics acceptance. |
 | E-N | [KiCad reader evaluation](../../../evaluation/kicad-reader/), [Windows runner evidence](../../../evaluation/windows_runner/evidence/), source-checked and C1/C2 fixtures, saved outline/cutout controls. | Historical native evidence only; no native execution in this task. C1 strict saved success; C2 transport/cleanup/boundary success uses 1 IU tolerance and two pads. Cutout control: 8 checks/8 source segments and no footprints. Earlier `kicad-local-01` is a failed control (transport false, hash mismatch true), not a passing baseline. General copper/graphics/model/zone-fill semantics remain unverified. |
 | E-R | [runner](../../../evaluation/windows_runner/runner.py), [portable tests](../../../evaluation/windows_runner/test_portable.py), [native runner tests](../../../evaluation/windows_runner/test_native.py), [provenance limitations](../../../evaluation/windows_runner/PROVENANCE-LIMITATIONS.md). | H491 includes 57 portable and 41 native-runner regression cases; no accepted real KiCad board executed in that regression run. Later bounded runner/harness review acceptance remains scoped in status. Pre-assignment host-death gap and unrecovered historical versions remain; do not substitute current source for missing historical source. |
@@ -200,7 +200,7 @@ H30 exact selected functions and expanded case counts:
 - The [runner provenance limitations](../../../evaluation/windows_runner/PROVENANCE-LIMITATIONS.md)
   retain three unrecovered historical versions: review-01 native-case/test-native
   and review-02 test-native. Current files cannot stand in for those originals.
-- Full `SourceCheckEvidence` receipt and `PreparedRequest` preparation API remain
+- At the original audit, full `SourceCheckEvidence` receipt and `PreparedRequest` preparation API remained
   unimplemented. Intermediate declarations and raw boundary records do not
   establish complete field/span/normalization provenance automatically.
 - Local-only evidence links can exist on this workstation without being tracked
@@ -239,7 +239,7 @@ production accuracy, firmware and deployment remain outside this software change
 keeping them unresolved is not permission to infer readiness or impose a new
 hardware-qualification blocker.
 
-## Next bounded action (proposal, not implementation authorization)
+## Historical next bounded action (superseded by the E-PR update below)
 
 Review a receipt/PreparedRequest construction plan on top of the existing
 source-checked boundary result. Consult P01/P06/P07/P08/P21 and E-B/E-S, with
@@ -270,3 +270,152 @@ C2 +0.001 conflict, budget-boundary and atomicity tests only as part of that
 separately authorized slice; new test node names do not yet exist. Do not run
 native KiCad, historical evaluation suites or a full suite by default. Record
 new results alongside, never over, preserved evidence and update this matrix.
+
+## E-PR / H249 - bounded preparation implementation update, 2026-11-14
+
+The owner approved the architecture and authorized implementation after the design
+review. Current local master HEAD is documentation baseline `c44e4b2`; the following
+implementation and evidence are uncommitted. This section supersedes earlier
+current-tense statements that receipt/request construction is wholly unimplemented.
+The approved 47-row inventory and every verification/acceptance status cell are
+unchanged. Evidence contributes to P01/P06/P07/P08/P21; it closes none of those
+aggregate normative scenarios, nor any OpenSpec task checkbox.
+
+**E-PR implementation:**
+[preparation API](../../../evaluation/kicad-reader/source_checked_preparation.py),
+[admission/computed facts](../../../evaluation/kicad-reader/source_checked_preflight.py),
+[declarations/shared observation](../../../evaluation/kicad-reader/source_checked_declarations.py),
+[boundary continuation](../../../evaluation/kicad-reader/source_checked_boundaries.py),
+[source membership/spans](../../../evaluation/kicad-reader/c1_c2_source_membership.py),
+[pose comparisons](../../../evaluation/kicad-reader/c1_c2_source_pose.py),
+[artifact comparisons](../../../evaluation/kicad-reader/c1_c2_artifact_binding.py) and
+[parsed outline gate](../../../evaluation/kicad-reader/outline_decision.py).
+Public preparation records and entrypoint contracts remain; optional private
+recording/shared-data parameters and defaulted SourceRecord header-span metadata
+are additive. Exact PCB spans are checked against bounds, lines and selected field
+literals. JSON uses the root structural locator and a whole-document **enclosing**
+span, never a claimed exact token span. Successful comparisons are recorded at the
+checker; explicit unchecked categories and caller-declaration authority are retained.
+
+**H249 execution:** 249 PASS / 0 FAIL / 0 SKIP, 35.62 seconds, exit 0. Python 3.11.9,
+pytest 9.1.1, Windows 10.0.26300; external `AOI_C2_R2_PCB` points to the pinned r2
+source. [Exact invocation](../../../evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/invocation.json),
+[environment](../../../evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/environment.json),
+[stdout](../../../evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/stdout.txt),
+[JUnit node identities/results](../../../evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/pytest.xml),
+[result and preservation](../../../evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/result.json),
+[pre-run hashes](../../../evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/pre-run-hashes.json),
+[post-run hashes](../../../evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/post-run-hashes.json).
+All 82 inputs matched before/after. This is new implementer evidence, not independent
+review or acceptance. No native KiCad or full historical suite was run.
+
+| Executed file | PASS | Technical reason / independent evidence |
+| --- | ---: | --- |
+| [test_source_checked_preparation.py](../../../evaluation/kicad-reader/test_source_checked_preparation.py) | 22 | New receipt/request endpoint; exact span/literal controls, shared accounting, no execution, deterministic/deep immutable output; all 16 corners use existing separately authored C1/C2 literal oracles |
+| [test_source_checked_preflight.py](../../../evaluation/kicad-reader/test_source_checked_preflight.py) | 66 | Admission ledger is extended; preserve structural and policy rejection |
+| [test_source_checked_bytes.py](../../../evaluation/kicad-reader/test_source_checked_bytes.py) | 15 | Retained computed artifact records add exactly 8 x 4 node occurrences plus artifact ID/hash text; byte mutation and hash gating retained |
+| [test_source_checked_declarations.py](../../../evaluation/kicad-reader/test_source_checked_declarations.py) | 11 | Checker recording, enum/ref charging and shared parsed observation |
+| [test_source_checked_boundaries.py](../../../evaluation/kicad-reader/test_source_checked_boundaries.py) | 17 | Private operation-owned ledger continuation; prior fault spy forwards new private keywords |
+| [test_c1_c2_source_membership.py](../../../evaluation/kicad-reader/test_c1_c2_source_membership.py) | 40 | Scanner now retains exact pad-header spans; membership callback remains optional |
+| [test_c1_c2_source_pose.py](../../../evaluation/kicad-reader/test_c1_c2_source_pose.py) | 19 | Successful pose comparisons now record facts; numeric rejection and conventions unchanged |
+| [test_c1_c2_footprint_fields.py](../../../evaluation/kicad-reader/test_c1_c2_footprint_fields.py) | 12 | Direct layer/attr checker gained optional recording |
+| [test_c1_c2_artifact_binding.py](../../../evaluation/kicad-reader/test_c1_c2_artifact_binding.py) | 9 | Reuse parsed observation, record artifact comparisons and deterministic context |
+| [test_outline_decision.py](../../../evaluation/kicad-reader/test_outline_decision.py) | 29 | Extracted private parsed gate preserves public byte API behavior |
+| [test_boundary_orchestration.py](../../../tests/test_boundary_orchestration.py) | 9 | New prepared request integrates with existing one-candidate-call orchestration |
+
+New test names (parametrizations and exact IDs are in JUnit):
+`test_complete_receipt_request_and_independent_corners`,
+`test_no_duplicate_parse_one_ledger`, `test_c2_center_conflict_atomic`,
+`test_internal_span_fault_is_atomic` (missing/lines/bounds/literal),
+`test_shared_ledger_exact_and_over_budget_private_cap` (nodes/text_bytes/refs),
+`test_determinism_and_deep_immutability`,
+`test_context_conflicts_no_execution` (scope/translation/side/reference/empty-contours/coverage/membership),
+`test_existing_orchestration_one_candidate_call`, and
+`test_serialization_charge_size_independent` (three JSON encoding cases).
+
+The real positive verifies eight hashes and one operation ledger, seven JSON parses,
+immutable complete output and 16 independent corners. C2 center.x +0.001 changes a
+caller declaration while the admitted source bytes remain unchanged; it returns
+SOURCE_CONFLICT with pose span evidence and no usable output. Span faults are
+explicit internal metadata doubles. Exact/one-over accounting uses private lowered
+caps at measured operation use, not a claim that the fixed real fixture reaches
+every public policy maximum. Preparation invokes neither binding nor candidates;
+subsequent successful binding invokes the candidate API exactly once with unchanged
+source-membership/import-ready assurances. Decimal expected values are serialized
+as strings, preserving their distinction from observed numeric values.
+
+The [first saved attempt](../../../evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/result.json)
+remains preserved: 247 PASS / 2 FAIL, due to the old artifact-accounting assertion
+and private spy signature. Its superseding run is H249, not an erased failure.
+Earlier transcript-only development runs caught an order-dependent receipt context
+and were followed by passing targeted checks; they are not durable H249 evidence.
+Historical H233/H30 and accepted subsets remain valid for their recorded revisions;
+H249 justifies the changed interfaces rather than resetting historical acceptance.
+
+Reuse classification: **REUSABLE** for this exact tested pinned construction slice;
+**INSUFFICIENT** for complete P01/P06/P07/P08/P21. General format/construct support,
+rotated-bottom import, full outline/publication behavior, effective copper and full
+import bounds remain open. Receipt status is selected-source-declarations-checked,
+not authentication or an import support allowlist entry.
+
+Next action: independent review of the uncommitted implementation/evidence, especially
+enclosing JSON provenance, diagnostic/metadata budget ownership and unchanged
+assurances. Owner authorization is required before committing implementation or
+pushing. No automatic broader regression or normative/task promotion follows.
+
+## E-PR / H55 - targeted audit fixes, 2026-11-15
+
+The owner relayed independent audit **FIX REQUIRED** (F1-F3 MEDIUM, F4 LOW) and
+authorized these fixes only. This supersedes the previous next-action proposal,
+not H249's recorded results. E-PR still maps to P01/P06/P07/P08/P21; all 47 original
+scenario identities and verification/acceptance status cells remain unchanged.
+All five aggregate scenarios remain PARTIAL. No normative text or checkbox changed.
+
+Changes: [preparation `_context` and `_Receipt.json_conflict`](../../../evaluation/kicad-reader/source_checked_preparation.py),
+[artifact `_records_from_verified`](../../../evaluation/kicad-reader/c1_c2_artifact_binding.py),
+[boundary `_links_from_verified`](../../../evaluation/kicad-reader/source_checked_boundaries.py),
+and [preparation tests](../../../evaluation/kicad-reader/test_source_checked_preparation.py).
+Public signatures and public resource limits are unchanged. Existing intermediate
+checker calls without a recorder retain their API; preparation supplies the private
+collector for richer failure provenance.
+
+| Finding | New test | Demonstrated scope |
+| --- | --- | --- |
+| F1 | `test_duplicate_boundary_evidence_ids_atomic` | DUPLICATE_ID / evidence_id, identical reversed-order report, no receipt/request, forbidden binding/candidate spies |
+| F2 | `test_boundary_vertex_conflict_provenance` | Altered caller vertex with unchanged pinned bytes; actual admitted hash, artifact/parent/pad IDs, expected/actual, enclosing byte span/line range, root structural pointer and comparison field; atomic deterministic failure, zero execution |
+| F3 | `test_two_invalid_parents_canonical_diagnostic` | Two simultaneously invalid parents after admission: C1 basis/frame mismatch and C2 translated datum; reversed order yields identical failure; isolated C2 yields the distinct datum failure |
+| F4 | `test_independent_artifact_accounting` | Isolated post-admission byte phase: eight record nodes + 24 scalar fields = 32 nodes; 78 ID bytes + 16 x 64 hash bytes = 1102 text bytes; zero refs; 1,117,036 hashed bytes |
+| F4 | `test_independent_reference_accounting` | Outer tuple + three records each with three fields = 13 nodes; three occurrences of pcb/hash/x = 204 text bytes and three refs, including repeated object identity |
+| F4 | `test_independent_serialization_accounting` | Literal JSON `["a",true,null]`: four metadata nodes, one source text byte + 15 output bytes = 16; serializer spy checks charging before dumps |
+| F4 | `test_independent_failure_diagnostic_reservation` | Independently authored wire-envelope overhead; 4096-byte issue retained, 4097-byte issue replaced by INPUT_LIMIT_EXCEEDED / issue_bytes under existing separate diagnostic reservation |
+
+The accounting expectations are authored from the record/wire shapes, not read
+from implementation counters. Artifact accounting explicitly bypasses admission
+to isolate its increment. These focused oracles supplement H249's measured-use
+private-cap tests; they do not certify all end-to-end increments/public endpoints.
+Boundary JSON provenance is **document-enclosing**, not exact token provenance.
+Caller context/coverage metadata remains unauthenticated. Report/transport failures
+have artifact scope; parent/pad identities are included only where applicable.
+
+**H55:** 55 PASS / 0 FAIL / 0 SKIP, 45.86 s, exit 0:
+29 preparation cases (22 existing + seven new), 17 boundary-checker cases and nine
+artifact-binding cases. Regression reason: preparation context and private conflict
+callbacks changed; unrelated historical suites/native KiCad/Windows runners omitted.
+[Exact invocation/environment](../../../evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/invocation.json),
+[JUnit identities/results](../../../evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/pytest.xml),
+[stdout](../../../evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/stdout.txt),
+[result](../../../evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/result.json),
+[input pre-hashes](../../../evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/pre-run-hashes.json),
+[input post-hashes](../../../evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/post-run-hashes.json),
+[history pre-hashes](../../../evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/history-pre-hashes.json),
+[history post-hashes](../../../evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/history-post-hashes.json).
+All 82 inputs and 23 history files matched before/after. H249 and earlier evidence
+were not overwritten. The preserved [first fix attempt](../../../evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/result.json)
+was 54 PASS / 1 FAIL: F3's first fixture failed admission instead of reaching parent
+context validation. The corrected admitted-but-inconsistent fixture passed a focused
+rerun and H55. Earlier quick runs are transcript-only, not substitutes for H55.
+
+Reuse: REUSABLE for this pinned audited-fix slice; INSUFFICIENT for complete
+P01/P06/P07/P08/P21, broader import, effective copper or publication. Results are
+implementer verification pending independent re-review of F1-F4. No implementation
+commit, push or further acceptance promotion is authorized by this record.

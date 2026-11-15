@@ -35,7 +35,7 @@ class BoundaryRecordCheckSuccess:
     def effective_copper_geometry(self): return 'not-verified'
 
 
-def _links_from_verified(raw, ledger):
+def _links_from_verified(raw, ledger, recorder=None):
     """Pinned report/transport checks, not runtime attestation or arbitrary JSON."""
     pins={p.artifact_id:p.sha256 for p in pre.PINS}
     links=[]
@@ -43,11 +43,13 @@ def _links_from_verified(raw, ledger):
     def equal(field, expected, actual):
         if expected!=actual or type(expected) is not type(actual):
             raise artifacts._Conflict(field,expected,actual)
+        if recorder is not None: recorder.json_check(artifact,None,None,field,expected,actual)
     try:
         for group in ('C1','C2'):
             artifact=group+'_transport'
             transport=json.loads(raw[artifact])
             source._charge(ledger,transport)
+            if recorder is not None: recorder.parsed_json(artifact,transport)
             equal('transport.success',True,transport['success'])
             ev=transport['result']['evidence']
             for key,value in (('root_exit',0),('active_processes',0),
@@ -60,6 +62,7 @@ def _links_from_verified(raw, ledger):
             artifact=group+'_report'
             report=json.loads(raw[artifact])
             source._charge(ledger,report)
+            if recorder is not None: recorder.parsed_json(artifact,report)
             for key in ('transport','cleanup','staging_removed','inputs_unchanged','fixture_unchanged','passed'):
                 equal('report.'+key,True,report[key])
             equal('report.worker_exit',0,report['worker_exit'])
@@ -71,6 +74,9 @@ def _links_from_verified(raw, ledger):
             links.append(BoundaryArtifactLink(*args))
         return tuple(links)
     except artifacts._Conflict as error:
+        if recorder is not None:
+            return source._failure(recorder.json_conflict(
+                artifact,None,None,error.field,error.expected,error.actual))
         return source._failure(pre.ContractError(pre.ErrorCode.SOURCE_CONFLICT,
             'Pinned boundary report/transport disagree.',error.field,'Preserve and inspect artifact evidence.',
             artifact_id=artifact,expected=repr(error.expected),actual=repr(error.actual),
@@ -79,17 +85,27 @@ def _links_from_verified(raw, ledger):
 
 def check_boundary_records(admitted_bytes, inventory, declarations, caller_context, profile, limits):
     ledger=pre.Ledger()
-    checked=source._check_source(admitted_bytes,inventory,declarations,caller_context,profile,limits,ledger)
+    return _check_boundary_records(admitted_bytes,inventory,declarations,caller_context,profile,limits,ledger)
+
+
+def _check_boundary_records(admitted_bytes, inventory, declarations, caller_context, profile, limits, ledger,
+                            *, recorder=None):
+    """Operation-private continuation: the caller owns this ledger through assembly."""
+    state={}
+    checked=source._check_source(admitted_bytes,inventory,declarations,caller_context,profile,limits,ledger,
+                                 state=state,recorder=recorder)
     if isinstance(checked,pre.PreparationFailure):return checked
     raw={item.artifact_id:item.data for item in admitted_bytes}
     try:
-        links=_links_from_verified(raw,ledger)
+        if recorder is not None: recorder.parsed_json('observation',state['observation'])
+        links=(_links_from_verified(raw,ledger) if recorder is None else
+               _links_from_verified(raw,ledger,recorder))
         if isinstance(links,pre.PreparationFailure):return links
         ctx=caller_context
         request=pre.c.PadCandidateRequest(ctx.schema_version,ctx.candidate_policy,ctx.board_id,
             ctx.candidate_scope_id,ctx.target_frame,inventory,declarations.parents,declarations.pads)
         records=artifacts._records_from_verified(request,declarations.boundaries,raw,
-            charge=lambda value:source._charge(ledger,value))
+            charge=lambda value:source._charge(ledger,value),observation=state['observation'],recorder=recorder)
         if isinstance(records,artifacts.ArtifactBindingFailure):return source._failure(records.diagnostic)
         return BoundaryRecordCheckSuccess(checked,records,links,ledger.nodes,ledger.text_bytes,
                                          ledger.refs,ledger.hashed_bytes)

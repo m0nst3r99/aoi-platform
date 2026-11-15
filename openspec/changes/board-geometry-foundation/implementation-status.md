@@ -1,3 +1,107 @@
+## Source evidence / PreparedRequest audit fixes - 2026-11-15
+
+User-relayed independent review decision: FIX REQUIRED, three MEDIUM findings
+(F1-F3) and one LOW verification gap (F4). This update records implementer fixes
+and verification; it does not claim an independent reviewer rerun or acceptance.
+
+- F1: [preparation `_context`](../../../evaluation/kicad-reader/source_checked_preparation.py)
+  rejects duplicate boundary evidence IDs with DUPLICATE_ID / evidence_id, matching
+  downstream binding, before a usable receipt/request can be emitted.
+- F2: [receipt `json_conflict`](../../../evaluation/kicad-reader/source_checked_preparation.py)
+  retains admitted artifact identity/computed hash, parent/pad identities when
+  applicable, expected/actual JSON values, validated enclosing byte/line span,
+  root JSON pointer and comparison locator. The artifact-record and report/transport
+  comparison failure paths call it when preparing. Metadata/serialized values use
+  the shared ledger; final diagnostic retention keeps the existing bounded sink.
+  Enclosing spans are explicitly labelled, never represented as exact token spans.
+- F3: `_context` validates parents in lexical footprint-ID order. The test supplies
+  two different context faults which pass admission, reverses parent order and
+  requires identical reports; it also isolates the second fault.
+- F4: focused independent expected increments: eight retained artifact records
+  32 nodes / 1102 text bytes / zero refs (including computed hashes); three reference
+  occurrences 13 nodes / 204 text bytes / three refs; serialization example four
+  nodes / 16 text bytes charged before dumps. An independently authored diagnostic
+  envelope tests 4096-byte acceptance and 4097-byte bounded truncation. No expected
+  increment is derived from implementation counters; public limits are unchanged.
+
+Verification: **55 PASS / 0 FAIL / 0 SKIP in 45.86 s**, exit 0: 29 preparation,
+17 boundary checker and nine artifact-binding cases. Only changed preparation and
+diagnostic callback paths justify these regressions. See [matrix E-PR/H55](verification-matrix.md#e-pr--h55---targeted-audit-fixes-2026-11-15),
+[invocation](../../../evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/invocation.json),
+[JUnit](../../../evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/pytest.xml),
+and [result](../../../evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/result.json).
+82 input files and 23 historical evidence files matched pre/post size/SHA-256.
+The first saved run (54 PASS / 1 FAIL) is retained: its F3 fixture was rejected at
+admission before reaching the intended context validator. The corrected fixture
+reaches that validator; the final run verifies both distinct faults and ordering.
+
+No public signatures/limits, normative requirements, scenario acceptance cells or
+task checkboxes changed. This is a focused accounting oracle, not exhaustive
+end-to-end accounting certification at every public resource cap. The general
+import and source-semantics gaps remain; P01/P06/P07/P08/P21 stay PARTIAL.
+Next action: independent re-review of F1-F4. Master remains `c44e4b2`; all
+implementation/fixes are uncommitted, no push. The previous implementation record
+and H249 below remain historical evidence for their recorded revision.
+
+## Source evidence / PreparedRequest implementation - 2026-11-14
+
+Documentation baseline commit: `c44e4b2d2b5aadd29cc94e4cfd6c5f6171f3b210`.
+Implementation and new evidence remain uncommitted, pending owner review.
+The owner approved the bounded design changes; the older design-review note below
+is historical and no longer the current implementation blocker.
+
+Implemented [prepare_source_checked_pad_request](../../../evaluation/kicad-reader/source_checked_preparation.py)
+for exactly the eight pinned C1+C2 artifacts, two parents and four pads. Existing
+public preparation input/output dataclasses and public phase entrypoints remain;
+private checker helpers gained optional recording/shared-observation arguments.
+SourceRecord gained defaulted header-token span metadata. No candidate algorithm
+or normative specification changed.
+
+The operation retains computed hash/size facts, records successful comparisons at
+the checker, validates exact PCB token/expression spans and numeric literals,
+uses explicitly enclosing JSON document spans with root structural locators,
+checks caller frame/context and normalized datum without binding, and constructs
+immutable receipt/request outputs atomically. Caller provenance/context and coverage
+claims remain declarations. Receipt status stays selected-source-declarations-checked;
+binding source-membership/coverage assurances and import/publication authority do
+not change. Check values represented as Decimal strings retain their distinction
+from actual JSON numbers; tolerances and orientation conventions are unchanged.
+
+One operation ledger covers admission through output, including retained artifact
+records and evidence-reference occurrences; JSON sizes are charged before output
+serialization. Each of seven JSON artifacts parses once; PCB scans once in this
+flow. Preparation calls no binding/candidate entrypoint. Subsequent orchestration
+retains one candidate call. Independent C1/C2 literal oracles check all 16 corners.
+
+Verification: **249 PASS, 0 FAIL, 0 SKIP in 35.62 s**, exit 0; 22 new preparation
+cases plus 227 narrowly affected regressions, Python 3.11.9 / pytest 9.1.1 / Windows
+10.0.26300. Exact commands/node IDs and raw output:
+[invocation](../../../evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/invocation.json),
+[JUnit](../../../evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/pytest.xml),
+[result](../../../evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/result.json).
+All 82 pre/post manifest inputs matched size/SHA-256, including the external PCB.
+No native KiCad, expensive runner or full historical suite was executed.
+
+The saved first regression attempt remains in
+[source-checked-preparation-portable-01](../../../evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/):
+247 PASS / 2 FAIL. Its failures exposed an old no-new-artifact-accounting assertion
+and a private spy lacking shared-state keyword forwarding. Updated tests retain
+hash, exact resource-accounting and charge-before-retention assertions. Earlier
+transcript-only development runs also found and corrected order-dependent receipt
+context. The final run above is the applicable verification, not those attempts.
+
+Limits: exact/over-budget tests use explicitly labelled private caps equal to
+measured operation use (then one less), for nodes/text/refs; they do not claim full
+pinned-input execution at every fixed aggregate policy cap. Span corruption tests
+are internal metadata doubles, not mutated source admitted through hashes. These
+are implementer results, not reviewer reruns or new scenario acceptance. P01/P06/
+P07/P08/P21 remain PARTIAL, all task checkboxes unchanged; no general KiCad importer,
+bottom-side/general-construct coverage, effective copper, Gerber/BOM or camera work.
+
+Next action: independent review of receipt/provenance and budget accounting against
+[matrix E-PR/H249](verification-matrix.md), including the enclosing JSON locator
+convention and labelled private fault controls; no automatic commit or push.
+
 ## Source-evidence design review - 2026-11-14
 
 Static review at master `d1e7117`: DESIGN CHANGES REQUIRED before complete receipt/

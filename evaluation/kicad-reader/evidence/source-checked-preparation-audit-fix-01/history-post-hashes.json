@@ -1,0 +1,58 @@
+﻿{
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-01\\invocation.json":  {
+                                                                                                                               "sha256":  "e9ed2d8c86c8615d4d6444770b604195c50c2098c2f21404fb68716ce35a91a4",
+                                                                                                                               "size":  1836
+                                                                                                                           },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-01\\pre-run-hashes.json":  {
+                                                                                                                                   "sha256":  "7139a86ee5ded7a4d3f16001f868b26adc0997780a44cb500c405c31617a8975",
+                                                                                                                                   "size":  35912
+                                                                                                                               },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-01\\pytest.xml":  {
+                                                                                                                          "sha256":  "7a3e58aeee789fd10e0151529616df2c4d15bd51aa314b728b390c05b7e75110",
+                                                                                                                          "size":  37050
+                                                                                                                      },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-01\\result.json":  {
+                                                                                                                           "sha256":  "485499ab7de867c0358713ca287d325492f537f08455bd0e4a024a6fa0e46a8c",
+                                                                                                                           "size":  84
+                                                                                                                       },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-01\\stderr.txt":  {
+                                                                                                                          "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                                                                                                          "size":  0
+                                                                                                                      },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-01\\stdout.txt":  {
+                                                                                                                          "sha256":  "83203e36f98ca760cc488e919311576bc225321fb91e11ab202e3ec186676ed6",
+                                                                                                                          "size":  4438
+                                                                                                                      },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-02\\environment.json":  {
+                                                                                                                                "sha256":  "0c0b171b2a5c63de0ddc6e1f7efc25cdff91d31043c328434dc31000216c0211",
+                                                                                                                                "size":  159
+                                                                                                                            },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-02\\invocation.json":  {
+                                                                                                                               "sha256":  "6f307d73b4dbda40b88b17f8f4abe3cc69ddd928c31694f72b4db5ddf6a1704b",
+                                                                                                                               "size":  1836
+                                                                                                                           },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-02\\post-run-hashes.json":  {
+                                                                                                                                    "sha256":  "213555866d9a29916266020302d79e6e55016ec4e7cefb85c85b82280bedeae2",
+                                                                                                                                    "size":  35912
+                                                                                                                                },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-02\\pre-run-hashes.json":  {
+                                                                                                                                   "sha256":  "213555866d9a29916266020302d79e6e55016ec4e7cefb85c85b82280bedeae2",
+                                                                                                                                   "size":  35912
+                                                                                                                               },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-02\\pytest.xml":  {
+                                                                                                                          "sha256":  "8b6407f29ec87415a005b97bf7e1feff9b6ba056affa32a71345a219e79fd4e5",
+                                                                                                                          "size":  35246
+                                                                                                                      },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-02\\result.json":  {
+                                                                                                                           "sha256":  "f19eb3c725fe39a767f7fa492f0a36308c24f0b82050d59eac77f99ea7325e40",
+                                                                                                                           "size":  141
+                                                                                                                       },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-02\\stderr.txt":  {
+                                                                                                                          "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                                                                                                          "size":  0
+                                                                                                                      },
+    "C:\\dev\\aoi-platform\\evaluation\\kicad-reader\\evidence\\source-checked-preparation-portable-02\\stdout.txt":  {
+                                                                                                                          "sha256":  "d090cae86d26570d8ca2dccc143ba61375ced54ba59bf073631c8f58b211b967",
+                                                                                                                          "size":  694
+                                                                                                                      }
+}

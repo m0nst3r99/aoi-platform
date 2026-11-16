@@ -5,6 +5,10 @@
 /evaluation/windows_runner/** -text
 /evaluation/pad-candidate/** -text
 
+# Accepted Slice A evidence: preserve exact snapshot and captured-log bytes.
+/evaluation/canonical-outline/evidence/slice-a-01/** -text
+/evaluation/canonical-outline/evidence/slice-a-remediation-01/** -text
+
 # Reviewed candidate source/test bytes referenced by evidence hashes.
 /src/aoi_platform/pad_candidates.py -text
 /tests/test_pad_candidates.py -text

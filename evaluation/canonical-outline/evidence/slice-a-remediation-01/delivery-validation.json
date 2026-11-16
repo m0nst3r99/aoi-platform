@@ -1,0 +1,49 @@
+{
+  "changed_files": [
+    "HANDOFF.md",
+    "openspec/changes/board-geometry-foundation/implementation-status.md",
+    "openspec/changes/board-geometry-foundation/verification-matrix.md",
+    "src/aoi_platform/geometry/canonical_outline.py",
+    "tests/test_canonical_outline.py",
+    "tests/test_outline_legacy_differential.py"
+  ],
+  "final_hashes": {
+    "HANDOFF.md": {
+      "size": 165370,
+      "sha256": "38475c91e2af169241da8fdab03482017dc231e662442a34df5633e0d8746329"
+    },
+    "openspec/changes/board-geometry-foundation/implementation-status.md": {
+      "size": 158371,
+      "sha256": "1507d7720721307482122e2a70413f28b80bf5ce492eb9042acfa5052bd84338"
+    },
+    "openspec/changes/board-geometry-foundation/verification-matrix.md": {
+      "size": 67940,
+      "sha256": "11db07457f643343372ef5fe903164e9b7d1f8cc4cb5bf6f630bb8d2b147c408"
+    },
+    "src/aoi_platform/geometry/canonical_outline.py": {
+      "size": 21673,
+      "sha256": "e5d6a9e770f1e21203aee0e3a799cfc0a8a63951c9348b6fb695543bf8df1917"
+    },
+    "tests/test_canonical_outline.py": {
+      "size": 18903,
+      "sha256": "40559c4829ba5f064afcd0935d9f947d4266d43fca22acdc35fbb5ca37af7924"
+    },
+    "tests/test_outline_legacy_differential.py": {
+      "size": 5244,
+      "sha256": "623ba325c5342ea4a017251e3df1e9598792755182543604d1c49a4a2024491c"
+    }
+  },
+  "reconstructed_snapshot_files": {
+    "pre-remediation": 32,
+    "red-01": 32,
+    "targeted-02": 32,
+    "consolidated-03": 32
+  },
+  "historical_hashes_preserved": 58,
+  "scenario_rows_unchanged": 47,
+  "handoff_history_preserved": true,
+  "new_link_targets_verified": 15,
+  "unrelated_untracked_paths_preserved": true,
+  "index_empty": true,
+  "git_diff_check_exit": 0
+}

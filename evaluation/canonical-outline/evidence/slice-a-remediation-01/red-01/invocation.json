@@ -1,0 +1,22 @@
+{
+  "command": [
+    "C:\\dev\\aoi-platform\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_canonical_outline.py",
+    "tests/test_outline_legacy_differential.py",
+    "-k",
+    "remediation",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=C:\\dev\\aoi-platform\\evaluation\\canonical-outline\\evidence\\slice-a-remediation-01\\red-01\\pytest.xml"
+  ],
+  "cwd": "C:\\dev\\aoi-platform",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "pytest": "9.1.1",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "env": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  }
+}

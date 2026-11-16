@@ -1,0 +1,79 @@
+{
+  "exit": 0,
+  "wall_seconds": 0.9708112999796867,
+  "inputs_unchanged": true,
+  "historical_unchanged": true,
+  "historical_files": 58,
+  "counts": {
+    "PASS": 13,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "tests": [
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_metadata_before_helpers[transform_id]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_metadata_before_helpers[target_id]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_metadata_before_helpers[target_origin]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_metadata_before_helpers[provenance]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_metadata_before_helpers[source_id]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_transform_work_literal_oracle",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_exhaustion_after_source[0-0-1-0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_exhaustion_after_source[63-0-1-0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_exhaustion_after_source[127-0-1-64]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_exhaustion_after_source[128-8-1-128]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_remediation_earlier_pair_precedes_later_fault[frame]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_remediation_earlier_pair_precedes_later_fault[closure]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_remediation_coincident_arc_overlap",
+      "status": "PASS"
+    }
+  ]
+}

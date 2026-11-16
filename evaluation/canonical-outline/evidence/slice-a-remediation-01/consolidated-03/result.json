@@ -1,0 +1,909 @@
+{
+  "exit": 0,
+  "wall_seconds": 31.12513649999164,
+  "inputs_unchanged": true,
+  "historical_unchanged": true,
+  "historical_files": 58,
+  "counts": {
+    "PASS": 179,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "tests": [
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_literal_area_bounds_perimeter_and_winding[holes0-200]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_literal_area_bounds_perimeter_and_winding[holes1-192]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_literal_area_bounds_perimeter_and_winding[holes2-188]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_topology_negative_literals[holes0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_topology_negative_literals[holes1]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_topology_negative_literals[holes2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_topology_negative_literals[holes3]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_topology_negative_literals[holes4]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_topology_negative_literals[holes5]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_topology_negative_literals[holes6]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_concavity_preserved",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_malformed_rings[coords0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_malformed_rings[coords1]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_malformed_rings[coords2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_malformed_rings[coords3]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_malformed_rings[coords4]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_open_duplicate_frame_nonfinite_atomic",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_exact_clearance_guard[9.999999999999999e-09-False]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_exact_clearance_guard[1e-08-False]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_exact_clearance_guard[1.0000000000000002e-08-True]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_exact_clearance_guard[0.001-True]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_exact_edge_guard[9.999999999999999e-09-False]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_exact_edge_guard[1e-08-False]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_exact_edge_guard[1.0000000000000002e-08-True]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_literal_transform_oracles_and_provenance[matrix0-expected0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_literal_transform_oracles_and_provenance[matrix1-expected1]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_literal_transform_oracles_and_provenance[matrix2-expected2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_ordering_immutability_and_reversal",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_limits_and_hash_conflicts",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_32_cutouts_and_512_edges_exact_work_oracle",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_independent_budget_boundary_and_arithmetic",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_rational_orientation_oracle[coords0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_rational_orientation_oracle[coords1]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_rational_orientation_oracle[coords2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_rational_orientation_oracle[coords3]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_rational_distance_oracle[p0-a0-b0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_rational_distance_oracle[p1-a1-b1]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_rational_distance_oracle[p2-a2-b2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_rational_distance_oracle[p3-a3-b3]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_metadata_reference_and_diagnostic_exact_limits",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_work_exhaustion_is_atomic_without_limit_changes[False]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_work_exhaustion_is_atomic_without_limit_changes[True]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_truncation_and_two_invalid_rings_order",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_transform_rejection_and_policy",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_exact_area_guard[9.999999999999999e-09-False]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_exact_area_guard[1e-08-False]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_exact_area_guard[1.0000000000000002e-08-True]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_metadata_before_helpers[transform_id]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_metadata_before_helpers[large_transform_id]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_metadata_before_helpers[target_id]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_metadata_before_helpers[target_origin]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_metadata_before_helpers[provenance]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_metadata_before_helpers[source_id]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_transform_work_literal_oracle",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_exhaustion_after_source[0-0-1-0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_exhaustion_after_source[63-0-1-0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_exhaustion_after_source[127-0-1-64]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_remediation_exhaustion_after_source[128-8-1-128]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_polygon_differential[coords0-holes0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_polygon_differential[coords1-holes1]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_polygon_differential[coords2-holes2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_polygon_differential[coords3-holes3]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_polygon_differential[coords4-holes4]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_polygon_differential[coords5-holes5]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_polygon_differential[coords6-holes6]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_polygon_differential[coords7-holes7]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_polygon_differential[coords8-holes8]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_polygon_differential[coords9-holes9]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_two_arc_circle_differential[True]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_two_arc_circle_differential[False]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_capacity_differential[512]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_capacity_differential[513]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_first_error_and_mixed_arc_differential[open-and-frame]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_first_error_and_mixed_arc_differential[wrong-type]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_first_error_and_mixed_arc_differential[holes-before-count]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_first_error_and_mixed_arc_differential[major-arc]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_first_error_and_mixed_arc_differential[mixed]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_remediation_earlier_pair_precedes_later_fault[frame]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_remediation_earlier_pair_precedes_later_fault[closure]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_outline_legacy_differential",
+      "name": "test_remediation_coincident_arc_overlap",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_circle_point_location_has_independent_oracles[0-0-inside]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_circle_point_location_has_independent_oracles[0-9-inside]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_circle_point_location_has_independent_oracles[0--9-inside]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_circle_point_location_has_independent_oracles[0-10-boundary]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_circle_point_location_has_independent_oracles[10-0-boundary]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_circle_point_location_has_independent_oracles[11-0-outside]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_circle_point_location_has_independent_oracles[-11-0-outside]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_circle_point_location_has_independent_oracles[0-11-outside]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_concavity_is_not_filled_by_bounding_box",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_edge_crosses_rectangle_with_all_vertices_outside",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_enclosed_rectangle_overlap_without_boundary_intersections",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_arc_bulge_overlaps_exclusion_while_endpoints_do_not",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_arc_distance_uses_interior_extremum",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_diagonal_corner_distance_is_euclidean",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_boundary_overlap_is_geometric_fact_not_invalid_topology",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_proper_rigid_load_preserves_arc_and_independent_bounds",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_arbitrary_polygon_is_not_silently_replaced_with_rectangle",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_rotated_semicircle_checks_loaded_interior_extrema",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_load_helper_rejects_unvalidated_datum_mapping",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_load_helper_rejects_same_id_different_source_context",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_fixture_geometry",
+      "name": "test_rectangle_relation_rejects_wrong_frame",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_required_oracles[280-550-0-pass-extents0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_required_oracles[550-280-90-pass-extents1]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_required_oracles[550-280-0-fail-extents2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_required_oracles[280.001-550-0-fail-extents3]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_required_oracles[280-550.001-0-fail-extents4]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_required_oracles[550-280--90-pass-extents5]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_required_oracles[280-550-180-pass-extents6]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_general_rotation_and_negative_coordinates",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_machine_translation_does_not_affect_capacity",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_arc_extremum_between_endpoints_is_included[False]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_arc_extremum_between_endpoints_is_included[True]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_two_arc_circle_has_complete_bounds",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_arc_bulge_exceeds_capacity_while_every_endpoint_fits",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_major_arc_extrema_and_wrapped_angles",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_invalid_polygon_topology_rejected[coordinates0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_invalid_polygon_topology_rejected[coordinates1]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_invalid_polygon_topology_rejected[coordinates2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_invalid_polygon_topology_rejected[coordinates3]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_open_contour_and_arc_radius_mismatch_rejected",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_arc_crosses_nonadjacent_edge",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_rotation_rejects_nonfinite_or_coerced[nan]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_rotation_rejects_nonfinite_or_coerced[inf]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_rotation_rejects_nonfinite_or_coerced[-inf]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_rotation_rejects_nonfinite_or_coerced[True]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_rotation_rejects_nonfinite_or_coerced[0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_unsupported_geometry_and_units_are_not_guessed",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_capacity_records_are_fixed_and_immutable",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_missing_physical_envelopes_never_imply_readiness",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_supplied_camera_rectangle_still_unresolved_with_evidence",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_envelope_records_preserve_geometry_margin_and_synthetic_evidence",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_invalid_fixture_records_fail[changes0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_invalid_fixture_records_fail[changes1]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_invalid_fixture_records_fail[changes2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_invalid_fixture_records_fail[changes3]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_invalid_fixture_records_fail[changes4]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_invalid_fixture_records_fail[changes5]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_invalid_fixture_records_fail[changes6]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_wrong_frame_geometry_and_missing_evidence_fail",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_fit_inputs_cannot_mix_contexts[machine_id]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_fit_inputs_cannot_mix_contexts[board_revision_id]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_fit_inputs_cannot_mix_contexts[capture_id]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_wrong_source_and_unvalidated_load_are_rejected",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_supplied_fixture_cannot_be_reported_pass_without_explicit_load",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_qualified_record_requires_explicit_separate_references",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_outline_coordinates_reject_nonfinite[nan]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_outline_coordinates_reject_nonfinite[inf]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_outline_coordinates_reject_nonfinite[-inf]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_refuse_load_scaling_even_if_raw_conventions_match",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_fixture_exact_outer_contact_and_small_violation[0-0-pass]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_fixture_exact_outer_contact_and_small_violation[0.001-0-fail]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_fixture_exact_outer_contact_and_small_violation[0-0.001-fail]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_exclusion_closed_filled_region_contract[10-2-2-2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_exclusion_closed_filled_region_contract[10-10-2-2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_exclusion_closed_filled_region_contract[4--2-2-14]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_exclusion_closed_filled_region_contract[4-4-2-2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_exclusion_closed_filled_region_contract[-1--1-12-12]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_outer_margin_exact_and_one_micron_shortfall[2-pass]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_outer_margin_exact_and_one_micron_shortfall[1.999-fail]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_exclusion_margin_exact_and_one_micron_shortfall[5-pass]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_exclusion_margin_exact_and_one_micron_shortfall[4.999-fail]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_exclusion_margin_uses_euclidean_corner_distance",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_fixture_arc_extremum_not_endpoint_bounds",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_arc_tangent_exclusion_is_forbidden",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_missing_margin_unresolved_and_camera_rectangle_cannot_authorize",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_nonrectangular_envelope_rejected_even_with_missing_inputs[False]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_nonrectangular_envelope_rejected_even_with_missing_inputs[True]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_known_geometry_requires_full_load_target_match[change0]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_known_geometry_requires_full_load_target_match[change1]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_known_geometry_requires_full_load_target_match[change2]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_known_geometry_requires_full_load_target_match[change3]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_known_geometry_requires_full_load_target_match[change4]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_known_fixture_rejects_unvalidated_mapping",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_fixture_diagnostics_are_independent_of_exclusion_input_order",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_arc_interior_exclusion_clearance_through_api[3-pass]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_arc_interior_exclusion_clearance_through_api[2.999-fail]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_loaded_rotation_is_separate_from_capacity_test_rotation",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_concave_board_does_not_collide_via_bounding_box",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_envelopes",
+      "name": "test_successful_fit_retains_capture_and_synthetic_evidence",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "src/aoi_platform/geometry/canonical_outline.py": {
+    "size": 20008,
+    "sha256": "4c27c5ee2e454291e32ecaab8660d776c14f9537a764a389e6ea48b4402e3071"
+  },
+  "src/aoi_platform/geometry/_outline_exact.py": {
+    "size": 4901,
+    "sha256": "920c0f4fa840184bfda8301ec0efb02209b3d928667141a1218050e670a7662d"
+  },
+  "src/aoi_platform/geometry/_contour_validation.py": {
+    "size": 334,
+    "sha256": "bce7d42659e8c6012a52f9bf536a9e9fdde63640ec0ae172d9482779227eac8c"
+  },
+  "src/aoi_platform/geometry/outlines.py": {
+    "size": 12132,
+    "sha256": "9101947004838d9da140a0ebea58b9ac979b490cef4686c9769cd801130b84f6"
+  },
+  "src/aoi_platform/geometry/models.py": {
+    "size": 5207,
+    "sha256": "d334905bcf758e73ba5266961b584efdd453b573f964586a3549c9a5c6bb8356"
+  },
+  "src/aoi_platform/geometry/transforms.py": {
+    "size": 15725,
+    "sha256": "ddfea94671d0ebd674b9f36991d9f076ad2ebba939e316b5706987cf2171cc00"
+  },
+  "src/aoi_platform/geometry/reports.py": {
+    "size": 8091,
+    "sha256": "558aa2528825e3d42b84b7291334b5afd754c602405c1b552a73f23af120d926"
+  },
+  "src/aoi_platform/geometry/fixture_geometry.py": {
+    "size": 7070,
+    "sha256": "829aa0cb55e7956bff16ca8fccf67bc49fb7dfd3bd1f652775add380f2ffb61e"
+  },
+  "src/aoi_platform/geometry/envelopes.py": {
+    "size": 20764,
+    "sha256": "f3d8d7e91a7dccb2f0d850bda2ab2f19f128b2672b67eee98a22979666befab8"
+  },
+  "tests/test_canonical_outline.py": {
+    "size": 14282,
+    "sha256": "353bc53cd437c7b26af300943b8ecd13cd4227420c979467eb725e33e8cd7cb3"
+  },
+  "tests/test_outline_legacy_differential.py": {
+    "size": 3833,
+    "sha256": "6f90fda3ca5d02aef49ceec5aaece4eaf5319237ab9ece38e55b2e05b50715a9"
+  },
+  "tests/test_fixture_geometry.py": {
+    "size": 6176,
+    "sha256": "32a0eaccd23f33778ea2af747bca8c3a430660a53f443630904a23c0fab37051"
+  },
+  "tests/test_envelopes.py": {
+    "size": 24050,
+    "sha256": "459d2ad1105d316932087ca2d31139b23d6786507891eb9fc5a16b95b6c02250"
+  },
+  "tests/conftest.py": {
+    "size": 557,
+    "sha256": "cd8cbf1ea9d1298378ecc08c95a1ae241192524ea6e089ddbc1a1b08a51b6941"
+  },
+  "pyproject.toml": {
+    "size": 534,
+    "sha256": "eb804386aefc3eb59dd9d6b950fbeeac4802ac094313b2e7f1bf77e0dafa12f8"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/baseline_outlines.py": {
+    "size": 11850,
+    "sha256": "30f58e3d1368d1de01eeb1e304298baa057c0ec12a559c6e485dd0a010926240"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/history-post-hashes.json": {
+    "size": 8334,
+    "sha256": "2fd707e03c966064e0acc300019727595c02fbb7ac00283ad71ba5a5bad81e18"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/history-pre-hashes.json": {
+    "size": 8334,
+    "sha256": "2fd707e03c966064e0acc300019727595c02fbb7ac00283ad71ba5a5bad81e18"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/invocation.json": {
+    "size": 1178,
+    "sha256": "22cf6aa422d7d496086f645e0d717ae8a5ac769d70a51924f1125bbaa248f0c2"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/post-run-hashes.json": {
+    "size": 35913,
+    "sha256": "f1d90ea6defcd5a70fe58d67f33f229a5365c1008771d108c4cccc4da3e93be3"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/pre-run-hashes.json": {
+    "size": 35913,
+    "sha256": "f1d90ea6defcd5a70fe58d67f33f229a5365c1008771d108c4cccc4da3e93be3"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/pytest.xml": {
+    "size": 8832,
+    "sha256": "015fa17f83840d488246af7f7cb12616637c42ffaa76ee488b124f2539dca203"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/result.json": {
+    "size": 206,
+    "sha256": "0bdaaee7526aba3fc76fbffa12771c94410e90b004d9fed9e9f550194c1520af"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/stderr.txt": {
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/stdout.txt": {
+    "size": 1630,
+    "sha256": "d9bc545d88a2e9c8083b7ab5be714d32606c046ae5f1e759c941dd661cc5e298"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/history-post-hashes.json": {
+    "size": 13814,
+    "sha256": "1a2699070add38b9a55a943d8a7f9de3b96dd1938757e2cd047763ec57600ec0"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/history-pre-hashes.json": {
+    "size": 13814,
+    "sha256": "1a2699070add38b9a55a943d8a7f9de3b96dd1938757e2cd047763ec57600ec0"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/invocation.json": {
+    "size": 1195,
+    "sha256": "c4ff6879e20dc9abe118baf8e945a2e3850be16ddaa9d76b8849dd0e502d5eae"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/post-run-hashes.json": {
+    "size": 35913,
+    "sha256": "74764327bf11c811de4aa3da348610e8260a0330200f9325ec55bf5ab230d3b0"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/pre-run-hashes.json": {
+    "size": 35913,
+    "sha256": "74764327bf11c811de4aa3da348610e8260a0330200f9325ec55bf5ab230d3b0"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/pytest.xml": {
+    "size": 8300,
+    "sha256": "2596a5d4639b2656b41fec5fe4a8bdbce5d0dc3864b594aa8d43e35c6be52a02"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/result.json": {
+    "size": 206,
+    "sha256": "7e969d1eb9af49bc12b8886e4d6d830007e944db16740bff32f97df15f6a2e1b"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/stderr.txt": {
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/stdout.txt": {
+    "size": 206,
+    "sha256": "93227851a1be8b7972e7363a3ab84332850e54cb048ac0d0f6cb9841162c305d"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/invocation.json": {
+    "size": 1836,
+    "sha256": "e9ed2d8c86c8615d4d6444770b604195c50c2098c2f21404fb68716ce35a91a4"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/pre-run-hashes.json": {
+    "size": 35912,
+    "sha256": "7139a86ee5ded7a4d3f16001f868b26adc0997780a44cb500c405c31617a8975"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/pytest.xml": {
+    "size": 37050,
+    "sha256": "7a3e58aeee789fd10e0151529616df2c4d15bd51aa314b728b390c05b7e75110"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/result.json": {
+    "size": 84,
+    "sha256": "485499ab7de867c0358713ca287d325492f537f08455bd0e4a024a6fa0e46a8c"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/stderr.txt": {
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/stdout.txt": {
+    "size": 4438,
+    "sha256": "83203e36f98ca760cc488e919311576bc225321fb91e11ab202e3ec186676ed6"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/environment.json": {
+    "size": 159,
+    "sha256": "0c0b171b2a5c63de0ddc6e1f7efc25cdff91d31043c328434dc31000216c0211"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/invocation.json": {
+    "size": 1836,
+    "sha256": "6f307d73b4dbda40b88b17f8f4abe3cc69ddd928c31694f72b4db5ddf6a1704b"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/post-run-hashes.json": {
+    "size": 35912,
+    "sha256": "213555866d9a29916266020302d79e6e55016ec4e7cefb85c85b82280bedeae2"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/pre-run-hashes.json": {
+    "size": 35912,
+    "sha256": "213555866d9a29916266020302d79e6e55016ec4e7cefb85c85b82280bedeae2"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/pytest.xml": {
+    "size": 35246,
+    "sha256": "8b6407f29ec87415a005b97bf7e1feff9b6ba056affa32a71345a219e79fd4e5"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/result.json": {
+    "size": 141,
+    "sha256": "f19eb3c725fe39a767f7fa492f0a36308c24f0b82050d59eac77f99ea7325e40"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/stderr.txt": {
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/stdout.txt": {
+    "size": 694,
+    "sha256": "d090cae86d26570d8ca2dccc143ba61375ced54ba59bf073631c8f58b211b967"
+  }
+}

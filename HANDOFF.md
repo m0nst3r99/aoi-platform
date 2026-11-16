@@ -1,5 +1,57 @@
 # Current State / Next Action
 
+Snapshot: 2026-11-16 after Slice A audit remediation; `master` at
+`2ee201dfc62fd7363336a8b099e2886e039dd59a`, ahead 0 / behind 0 against local
+`origin/master` (no live query). Index empty; Slice A and remediation uncommitted.
+Existing local-only artifacts preserved; no commit/push.
+
+- User-relayed independent verdict was FIX REQUIRED. Addressed F1 bounded transform
+  admission before helpers, F2 prepaid transform work and corrected area-finalization
+  accounting, F3 per-run byte snapshots. Added legacy competing-error and coincident
+  arc differential cases; public APIs and global numerical/work limits unchanged.
+- New consolidated verification: **179 PASS / 0 FAIL / 0 SKIP**, 30.44 s, exit 0
+  (58 canonical, 22 differential, 99 fixture/envelope). Preserved reproducer:
+  10 FAIL / 3 PASS; targeted post-fix 13 PASS. All runs have exact source snapshots,
+  commands and pre/post hashes. All 58 inventoried historical files unchanged.
+  [Remediation evidence](evaluation/canonical-outline/evidence/slice-a-remediation-01/README.md),
+  [matrix mapping](openspec/changes/board-geometry-foundation/verification-matrix.md#e-a-remediation--independent-audit-f1f3),
+  [implementation status](openspec/changes/board-geometry-foundation/implementation-status.md).
+- Historical 164 PASS and four-test follow-up refer to different revisions and
+  are not consolidated coverage of later source. New consolidated evidence applies
+  to remediation. No H249/H55/native rerun. All 47 statuses/task checkboxes unchanged.
+- Next action: independent re-review of F1/F2/F3, especially admission helper spies,
+  primitive accounting and reconstructable snapshots. READY FOR INDEPENDENT
+  RE-REVIEW is an implementer verdict; no reviewer acceptance claimed. No further
+  implementation, commit or push authorized.
+
+## Previous snapshot: Slice A before independent audit
+
+Snapshot: 2026-11-16; `master` at `2ee201dfc62fd7363336a8b099e2886e039dd59a`.
+Ahead 0 / behind 0 against local `origin/master`; no live remote query. Index empty.
+Slice A code, tests, fresh evidence and three documentation updates are uncommitted.
+Existing unrelated local-only artifacts remain; no commit/push.
+
+- Implemented bounded canonical line outline with exterior/identified cutouts,
+  exact fixed-grid predicates, explicit limits, canonical winding/order,
+  provenance/frame preservation and atomic rigid/reflection revalidation.
+  Shared private traversal preserves legacy line/arc validation precedence.
+- Verification: main targeted run **164 PASS / 0 FAIL / 0 SKIP**, 26.21 s;
+  after explicit omitted-work truncation, **4 PASS / 0 FAIL / 0 SKIP**, 0.11 s.
+  Counts overlap. Main run includes 19 pinned-baseline differential tests and
+  99 existing fixture/envelope regressions. Each recorded run preserved 16 inputs
+  and 32 historical evidence hashes. No native KiCad or H249/H55 suite rerun.
+  [Evidence, commands, oracles and limits](evaluation/canonical-outline/evidence/slice-a-01/README.md),
+  [matrix E-A](openspec/changes/board-geometry-foundation/verification-matrix.md#e-a--canonical-outline-with-cutouts-slice-a),
+  [implementation status](openspec/changes/board-geometry-foundation/implementation-status.md).
+- All 47 scenario identities/statuses and task checkboxes unchanged. P07/P08
+  remain PARTIAL: no general importer, source authentication or revision publication.
+  No implementation blocker observed; independent audit remains pending.
+- Next action: independent audit of Slice A, especially arithmetic/envelope bounds,
+  provenance under winding/reflection and legacy compatibility. Consult E-A/P07/P08
+  before selecting verification. No further implementation, commit or push authorized.
+
+## Previous snapshot: preparation audit fixes, 2026-11-15
+
 Snapshot: 2026-11-15; `master` at `c44e4b2d2b5aadd29cc94e4cfd6c5f6171f3b210`,
 ahead 1 / behind 0 against local `origin/master`; no live remote query. Index empty.
 Prior implementation and these targeted audit fixes remain uncommitted; no push.

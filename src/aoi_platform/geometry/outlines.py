@@ -11,6 +11,7 @@ from math import atan2, cos, fsum, hypot, pi, sin, sqrt, tau
 
 from .errors import ErrorCode, GeometryError, finite_number, require_text
 from .models import Frame, Point2, Unit, require_same_frame
+from ._contour_validation import validate_contour
 
 EPS = 1e-8
 MAX_COORDINATE = 1e6
@@ -195,20 +196,44 @@ class Outline:
             reject("Contour edge limit exceeded (512).", unsupported=True)
         if any(type(edge) not in (LineSegment, CircularArc) for edge in self.edges):
             reject("Only line segments and circular arcs are supported.", unsupported=True)
-        for i, edge in enumerate(self.edges):
-            require_same_frame(edge.start.frame, self.frame, "outline.frame")
-            if edge.end != self.edges[(i+1) % len(self.edges)].start:
-                reject("Contour is open; adjacent endpoints must match exactly.")
-            for j in range(i):
-                other = self.edges[j]
-                allowed = []
-                if j == i-1:
-                    allowed.append(edge.start)
-                if j == 0 and i == len(self.edges)-1:
-                    allowed.append(edge.end)
-                for p in intersections(edge, other):
-                    if not any(distance(p, shared) <= EPS for shared in allowed):
-                        reject("Contour self-intersects or touches a nonadjacent edge.")
+        validate_contour(len(self.edges), _LegacyContour(self))
+
+    @property
+    def frame(self) -> Frame:
+        return self.edges[0].start.frame
+
+    @classmethod
+    def polygon(cls, outline_id: str, vertices: tuple[Point2, ...]) -> "Outline":
+        if not isinstance(vertices, tuple) or len(vertices) < 3:
+            reject("Supply at least three polygon vertices without a repeated closing vertex.")
+        return cls(outline_id, tuple(LineSegment(a, b) for a, b in zip(vertices, vertices[1:]+vertices[:1])))
+
+
+class _LegacyContour:
+    """Unchanged legacy predicates, arithmetic and first-error precedence."""
+
+    def __init__(self, outline):
+        self.edges = outline.edges
+        self.frame = outline.frame
+
+    def edge(self, i):
+        edge = self.edges[i]
+        require_same_frame(edge.start.frame, self.frame, "outline.frame")
+        if edge.end != self.edges[(i+1) % len(self.edges)].start:
+            reject("Contour is open; adjacent endpoints must match exactly.")
+
+    def pair(self, i, j):
+        edge, other = self.edges[i], self.edges[j]
+        allowed = []
+        if j == i-1:
+            allowed.append(edge.start)
+        if j == 0 and i == len(self.edges)-1:
+            allowed.append(edge.end)
+        for p in intersections(edge, other):
+            if not any(distance(p, shared) <= EPS for shared in allowed):
+                reject("Contour self-intersects or touches a nonadjacent edge.")
+
+    def finish(self):
         # Translate area arithmetic to a contour anchor to reduce cancellation.
         anchor = self.edges[0].start
         terms = []
@@ -222,17 +247,6 @@ class Outline:
                 terms.append(cx*(by-ay)-cy*(bx-ax)+edge.radius**2*edge.sweep)
         if abs(fsum(terms)) <= EPS*EPS:
             reject("Contour has zero or numerically degenerate area.")
-
-    @property
-    def frame(self) -> Frame:
-        return self.edges[0].start.frame
-
-    @classmethod
-    def polygon(cls, outline_id: str, vertices: tuple[Point2, ...]) -> "Outline":
-        if not isinstance(vertices, tuple) or len(vertices) < 3:
-            reject("Supply at least three polygon vertices without a repeated closing vertex.")
-        return cls(outline_id, tuple(LineSegment(a, b) for a, b in zip(vertices, vertices[1:]+vertices[:1])))
-
 
 def rotation_components(degrees: float) -> tuple[float, float]:
     angle = finite_number(degrees, "capacity.rotation_deg") % 360

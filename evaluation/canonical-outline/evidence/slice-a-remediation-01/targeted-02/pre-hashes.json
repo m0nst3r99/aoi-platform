@@ -1,0 +1,130 @@
+{
+  "AGENTS.md": {
+    "size": 5490,
+    "sha256": "1a34bc8928c0d8531fbe190616dacbae49daffa9238ac15791bb90296ca2f93d"
+  },
+  "HANDOFF.md": {
+    "size": 163511,
+    "sha256": "d524bb3915c8566d5b90341e62a2f624d43560f1739b5455e803c91dda94bd21"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/baseline_outlines.py": {
+    "size": 11850,
+    "sha256": "30f58e3d1368d1de01eeb1e304298baa057c0ec12a559c6e485dd0a010926240"
+  },
+  "openspec/changes/board-geometry-foundation/boundary-evidence-binding-contract.md": {
+    "size": 15562,
+    "sha256": "7bf3de9191473079cd84e897e833e9739f141885e5536c671fa831464db8da83"
+  },
+  "openspec/changes/board-geometry-foundation/design.md": {
+    "size": 127009,
+    "sha256": "d3c7a8c22c7e7e3d34ce86ecdfdb3101d244143a0c8eb8117e8b3a23c2ae3603"
+  },
+  "openspec/changes/board-geometry-foundation/implementation-status.md": {
+    "size": 156091,
+    "sha256": "374a52ca0c9a6e2d49e7270f6a4c6ed6a3ad6f9169f5a07a80d266c1cba30796"
+  },
+  "openspec/changes/board-geometry-foundation/proposal.md": {
+    "size": 6756,
+    "sha256": "4c4370aa098632ed7883b7290234d665c66f61fb661d36328cce1ccb6ec9b5ad"
+  },
+  "openspec/changes/board-geometry-foundation/specs/board-geometry/spec.md": {
+    "size": 13809,
+    "sha256": "a43207bd24621fcf28de81f9363b5af1cb09c591753082487575ebd47953f5a2"
+  },
+  "openspec/changes/board-geometry-foundation/specs/pcb-data-import/spec.md": {
+    "size": 13518,
+    "sha256": "5b9c92431af2bea451087ba4595dcac807baca239406d162957881a6ecb23541"
+  },
+  "openspec/changes/board-geometry-foundation/sprint-plan.md": {
+    "size": 20429,
+    "sha256": "94906c582aae47c9cf26a33b100d0d2ada4d3ae1fda83e6152deb78c9dcb827a"
+  },
+  "openspec/changes/board-geometry-foundation/supported-inputs.md": {
+    "size": 17868,
+    "sha256": "286ad8710728f03264b4fa15dc99dc3870609badf4521d3771ac0d8ae898b566"
+  },
+  "openspec/changes/board-geometry-foundation/tasks.md": {
+    "size": 12378,
+    "sha256": "9965b12f233f1edec34f5ba1bfc06fad7b6d2e1da4ad3a49f9b6c8e4874450b3"
+  },
+  "openspec/changes/board-geometry-foundation/verification-matrix.md": {
+    "size": 64967,
+    "sha256": "4c47b933a3354b3d75aae26127dcaec37e96e128d23edeb76b86934135ce2ebe"
+  },
+  "pyproject.toml": {
+    "size": 534,
+    "sha256": "eb804386aefc3eb59dd9d6b950fbeeac4802ac094313b2e7f1bf77e0dafa12f8"
+  },
+  "src/aoi_platform/geometry/__init__.py": {
+    "size": 1355,
+    "sha256": "acfd51aa42784f11d4fd240ca8504740bece6781a3de103946f8e9096e6b4f16"
+  },
+  "src/aoi_platform/geometry/_contour_validation.py": {
+    "size": 334,
+    "sha256": "bce7d42659e8c6012a52f9bf536a9e9fdde63640ec0ae172d9482779227eac8c"
+  },
+  "src/aoi_platform/geometry/_outline_exact.py": {
+    "size": 4901,
+    "sha256": "920c0f4fa840184bfda8301ec0efb02209b3d928667141a1218050e670a7662d"
+  },
+  "src/aoi_platform/geometry/angles.py": {
+    "size": 674,
+    "sha256": "4c96fddde36cef23343fd7b40ad8d73c063ddde6e6a0a326a4c3992da98aa387"
+  },
+  "src/aoi_platform/geometry/canonical_outline.py": {
+    "size": 21673,
+    "sha256": "e5d6a9e770f1e21203aee0e3a799cfc0a8a63951c9348b6fb695543bf8df1917"
+  },
+  "src/aoi_platform/geometry/envelopes.py": {
+    "size": 20764,
+    "sha256": "f3d8d7e91a7dccb2f0d850bda2ab2f19f128b2672b67eee98a22979666befab8"
+  },
+  "src/aoi_platform/geometry/errors.py": {
+    "size": 5217,
+    "sha256": "bdc0e6d4e68bab1fe23d288e427f50162faa221dda6783f0c34e0ea38f97711c"
+  },
+  "src/aoi_platform/geometry/fixture_geometry.py": {
+    "size": 7070,
+    "sha256": "829aa0cb55e7956bff16ca8fccf67bc49fb7dfd3bd1f652775add380f2ffb61e"
+  },
+  "src/aoi_platform/geometry/models.py": {
+    "size": 5207,
+    "sha256": "d334905bcf758e73ba5266961b584efdd453b573f964586a3549c9a5c6bb8356"
+  },
+  "src/aoi_platform/geometry/outlines.py": {
+    "size": 12132,
+    "sha256": "9101947004838d9da140a0ebea58b9ac979b490cef4686c9769cd801130b84f6"
+  },
+  "src/aoi_platform/geometry/reports.py": {
+    "size": 8091,
+    "sha256": "558aa2528825e3d42b84b7291334b5afd754c602405c1b552a73f23af120d926"
+  },
+  "src/aoi_platform/geometry/resolver.py": {
+    "size": 17815,
+    "sha256": "f6f091bb909837f7f1dfd9419504412da03126d6616b693e63be2999dec3f189"
+  },
+  "src/aoi_platform/geometry/transforms.py": {
+    "size": 15725,
+    "sha256": "ddfea94671d0ebd674b9f36991d9f076ad2ebba939e316b5706987cf2171cc00"
+  },
+  "tests/conftest.py": {
+    "size": 557,
+    "sha256": "cd8cbf1ea9d1298378ecc08c95a1ae241192524ea6e089ddbc1a1b08a51b6941"
+  },
+  "tests/test_canonical_outline.py": {
+    "size": 18315,
+    "sha256": "66ad59266d284e68378b4320691e6a73f9ca7745abe957687f2b06bdd9ddb9cd"
+  },
+  "tests/test_envelopes.py": {
+    "size": 24050,
+    "sha256": "459d2ad1105d316932087ca2d31139b23d6786507891eb9fc5a16b95b6c02250"
+  },
+  "tests/test_fixture_geometry.py": {
+    "size": 6176,
+    "sha256": "32a0eaccd23f33778ea2af747bca8c3a430660a53f443630904a23c0fab37051"
+  },
+  "tests/test_outline_legacy_differential.py": {
+    "size": 5244,
+    "sha256": "623ba325c5342ea4a017251e3df1e9598792755182543604d1c49a4a2024491c"
+  }
+}

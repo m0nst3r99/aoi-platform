@@ -1,0 +1,351 @@
+FFFFFFFFFF...                                                            [100%]
+================================== FAILURES ===================================
+___________ test_remediation_metadata_before_helpers[transform_id] ____________
+
+pcb = Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'>, origin='declared source d...T: 'right'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002385D26BD90>
+field = 'transform_id'
+
+    @pytest.mark.parametrize("field", ["transform_id", "target_id", "target_origin", "provenance", "source_id"])
+    def test_remediation_metadata_before_helpers(pcb,monkeypatch,field):
+        o=accepted(declaration(pcb)).outline
+        m=Transform2("identity",pcb,pcb,((1.,0.,0.),(0.,1.,0.),(0.,0.,1.)),TransformKind.RIGID)
+        # Deliberately untrusted frozen record: no constructor assurance at admission.
+        object.__setattr__(m,"conventions_validated",False)
+        if field=="transform_id": object.__setattr__(m,"transform_id","י"*129)
+        if field=="target_id": object.__setattr__(m,"to_frame",replace(pcb,frame_id="י"*129))
+        if field=="target_origin": object.__setattr__(m,"to_frame",replace(pcb,origin="י"*513))
+        if field=="provenance": object.__setattr__(m,"provenance",("י"*513,))
+        if field=="source_id": object.__setattr__(m,"from_frame",replace(pcb,frame_id="י"*129))
+        def forbidden(*args): pytest.fail("helper consumed transform before bounded admission")
+        monkeypatch.setattr(Transform2,"_require_validated_conventions",forbidden)
+        monkeypatch.setattr(Transform2,"_validate_isometry",forbidden)
+        monkeypatch.setattr(Transform2,"apply",forbidden)
+>       result=transform_canonical_outline(o,m,POLICY)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_canonical_outline.py:324: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\aoi_platform\geometry\canonical_outline.py:395: in transform_canonical_outline
+    mapping._require_validated_conventions()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (Transform2(transform_id='יייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייייי...caller-supplied matrix',), parity=<Parity.PRESERVED: 'preserved'>, condition_number=1.0, conventions_validated=False),)
+
+>   def forbidden(*args): pytest.fail("helper consumed transform before bounded admission")
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: helper consumed transform before bounded admission
+
+tests\test_canonical_outline.py:320: Failed
+_____________ test_remediation_metadata_before_helpers[target_id] _____________
+
+pcb = Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'>, origin='declared source d...T: 'right'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002385D18F850>
+field = 'target_id'
+
+    @pytest.mark.parametrize("field", ["transform_id", "target_id", "target_origin", "provenance", "source_id"])
+    def test_remediation_metadata_before_helpers(pcb,monkeypatch,field):
+        o=accepted(declaration(pcb)).outline
+        m=Transform2("identity",pcb,pcb,((1.,0.,0.),(0.,1.,0.),(0.,0.,1.)),TransformKind.RIGID)
+        # Deliberately untrusted frozen record: no constructor assurance at admission.
+        object.__setattr__(m,"conventions_validated",False)
+        if field=="transform_id": object.__setattr__(m,"transform_id","י"*129)
+        if field=="target_id": object.__setattr__(m,"to_frame",replace(pcb,frame_id="י"*129))
+        if field=="target_origin": object.__setattr__(m,"to_frame",replace(pcb,origin="י"*513))
+        if field=="provenance": object.__setattr__(m,"provenance",("י"*513,))
+        if field=="source_id": object.__setattr__(m,"from_frame",replace(pcb,frame_id="י"*129))
+        def forbidden(*args): pytest.fail("helper consumed transform before bounded admission")
+        monkeypatch.setattr(Transform2,"_require_validated_conventions",forbidden)
+        monkeypatch.setattr(Transform2,"_validate_isometry",forbidden)
+        monkeypatch.setattr(Transform2,"apply",forbidden)
+>       result=transform_canonical_outline(o,m,POLICY)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_canonical_outline.py:324: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\aoi_platform\geometry\canonical_outline.py:395: in transform_canonical_outline
+    mapping._require_validated_conventions()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (Transform2(transform_id='identity', from_frame=Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>,...caller-supplied matrix',), parity=<Parity.PRESERVED: 'preserved'>, condition_number=1.0, conventions_validated=False),)
+
+>   def forbidden(*args): pytest.fail("helper consumed transform before bounded admission")
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: helper consumed transform before bounded admission
+
+tests\test_canonical_outline.py:320: Failed
+___________ test_remediation_metadata_before_helpers[target_origin] ___________
+
+pcb = Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'>, origin='declared source d...T: 'right'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002385D21AD50>
+field = 'target_origin'
+
+    @pytest.mark.parametrize("field", ["transform_id", "target_id", "target_origin", "provenance", "source_id"])
+    def test_remediation_metadata_before_helpers(pcb,monkeypatch,field):
+        o=accepted(declaration(pcb)).outline
+        m=Transform2("identity",pcb,pcb,((1.,0.,0.),(0.,1.,0.),(0.,0.,1.)),TransformKind.RIGID)
+        # Deliberately untrusted frozen record: no constructor assurance at admission.
+        object.__setattr__(m,"conventions_validated",False)
+        if field=="transform_id": object.__setattr__(m,"transform_id","י"*129)
+        if field=="target_id": object.__setattr__(m,"to_frame",replace(pcb,frame_id="י"*129))
+        if field=="target_origin": object.__setattr__(m,"to_frame",replace(pcb,origin="י"*513))
+        if field=="provenance": object.__setattr__(m,"provenance",("י"*513,))
+        if field=="source_id": object.__setattr__(m,"from_frame",replace(pcb,frame_id="י"*129))
+        def forbidden(*args): pytest.fail("helper consumed transform before bounded admission")
+        monkeypatch.setattr(Transform2,"_require_validated_conventions",forbidden)
+        monkeypatch.setattr(Transform2,"_validate_isometry",forbidden)
+        monkeypatch.setattr(Transform2,"apply",forbidden)
+>       result=transform_canonical_outline(o,m,POLICY)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_canonical_outline.py:324: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\aoi_platform\geometry\canonical_outline.py:395: in transform_canonical_outline
+    mapping._require_validated_conventions()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (Transform2(transform_id='identity', from_frame=Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>,...caller-supplied matrix',), parity=<Parity.PRESERVED: 'preserved'>, condition_number=1.0, conventions_validated=False),)
+
+>   def forbidden(*args): pytest.fail("helper consumed transform before bounded admission")
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: helper consumed transform before bounded admission
+
+tests\test_canonical_outline.py:320: Failed
+____________ test_remediation_metadata_before_helpers[provenance] _____________
+
+pcb = Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'>, origin='declared source d...T: 'right'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002385D345A10>
+field = 'provenance'
+
+    @pytest.mark.parametrize("field", ["transform_id", "target_id", "target_origin", "provenance", "source_id"])
+    def test_remediation_metadata_before_helpers(pcb,monkeypatch,field):
+        o=accepted(declaration(pcb)).outline
+        m=Transform2("identity",pcb,pcb,((1.,0.,0.),(0.,1.,0.),(0.,0.,1.)),TransformKind.RIGID)
+        # Deliberately untrusted frozen record: no constructor assurance at admission.
+        object.__setattr__(m,"conventions_validated",False)
+        if field=="transform_id": object.__setattr__(m,"transform_id","י"*129)
+        if field=="target_id": object.__setattr__(m,"to_frame",replace(pcb,frame_id="י"*129))
+        if field=="target_origin": object.__setattr__(m,"to_frame",replace(pcb,origin="י"*513))
+        if field=="provenance": object.__setattr__(m,"provenance",("י"*513,))
+        if field=="source_id": object.__setattr__(m,"from_frame",replace(pcb,frame_id="י"*129))
+        def forbidden(*args): pytest.fail("helper consumed transform before bounded admission")
+        monkeypatch.setattr(Transform2,"_require_validated_conventions",forbidden)
+        monkeypatch.setattr(Transform2,"_validate_isometry",forbidden)
+        monkeypatch.setattr(Transform2,"apply",forbidden)
+>       result=transform_canonical_outline(o,m,POLICY)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_canonical_outline.py:324: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\aoi_platform\geometry\canonical_outline.py:395: in transform_canonical_outline
+    mapping._require_validated_conventions()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (Transform2(transform_id='identity', from_frame=Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>,...יייייייייייייייייייייי',), parity=<Parity.PRESERVED: 'preserved'>, condition_number=1.0, conventions_validated=False),)
+
+>   def forbidden(*args): pytest.fail("helper consumed transform before bounded admission")
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: helper consumed transform before bounded admission
+
+tests\test_canonical_outline.py:320: Failed
+_____________ test_remediation_metadata_before_helpers[source_id] _____________
+
+pcb = Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'>, origin='declared source d...T: 'right'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002385D310650>
+field = 'source_id'
+
+    @pytest.mark.parametrize("field", ["transform_id", "target_id", "target_origin", "provenance", "source_id"])
+    def test_remediation_metadata_before_helpers(pcb,monkeypatch,field):
+        o=accepted(declaration(pcb)).outline
+        m=Transform2("identity",pcb,pcb,((1.,0.,0.),(0.,1.,0.),(0.,0.,1.)),TransformKind.RIGID)
+        # Deliberately untrusted frozen record: no constructor assurance at admission.
+        object.__setattr__(m,"conventions_validated",False)
+        if field=="transform_id": object.__setattr__(m,"transform_id","י"*129)
+        if field=="target_id": object.__setattr__(m,"to_frame",replace(pcb,frame_id="י"*129))
+        if field=="target_origin": object.__setattr__(m,"to_frame",replace(pcb,origin="י"*513))
+        if field=="provenance": object.__setattr__(m,"provenance",("י"*513,))
+        if field=="source_id": object.__setattr__(m,"from_frame",replace(pcb,frame_id="י"*129))
+        def forbidden(*args): pytest.fail("helper consumed transform before bounded admission")
+        monkeypatch.setattr(Transform2,"_require_validated_conventions",forbidden)
+        monkeypatch.setattr(Transform2,"_validate_isometry",forbidden)
+        monkeypatch.setattr(Transform2,"apply",forbidden)
+>       result=transform_canonical_outline(o,m,POLICY)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_canonical_outline.py:324: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\aoi_platform\geometry\canonical_outline.py:395: in transform_canonical_outline
+    mapping._require_validated_conventions()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (Transform2(transform_id='identity', from_frame=Frame(frame_id='יייייייייייייייייייייייייייייייייייייייייייייייייייייי...caller-supplied matrix',), parity=<Parity.PRESERVED: 'preserved'>, condition_number=1.0, conventions_validated=False),)
+
+>   def forbidden(*args): pytest.fail("helper consumed transform before bounded admission")
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: helper consumed transform before bounded admission
+
+tests\test_canonical_outline.py:320: Failed
+_______________ test_remediation_transform_work_literal_oracle ________________
+
+pcb = Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'>, origin='declared source d...T: 'right'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002385D31E4D0>
+
+    def test_remediation_transform_work_literal_oracle(pcb,monkeypatch):
+        o=accepted(declaration(pcb)).outline
+        m=Transform2("identity",pcb,pcb,((1.,0.,0.),(0.,1.,0.),(0.,0.,1.)),TransformKind.RIGID)
+        calls=[]
+        apply=Transform2.apply
+        def spy(self,point):
+            calls.append(point)
+            return apply(self,point)
+        monkeypatch.setattr(Transform2,"apply",spy)
+        result=transform_canonical_outline(o,m,POLICY)
+        assert isinstance(result,CanonicalOutlineSuccess)
+        assert len(calls)==8  # two endpoints for each of four edges; no identity dedup
+        # Per pass: 6 pairs*320 + 4 edges*(8 conversion+16 edge+16 area)
+        # + 4 finalization (abs, two products, compare) = 2084.
+        # One isometry envelope 64; eight points * (4 products + 4 adds) = 64.
+>       assert result.work.primitives==4296  # 2*2084+64+64; never from observed counters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert 4164 == 4296
+E        +  where 4164 = Work(primitives=4164, edge_pairs=12, containment_visits=0, max_bits=2157).primitives
+E        +    where Work(primitives=4164, edge_pairs=12, containment_visits=0, max_bits=2157) = CanonicalOutlineSuccess(outline=CanonicalOutline(outline_id='board', frame=Frame(frame_id='fixture/rev-a/source-mm', k...s=<ReportStatus.ACCEPTED: 'accepted'>), work=Work(primitives=4164, edge_pairs=12, containment_visits=0, max_bits=2157)).work
+
+tests\test_canonical_outline.py:344: AssertionError
+______________ test_remediation_exhaustion_after_source[0-0-1-0] ______________
+
+pcb = Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'>, origin='declared source d...T: 'right'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002385D231750>
+remaining = 0, mapped = 0, contours = 1, spent = 0
+
+    @pytest.mark.parametrize("remaining,mapped,contours,spent",[(0,0,1,0),(63,0,1,0),(127,0,1,64),(128,8,1,128)])
+    def test_remediation_exhaustion_after_source(pcb,monkeypatch,remaining,mapped,contours,spent):
+        import aoi_platform.geometry.canonical_outline as module
+        o=accepted(declaration(pcb)).outline
+        m=Transform2("identity",pcb,pcb,((1.,0.,0.),(0.,1.,0.),(0.,0.,1.)),TransformKind.RIGID)
+        Ledger=ex.Ledger
+        def seeded(passes=1):
+            w=Ledger(passes)
+            w.charge(134217728-2084-remaining)
+            return w
+        calls=[]; rings=[]
+        apply=Transform2.apply; contour=module.validate_contour
+        def spy(self,p): calls.append(p); return apply(self,p)
+        def ring_spy(*args): rings.append(1); return contour(*args)
+        monkeypatch.setattr(ex,"Ledger",seeded)
+        monkeypatch.setattr(Transform2,"apply",spy)
+        monkeypatch.setattr(module,"validate_contour",ring_spy)
+        result=transform_canonical_outline(o,m,POLICY)
+        assert isinstance(result,CanonicalOutlineFailure) and not hasattr(result,"outline")
+        assert result.truncated and result.report.errors[0].code==ErrorCode.INPUT_LIMIT_EXCEEDED
+>       assert len(calls)==mapped and len(rings)==contours
+E       AssertionError: assert (8 == 0)
+E        +  where 8 = len([Point2(x=0.0, y=0.0, frame=Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'...ht'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)), ...])
+
+tests\test_canonical_outline.py:367: AssertionError
+_____________ test_remediation_exhaustion_after_source[63-0-1-0] ______________
+
+pcb = Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'>, origin='declared source d...T: 'right'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002385D14C850>
+remaining = 63, mapped = 0, contours = 1, spent = 0
+
+    @pytest.mark.parametrize("remaining,mapped,contours,spent",[(0,0,1,0),(63,0,1,0),(127,0,1,64),(128,8,1,128)])
+    def test_remediation_exhaustion_after_source(pcb,monkeypatch,remaining,mapped,contours,spent):
+        import aoi_platform.geometry.canonical_outline as module
+        o=accepted(declaration(pcb)).outline
+        m=Transform2("identity",pcb,pcb,((1.,0.,0.),(0.,1.,0.),(0.,0.,1.)),TransformKind.RIGID)
+        Ledger=ex.Ledger
+        def seeded(passes=1):
+            w=Ledger(passes)
+            w.charge(134217728-2084-remaining)
+            return w
+        calls=[]; rings=[]
+        apply=Transform2.apply; contour=module.validate_contour
+        def spy(self,p): calls.append(p); return apply(self,p)
+        def ring_spy(*args): rings.append(1); return contour(*args)
+        monkeypatch.setattr(ex,"Ledger",seeded)
+        monkeypatch.setattr(Transform2,"apply",spy)
+        monkeypatch.setattr(module,"validate_contour",ring_spy)
+        result=transform_canonical_outline(o,m,POLICY)
+        assert isinstance(result,CanonicalOutlineFailure) and not hasattr(result,"outline")
+        assert result.truncated and result.report.errors[0].code==ErrorCode.INPUT_LIMIT_EXCEEDED
+>       assert len(calls)==mapped and len(rings)==contours
+E       AssertionError: assert (8 == 0)
+E        +  where 8 = len([Point2(x=0.0, y=0.0, frame=Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'...ht'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)), ...])
+
+tests\test_canonical_outline.py:367: AssertionError
+____________ test_remediation_exhaustion_after_source[127-0-1-64] _____________
+
+pcb = Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'>, origin='declared source d...T: 'right'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002385D1C2CD0>
+remaining = 127, mapped = 0, contours = 1, spent = 64
+
+    @pytest.mark.parametrize("remaining,mapped,contours,spent",[(0,0,1,0),(63,0,1,0),(127,0,1,64),(128,8,1,128)])
+    def test_remediation_exhaustion_after_source(pcb,monkeypatch,remaining,mapped,contours,spent):
+        import aoi_platform.geometry.canonical_outline as module
+        o=accepted(declaration(pcb)).outline
+        m=Transform2("identity",pcb,pcb,((1.,0.,0.),(0.,1.,0.),(0.,0.,1.)),TransformKind.RIGID)
+        Ledger=ex.Ledger
+        def seeded(passes=1):
+            w=Ledger(passes)
+            w.charge(134217728-2084-remaining)
+            return w
+        calls=[]; rings=[]
+        apply=Transform2.apply; contour=module.validate_contour
+        def spy(self,p): calls.append(p); return apply(self,p)
+        def ring_spy(*args): rings.append(1); return contour(*args)
+        monkeypatch.setattr(ex,"Ledger",seeded)
+        monkeypatch.setattr(Transform2,"apply",spy)
+        monkeypatch.setattr(module,"validate_contour",ring_spy)
+        result=transform_canonical_outline(o,m,POLICY)
+        assert isinstance(result,CanonicalOutlineFailure) and not hasattr(result,"outline")
+        assert result.truncated and result.report.errors[0].code==ErrorCode.INPUT_LIMIT_EXCEEDED
+>       assert len(calls)==mapped and len(rings)==contours
+E       AssertionError: assert (8 == 0)
+E        +  where 8 = len([Point2(x=0.0, y=0.0, frame=Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'...ht'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)), ...])
+
+tests\test_canonical_outline.py:367: AssertionError
+____________ test_remediation_exhaustion_after_source[128-8-1-128] ____________
+
+pcb = Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'>, origin='declared source d...T: 'right'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002385D1F8510>
+remaining = 128, mapped = 8, contours = 1, spent = 128
+
+    @pytest.mark.parametrize("remaining,mapped,contours,spent",[(0,0,1,0),(63,0,1,0),(127,0,1,64),(128,8,1,128)])
+    def test_remediation_exhaustion_after_source(pcb,monkeypatch,remaining,mapped,contours,spent):
+        import aoi_platform.geometry.canonical_outline as module
+        o=accepted(declaration(pcb)).outline
+        m=Transform2("identity",pcb,pcb,((1.,0.,0.),(0.,1.,0.),(0.,0.,1.)),TransformKind.RIGID)
+        Ledger=ex.Ledger
+        def seeded(passes=1):
+            w=Ledger(passes)
+            w.charge(134217728-2084-remaining)
+            return w
+        calls=[]; rings=[]
+        apply=Transform2.apply; contour=module.validate_contour
+        def spy(self,p): calls.append(p); return apply(self,p)
+        def ring_spy(*args): rings.append(1); return contour(*args)
+        monkeypatch.setattr(ex,"Ledger",seeded)
+        monkeypatch.setattr(Transform2,"apply",spy)
+        monkeypatch.setattr(module,"validate_contour",ring_spy)
+        result=transform_canonical_outline(o,m,POLICY)
+        assert isinstance(result,CanonicalOutlineFailure) and not hasattr(result,"outline")
+        assert result.truncated and result.report.errors[0].code==ErrorCode.INPUT_LIMIT_EXCEEDED
+>       assert len(calls)==mapped and len(rings)==contours
+E       AssertionError: assert (8 == 8 and 2 == 1)
+E        +  where 8 = len([Point2(x=0.0, y=0.0, frame=Frame(frame_id='fixture/rev-a/source-mm', kind=<FrameKind.PCB: 'pcb'>, unit=<Unit.MM: 'mm'...ht'>, y_direction=<AxisDirection.UP: 'up'>, board_revision_id='fixture/rev-a', machine_id=None, capture_id=None)), ...])
+E        +  and   2 = len([1, 1])
+
+tests\test_canonical_outline.py:367: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_canonical_outline.py::test_remediation_metadata_before_helpers[transform_id]
+FAILED tests/test_canonical_outline.py::test_remediation_metadata_before_helpers[target_id]
+FAILED tests/test_canonical_outline.py::test_remediation_metadata_before_helpers[target_origin]
+FAILED tests/test_canonical_outline.py::test_remediation_metadata_before_helpers[provenance]
+FAILED tests/test_canonical_outline.py::test_remediation_metadata_before_helpers[source_id]
+FAILED tests/test_canonical_outline.py::test_remediation_transform_work_literal_oracle
+FAILED tests/test_canonical_outline.py::test_remediation_exhaustion_after_source[0-0-1-0]
+FAILED tests/test_canonical_outline.py::test_remediation_exhaustion_after_source[63-0-1-0]
+FAILED tests/test_canonical_outline.py::test_remediation_exhaustion_after_source[127-0-1-64]
+FAILED tests/test_canonical_outline.py::test_remediation_exhaustion_after_source[128-8-1-128]
+10 failed, 3 passed, 66 deselected in 0.31s

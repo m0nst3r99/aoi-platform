@@ -1,3 +1,70 @@
+## Slice A independent audit remediation — 2026-11-16
+
+User-relayed verdict FIX REQUIRED; F1 HIGH, F2 MEDIUM and F3 LOW addressed in the
+uncommitted Slice A tree on master `2ee201d`, awaiting independent re-review.
+
+- [Canonical pipeline](../../../src/aoi_platform/geometry/canonical_outline.py)
+  now bounds transform ID, both frame records and provenance before helpers that
+  can format input. Typed matrix/flags are admitted before numeric helpers.
+  UTF-8 oversize rejection is INPUT_LIMIT_EXCEEDED, including invalid conventions.
+- Area finalization reserves four primitives; transforms prepay a 64-primitive
+  isometry envelope plus eight per endpoint (16 per edge) before any mapping.
+  Rectangle identity transform independent oracle: 4296. Global budgets, public
+  API, numerical policy and legacy production code remain unchanged.
+- [Canonical tests](../../../tests/test_canonical_outline.py) prove helper ordering,
+  million-character and multibyte metadata rejection, exact accounting and atomic
+  truncated exhaustion after successful source validation/before subsequent phases.
+  [Differential tests](../../../tests/test_outline_legacy_differential.py) add earlier
+  pair failure versus later frame/closure, and coincident-arc overlap precedence.
+- New consolidated result: **179 PASS / 0 FAIL / 0 SKIP**, 30.44 s, exit 0;
+  58 canonical, 22 differential, 21 fixture and 78 envelope. Reproducer 10 FAIL /
+  3 PASS and targeted post-fix 13 PASS are preserved. Exact snapshots and pre/post
+  hashes accompany every run; all 58 inventoried historical files remain unchanged.
+  [Evidence and accounting reconciliation](../../../evaluation/canonical-outline/evidence/slice-a-remediation-01/README.md),
+  [matrix mapping](verification-matrix.md#e-a-remediation--independent-audit-f1f3).
+
+Historical 164 PASS and the later four-test run below are separate source states;
+their hashes are not complete source snapshots and do not prove later revisions.
+Use the new consolidated evidence for remediation, with no retroactive acceptance
+claim. No native KiCad/H249/H55 reruns. All 47 scenario statuses, P07/P08 PARTIAL
+and normative task checkboxes remain unchanged. No importer/publication expansion.
+Implementer verdict: READY FOR INDEPENDENT RE-REVIEW; no commit/push.
+
+## Canonical outline with cutouts — Slice A, 2026-11-16
+
+Implemented against `master` at `2ee201dfc62fd7363336a8b099e2886e039dd59a`;
+uncommitted and awaiting independent audit. Earlier verification records below
+remain historical evidence; their working-tree snapshots are superseded.
+
+- [Canonical API](../../../src/aoi_platform/geometry/canonical_outline.py): frozen
+  declarations/aggregate, one exterior and 0–32 identified cutouts, <=512 total
+  lines, explicit PCB frame/revision and declared provenance; canonical winding,
+  ring ordering, atomic typed reports and rigid/reflection revalidation.
+- [Exact predicates](../../../src/aoi_platform/geometry/_outline_exact.py):
+  Q=2^1074 fixed-grid integers, 4382-bit checked intermediates, strict numerical
+  guard and topology, precharged primitive/pair/containment envelopes. No Fraction,
+  floating topology epsilon, snapping, geometry repair or dropped holes.
+- [Shared traversal](../../../src/aoi_platform/geometry/_contour_validation.py)
+  separates canonical and [legacy strategy](../../../src/aoi_platform/geometry/outlines.py),
+  preserving public constructors, arc behavior and interleaved error precedence.
+- Verification: **164 PASS / 0 FAIL / 0 SKIP**, 26.21 s (46 canonical, 19 pinned
+  differential, 21 fixture, 78 envelope). A subsequent diagnostic-only change marks
+  omitted-work exhaustion as truncated: **4 PASS / 0 FAIL / 0 SKIP**, 0.11 s,
+  covering one/two-pass exhaustion, truncation and transform failure. Counts overlap.
+  [Evidence](../../../evaluation/canonical-outline/evidence/slice-a-01/README.md)
+  records exact commands/test identities, independent literal/Fraction oracles,
+  source/fixture hashes, resource expectations and development runs. No failed
+  test attempt occurred. Each recorded final run preserved 16 input and 32
+  historical evidence file hashes; no historical fixture/evidence was edited.
+
+Limits: synthetic declared geometry, not source-authenticated import; transformation
+topology is exact for rounded binary64 output, not exact trigonometry. Envelope
+accounting is bounded mathematical work, not a wall-time/RSS guarantee. Full KiCad
+outline/cutout ingestion and publication remain absent. No implicit legacy filled
+outline conversion discards holes. P07/P08 and all other scenario statuses/task
+checkboxes remain unchanged; see [matrix E-A](verification-matrix.md#e-a--canonical-outline-with-cutouts-slice-a).
+Next: independent audit, with no further implementation or commit authorization.
+
 ## Source evidence / PreparedRequest audit fixes - 2026-11-15
 
 User-relayed independent review decision: FIX REQUIRED, three MEDIUM findings

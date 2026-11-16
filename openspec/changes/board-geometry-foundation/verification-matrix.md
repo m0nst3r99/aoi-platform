@@ -90,8 +90,8 @@ Foundation gate summaries follow the evidence register.
 | P04 | [PCB-001: Declared source formats and import profiles](specs/pcb-data-import/spec.md#requirement-declared-source-formats-and-import-profiles) | [Geometry-only import](specs/pcb-data-import/spec.md#scenario-geometry-only-import) | 3.5, 5.16-5.17 | NONE | NOT IMPLEMENTED | UNVERIFIED | OPEN | UNVERIFIABLE | Canonical geometry publication and later unfulfilled-profile inspection rejection absent. | S2 implement |
 | P05 | [PCB-001: Per-source units, origin, side, and revision evidence](specs/pcb-data-import/spec.md#requirement-per-source-units-origin-side-and-revision-evidence) | [Independent Gerber and placement origins](specs/pcb-data-import/spec.md#scenario-independent-gerber-and-placement-origins) | 5.13 | E-G | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Transform math reusable; real Gerber (50,25) mm offset and inch-placement independent source alignment/removal tests absent. | S3-S4 integrate |
 | P06 | [PCB-001: Per-source units, origin, side, and revision evidence](specs/pcb-data-import/spec.md#requirement-per-source-units-origin-side-and-revision-evidence) | [Contradictory units or side](specs/pcb-data-import/spec.md#scenario-contradictory-units-or-side) | 5.13 | E-G, E-P, E-S, E-PR | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Pinned source conflicts/declarations checked; general import inch/mm and bottom/top metadata conflict integration absent. | S2-S4 integrate |
-| P07 | [PCB-001: Canonical outline, footprints, components, pads, and fiducials](specs/pcb-data-import/spec.md#requirement-canonical-outline-footprints-components-pads-and-fiducials) | [Bottom footprint and repeated pad numbers](specs/pcb-data-import/spec.md#scenario-bottom-footprint-and-repeated-pad-numbers) | 5.3-5.5 | E-P, E-B, E-N, E-S, E-PR | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Candidate repeated-number IDs/oracles and pinned boundary checks reusable; combined rotated-bottom/nonrectangular/cutout product import absent. | S2 implement |
-| P08 | [PCB-001: Canonical outline, footprints, components, pads, and fiducials](specs/pcb-data-import/spec.md#requirement-canonical-outline-footprints-components-pads-and-fiducials) | [Invalid outline or nonfinite coordinate](specs/pcb-data-import/spec.md#scenario-invalid-outline-or-nonfinite-coordinate) | 5.3, 5.5 | E-F, E-P, E-N, E-PR | PARTIAL | PARTIAL | PARTIAL | REUSABLE / INSUFFICIENT | Topology/numeric/duplicate controls exist for bounded subsets; complete source-entity diagnostics before product publication missing. | S2 integrate |
+| P07 | [PCB-001: Canonical outline, footprints, components, pads, and fiducials](specs/pcb-data-import/spec.md#requirement-canonical-outline-footprints-components-pads-and-fiducials) | [Bottom footprint and repeated pad numbers](specs/pcb-data-import/spec.md#scenario-bottom-footprint-and-repeated-pad-numbers) | 5.3-5.5 | E-P, E-B, E-N, E-S, E-PR, E-A | PARTIAL | PARTIAL | PARTIAL | INSUFFICIENT | Candidate repeated-number IDs/oracles, pinned boundary checks and bounded canonical cutouts reusable; combined rotated-bottom/nonrectangular/cutout product import absent. | S2 implement |
+| P08 | [PCB-001: Canonical outline, footprints, components, pads, and fiducials](specs/pcb-data-import/spec.md#requirement-canonical-outline-footprints-components-pads-and-fiducials) | [Invalid outline or nonfinite coordinate](specs/pcb-data-import/spec.md#scenario-invalid-outline-or-nonfinite-coordinate) | 5.3, 5.5 | E-F, E-P, E-N, E-PR, E-A | PARTIAL | PARTIAL | PARTIAL | REUSABLE / INSUFFICIENT | Bounded canonical cutout topology/numeric/duplicate controls added; complete source-entity diagnostics before product publication missing. | S2 integrate |
 | P09 | [PCB-001: Canonical outline, footprints, components, pads, and fiducials](specs/pcb-data-import/spec.md#requirement-canonical-outline-footprints-components-pads-and-fiducials) | [Fiducial approval](specs/pcb-data-import/spec.md#scenario-fiducial-approval) | 5.6 | E-A metadata only | NOT IMPLEMENTED | UNVERIFIED | OPEN | INSUFFICIENT | Accepted fixture designation is not importer classification/approval retaining all fiducial fields; circular pads must not auto-promote. | S2 implement |
 | P10 | [PCB-001: Gerber parser reuse evaluation](specs/pcb-data-import/spec.md#requirement-gerber-parser-reuse-evaluation) | [Reuse evaluation precedes a custom parser](specs/pcb-data-import/spec.md#scenario-reuse-evaluation-precedes-a-custom-parser) | 2.1-2.5 | NONE | NOT IMPLEMENTED | BLOCKED | OPEN | UNVERIFIABLE | Pinned PyGerber/Gerbonara license/API/geometry/provenance/resource/fixture evaluation must precede custom-parser decision. | S3 prerequisite |
 | P11 | [PCB-001: Gerber parser reuse evaluation](specs/pcb-data-import/spec.md#requirement-gerber-parser-reuse-evaluation) | [Library cannot interpret a construct](specs/pcb-data-import/spec.md#scenario-library-cannot-interpret-a-construct) | 2.4, 5.8 | NONE | NOT IMPLEMENTED | BLOCKED | OPEN | UNVERIFIABLE | Dependency/support matrix absent; unsupported constructs need source-location FORMAT_UNSUPPORTED and no publication. | S3 after P10 |
@@ -419,3 +419,77 @@ Reuse: REUSABLE for this pinned audited-fix slice; INSUFFICIENT for complete
 P01/P06/P07/P08/P21, broader import, effective copper or publication. Results are
 implementer verification pending independent re-review of F1-F4. No implementation
 commit, push or further acceptance promotion is authorized by this record.
+
+## E-A — Canonical outline with cutouts Slice A
+
+2026-11-16, implementation against master `2ee201d`, uncommitted. Evidence extends
+P07/P08 only; all **47 scenario identities and status columns remain unchanged**.
+Both scenarios remain PARTIAL. No normative task checkbox is promoted.
+
+[Evidence/oracle record](../../../evaluation/canonical-outline/evidence/slice-a-01/README.md),
+[exact main invocation](../../../evaluation/canonical-outline/evidence/slice-a-01/invocation.json),
+[main identities/results](../../../evaluation/canonical-outline/evidence/slice-a-01/result.json),
+[follow-up invocation](../../../evaluation/canonical-outline/evidence/slice-a-01/exhaustion-05-invocation.json),
+[follow-up identities/results](../../../evaluation/canonical-outline/evidence/slice-a-01/exhaustion-05-result.json).
+
+- Main targeted verification: **164 PASS / 0 FAIL / 0 SKIP**, 26.21 s, exit 0.
+  46 canonical tests, 19 baseline differential, 21 fixture and 78 envelope regressions.
+- Subsequent diagnostic-only change explicitly marks omitted-work exhaustion as
+  truncated: **4 PASS / 0 FAIL / 0 SKIP**, 0.11 s, exit 0; covers single/two-pass
+  atomic exhaustion, diagnostic truncation and transform rejection. Counts overlap.
+  No failed test attempt; all development logs/JUnit retained separately.
+- Independent literal geometry and transformed-hole oracles, test-only rational
+  area/orientation/distance checks, combinatorial pair/containment accounting,
+  exact-limit/one-over budgets and deep immutability. Pinned pre-refactor source
+  provides full typed-failure/bounds differential expectations; existing fixture
+  and capacity tests cover consumers of the extracted private traversal.
+- Each recorded main/follow-up run preserves 16 source/fixture/config inputs and
+  32 historical preparation evidence hashes. No native KiCad or historical H249/H55
+  suite rerun. The shared legacy traversal change justifies fixture/envelope scope;
+  the follow-up changed only failure diagnostics, so only that scope was rerun.
+
+Reuse: bounded line topology, immutable cutout aggregate and declared provenance
+are reusable, pending independent audit. Insufficient for combined bottom-footprint,
+repeated-pad and cutout product import, source-authenticated geometry or publication.
+Exact predicates operate on admitted binary64 values; transforms retain existing
+Transform2 numerical isometry semantics. No runtime/memory performance guarantee.
+Consult this mapping before future test selection; preserve historical evidence.
+
+## E-A remediation — Independent audit F1–F3
+
+2026-11-16: user-relayed FIX REQUIRED addressed, pending independent re-review.
+P07/P08 still PARTIAL; all 47 original scenario identities/statuses and task
+checkboxes unchanged. E-A now also maps to this bounded remediation evidence.
+
+[Evidence/accounting/oracle explanation](../../../evaluation/canonical-outline/evidence/slice-a-remediation-01/README.md),
+[consolidated invocation](../../../evaluation/canonical-outline/evidence/slice-a-remediation-01/consolidated-03/invocation.json),
+[all test identities/results](../../../evaluation/canonical-outline/evidence/slice-a-remediation-01/consolidated-03/result.json),
+[exact run snapshot](../../../evaluation/canonical-outline/evidence/slice-a-remediation-01/consolidated-03/snapshot/),
+[pre-hashes](../../../evaluation/canonical-outline/evidence/slice-a-remediation-01/consolidated-03/pre-hashes.json),
+[post-hashes](../../../evaluation/canonical-outline/evidence/slice-a-remediation-01/consolidated-03/post-hashes.json).
+
+- F1: `test_remediation_metadata_before_helpers` (six cases): ID/source/target
+  frame/provenance UTF-8 limits, million-character ID plus invalid conventions,
+  forbidden helper calls before admission and atomic INPUT_LIMIT_EXCEEDED.
+- F2: `test_remediation_transform_work_literal_oracle` and
+  `test_remediation_exhaustion_after_source` (four cases): literal 2084 per rectangle
+  validation, 64 isometry + 64 endpoint mapping, total 4296 for identity transform;
+  observed successful source validation and no mapping/output validation before
+  reservation. Atomic/truncated exhaustion; no budget increases. Existing 512-edge
+  oracle corrected by +2 for abs/two products/comparison area finalization.
+- Legacy: two `test_remediation_earlier_pair_precedes_later_fault` cases and
+  `test_remediation_coincident_arc_overlap`; full exception tuple comparison with
+  pinned baseline, no changes to legacy production behavior or expectations.
+- F3: each run contains exact source/test/dependency snapshots and hash manifests.
+  Preserved [red run](../../../evaluation/canonical-outline/evidence/slice-a-remediation-01/red-01/result.json)
+  is 10 FAIL / 3 PASS; [targeted post-fix](../../../evaluation/canonical-outline/evidence/slice-a-remediation-01/targeted-02/result.json)
+  is 13 PASS. Final consolidated **179 PASS / 0 FAIL / 0 SKIP**, 30.44 s, exit 0:
+  58 canonical, 22 differential, 21 fixture and 78 envelope tests.
+
+Every run preserves all inputs and 58 inventoried historical evidence files.
+No native KiCad or H249/H55 reruns. Changed admission/accounting justify the fresh
+consolidated Slice A scope. Original 164 PASS and later four-test follow-up are
+different revisions with hash-only source provenance; neither is retroactively
+claimed to cover this revision. Existing historical evidence remains valid for
+its recorded scope. Reuse/acceptance distinctions and remaining importer,
+source-authentication/publication gaps are unchanged.

@@ -1,0 +1,34 @@
+{
+  "exit": 0,
+  "duration_seconds": 0.4650967999477871,
+  "unchanged": true,
+  "inputs": 16,
+  "historical_files": 32,
+  "counts": {
+    "PASS": 4,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "tests": [
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_work_exhaustion_is_atomic_without_limit_changes[False]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_work_exhaustion_is_atomic_without_limit_changes[True]",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_truncation_and_two_invalid_rings_order",
+      "status": "PASS"
+    },
+    {
+      "class": "tests.test_canonical_outline",
+      "name": "test_transform_rejection_and_policy",
+      "status": "PASS"
+    }
+  ]
+}

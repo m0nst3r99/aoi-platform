@@ -1,0 +1,7 @@
+Delivery validation attempt 1 (not an AOI test run): exited 1 before output manifest.
+The inline checker used subprocess.check_output(..., text=True) on Windows.
+Reading historical HANDOFF.md through git show selected cp1252 and raised:
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x9d in position 25346:
+character maps to <undefined>.
+No source, fixture or evidence changes resulted from the failed check.
+Correction in validate_delivery.py: decode git output explicitly as UTF-8.

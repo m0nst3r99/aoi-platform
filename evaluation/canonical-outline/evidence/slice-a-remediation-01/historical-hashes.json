@@ -1,0 +1,234 @@
+{
+  "evaluation/canonical-outline/evidence/slice-a-01/baseline_outlines.py": {
+    "size": 11850,
+    "sha256": "30f58e3d1368d1de01eeb1e304298baa057c0ec12a559c6e485dd0a010926240"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/canonical-01.log": {
+    "size": 206,
+    "sha256": "c135decd4a5a4c7380c33cce92caace2bc29e8aa2391583a7322d06adf675b4f"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/canonical-01.xml": {
+    "size": 4785,
+    "sha256": "0e3680729bfbba27e4fee4d551a561727a92df8386d2b84b5179341dda280953"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/delivery-check-01.txt": {
+    "size": 492,
+    "sha256": "0aa66d6d27344d3b4ceb6186e07f557512cc7e9fde4aeb5789503f61e1eb7a37"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/delivery-validation.json": {
+    "size": 6531,
+    "sha256": "b8a26eacfe68d1795e90391650431e159880912077bd15f36162599488e0b0ee"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/exhaustion-04.log": {
+    "size": 232,
+    "sha256": "b57c7d85da86482fc285910dcb81b3bab1dcb247c5137fcda00f4c5fadbfa18c"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/exhaustion-04.xml": {
+    "size": 594,
+    "sha256": "88d9600b74f5ce67ac424a8e5201cdd3ba07ebbfdb3772816418ab178b880ce2"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/exhaustion-05-invocation.json": {
+    "size": 640,
+    "sha256": "e2534f2b18297177a7609aa41b6ae1e3ce18237b0948ac5b36b3d91dc7b15c84"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/exhaustion-05-post-hashes.json": {
+    "size": 8758,
+    "sha256": "299b73425e14e0f9a42be0f9c872a7496cd201ee913402ef61dedbddd0ddf87a"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/exhaustion-05-pre-hashes.json": {
+    "size": 8758,
+    "sha256": "299b73425e14e0f9a42be0f9c872a7496cd201ee913402ef61dedbddd0ddf87a"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/exhaustion-05-result.json": {
+    "size": 800,
+    "sha256": "42df99d586b2825c565f0eec3dbfd8151f25131e3e22a1d515d9697bbc3aba99"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/exhaustion-05.log": {
+    "size": 115,
+    "sha256": "4280136127c072d26fe81af5e6493d445a2ba7b48ac5b6c5ca0f375e699cb8f8"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/exhaustion-05.xml": {
+    "size": 733,
+    "sha256": "d6f7aaab5e1e9307b36778e2586f59486e78170951e128c95415fbd8bfe1db33"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/final-03.log": {
+    "size": 265,
+    "sha256": "28fc961c62b17db811c0806050fa10bbf2486721378d1bda4be29052bb4edcd7"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/final-03.xml": {
+    "size": 20132,
+    "sha256": "4c44df926e74c025c70c1ef7863df1cbc012f36fd6ede592b4d30444603433d4"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/invocation.json": {
+    "size": 683,
+    "sha256": "a80c1b8f909b709bef18b367916a37f6f081a44c948097b573c0055b3448ff70"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/legacy-01.log": {
+    "size": 368,
+    "sha256": "3808cf8d10ccf1371f15455f500576d10fdaded784c2dc940e6ce20e87327d74"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/legacy-01.xml": {
+    "size": 14056,
+    "sha256": "bcd914893e2d55759212611382a1ed140d2dc7ecabc8d6d5645680160ae3b495"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/post-hashes.json": {
+    "size": 8758,
+    "sha256": "7b0c1ed4f8ac123880327a50c970a45607a4be5bc57ab61945d38a839dc123ba"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/pre-hashes.json": {
+    "size": 8758,
+    "sha256": "7b0c1ed4f8ac123880327a50c970a45607a4be5bc57ab61945d38a839dc123ba"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/README.md": {
+    "size": 6345,
+    "sha256": "4f16053bb4327551519497023e8bea995ef6d22b5635eef4ce99ac0724ef15b2"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/result.json": {
+    "size": 24517,
+    "sha256": "8250e095852397d03d988cf303a80d43922855a958c73d4a45f9d84a4eac10d9"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/targeted-02.log": {
+    "size": 206,
+    "sha256": "9bcdb6b6f9df26154491a4a2b71555b9df4ef0b3be0aa9583f6aec8d5d917c3f"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/targeted-02.xml": {
+    "size": 8044,
+    "sha256": "329c8b721269066c981b727ebca6ec3dc04a43c33d4d4280a138fe6a4c6a4b54"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/validate_delivery.py": {
+    "size": 3612,
+    "sha256": "1a4f7427afa01c02681aa74f62236e444b33e09a6d3ee889f82ca86482758e2d"
+  },
+  "evaluation/canonical-outline/evidence/slice-a-01/verify_slice.py": {
+    "size": 3929,
+    "sha256": "81814cd93e950a0aa6eeeff19e1bd051f314a66ee7249a65007cd052d82f4c7d"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/history-post-hashes.json": {
+    "size": 8334,
+    "sha256": "2fd707e03c966064e0acc300019727595c02fbb7ac00283ad71ba5a5bad81e18"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/history-pre-hashes.json": {
+    "size": 8334,
+    "sha256": "2fd707e03c966064e0acc300019727595c02fbb7ac00283ad71ba5a5bad81e18"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/invocation.json": {
+    "size": 1178,
+    "sha256": "22cf6aa422d7d496086f645e0d717ae8a5ac769d70a51924f1125bbaa248f0c2"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/post-run-hashes.json": {
+    "size": 35913,
+    "sha256": "f1d90ea6defcd5a70fe58d67f33f229a5365c1008771d108c4cccc4da3e93be3"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/pre-run-hashes.json": {
+    "size": 35913,
+    "sha256": "f1d90ea6defcd5a70fe58d67f33f229a5365c1008771d108c4cccc4da3e93be3"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/pytest.xml": {
+    "size": 8832,
+    "sha256": "015fa17f83840d488246af7f7cb12616637c42ffaa76ee488b124f2539dca203"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/result.json": {
+    "size": 206,
+    "sha256": "0bdaaee7526aba3fc76fbffa12771c94410e90b004d9fed9e9f550194c1520af"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/stderr.txt": {
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-01/stdout.txt": {
+    "size": 1630,
+    "sha256": "d9bc545d88a2e9c8083b7ab5be714d32606c046ae5f1e759c941dd661cc5e298"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/history-post-hashes.json": {
+    "size": 13814,
+    "sha256": "1a2699070add38b9a55a943d8a7f9de3b96dd1938757e2cd047763ec57600ec0"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/history-pre-hashes.json": {
+    "size": 13814,
+    "sha256": "1a2699070add38b9a55a943d8a7f9de3b96dd1938757e2cd047763ec57600ec0"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/invocation.json": {
+    "size": 1195,
+    "sha256": "c4ff6879e20dc9abe118baf8e945a2e3850be16ddaa9d76b8849dd0e502d5eae"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/post-run-hashes.json": {
+    "size": 35913,
+    "sha256": "74764327bf11c811de4aa3da348610e8260a0330200f9325ec55bf5ab230d3b0"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/pre-run-hashes.json": {
+    "size": 35913,
+    "sha256": "74764327bf11c811de4aa3da348610e8260a0330200f9325ec55bf5ab230d3b0"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/pytest.xml": {
+    "size": 8300,
+    "sha256": "2596a5d4639b2656b41fec5fe4a8bdbce5d0dc3864b594aa8d43e35c6be52a02"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/result.json": {
+    "size": 206,
+    "sha256": "7e969d1eb9af49bc12b8886e4d6d830007e944db16740bff32f97df15f6a2e1b"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/stderr.txt": {
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-audit-fix-02/stdout.txt": {
+    "size": 206,
+    "sha256": "93227851a1be8b7972e7363a3ab84332850e54cb048ac0d0f6cb9841162c305d"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/invocation.json": {
+    "size": 1836,
+    "sha256": "e9ed2d8c86c8615d4d6444770b604195c50c2098c2f21404fb68716ce35a91a4"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/pre-run-hashes.json": {
+    "size": 35912,
+    "sha256": "7139a86ee5ded7a4d3f16001f868b26adc0997780a44cb500c405c31617a8975"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/pytest.xml": {
+    "size": 37050,
+    "sha256": "7a3e58aeee789fd10e0151529616df2c4d15bd51aa314b728b390c05b7e75110"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/result.json": {
+    "size": 84,
+    "sha256": "485499ab7de867c0358713ca287d325492f537f08455bd0e4a024a6fa0e46a8c"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/stderr.txt": {
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-01/stdout.txt": {
+    "size": 4438,
+    "sha256": "83203e36f98ca760cc488e919311576bc225321fb91e11ab202e3ec186676ed6"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/environment.json": {
+    "size": 159,
+    "sha256": "0c0b171b2a5c63de0ddc6e1f7efc25cdff91d31043c328434dc31000216c0211"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/invocation.json": {
+    "size": 1836,
+    "sha256": "6f307d73b4dbda40b88b17f8f4abe3cc69ddd928c31694f72b4db5ddf6a1704b"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/post-run-hashes.json": {
+    "size": 35912,
+    "sha256": "213555866d9a29916266020302d79e6e55016ec4e7cefb85c85b82280bedeae2"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/pre-run-hashes.json": {
+    "size": 35912,
+    "sha256": "213555866d9a29916266020302d79e6e55016ec4e7cefb85c85b82280bedeae2"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/pytest.xml": {
+    "size": 35246,
+    "sha256": "8b6407f29ec87415a005b97bf7e1feff9b6ba056affa32a71345a219e79fd4e5"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/result.json": {
+    "size": 141,
+    "sha256": "f19eb3c725fe39a767f7fa492f0a36308c24f0b82050d59eac77f99ea7325e40"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/stderr.txt": {
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evaluation/kicad-reader/evidence/source-checked-preparation-portable-02/stdout.txt": {
+    "size": 694,
+    "sha256": "d090cae86d26570d8ca2dccc143ba61375ced54ba59bf073631c8f58b211b967"
+  }
+}

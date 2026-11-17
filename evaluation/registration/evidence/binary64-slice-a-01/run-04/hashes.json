@@ -1,0 +1,27 @@
+﻿[
+    {
+        "path":  "src/aoi_platform/geometry/registration.py",
+        "sha256":  "4fc53fcf64e05b93ca7b6e586495f40518ae468976930ccf5cbe38b37d3bfced",
+        "size":  25542
+    },
+    {
+        "path":  "src/aoi_platform/geometry/_registration_numeric.py",
+        "sha256":  "cb1fd3b1a8fe2d1be77f9953f146b0a4344316a42afbe52f95fec271e2c6faf5",
+        "size":  4333
+    },
+    {
+        "path":  "src/aoi_platform/geometry/errors.py",
+        "sha256":  "169eca3fc54898ea16f43ad8348cae8bbb5353d09ba79e54392e252ce89cec58",
+        "size":  5381
+    },
+    {
+        "path":  "tests/test_registration.py",
+        "sha256":  "f4af72b635643f37670b66c279cd33d860ade1f0fc2370a81d7f396acf82ab8e",
+        "size":  14194
+    },
+    {
+        "path":  "tests/test_registration_limits.py",
+        "sha256":  "663b3dff2c1973fd2e3317bba3fc0256cbedadfcdabdbf49ec69685f8b55230f",
+        "size":  13181
+    }
+]

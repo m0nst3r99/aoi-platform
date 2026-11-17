@@ -1,0 +1,6 @@
+﻿{
+    "command":  "C:/dev/aoi-platform/.venv/Scripts/python.exe -m pytest tests/test_registration.py tests/test_registration_limits.py -vv -p no:cacheprovider",
+    "started":  "2026-11-17T08:48:21.5253767+07:00",
+    "duration_seconds":  0.8747591,
+    "exit_code":  0
+}

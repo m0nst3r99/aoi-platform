@@ -1,0 +1,6 @@
+﻿{
+    "command":  "C:/dev/aoi-platform/.venv/Scripts/python.exe -m pytest tests/test_registration_limits.py -k \"forged_frozen_frame or missing_field_on_forged_record\" -vv -p no:cacheprovider",
+    "started":  "2026-11-17T08:47:58.4924825+07:00",
+    "duration_seconds":  0.71250079999999993,
+    "exit_code":  1
+}

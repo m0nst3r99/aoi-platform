@@ -493,3 +493,76 @@ different revisions with hash-only source provenance; neither is retroactively
 claimed to cover this revision. Existing historical evidence remains valid for
 its recorded scope. Reuse/acceptance distinctions and remaining importer,
 source-authentication/publication gaps are unchanged.
+
+### E-R — Binary64 pure rigid registration Slice A
+
+2026-11-17, baseline `master @ 14e23b7`, uncommitted implementer evidence.
+This supplemental mapping does not promote any of the 47 scenario identities,
+implementation/verification/acceptance statuses or task checkboxes above. Earlier
+row gaps describe the retained scenario-level baseline; the bounded contribution
+below must not be read as complete scenario implementation or acceptance.
+
+Source: [registration API](../../../src/aoi_platform/geometry/registration.py),
+[binary64 numerical implementation](../../../src/aoi_platform/geometry/_registration_numeric.py).
+Evidence: [scope and run ledger](../../../evaluation/registration/evidence/binary64-slice-a-01/README.md),
+[final run-05 exact test identities](../../../evaluation/registration/evidence/binary64-slice-a-01/run-05/junit.xml),
+[source/test hashes](../../../evaluation/registration/evidence/binary64-slice-a-01/run-05/hashes.json),
+[independent numerical report](../../../evaluation/registration/evidence/binary64-slice-a-01/run-05/oracle-report.json).
+
+| Scenarios | New bounded verification / test identities | Still missing / acceptance limit |
+| --- | --- | --- |
+| `G12` | `test_literal_rotations_and_translation_decimal_oracle`, `test_noisy_fit_fixed_scale_independent_rational_oracle`, `test_large_offset_small_baseline`, `test_bounded_adversarial_oracle_grid` | Proper-rigid synthetic draft only; no projective fit, verified calibration or explicit runtime activation. |
+| `G13` | `test_near_degenerate_correlation`, `test_coincident_and_precision_lost_inputs`, `test_reflection_wrong_correspondence_and_outlier_fail_closed`, `test_duplicate_ids`, `test_wrong_declaration_context`, `test_missing_ids` | No homography coverage/rank checks or production correspondence authority. |
+| `G14` | `test_pair_alone_never_claims_verified_parity` | Pair never certifies parity; homography API still absent. |
+| `G15` | `test_evidence_is_declared_even_with_disjoint_checkpoint_sets`, `test_checkpoint_assessment_does_not_refit` | Evidence stays declared/unverified; no trust/validation/inspection boundary implementation. |
+| `G16-G17` | `test_invalid_explicit_policy`, `test_zero_quality_threshold_is_not_silently_relaxed`, `test_threshold_equality_and_adjacent_values_are_ambiguous` | Explicit synthetic-only policy; no version registry, revalidation service or production qualification. |
+| `G18` | `test_output_size_and_failure_atomicity`, `test_forged_frozen_frame_cannot_escape_atomic_failure`, `test_missing_field_on_forged_record_is_bounded_failure`, `test_nonfinite_intermediate_is_atomic` | Pure typed failures, not BuildInspectionInput REVIEW/no-ROI integration. |
+| `G19-G20` | `test_wrong_observation_context`, `test_permutation_invariance_success_and_competing_errors`, `test_no_resolver_camera_or_motion_dependencies` | Explicit context isolation only; no six-station runtime, staleness or activation/invalidation. |
+| `P09` | Declaration/approval-reference retention and `test_caller_cannot_claim_verified_evidence` | Does not classify or authenticate fiducials; circular pads are never auto-promoted. |
+
+Final focused scope: [test_registration.py](../../../tests/test_registration.py)
+and [test_registration_limits.py](../../../tests/test_registration_limits.py):
+**102 PASS / 0 FAIL / 0 SKIP**, 0.61 s pytest, exit 0. Decimal 100/160-digit
+oracles independently evaluate fitting and represented-coefficient residuals;
+14 saved numerical report cases found no guard/acceptance contradiction.
+Guards remain hypotheses supported by this corpus, not proven bounds.
+
+Preserved failures: run-01 81 PASS/1 FAIL (test used nonexistent resolver class);
+run-02 2 FAIL (malformed frozen-record exception escapes). Later snapshots repair
+admission/atomicity; no historical log or expectation was overwritten to hide the
+failures. Run-05 applies to the final source/test hashes only. Historical tracked
+evidence/fixture/spec/task preservation: 1,200 files checked, zero hash changes.
+No H249/H55/native or full historical suite rerun; no legacy regression result is
+claimed from this new suite. Implementer verdict READY FOR INDEPENDENT AUDIT.
+
+## Independent angular follow-up — 2026-11-17
+
+Controlled reviewer execution found coefficient sensitivity: 12 of 17 drafts in
+20 cases exceed the existing 1e-12 regression coefficient criterion (not a proven
+public bound). Worst 1.66876e-9 (N=3, rho~2e-8); N=64 reaches 5.63140e-10.
+Decimal 100/180-digit optima and represented-coefficient residuals agree to 1e-85.
+No false physical residual PASS in these cases or 85 RMS threshold probes;
+permutations agree. Three near-floor cases reject ambiguously; N=2 correlation=1
+controls cannot exercise near-floor geometry. This fills the identified angular
+coverage gap; it does not rerun or supersede unrelated historical tests.
+[Exact experiment, inputs, hashes, results and limits](../../../evaluation/registration/evidence/angular-followup-01/README.md).
+Verdict BLOCKED pending owner coefficient-accuracy/conditioning decision. Production
+and guards unchanged; stopped without adding regression tests after counterexample.
+No scenario status/task-checkbox promotion or importer/publication claim.
+## E-R positional verification contribution — 2026-11-17
+
+Additional G12–G20 contribution; all scenario statuses remain unchanged.
+New coverage gap: explicit inspected-point residual/coverage semantics under the
+owner-approved 0.01 mm maximum, separate from coefficient accuracy and fit residuals.
+`tests/test_registration_position.py`: 39 cases covering corners/distant points,
+N=2/3/16/64 at five correlation targets, Decimal returned-coefficient residuals,
+threshold ambiguity, missing/shared/nearby coverage and malformed atomic failure.
+The exact test identities are in [run-02 JUnit](../../../evaluation/registration/evidence/positional-followup-01/run-02/junit.xml).
+Combined with unchanged `test_registration.py` and `test_registration_limits.py`:
+141 PASS / 0 FAIL / 0 SKIP. Run-01 136 PASS preserved; run-02 adds N=2 controls and
+180-digit reference construction. Source snapshots/pre-post hashes and 64 preserved
+historical registration evidence files are recorded per run. No broad rerun.
+[Oracle, commands, policy and limitations](../../../evaluation/registration/evidence/positional-followup-01/README.md).
+Numerical agreement is synthetic only; physical accuracy INDETERMINATE, state DRAFT.
+This does not close validated-candidate or active inspection scenarios. No task
+checkbox or acceptance-status promotion, production solver/guard change or activation.

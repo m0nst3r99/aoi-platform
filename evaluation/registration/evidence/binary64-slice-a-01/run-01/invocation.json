@@ -1,0 +1,8 @@
+﻿{
+    "command":  "C:/dev/aoi-platform/.venv/Scripts/python.exe -m pytest tests/test_registration.py tests/test_registration_limits.py -vv -p no:cacheprovider --basetemp=evaluation/registration/evidence/binary64-slice-a-01/run-01/tmp",
+    "started":  "2026-11-17T08:46:55.8192763+07:00",
+    "duration_seconds":  0.9946123,
+    "exit_code":  1,
+    "python":  "3.11.9",
+    "head":  "14e23b7f1c9de82518fc2f11fe66d3205ca1bcf2"
+}

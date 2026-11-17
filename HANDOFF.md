@@ -1,5 +1,66 @@
 # Current State / Next Action
 
+Snapshot: 2026-11-17 positional follow-up; master at
+`14e23b7f1c9de82518fc2f11fe66d3205ca1bcf2`, index empty; no commit/push.
+Owner accepts 0.01 mm positional target, not universal 1e-12 coefficient accuracy.
+Added synthetic pointwise ROI assessment and 39 focused tests; existing binary64
+solver/guards unchanged. Exact-coordinate held-out coverage only; physical accuracy
+always INDETERMINATE, validation NOT_PERFORMED, state DRAFT. No activation.
+[Evidence](evaluation/registration/evidence/positional-followup-01/README.md):
+run-02 141 PASS (39 new + 102 existing); 20 Decimal cases, 17 numerical PASS,
+three unchanged floor rejections. Maximum corner residual 3.76049e-7 mm.
+Both runs preserve 64 historical registration evidence files; source snapshots and
+pre/post hashes retained. Scenario statuses and task checkboxes unchanged.
+Changed this slice: new positional module/test/evidence plus handoff/status/matrix.
+Earlier registration edits and unrelated local-only artifacts preserved.
+Next action (proposal): independent review of pointwise coverage, numerical/physical
+assessment separation and evidence. No physical validation or further action implied.
+
+## Previous snapshot: independent angular follow-up
+
+Snapshot: 2026-11-17 independent angular follow-up; master at
+`14e23b7f1c9de82518fc2f11fe66d3205ca1bcf2`, index empty. Existing uncommitted
+registration implementation preserved; no production/guard edits, commit or push.
+Controlled Decimal 100/180-digit audit: BLOCKED on coefficient accuracy relative
+to existing 1e-12 regression criterion (not a certified public bound). 20 cases,
+17 drafts; worst coefficient error 1.66876e-9 at N=3/rho~2e-8; N=64 error
+5.63140e-10 at rho~2e-8. No false residual PASS in this corpus/85 RMS threshold
+probes; all permutations identical. Exact inputs, snapshots, command and limits:
+[angular audit evidence](evaluation/registration/evidence/angular-followup-01/README.md).
+Next action: owner review of coefficient accuracy/conditioning requirements before
+any correction or wider testing. All scenario statuses/task checkboxes unchanged.
+
+## Previous snapshot: registration implementation
+# Current State / Next Action
+
+Snapshot: 2026-11-17; `master` at
+`14e23b7f1c9de82518fc2f11fe66d3205ca1bcf2`, ahead 0 / behind 0 against local
+`origin/master` (no fetch). Index empty. Binary64 registration Slice A source,
+tests, evidence and affected documentation are uncommitted; unrelated local-only
+artifacts preserved. No commit/push.
+
+- Implemented bounded `proper-rigid-binary64-v1`: immutable synthetic request,
+  policy, draft/failure; stable anchor/compensated fitting, conservative threshold
+  ambiguity, context/reference admission, declared-unverified evidence and output
+  bounds. No camera, motion, image alignment, resolver activation or auto-classifier.
+- Fresh [registration evidence](evaluation/registration/evidence/binary64-slice-a-01/README.md):
+  final run-05 **102 PASS / 0 FAIL / 0 SKIP**, 0.61 s pytest; 14 independent numeric
+  report cases, Decimal 100/160-digit checks, no guard/acceptance contradiction.
+  Preserved run-01 (81 PASS/1 FAIL, test import) and run-02 (2 atomicity reproducer
+  FAILs) with exact snapshots; remediation and later runs are separately identified.
+- Historical hash check: 1,200 tracked evidence/fixture/spec/task files unchanged.
+  No historical H249/H55/native reruns. Guards remain tested hypotheses, not proven
+  numerical bounds or production accuracy. A draft never implies validated/active.
+  All 47 scenario statuses/task checkboxes unchanged; see
+  [matrix contribution](openspec/changes/board-geometry-foundation/verification-matrix.md#e-r--binary64-pure-rigid-registration-slice-a)
+  and [implementation status](openspec/changes/board-geometry-foundation/implementation-status.md).
+- Next action (proposal, awaiting authorization): independent audit of registration
+  admission, numerical guards/Decimal oracles, evidence semantics and final run-05
+  hashes. Implementer verdict READY FOR INDEPENDENT AUDIT; no independent verdict
+  or scenario-level acceptance claimed. No further implementation/commit authorized.
+
+## Previous snapshot: canonical outline remediation before controlled commit
+
 Snapshot: 2026-11-16 after Slice A audit remediation; `master` at
 `2ee201dfc62fd7363336a8b099e2886e039dd59a`, ahead 0 / behind 0 against local
 `origin/master` (no live query). Index empty; Slice A and remediation uncommitted.

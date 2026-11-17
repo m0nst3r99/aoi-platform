@@ -1,0 +1,52 @@
+﻿{
+    "head":  "14e23b7f1c9de82518fc2f11fe66d3205ca1bcf2",
+    "branch":  "master",
+    "source_test_hashes_checked":  5,
+    "source_test_hash_mismatches":  0,
+    "scenario_rows_before":  47,
+    "scenario_rows_after":  53,
+    "scenario_row_differences":  6,
+    "unrelated_untracked_paths_checked":  1755,
+    "missing_unrelated_untracked":  0,
+    "unexpected_tracked_paths":  [
+
+                                 ],
+    "staged_paths":  [
+
+                     ],
+    "diff_check_exit":  0,
+    "new_file_whitespace":  [
+                                {
+                                    "path":  "src/aoi_platform/geometry/registration.py",
+                                    "exit_code":  1,
+                                    "output":  [
+
+                                               ]
+                                },
+                                {
+                                    "path":  "src/aoi_platform/geometry/_registration_numeric.py",
+                                    "exit_code":  1,
+                                    "output":  [
+
+                                               ]
+                                },
+                                {
+                                    "path":  "tests/test_registration.py",
+                                    "exit_code":  1,
+                                    "output":  [
+
+                                               ]
+                                },
+                                {
+                                    "path":  "tests/test_registration_limits.py",
+                                    "exit_code":  1,
+                                    "output":  [
+
+                                               ]
+                                }
+                            ],
+    "new_links_checked":  29,
+    "missing_links":  [
+
+                      ]
+}

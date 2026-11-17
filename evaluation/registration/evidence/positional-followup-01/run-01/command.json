@@ -1,0 +1,10 @@
+[
+  "C:\\dev\\aoi-platform\\.venv\\Scripts\\python.exe",
+  "-m",
+  "pytest",
+  "tests/test_registration_position.py",
+  "tests/test_registration.py",
+  "tests/test_registration_limits.py",
+  "-q",
+  "--junitxml=C:\\dev\\aoi-platform\\evaluation\\registration\\evidence\\positional-followup-01\\run-01\\junit.xml"
+]

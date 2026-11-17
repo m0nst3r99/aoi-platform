@@ -1,3 +1,36 @@
+## Binary64 registration Slice A — 2026-11-17
+
+Baseline `master @ 14e23b7`; uncommitted controlled implementation. The current
+user-authorized registration contract supersedes exact-dyadic registration and
+primitive-work-ledger proposals only; canonical outline arithmetic is unchanged.
+
+- Added [registration API](../../../src/aoi_platform/geometry/registration.py) and
+  [private numerical solver](../../../src/aoi_platform/geometry/_registration_numeric.py):
+  immutable synthetic draft/failure, explicit context/provenance, proper-rigid
+  fixed-scale uniform fitting, no automatic exclusion, conservative ambiguity and
+  bounded admission/output. No active mapping or resolver/camera/motion path.
+- Added [numerical tests](../../../tests/test_registration.py) and
+  [limit/negative tests](../../../tests/test_registration_limits.py). Final run-05:
+  **102 PASS / 0 FAIL / 0 SKIP**, 0.61 s pytest. Decimal oracles use 100/160 digits;
+  the separately saved 14-case report found no guard or acceptance contradiction.
+- [Fresh evidence](../../../evaluation/registration/evidence/binary64-slice-a-01/README.md)
+  preserves exact per-run snapshots/hashes, commands, failures and remediation.
+  Run-01 test imported a nonexistent resolver name; run-02 exposed two malformed
+  frozen-record atomicity escapes, fixed before consolidated verification.
+- Only existing source change: three ErrorCode additions. Existing public model,
+  transform, resolver, canonical-outline and source-preparation behavior unchanged.
+  No legacy full-suite/native reruns; 1,200 historical tracked artifacts hash-match.
+- This contributes bounded rigid portions of tasks 4.9/4.11 and G12-G20, but does
+  not complete them. G12 projective fitting, actual evidence verification,
+  calibration/lifecycle/inspection integration and P09 auto-classification remain
+  absent. All 47 scenario statuses and task checkboxes stay unchanged.
+- Numerical guards are hypotheses supported by this corpus, not rigorous error
+  bounds or production qualification. Evidence remains declared/unverified; draft
+  success cannot activate or authorize inspection/motion.
+
+Implementer verdict: **READY FOR INDEPENDENT AUDIT**. Next proposed action is an
+independent review against final run-05 hashes. No commit or push authorized.
+
 ## Slice A independent audit remediation — 2026-11-16
 
 User-relayed verdict FIX REQUIRED; F1 HIGH, F2 MEDIUM and F3 LOW addressed in the
@@ -1922,3 +1955,32 @@ graphics/model and zone-fill semantics remain unverified. Tasks 1.5/5.2 and aggr
 3.4/5.5/5.13 remain PARTIAL; checkboxes and historical evidence are unchanged.
 Only HANDOFF and implementation status updated; no code/evidence changes,
 tests/native runs, commit or push.
+
+## Independent angular follow-up — 2026-11-17
+
+Controlled reviewer execution found coefficient sensitivity: 12 of 17 drafts in
+20 cases exceed the existing 1e-12 regression coefficient criterion (not a proven
+public bound). Worst 1.66876e-9 (N=3, rho~2e-8); N=64 reaches 5.63140e-10.
+Decimal 100/180-digit optima and represented-coefficient residuals agree to 1e-85.
+No false physical residual PASS in these cases or 85 RMS threshold probes;
+permutations agree. Three near-floor cases reject ambiguously; N=2 correlation=1
+controls cannot exercise near-floor geometry. This fills the identified angular
+coverage gap; it does not rerun or supersede unrelated historical tests.
+[Exact experiment, inputs, hashes, results and limits](../../../evaluation/registration/evidence/angular-followup-01/README.md).
+Verdict BLOCKED pending owner coefficient-accuracy/conditioning decision. Production
+and guards unchanged; stopped without adding regression tests after counterexample.
+No scenario status/task-checkbox promotion or importer/publication claim.
+## Synthetic positional follow-up — 2026-11-17
+
+Owner decision supersedes the angular follow-up's universal coefficient-accuracy
+blocker: target maximum error is 0.01 mm at inspected locations. Additive synthetic
+pointwise assessment uses explicit ROI/checkpoint coordinates and unchanged returned
+binary64 coefficients. Exact-coordinate held-out coverage only; numerical PASS does
+not authenticate references or establish physical truth. Physical accuracy remains
+INDETERMINATE and every record remains DRAFT / NOT_PERFORMED.
+[Evidence and policy](../../../evaluation/registration/evidence/positional-followup-01/README.md):
+141 PASS (39 new positional + 102 existing registration), Decimal 100/180-digit
+residual checks; 17/20 numerical PASS and three existing near-floor rejections.
+Maximum synthetic corner residual 3.76049e-7 mm. Solver/guards unchanged; 64 historical
+registration evidence files preserved. Implementation verification PASS, physical
+accuracy unestablished. No scenario/task promotion, activation, commit or push.

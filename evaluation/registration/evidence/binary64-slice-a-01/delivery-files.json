@@ -1,0 +1,52 @@
+﻿[
+    {
+        "path":  "src/aoi_platform/geometry/registration.py",
+        "size":  25542,
+        "sha256":  "4fc53fcf64e05b93ca7b6e586495f40518ae468976930ccf5cbe38b37d3bfced"
+    },
+    {
+        "path":  "src/aoi_platform/geometry/_registration_numeric.py",
+        "size":  4333,
+        "sha256":  "cb1fd3b1a8fe2d1be77f9953f146b0a4344316a42afbe52f95fec271e2c6faf5"
+    },
+    {
+        "path":  "src/aoi_platform/geometry/errors.py",
+        "size":  5381,
+        "sha256":  "169eca3fc54898ea16f43ad8348cae8bbb5353d09ba79e54392e252ce89cec58"
+    },
+    {
+        "path":  "tests/test_registration.py",
+        "size":  14345,
+        "sha256":  "9ce15616e2754767ce9e94c2ed21c959e4ec9b661fe18ee2521255c6149adee6"
+    },
+    {
+        "path":  "tests/test_registration_limits.py",
+        "size":  13181,
+        "sha256":  "663b3dff2c1973fd2e3317bba3fc0256cbedadfcdabdbf49ec69685f8b55230f"
+    },
+    {
+        "path":  "HANDOFF.md",
+        "size":  167399,
+        "sha256":  "f426b716a31e00e5eb2edb1e87f16b09f6d881da0be7e0909c7521c9a2870195"
+    },
+    {
+        "path":  "openspec/changes/board-geometry-foundation/implementation-status.md",
+        "size":  160660,
+        "sha256":  "5e98468f0e4b394e2839fd943d644ddf8eb66661a940b9a25aa9ce344cef6e25"
+    },
+    {
+        "path":  "openspec/changes/board-geometry-foundation/verification-matrix.md",
+        "size":  72107,
+        "sha256":  "c317342abf68855e477b1bdcea6927b2883f7679b797ac33a64347712afb9c5b"
+    },
+    {
+        "path":  "evaluation/registration/evidence/binary64-slice-a-01/README.md",
+        "size":  9661,
+        "sha256":  "76c40e2cc8baf8abe2a3f4aa54b28ea1c9babde831dc93ffd8cb6affd81a6700"
+    },
+    {
+        "path":  "evaluation/registration/evidence/binary64-slice-a-01/oracle_report.py",
+        "size":  2234,
+        "sha256":  "504f2ee50dc5f3d5d3ed2928eaabbed65c6a7dfc5cf5c3d059addc4716b4df23"
+    }
+]

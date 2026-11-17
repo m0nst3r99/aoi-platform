@@ -1,0 +1,6 @@
+﻿{
+    "command":  "C:/dev/aoi-platform/.venv/Scripts/python.exe -m pytest tests/test_registration.py tests/test_registration_limits.py -vv -p no:cacheprovider --junitxml=evaluation/registration/evidence/binary64-slice-a-01/run-05/junit.xml",
+    "started":  "2026-11-17T08:50:35.3264226+07:00",
+    "duration_seconds":  1.2689426,
+    "exit_code":  0
+}

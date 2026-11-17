@@ -1,0 +1,6 @@
+﻿{
+    "command":  "C:/dev/aoi-platform/.venv/Scripts/python.exe evaluation/registration/evidence/binary64-slice-a-01/oracle_report.py",
+    "started":  "2026-11-17T08:49:34.3070909+07:00",
+    "duration_seconds":  0.43995059999999997,
+    "exit_code":  0
+}

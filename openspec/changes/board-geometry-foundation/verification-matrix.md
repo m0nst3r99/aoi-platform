@@ -566,3 +566,19 @@ historical registration evidence files are recorded per run. No broad rerun.
 Numerical agreement is synthetic only; physical accuracy INDETERMINATE, state DRAFT.
 This does not close validated-candidate or active inspection scenarios. No task
 checkbox or acceptance-status promotion, production solver/guard change or activation.
+
+## E-R observation-contract contribution — 2026-11-17
+
+G12–G20/P09 partial contribution only; all 47 scenario identities/statuses unchanged.
+New gap addressed: explicit observation-to-request admission and correspondence,
+with camera/calibration/acquisition provenance retained independently of fitting.
+[Test module](../../../tests/test_fiducial_observation.py): 47 synthetic contract
+cases for identity/frame/unit/quality/provenance failures, deterministic ID mapping,
+immutable output, malformed atomic failure and no solver execution during mapping.
+[Exact run-01 identities](../../../evaluation/registration/evidence/observation-contract-01/run-01/junit.xml)
+and [scope/commands/hashes](../../../evaluation/registration/evidence/observation-contract-01/README.md):
+188 PASS / 0 FAIL / 0 SKIP, including existing 141 registration/positional cases.
+Rerun justified by the new generated RegistrationRequest boundary; no broad suite.
+Structural PASS remains UNVALIDATED, numerical eligibility NOT_PERFORMED, physical
+verification INDETERMINATE. No detector/calibration authentication or lifecycle
+integration implemented; no task checkbox or acceptance promotion.

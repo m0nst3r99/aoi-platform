@@ -1984,3 +1984,18 @@ residual checks; 17/20 numerical PASS and three existing near-floor rejections.
 Maximum synthetic corner residual 3.76049e-7 mm. Solver/guards unchanged; 64 historical
 registration evidence files preserved. Implementation verification PASS, physical
 accuracy unestablished. No scenario/task promotion, activation, commit or push.
+
+## Fiducial Observation Contract Slice A — 2026-11-17
+
+Baseline master e808fd3804fd9aa722f303708a5b9e4f39eb9add. Added immutable bounded
+[observation contract](../../../src/aoi_platform/geometry/fiducial_observation.py)
+and pure explicit-ID mapping to an UNVALIDATED RegistrationRequest envelope.
+Retains camera/calibration/image/time/quality/provenance metadata; pixels and
+independent references cannot be silently fitted. Structural consistency does not
+establish numerical eligibility or physical evidence verification. No solver,
+calibration transform, detector, hardware, resolver or activation change.
+[Evidence](../../../evaluation/registration/evidence/observation-contract-01/README.md):
+188 PASS (47 new contract + 141 existing registration/positional), source snapshots,
+exact commands/JUnit and pre/post hashes. READY FOR INDEPENDENT AUDIT only.
+No scenario status/task checkbox promotion. Future boundary: trusted calibration
+and vision adapter construction, temporal validity and physical uncertainty.

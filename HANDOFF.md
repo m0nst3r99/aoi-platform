@@ -1,5 +1,23 @@
 # Current State / Next Action
 
+Snapshot: 2026-11-17 Fiducial Observation Contract Slice A; master at
+`e808fd3804fd9aa722f303708a5b9e4f39eb9add`, index empty, no commit/push.
+The previous handoff predates the authorized registration commit; baseline now
+matches the owner's requested commit. Added immutable bounded observation records
+and ID-based mapping to an explicitly UNVALIDATED RegistrationRequest envelope.
+Pixels/reference observations cannot enter the fit path; no calibration transform,
+solver call, activation or physical verification is performed during mapping.
+[Evidence](evaluation/registration/evidence/observation-contract-01/README.md):
+188 PASS (47 contract + 141 existing registration/positional), exact source/test
+snapshots and historical pre/post hashes retained. Existing solver/positional code,
+scenario statuses and task checkboxes unchanged; unrelated untracked files preserved.
+Changed: new observation module/test/evidence; handoff/status/matrix only.
+Verdict READY FOR INDEPENDENT AUDIT. Next action (proposal): independent review of
+admission, metadata retention, provenance boundaries and deterministic mapping.
+Vision/calibration authentication and physical integration remain future work.
+
+## Previous snapshot: positional follow-up before authorized commit
+
 Snapshot: 2026-11-17 positional follow-up; master at
 `14e23b7f1c9de82518fc2f11fe66d3205ca1bcf2`, index empty; no commit/push.
 Owner accepts 0.01 mm positional target, not universal 1e-12 coefficient accuracy.
